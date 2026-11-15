@@ -50,6 +50,24 @@ def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
             found.append(f"{family.name}: duplicate attribute {key!r}")
         for attribute in family.attributes:
             check_attribute(f"{family.name}.{attribute.key}", attribute)
+        for derived in family.derived_options:
+            where = f"{family.name}.{derived.key}"
+            vocab_name = vocabulary.option_attributes.get(derived.key)
+            if vocab_name is None:
+                found.append(f"{where}: {derived.key!r} has no vocabulary for its options")
+            else:
+                allowed = vocabulary.options(vocab_name)
+                for minimum in derived.minimums:
+                    check_source(where, minimum.source)
+                    if minimum.option not in allowed:
+                        found.append(f"{where}: {minimum.option!r} is not a known {vocab_name}")
+            if derived.key in keys:
+                found.append(f"{where}: also given as a plain attribute")
+            for variant in family.variants:
+                if derived.from_dimension not in variant.dimensions:
+                    found.append(f"{variant.sku}: no {derived.from_dimension} for {derived.key}")
+                elif not derived.options_for(variant):
+                    found.append(f"{variant.sku}: qualifies for no {derived.key} option")
         for variant in family.variants:
             if variant.sku in skus:
                 found.append(f"{family.name}: duplicate SKU {variant.sku!r}")

@@ -69,9 +69,10 @@ def import_catalog(session: Session, catalog: schema.CatalogFile) -> None:
         row_r.verification_status = rule.status
 
     for family in catalog.families:
-        all_verified = all(
-            a.status is models.VerificationStatus.HUMAN_VERIFIED for a in family.attributes
-        )
+        statuses = [a.status for a in family.attributes] + [
+            d.status for d in family.derived_options
+        ]
+        all_verified = all(s is models.VerificationStatus.HUMAN_VERIFIED for s in statuses)
         for variant in family.variants:
             product = _one(
                 session,
@@ -98,17 +99,20 @@ def import_catalog(session: Session, catalog: schema.CatalogFile) -> None:
             session.flush()
             for attribute in family.attributes:
                 product.attributes.append(_attribute_row(attribute, documents))
-            if variant.width_mm is not None:
+            variants_source = documents[family.variants_source.document].id
+            for dimension, size in variant.dimensions.items():
                 product.attributes.append(
                     models.ProductAttribute(
-                        key="width",
-                        value_num=variant.width_mm,
+                        key=dimension,
+                        value_num=size,
                         unit="mm",
-                        source_document_id=documents[family.variants_source.document].id,
+                        source_document_id=variants_source,
                         source_page=family.variants_source.page,
                         verification_status=models.VerificationStatus.AI_EXTRACTED,
                     )
                 )
+            for derived in family.derived_options:
+                product.attributes.append(_derived_row(derived, variant, documents))
     session.flush()
 
 
@@ -126,6 +130,30 @@ def _attribute_row(
         source_page=attribute.source.page,
         verification_status=attribute.status,
         verified_at=_verified_at(attribute.verified_on),
+    )
+
+
+def _derived_row(
+    derived: schema.DerivedOptions,
+    variant: schema.Variant,
+    documents: dict[str, models.SourceDocument],
+) -> models.ProductAttribute:
+    """Store derived options, citing the minimum that decided the outcome.
+
+    The cited source is the highest minimum the variant meets: it is the most
+    demanding requirement the variant was checked against.
+    """
+    qualifying = derived.options_for(variant)
+    if not qualifying:
+        raise ValueError(f"{variant.sku}: qualifies for no {derived.key} option")
+    deciding = max(qualifying, key=lambda m: m.min)
+    return models.ProductAttribute(
+        key=derived.key,
+        value_options=[m.option for m in qualifying],
+        source_document_id=documents[deciding.source.document].id,
+        source_page=deciding.source.page,
+        verification_status=derived.status,
+        verified_at=_verified_at(derived.verified_on),
     )
 
 

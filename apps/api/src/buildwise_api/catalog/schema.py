@@ -3,7 +3,7 @@
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
-from typing import Self
+from typing import Literal, Self
 
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, model_validator
@@ -68,17 +68,56 @@ class Attribute(_Reviewed):
     note: str | None = None
 
 
+type Dimension = Literal["width_mm", "length_mm", "thickness_mm"]
+
+
 class Variant(_Strict):
     sku: str
     package_quantity: Decimal = Field(gt=0)
     package_unit: str
-    width_mm: Decimal | None = None
+    dimensions: dict[Dimension, Decimal] = {}
+
+
+class Minimum(_Strict):
+    option: str
+    min: Decimal = Field(gt=0)
+    source: SourceRef
+
+
+class DerivedOptions(_Strict):
+    """Options a variant qualifies for, derived from one of its dimensions.
+
+    A variant gets every option whose minimum its dimension meets or exceeds.
+    Example: a 12.5 mm panel may be spot-bonded (9 mm minimum) but not used as
+    a countertop (38 mm minimum).
+    """
+
+    key: str
+    from_dimension: Dimension
+    minimums: list[Minimum] = Field(min_length=1)
+    status: VerificationStatus
+    verified_by: str | None = None
+    verified_on: date | None = None
+
+    @model_validator(mode="after")
+    def _review_is_complete(self) -> Self:
+        verified = self.status is VerificationStatus.HUMAN_VERIFIED
+        if verified != (self.verified_by is not None and self.verified_on is not None):
+            raise ValueError("human_verified needs verified_by and verified_on, and only then")
+        return self
+
+    def options_for(self, variant: Variant) -> list[Minimum]:
+        size = variant.dimensions.get(self.from_dimension)
+        if size is None:
+            return []
+        return [m for m in self.minimums if size >= m.min]
 
 
 class Family(_Strict):
     name: str
     category: str
     attributes: list[Attribute]
+    derived_options: list[DerivedOptions] = []
     variants: list[Variant] = Field(min_length=1)
     variants_source: SourceRef
 
@@ -102,6 +141,7 @@ class Vocabulary(_Strict):
     substrate: dict[str, str]
     application: dict[str, str]
     bonding_mortar: dict[str, str]
+    mounting: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:
         values: dict[str, str] = getattr(self, name)
