@@ -45,8 +45,8 @@ def test_typical_floor_fits_only_the_406_detail(reviewed: Session) -> None:
     assert verdicts == {
         "d-w16-t": Verdict.COMPATIBLE,
         "d-w19-t": Verdict.INCOMPATIBLE,  # needs a 19 mm subfloor
-        "d-w24-t": Verdict.INCOMPATIBLE,  # needs engineered framing and underlayment
-        "d-w24-xl-t": Verdict.INCOMPATIBLE,  # needs DITRA-XL and engineered framing
+        "d-w24-t": Verdict.INCOMPATIBLE,  # needs a 19 mm subfloor and underlayment
+        "d-w24-xl-t": Verdict.INCOMPATIBLE,  # needs a 19 mm subfloor and DITRA-XL
         "d-w-s": Verdict.INCOMPATIBLE,  # natural stone only
     }
 
@@ -70,6 +70,15 @@ def test_typical_floor_fits_only_the_406_detail(reviewed: Session) -> None:
             {
                 "subfloor_thickness_mm": Decimal("19"),
                 "joist_type": "engineered_i_joist",
+                "joist_spacing_mm": Decimal("610"),
+                "uncoupling_membrane": "ditra_xl",
+            },
+            Verdict.COMPATIBLE,
+        ),
+        (
+            "d-w24-xl-t",
+            {
+                "subfloor_thickness_mm": Decimal("19"),
                 "joist_spacing_mm": Decimal("610"),
                 "uncoupling_membrane": "ditra_xl",
             },
@@ -108,6 +117,7 @@ def test_typical_floor_fits_only_the_406_detail(reviewed: Session) -> None:
         "w16-ditra-xl",
         "w19-19mm-on-488",
         "w24-xl-on-i-joists",
+        "w24-xl-on-joists",
         "w24-xl-needs-ditra-xl",
         "stone-double-layer",
         "stone-asks-for-underlayment",
