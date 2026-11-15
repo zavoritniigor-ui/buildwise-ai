@@ -2,7 +2,7 @@
 name = "buildwise-api"
 version = "0.0.0"
 description = "BuildWise AI backend API"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "alembic>=1.20.1",
     "fastapi>=0.115",
