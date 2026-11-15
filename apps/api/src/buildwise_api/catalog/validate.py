@@ -32,13 +32,30 @@ def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
         elif isinstance(attribute.value, list):
             found.append(f"{where}: {attribute.key!r} has no vocabulary for its options")
 
+    assemblies = {assembly.slug for assembly in catalog.assemblies}
+    for assembly in catalog.assemblies:
+        keys = [attribute.key for attribute in assembly.attributes]
+        for key in {k for k in keys if keys.count(k) > 1}:
+            found.append(f"{assembly.slug}: duplicate attribute {key!r}")
+        for attribute in assembly.attributes:
+            check_attribute(f"{assembly.slug}.{attribute.key}", attribute)
+
+    alternatives: dict[str, set[int]] = {}
     for rule in catalog.rules:
         where = f"rule {rule.slug}"
         check_source(where, rule.source)
-        if rule.category not in categories:
+        if rule.category is not None and rule.category not in categories:
             found.append(f"{where}: unknown category {rule.category!r}")
+        if rule.assembly is not None and rule.assembly not in assemblies:
+            found.append(f"{where}: unknown assembly {rule.assembly!r}")
+        if rule.alternative is not None:
+            alternatives.setdefault(rule.alternative.group, set()).add(rule.alternative.number)
         if rule.material_attribute and rule.material_attribute not in vocabulary.option_attributes:
             found.append(f"{where}: {rule.material_attribute!r} has no vocabulary")
+
+    for group, numbers in alternatives.items():
+        if len(numbers) < 2:
+            found.append(f"alternative group {group!r} has fewer than two alternatives")
 
     skus: set[str] = set()
     for family in catalog.families:

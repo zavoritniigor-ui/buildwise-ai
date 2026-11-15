@@ -50,15 +50,28 @@ class _Reviewed(_Strict):
         return self
 
 
+class Alternative(_Strict):
+    group: str
+    number: int = Field(gt=0)
+
+
 class Rule(_Reviewed):
     slug: str
-    category: str
+    category: str | None = None
+    assembly: str | None = None
+    alternative: Alternative | None = None
     kind: RuleKind
     condition: str
     material_attribute: str | None = None
     min_attribute: str | None = None
     max_attribute: str | None = None
     description: str
+
+    @model_validator(mode="after")
+    def _one_scope(self) -> Self:
+        if (self.category is None) == (self.assembly is None):
+            raise ValueError("a rule needs exactly one of category or assembly")
+        return self
 
 
 class Attribute(_Reviewed):
@@ -122,6 +135,13 @@ class Family(_Strict):
     variants_source: SourceRef
 
 
+class Assembly(_Strict):
+    slug: str
+    name: str
+    description: str
+    attributes: list[Attribute] = Field(min_length=1)
+
+
 class Manufacturer(_Strict):
     name: str
     website: HttpUrl
@@ -132,7 +152,8 @@ class CatalogFile(_Strict):
     documents: list[Document]
     categories: list[Category]
     rules: list[Rule] = []
-    families: list[Family]
+    assemblies: list[Assembly] = []
+    families: list[Family] = []
 
 
 class Vocabulary(_Strict):
@@ -142,6 +163,12 @@ class Vocabulary(_Strict):
     application: dict[str, str]
     bonding_mortar: dict[str, str]
     mounting: dict[str, str]
+    subfloor: dict[str, str]
+    subfloor_edge: dict[str, str]
+    joist_type: dict[str, str]
+    shower_base: dict[str, str]
+    floor_waterproofing: dict[str, str]
+    country: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:
         values: dict[str, str] = getattr(self, name)

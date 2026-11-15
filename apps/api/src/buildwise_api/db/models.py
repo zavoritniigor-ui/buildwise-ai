@@ -156,19 +156,8 @@ class Product(Base):
     )
 
 
-class ProductAttribute(Base):
-    """One technical characteristic of a product, with its evidence.
-
-    Holds exactly one of: a text, a number, or a set of options (for example,
-    the substrates a membrane is approved for).
-
-    A characteristic may only be marked human-verified when it cites a source
-    document: every important characteristic must have a source.
-    """
-
-    __tablename__ = "product_attribute"
-    __table_args__ = (
-        UniqueConstraint("product_id", "key"),
+def _attribute_constraints() -> tuple[CheckConstraint, ...]:
+    return (
         CheckConstraint(
             "num_nonnulls(value_text, value_num, value_options) = 1", name="value_present"
         ),
@@ -181,8 +170,15 @@ class ProductAttribute(Base):
         ),
     )
 
+
+class _AttributeColumns:
+    """Columns shared by every kind of characteristic with its evidence.
+
+    Holds exactly one of: a text, a number, or a set of options. A value may
+    only be marked human-verified when it cites a source document.
+    """
+
     id: Mapped[int] = mapped_column(primary_key=True)
-    product_id: Mapped[int] = mapped_column(ForeignKey("product.id", ondelete="CASCADE"))
     key: Mapped[str] = mapped_column(String(100))
     value_text: Mapped[str | None] = mapped_column(Text)
     value_num: Mapped[Decimal | None] = mapped_column(Numeric(18, 6))
@@ -195,6 +191,15 @@ class ProductAttribute(Base):
         default=VerificationStatus.UNVERIFIED,
     )
     verified_at: Mapped[datetime | None]
+
+
+class ProductAttribute(_AttributeColumns, Base):
+    """One technical characteristic of a product, with its evidence."""
+
+    __tablename__ = "product_attribute"
+    __table_args__ = (UniqueConstraint("product_id", "key"), *_attribute_constraints())
+
+    product_id: Mapped[int] = mapped_column(ForeignKey("product.id", ondelete="CASCADE"))
 
     product: Mapped[Product] = relationship(back_populates="attributes")
 
@@ -273,6 +278,8 @@ class Operation(Base):
 class CompatibilityRule(Base):
     """A declarative compatibility rule for the engine.
 
+    A rule applies either to a material category or to one assembly.
+
     Only human-verified rules are published to the engine, and a human-verified
     rule must cite a source document.
     """
@@ -293,11 +300,21 @@ class CompatibilityRule(Base):
             "verification_status <> 'human_verified' OR source_document_id IS NOT NULL",
             name="verified_requires_source",
         ),
+        CheckConstraint("num_nonnulls(category_id, assembly_id) = 1", name="one_scope"),
+        CheckConstraint(
+            "(alternative_group IS NULL) = (alternative IS NULL)", name="alternative_pair"
+        ),
+        CheckConstraint("alternative IS NULL OR alternative > 0", name="alternative_positive"),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
     slug: Mapped[str] = mapped_column(String(100), unique=True)
-    category_id: Mapped[int] = mapped_column(ForeignKey("material_category.id"))
+    category_id: Mapped[int | None] = mapped_column(ForeignKey("material_category.id"))
+    assembly_id: Mapped[int | None] = mapped_column(ForeignKey("assembly.id"))
+    alternative_group: Mapped[str | None] = mapped_column(String(100))
+    """Rules sharing a group are alternatives: the group is met if every rule of
+    at least one numbered alternative is met."""
+    alternative: Mapped[int | None]
     kind: Mapped[RuleKind] = mapped_column(_enum(RuleKind, "kind"))
     condition: Mapped[str] = mapped_column(String(100))
     material_attribute: Mapped[str | None] = mapped_column(String(100))
@@ -309,3 +326,34 @@ class CompatibilityRule(Base):
         _enum(VerificationStatus, "verification_status"),
         default=VerificationStatus.UNVERIFIED,
     )
+
+
+class Assembly(Base):
+    """A manufacturer's construction system, such as a type of shower build-up.
+
+    Its requirements (subfloor, joist spacing, allowed shower bases) are kept
+    as attributes and checked by assembly-scoped rules.
+    """
+
+    __tablename__ = "assembly"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    slug: Mapped[str] = mapped_column(String(100), unique=True)
+    name: Mapped[str] = mapped_column(String(300))
+    description: Mapped[str | None] = mapped_column(Text)
+    manufacturer_id: Mapped[int | None] = mapped_column(ForeignKey("manufacturer.id"))
+
+    attributes: Mapped[list["AssemblyAttribute"]] = relationship(
+        back_populates="assembly", cascade="all, delete-orphan"
+    )
+
+
+class AssemblyAttribute(_AttributeColumns, Base):
+    """One requirement or characteristic of an assembly, with its evidence."""
+
+    __tablename__ = "assembly_attribute"
+    __table_args__ = (UniqueConstraint("assembly_id", "key"), *_attribute_constraints())
+
+    assembly_id: Mapped[int] = mapped_column(ForeignKey("assembly.id", ondelete="CASCADE"))
+
+    assembly: Mapped[Assembly] = relationship(back_populates="attributes")
