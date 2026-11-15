@@ -14,6 +14,10 @@ option_attributes:
   allowed_shower_bases: shower_base
   allowed_floor_waterproofing: floor_waterproofing
   reduced_subfloor_countries: country
+  allowed_tile_materials: tile_material
+  allowed_uncoupling_membranes: uncoupling_membrane
+  allowed_membrane_bonding_mortars: bonding_mortar
+  allowed_tile_setting_mortars: bonding_mortar
 
 substrate:
   gypsum_wallboard: Gypsum wallboard
@@ -81,6 +85,15 @@ floor_waterproofing:
   ditra_xl: Schluter DITRA-XL
   ditra_heat: Schluter DITRA-HEAT or DITRA-HEAT-PS
   ditra_heat_duo: Schluter DITRA-HEAT-DUO or DITRA-HEAT-DUO-PS
+
+tile_material:
+  ceramic: Ceramic tile
+  porcelain: Porcelain tile
+  natural_stone: Natural stone tile
+
+uncoupling_membrane:
+  ditra: Schluter DITRA
+  ditra_xl: Schluter DITRA-XL
 
 country:
   CA: Canada

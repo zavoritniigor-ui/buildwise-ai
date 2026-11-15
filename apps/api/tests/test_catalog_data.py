@@ -52,7 +52,7 @@ def test_verification_needs_reviewer_and_date() -> None:
 
 
 def test_unknown_substrate_is_reported() -> None:
-    catalog = next(iter(CATALOG.values()))
+    catalog = next(c for c in CATALOG.values() if c.families)
     family = catalog.families[0]
     bad = family.attributes[0].model_copy(update={"value": ["marble_slab"]})
     broken = catalog.model_copy(

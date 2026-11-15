@@ -1,0 +1,733 @@
+# Tile floor assemblies over wood from the Schluter-DITRA Installation Handbook.
+# Only the mortar-bonded details (D-...) are modelled; the peel-and-stick
+# DITRA-PS details (DPS-...) use a primer instead and are not modelled yet.
+# See data/README.md for how to review them.
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: ditra-handbook
+    type: installation_manual
+    title: Schluter-DITRA Installation Handbook
+    url: https://assets.schluter.com/asset/570120892212/document_943vbnqrgt3ol0fc95n9ofe057/ditra-installation-handbook.pdf
+    version: 04/2026
+    pages: 32
+    sha256: f75b0feff7359caaff69cb28f99441a277e098e2c15b712f9cce8bb62a942f09
+    retrieved_on: 2026-11-15
+
+categories: []
+
+assemblies:
+  - slug: schluter-d-w16-t
+    name: Tile over DITRA on a single-layer wood subfloor, joists at 406 mm (D-W16-T)
+    description: >-
+      Interior dry or wet floor. DITRA does not replace movement joints; where
+      a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB is recommended.
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [dimensional_lumber, engineered_i_joist, open_web_truss]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+      - key: max_joist_spacing_mm
+        value: 406
+        unit: mm
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+      - key: min_subfloor_thickness_mm
+        value: 16
+        unit: mm
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+        note: 19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.
+      - key: allowed_tile_materials
+        value: [ceramic, porcelain]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+      - key: min_tile_side_mm
+        value: 50
+        unit: mm
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+        note: Smaller formats need Schluter technical services (page 21).
+      - key: allowed_uncoupling_membranes
+        value: [ditra, ditra_xl]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+      - key: allowed_membrane_bonding_mortars
+        value: [schluter_all_set, schluter_fast_set, modified_thinset]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+        note: Bonds the membrane to the wood.
+      - key: allowed_tile_setting_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: ditra-handbook, page: 4 }
+        status: ai_extracted
+        note: Sets the tile on the membrane.
+
+  - slug: schluter-d-w19-t
+    name: Tile over DITRA on a single-layer wood subfloor, joists at 488 mm (D-W19-T)
+    description: >-
+      Interior dry or wet floor. DITRA does not replace movement joints; where
+      a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB is recommended.
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [dimensional_lumber, engineered_i_joist, open_web_truss]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: max_joist_spacing_mm
+        value: 488
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: min_subfloor_thickness_mm
+        value: 19
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: 23/32 in (3/4 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.
+      - key: allowed_tile_materials
+        value: [ceramic, porcelain]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: min_tile_side_mm
+        value: 50
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Smaller formats need Schluter technical services (page 21).
+      - key: allowed_uncoupling_membranes
+        value: [ditra, ditra_xl]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: allowed_membrane_bonding_mortars
+        value: [schluter_all_set, schluter_fast_set, modified_thinset]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Bonds the membrane to the wood.
+      - key: allowed_tile_setting_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Sets the tile on the membrane.
+
+  - slug: schluter-d-w24-t
+    name: Tile over DITRA on a double-layer wood floor, I-joists or trusses at 610 mm (D-W24-T)
+    description: >-
+      Interior dry or wet floor. DITRA does not replace movement joints; where
+      a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB is recommended.
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [engineered_i_joist, open_web_truss]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: The requirements name I-joists or floor trusses only; the drawing legend also lists joists.
+      - key: max_joist_spacing_mm
+        value: 610
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: min_subfloor_thickness_mm
+        value: 19
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: 23/32 in (3/4 in nominal) tongue-and-groove.
+      - key: min_underlayment_thickness_mm
+        value: 10
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18.
+      - key: allowed_tile_materials
+        value: [ceramic, porcelain]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: min_tile_side_mm
+        value: 50
+        unit: mm
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Smaller formats need Schluter technical services (page 21).
+      - key: allowed_uncoupling_membranes
+        value: [ditra, ditra_xl]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+      - key: allowed_membrane_bonding_mortars
+        value: [schluter_all_set, schluter_fast_set, modified_thinset]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Bonds the membrane to the wood.
+      - key: allowed_tile_setting_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: ditra-handbook, page: 5 }
+        status: ai_extracted
+        note: Sets the tile on the membrane.
+
+  - slug: schluter-d-w24-xl-t
+    name: Tile over DITRA-XL on a single-layer wood subfloor, I-joists or trusses at 610 mm (D-W24-XL-T)
+    description: >-
+      Interior dry or wet floor. DITRA does not replace movement joints; where
+      a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB is recommended.
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [engineered_i_joist, open_web_truss]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: The requirements name I-joists or floor trusses only; the drawing legend also lists joists.
+      - key: max_joist_spacing_mm
+        value: 610
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: min_subfloor_thickness_mm
+        value: 19
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: 23/32 in (3/4 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.
+      - key: allowed_tile_materials
+        value: [ceramic, porcelain]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: min_tile_side_mm
+        value: 50
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Smaller formats need Schluter technical services (page 21).
+      - key: allowed_uncoupling_membranes
+        value: [ditra_xl]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: allowed_membrane_bonding_mortars
+        value: [schluter_all_set, schluter_fast_set, modified_thinset]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Bonds the membrane to the wood.
+      - key: allowed_tile_setting_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Sets the tile on the membrane.
+
+  - slug: schluter-d-w-s
+    name: Natural stone over DITRA on a double-layer wood floor (D-W-S)
+    description: >-
+      Interior dry or wet floor. DITRA does not replace movement joints; where
+      a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB is recommended.
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [dimensional_lumber, engineered_i_joist, open_web_truss]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: max_joist_spacing_mm
+        value: 610
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: min_subfloor_thickness_mm
+        value: 19
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: 23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.
+      - key: min_underlayment_thickness_mm
+        value: 10
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18.
+      - key: allowed_tile_materials
+        value: [natural_stone]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: min_tile_side_mm
+        value: 50
+        unit: mm
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Smaller formats need Schluter technical services (page 21).
+      - key: allowed_uncoupling_membranes
+        value: [ditra, ditra_xl]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+      - key: allowed_membrane_bonding_mortars
+        value: [schluter_all_set, schluter_fast_set, modified_thinset]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Bonds the membrane to the wood.
+      - key: allowed_tile_setting_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: ditra-handbook, page: 6 }
+        status: ai_extracted
+        note: Sets the tile on the membrane.
+
+rules:
+  # D-W16-T
+  - slug: d-w16-t-subfloor
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-subfloor-edge
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-joist-type
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Framing must be joists, I-joists, trusses.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-joist-spacing
+    assembly: schluter-d-w16-t
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Framing at most 406 mm on centre.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-subfloor-thickness
+    assembly: schluter-d-w16-t
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Subfloor at least 16 mm.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-tile-material
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: tile_material
+    material_attribute: allowed_tile_materials
+    description: This detail is for ceramic or porcelain tile.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-tile-size
+    assembly: schluter-d-w16-t
+    kind: range
+    condition: tile_min_side_mm
+    min_attribute: min_tile_side_mm
+    description: Tiles at least 50 x 50 mm.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-membrane
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: uncoupling_membrane
+    material_attribute: allowed_uncoupling_membranes
+    description: The membrane must be DITRA or DITRA-XL.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-membrane-mortar
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: membrane_bonding_mortar
+    material_attribute: allowed_membrane_bonding_mortars
+    description: Bond the membrane with ALL-SET, FAST-SET or modified thin-set.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  - slug: d-w16-t-tile-mortar
+    assembly: schluter-d-w16-t
+    kind: membership
+    condition: tile_setting_mortar
+    material_attribute: allowed_tile_setting_mortars
+    description: Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.
+    source: { document: ditra-handbook, page: 4 }
+    status: ai_extracted
+  # D-W19-T
+  - slug: d-w19-t-subfloor
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-subfloor-edge
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-joist-type
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Framing must be joists, I-joists, trusses.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-joist-spacing
+    assembly: schluter-d-w19-t
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Framing at most 488 mm on centre.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-subfloor-thickness
+    assembly: schluter-d-w19-t
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Subfloor at least 19 mm.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-tile-material
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: tile_material
+    material_attribute: allowed_tile_materials
+    description: This detail is for ceramic or porcelain tile.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-tile-size
+    assembly: schluter-d-w19-t
+    kind: range
+    condition: tile_min_side_mm
+    min_attribute: min_tile_side_mm
+    description: Tiles at least 50 x 50 mm.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-membrane
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: uncoupling_membrane
+    material_attribute: allowed_uncoupling_membranes
+    description: The membrane must be DITRA or DITRA-XL.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-membrane-mortar
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: membrane_bonding_mortar
+    material_attribute: allowed_membrane_bonding_mortars
+    description: Bond the membrane with ALL-SET, FAST-SET or modified thin-set.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w19-t-tile-mortar
+    assembly: schluter-d-w19-t
+    kind: membership
+    condition: tile_setting_mortar
+    material_attribute: allowed_tile_setting_mortars
+    description: Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  # D-W24-T
+  - slug: d-w24-t-subfloor
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-subfloor-edge
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-joist-type
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Framing must be I-joists, trusses.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-joist-spacing
+    assembly: schluter-d-w24-t
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Framing at most 610 mm on centre.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-subfloor-thickness
+    assembly: schluter-d-w24-t
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Subfloor at least 19 mm.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-underlayment-thickness
+    assembly: schluter-d-w24-t
+    kind: range
+    condition: underlayment_thickness_mm
+    min_attribute: min_underlayment_thickness_mm
+    description: A second layer (underlayment) at least 10 mm is required.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-tile-material
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: tile_material
+    material_attribute: allowed_tile_materials
+    description: This detail is for ceramic or porcelain tile.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-tile-size
+    assembly: schluter-d-w24-t
+    kind: range
+    condition: tile_min_side_mm
+    min_attribute: min_tile_side_mm
+    description: Tiles at least 50 x 50 mm.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-membrane
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: uncoupling_membrane
+    material_attribute: allowed_uncoupling_membranes
+    description: The membrane must be DITRA or DITRA-XL.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-membrane-mortar
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: membrane_bonding_mortar
+    material_attribute: allowed_membrane_bonding_mortars
+    description: Bond the membrane with ALL-SET, FAST-SET or modified thin-set.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  - slug: d-w24-t-tile-mortar
+    assembly: schluter-d-w24-t
+    kind: membership
+    condition: tile_setting_mortar
+    material_attribute: allowed_tile_setting_mortars
+    description: Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.
+    source: { document: ditra-handbook, page: 5 }
+    status: ai_extracted
+  # D-W24-XL-T
+  - slug: d-w24-xl-t-subfloor
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-subfloor-edge
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-joist-type
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Framing must be I-joists, trusses.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-joist-spacing
+    assembly: schluter-d-w24-xl-t
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Framing at most 610 mm on centre.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-subfloor-thickness
+    assembly: schluter-d-w24-xl-t
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Subfloor at least 19 mm.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-tile-material
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: tile_material
+    material_attribute: allowed_tile_materials
+    description: This detail is for ceramic or porcelain tile.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-tile-size
+    assembly: schluter-d-w24-xl-t
+    kind: range
+    condition: tile_min_side_mm
+    min_attribute: min_tile_side_mm
+    description: Tiles at least 50 x 50 mm.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-membrane
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: uncoupling_membrane
+    material_attribute: allowed_uncoupling_membranes
+    description: The membrane must be DITRA-XL.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-membrane-mortar
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: membrane_bonding_mortar
+    material_attribute: allowed_membrane_bonding_mortars
+    description: Bond the membrane with ALL-SET, FAST-SET or modified thin-set.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w24-xl-t-tile-mortar
+    assembly: schluter-d-w24-xl-t
+    kind: membership
+    condition: tile_setting_mortar
+    material_attribute: allowed_tile_setting_mortars
+    description: Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  # D-W-S
+  - slug: d-w-s-subfloor
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-subfloor-edge
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-joist-type
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Framing must be joists, I-joists, trusses.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-joist-spacing
+    assembly: schluter-d-w-s
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Framing at most 610 mm on centre.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-subfloor-thickness
+    assembly: schluter-d-w-s
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Subfloor at least 19 mm.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-underlayment-thickness
+    assembly: schluter-d-w-s
+    kind: range
+    condition: underlayment_thickness_mm
+    min_attribute: min_underlayment_thickness_mm
+    description: A second layer (underlayment) at least 10 mm is required.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-tile-material
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: tile_material
+    material_attribute: allowed_tile_materials
+    description: This detail is for natural stone.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-tile-size
+    assembly: schluter-d-w-s
+    kind: range
+    condition: tile_min_side_mm
+    min_attribute: min_tile_side_mm
+    description: Tiles at least 50 x 50 mm.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-membrane
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: uncoupling_membrane
+    material_attribute: allowed_uncoupling_membranes
+    description: The membrane must be DITRA or DITRA-XL.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-membrane-mortar
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: membrane_bonding_mortar
+    material_attribute: allowed_membrane_bonding_mortars
+    description: Bond the membrane with ALL-SET, FAST-SET or modified thin-set.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
+  - slug: d-w-s-tile-mortar
+    assembly: schluter-d-w-s
+    kind: membership
+    condition: tile_setting_mortar
+    material_attribute: allowed_tile_setting_mortars
+    description: Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.
+    source: { document: ditra-handbook, page: 6 }
+    status: ai_extracted
