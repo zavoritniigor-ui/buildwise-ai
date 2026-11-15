@@ -1,0 +1,227 @@
+# Shower assemblies from the Schluter-Shower System Installation Handbook.
+# See data/README.md for how to review them.
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: shower-handbook
+    type: installation_manual
+    title: Schluter-Shower System Installation Handbook
+    url: https://assets.schluter.com/asset/570120892212/document_i2tt9fh4sp2n562jmirhppbv4o/shower-system-installation-handbook.pdf
+    version: 04/2026
+    pages: 56
+    sha256: 6c7259896f8fab7d34e54a2b4eff307a1f35c12be96e574cacad95a0f8921ea5
+    retrieved_on: 2026-11-15
+
+categories: []
+
+assemblies:
+  - slug: schluter-k-shcr
+    name: Recessed curbless shower over a wood subfloor (K-SHCR)
+    description: >-
+      Curbless shower with the floor recessed between dimensional lumber joists,
+      KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor.
+      Recessing must preserve the structure and may need a design professional.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: allowed_subfloor_edges
+        value: [tongue_and_groove]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: allowed_joist_types
+        value: [dimensional_lumber]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+        note: Only dimensional lumber is supported; it must not be ripped down.
+      - key: allowed_shower_bases
+        value: [kerdi_shower_t, kerdi_shower_ts, kerdi_shower_tt, kerdi_shower_lt, kerdi_shower_lts]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: allowed_floor_waterproofing
+        value: [kerdi, ditra, ditra_xl, ditra_heat, ditra_heat_duo]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+        note: Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.
+      - key: min_subfloor_thickness_mm
+        value: 19
+        unit: mm
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+        note: 23/32 in (3/4 in nominal) tongue-and-groove, with a 1/8 in gap between sheets.
+      - key: max_joist_spacing_mm
+        value: 488
+        unit: mm
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: reduced_subfloor_countries
+        value: [CA]
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: reduced_min_subfloor_thickness_mm
+        value: 16
+        unit: mm
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+        note: Canada only; 19 mm is still recommended.
+      - key: reduced_max_joist_spacing_mm
+        value: 406
+        unit: mm
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+      - key: min_wait_before_water_test_h
+        value: 24
+        unit: h
+        source: { document: shower-handbook, page: 15 }
+        status: ai_extracted
+
+  - slug: schluter-k-shbf
+    name: Curbless shower over a wood or concrete subfloor (K-SHBF)
+    description: >-
+      Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must
+      preserve the structure and may need a design professional.
+    attributes:
+      - key: allowed_subfloors
+        value: [plywood, osb, concrete]
+        source: { document: shower-handbook, page: 13 }
+        status: ai_extracted
+      - key: allowed_shower_bases
+        value:
+          [
+            kerdi_shower_t,
+            kerdi_shower_ts,
+            kerdi_shower_tt,
+            kerdi_shower_lt,
+            kerdi_shower_lts,
+            portland_cement_mortar_bed,
+          ]
+        source: { document: shower-handbook, page: 13 }
+        status: ai_extracted
+      - key: allowed_floor_waterproofing
+        value: [kerdi, ditra, ditra_xl, ditra_heat, ditra_heat_duo]
+        source: { document: shower-handbook, page: 13 }
+        status: ai_extracted
+        note: KERDI over mortar beds; DITRA family over plywood, OSB or concrete.
+      - key: min_wait_before_water_test_h
+        value: 24
+        unit: h
+        source: { document: shower-handbook, page: 13 }
+        status: ai_extracted
+
+rules:
+  # K-SHCR
+  - slug: k-shcr-subfloor
+    assembly: schluter-k-shcr
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood or OSB.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-subfloor-edge
+    assembly: schluter-k-shcr
+    kind: membership
+    condition: subfloor_edge
+    material_attribute: allowed_subfloor_edges
+    description: Subfloor panels must be tongue-and-groove.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-joist-type
+    assembly: schluter-k-shcr
+    kind: membership
+    condition: joist_type
+    material_attribute: allowed_joist_types
+    description: Joists must be dimensional lumber.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-shower-base
+    assembly: schluter-k-shcr
+    kind: membership
+    condition: shower_base
+    material_attribute: allowed_shower_bases
+    description: The shower base must be a KERDI-SHOWER tray.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-floor-waterproofing
+    assembly: schluter-k-shcr
+    kind: membership
+    condition: floor_waterproofing
+    material_attribute: allowed_floor_waterproofing
+    description: Floor areas exposed to water need KERDI or a DITRA-family membrane.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-stiffness-standard-subfloor
+    assembly: schluter-k-shcr
+    alternative: { group: k-shcr-subfloor-stiffness, number: 1 }
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: min_subfloor_thickness_mm
+    description: Standard build-up, subfloor at least 19 mm.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-stiffness-standard-joists
+    assembly: schluter-k-shcr
+    alternative: { group: k-shcr-subfloor-stiffness, number: 1 }
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: max_joist_spacing_mm
+    description: Standard build-up, joists at most 488 mm on centre.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-stiffness-reduced-country
+    assembly: schluter-k-shcr
+    alternative: { group: k-shcr-subfloor-stiffness, number: 2 }
+    kind: membership
+    condition: country
+    material_attribute: reduced_subfloor_countries
+    description: The thinner subfloor option is allowed in Canada only.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-stiffness-reduced-subfloor
+    assembly: schluter-k-shcr
+    alternative: { group: k-shcr-subfloor-stiffness, number: 2 }
+    kind: range
+    condition: subfloor_thickness_mm
+    min_attribute: reduced_min_subfloor_thickness_mm
+    description: Canadian option, subfloor at least 16 mm.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+  - slug: k-shcr-stiffness-reduced-joists
+    assembly: schluter-k-shcr
+    alternative: { group: k-shcr-subfloor-stiffness, number: 2 }
+    kind: range
+    condition: joist_spacing_mm
+    max_attribute: reduced_max_joist_spacing_mm
+    description: Canadian option, joists at most 406 mm on centre.
+    source: { document: shower-handbook, page: 15 }
+    status: ai_extracted
+
+  # K-SHBF
+  - slug: k-shbf-subfloor
+    assembly: schluter-k-shbf
+    kind: membership
+    condition: subfloor
+    material_attribute: allowed_subfloors
+    description: The subfloor must be plywood, OSB or concrete.
+    source: { document: shower-handbook, page: 13 }
+    status: ai_extracted
+  - slug: k-shbf-shower-base
+    assembly: schluter-k-shbf
+    kind: membership
+    condition: shower_base
+    material_attribute: allowed_shower_bases
+    description: The shower base must be a KERDI-SHOWER tray or a mortar bed.
+    source: { document: shower-handbook, page: 13 }
+    status: ai_extracted
+  - slug: k-shbf-floor-waterproofing
+    assembly: schluter-k-shbf
+    kind: membership
+    condition: floor_waterproofing
+    material_attribute: allowed_floor_waterproofing
+    description: Floor areas exposed to water need KERDI or a DITRA-family membrane.
+    source: { document: shower-handbook, page: 13 }
+    status: ai_extracted

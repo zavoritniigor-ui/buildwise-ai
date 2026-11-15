@@ -1,13 +1,19 @@
 # Controlled vocabulary shared by catalogue data, rules and job conditions.
 # A value that is not listed here is rejected by the data tests.
 
-units: [mm, mil, m, m2, C, perm, count]
+units: [mm, mil, m, m2, C, perm, count, h]
 
 option_attributes:
   allowed_substrates: substrate
   allowed_applications: application
   compatible_bonding_mortars: bonding_mortar
   allowed_mountings: mounting
+  allowed_subfloors: subfloor
+  allowed_subfloor_edges: subfloor_edge
+  allowed_joist_types: joist_type
+  allowed_shower_bases: shower_base
+  allowed_floor_waterproofing: floor_waterproofing
+  reduced_subfloor_countries: country
 
 substrate:
   gypsum_wallboard: Gypsum wallboard
@@ -46,3 +52,36 @@ mounting:
   framing_610_oc: Screwed to wood or metal studs at 610 mm (24 in) on centre
   countertop: Countertop
   partition_wall: Non-bearing partition wall
+
+subfloor:
+  plywood: Plywood
+  osb: Oriented strand board
+  concrete: Concrete
+
+subfloor_edge:
+  tongue_and_groove: Tongue-and-groove
+  square_edge: Square edge
+
+joist_type:
+  dimensional_lumber: Dimensional lumber, not ripped down
+  engineered_i_joist: Engineered I-joist
+  open_web_truss: Open-web floor truss
+
+shower_base:
+  kerdi_shower_t: Schluter KERDI-SHOWER-T tray
+  kerdi_shower_ts: Schluter KERDI-SHOWER-TS tray
+  kerdi_shower_tt: Schluter KERDI-SHOWER-TT thin tray
+  kerdi_shower_lt: Schluter KERDI-SHOWER-LT tray
+  kerdi_shower_lts: Schluter KERDI-SHOWER-LTS tray
+  portland_cement_mortar_bed: Portland cement mortar bed
+
+floor_waterproofing:
+  kerdi: Schluter KERDI
+  ditra: Schluter DITRA or DITRA-PS
+  ditra_xl: Schluter DITRA-XL
+  ditra_heat: Schluter DITRA-HEAT or DITRA-HEAT-PS
+  ditra_heat_duo: Schluter DITRA-HEAT-DUO or DITRA-HEAT-DUO-PS
+
+country:
+  CA: Canada
+  US: United States

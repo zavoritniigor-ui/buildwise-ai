@@ -53,12 +53,31 @@ def import_catalog(session: Session, catalog: schema.CatalogFile) -> None:
         categories[category.slug] = row_c
     session.flush()
 
+    assemblies: dict[str, models.Assembly] = {}
+    for assembly in catalog.assemblies:
+        row_a = _one(session, models.Assembly, slug=assembly.slug)
+        if row_a is None:
+            row_a = models.Assembly(slug=assembly.slug)
+            session.add(row_a)
+        row_a.name = assembly.name
+        row_a.description = assembly.description
+        row_a.manufacturer_id = manufacturer.id
+        row_a.attributes.clear()
+        session.flush()
+        for attribute in assembly.attributes:
+            row_a.attributes.append(_attribute_row(models.AssemblyAttribute, attribute, documents))
+        assemblies[assembly.slug] = row_a
+    session.flush()
+
     for rule in catalog.rules:
         row_r = _one(session, models.CompatibilityRule, slug=rule.slug)
         if row_r is None:
             row_r = models.CompatibilityRule(slug=rule.slug)
             session.add(row_r)
-        row_r.category_id = categories[rule.category].id
+        row_r.category_id = categories[rule.category].id if rule.category else None
+        row_r.assembly_id = assemblies[rule.assembly].id if rule.assembly else None
+        row_r.alternative_group = rule.alternative.group if rule.alternative else None
+        row_r.alternative = rule.alternative.number if rule.alternative else None
         row_r.kind = rule.kind
         row_r.condition = rule.condition
         row_r.material_attribute = rule.material_attribute
@@ -98,7 +117,9 @@ def import_catalog(session: Session, catalog: schema.CatalogFile) -> None:
             product.attributes.clear()
             session.flush()
             for attribute in family.attributes:
-                product.attributes.append(_attribute_row(attribute, documents))
+                product.attributes.append(
+                    _attribute_row(models.ProductAttribute, attribute, documents)
+                )
             variants_source = documents[family.variants_source.document].id
             for dimension, size in variant.dimensions.items():
                 product.attributes.append(
@@ -116,11 +137,11 @@ def import_catalog(session: Session, catalog: schema.CatalogFile) -> None:
     session.flush()
 
 
-def _attribute_row(
-    attribute: schema.Attribute, documents: dict[str, models.SourceDocument]
-) -> models.ProductAttribute:
+def _attribute_row[A: (models.ProductAttribute, models.AssemblyAttribute)](
+    model: type[A], attribute: schema.Attribute, documents: dict[str, models.SourceDocument]
+) -> A:
     value = attribute.value
-    return models.ProductAttribute(
+    return model(
         key=attribute.key,
         value_options=list(value) if isinstance(value, list) else None,
         value_num=value if isinstance(value, Decimal) else None,

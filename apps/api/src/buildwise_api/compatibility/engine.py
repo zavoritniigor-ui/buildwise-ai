@@ -30,12 +30,26 @@ class Finding:
     rule_id: str
     verdict: Verdict
     reason: str
+    missing_conditions: frozenset[str] = frozenset()
+    """Job conditions this finding needs but was not given."""
 
 
 @dataclass(frozen=True)
 class Assessment:
     verdict: Verdict
     findings: tuple[Finding, ...]
+
+    @property
+    def missing_conditions(self) -> tuple[str, ...]:
+        """Job conditions to ask about before a conclusion can be reached.
+
+        Only unknown findings contribute: once a mismatch is confirmed, nothing
+        else needs to be asked for that rule.
+        """
+        missing = set[str]().union(
+            *(f.missing_conditions for f in self.findings if f.verdict is Verdict.UNKNOWN)
+        )
+        return tuple(sorted(missing))
 
 
 class Rule(Protocol):
@@ -86,7 +100,7 @@ class MembershipRule:
                 Verdict.UNKNOWN, f"material has no data for {self.material_attribute!r}"
             )
         if actual is None:
-            return self._finding(Verdict.UNKNOWN, f"job condition {self.condition!r} is not known")
+            return self._missing()
         if actual in allowed:
             return self._finding(
                 Verdict.COMPATIBLE, f"{self.condition} {actual!r} is allowed by the material"
@@ -98,6 +112,14 @@ class MembershipRule:
 
     def _finding(self, verdict: Verdict, reason: str) -> Finding:
         return Finding(self.id, verdict, reason)
+
+    def _missing(self) -> Finding:
+        return Finding(
+            self.id,
+            Verdict.UNKNOWN,
+            f"job condition {self.condition!r} is not known",
+            frozenset({self.condition}),
+        )
 
 
 @dataclass(frozen=True)
@@ -121,7 +143,7 @@ class RangeRule:
     def evaluate(self, material: Attributes, conditions: Attributes) -> Finding:
         actual = _number(conditions, self.condition)
         if actual is None:
-            return self._finding(Verdict.UNKNOWN, f"job condition {self.condition!r} is not known")
+            return self._missing()
 
         missing: list[str] = []
         for attribute, is_minimum in ((self.min_attribute, True), (self.max_attribute, False)):
@@ -144,6 +166,73 @@ class RangeRule:
 
     def _finding(self, verdict: Verdict, reason: str) -> Finding:
         return Finding(self.id, verdict, reason)
+
+    def _missing(self) -> Finding:
+        return Finding(
+            self.id,
+            Verdict.UNKNOWN,
+            f"job condition {self.condition!r} is not known",
+            frozenset({self.condition}),
+        )
+
+
+@dataclass(frozen=True)
+class AnyOf:
+    """The requirement is met if every rule of at least one alternative is met.
+
+    Manufacturers often allow more than one way to comply, for example a thick
+    subfloor on wider joist spacing or a thinner one on closer spacing.
+
+    * COMPATIBLE   - at least one alternative is fully compatible.
+    * INCOMPATIBLE - every alternative has a confirmed mismatch.
+    * UNKNOWN      - otherwise; the missing conditions are those of the
+                     alternatives that are still possible.
+    """
+
+    id: str
+    alternatives: tuple[tuple[Rule, ...], ...]
+
+    def __post_init__(self) -> None:
+        if len(self.alternatives) < 2 or not all(self.alternatives):
+            raise ValueError(f"rule {self.id!r} needs at least two non-empty alternatives")
+
+    def evaluate(self, material: Attributes, conditions: Attributes) -> Finding:
+        outcomes = [assess(material, conditions, list(rules)) for rules in self.alternatives]
+        for number, outcome in enumerate(outcomes, start=1):
+            if outcome.verdict is Verdict.COMPATIBLE:
+                return Finding(self.id, Verdict.COMPATIBLE, f"alternative {number} is met")
+        if all(o.verdict is Verdict.INCOMPATIBLE for o in outcomes):
+            reasons = "; ".join(
+                f"alternative {n}: {_first_mismatch(o)}" for n, o in enumerate(outcomes, start=1)
+            )
+            return Finding(self.id, Verdict.INCOMPATIBLE, f"no alternative is met ({reasons})")
+        open_outcomes = [o for o in outcomes if o.verdict is Verdict.UNKNOWN]
+        missing = frozenset().union(*(o.missing_conditions for o in open_outcomes))
+        return Finding(
+            self.id,
+            Verdict.UNKNOWN,
+            f"{len(open_outcomes)} alternative(s) cannot be decided yet",
+            frozenset(missing),
+        )
+
+
+@dataclass(frozen=True)
+class Pending:
+    """A known requirement that no person has verified yet.
+
+    It always yields UNKNOWN, so an unchecked requirement can never be silently
+    skipped on the way to a COMPATIBLE verdict. It asks the user nothing: the
+    gap is in the knowledge base, not in the job description.
+    """
+
+    id: str
+
+    def evaluate(self, material: Attributes, conditions: Attributes) -> Finding:
+        return Finding(self.id, Verdict.UNKNOWN, "requirement not yet verified by a person")
+
+
+def _first_mismatch(outcome: Assessment) -> str:
+    return next(f.reason for f in outcome.findings if f.verdict is Verdict.INCOMPATIBLE)
 
 
 def assess(material: Attributes, conditions: Attributes, rules: Sequence[Rule]) -> Assessment:

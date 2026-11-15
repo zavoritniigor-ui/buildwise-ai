@@ -3,6 +3,7 @@ from decimal import Decimal
 import pytest
 
 from buildwise_api.compatibility import (
+    AnyOf,
     Attributes,
     MembershipRule,
     RangeRule,
@@ -112,3 +113,80 @@ def test_wrongly_typed_data_fails_loudly() -> None:
 def test_every_finding_names_its_rule() -> None:
     result = assess(MEMBRANE, JOB, RULES)
     assert [f.rule_id for f in result.findings] == ["substrate", "install-temperature"]
+
+
+def test_missing_conditions_become_questions() -> None:
+    result = assess(MEMBRANE, {}, RULES)
+    assert result.missing_conditions == ("install_temperature_c", "substrate")
+
+
+def test_missing_material_data_is_not_a_question_for_the_user() -> None:
+    material = {k: v for k, v in MEMBRANE.items() if k != "allowed_substrates"}
+    assert assess(material, JOB, RULES).missing_conditions == ()
+
+
+def test_no_questions_once_a_mismatch_is_confirmed() -> None:
+    result = assess(MEMBRANE, {"substrate": "plywood"}, [SUBSTRATE])
+    assert result.missing_conditions == ()
+
+
+# Two ways to comply: a thick subfloor on wide joists, or a thinner one on close joists.
+SUBFLOOR = AnyOf(
+    "subfloor-stiffness",
+    (
+        (
+            RangeRule("thick", "subfloor_mm", min_attribute="thick_min_mm"),
+            RangeRule("wide", "joist_spacing_mm", max_attribute="wide_max_mm"),
+        ),
+        (
+            RangeRule("thin", "subfloor_mm", min_attribute="thin_min_mm"),
+            RangeRule("close", "joist_spacing_mm", max_attribute="close_max_mm"),
+        ),
+    ),
+)
+ASSEMBLY: Attributes = {
+    "thick_min_mm": Decimal("19"),
+    "wide_max_mm": Decimal("488"),
+    "thin_min_mm": Decimal("16"),
+    "close_max_mm": Decimal("406"),
+}
+
+
+@pytest.mark.parametrize(
+    ("subfloor", "joists", "expected"),
+    [
+        ("19", "488", Verdict.COMPATIBLE),
+        ("16", "406", Verdict.COMPATIBLE),
+        ("16", "488", Verdict.INCOMPATIBLE),
+        ("15", "300", Verdict.INCOMPATIBLE),
+        ("19", "600", Verdict.INCOMPATIBLE),
+    ],
+)
+def test_any_of_alternatives(subfloor: str, joists: str, expected: Verdict) -> None:
+    job = {"subfloor_mm": Decimal(subfloor), "joist_spacing_mm": Decimal(joists)}
+    assert SUBFLOOR.evaluate(ASSEMBLY, job).verdict is expected
+
+
+def test_any_of_explains_every_failed_alternative() -> None:
+    job = {"subfloor_mm": Decimal("16"), "joist_spacing_mm": Decimal("488")}
+    reason = SUBFLOOR.evaluate(ASSEMBLY, job).reason
+    assert "alternative 1" in reason
+    assert "alternative 2" in reason
+
+
+def test_any_of_asks_only_what_can_still_decide() -> None:
+    finding = SUBFLOOR.evaluate(ASSEMBLY, {"subfloor_mm": Decimal("16")})
+    assert finding.verdict is Verdict.UNKNOWN
+    assert finding.missing_conditions == {"joist_spacing_mm"}
+
+
+def test_any_of_is_met_without_unrelated_data() -> None:
+    finding = SUBFLOOR.evaluate(
+        ASSEMBLY, {"subfloor_mm": Decimal("19"), "joist_spacing_mm": Decimal("400")}
+    )
+    assert finding.verdict is Verdict.COMPATIBLE
+
+
+def test_any_of_needs_two_alternatives() -> None:
+    with pytest.raises(ValueError, match="two non-empty"):
+        AnyOf("one", ((SUBSTRATE,),))
