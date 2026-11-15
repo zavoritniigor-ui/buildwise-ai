@@ -3,8 +3,16 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from buildwise_api.compatibility.engine import MembershipRule, RangeRule, Rule
-from buildwise_api.db.models import CompatibilityRule, RuleKind, VerificationStatus
+from buildwise_api.compatibility.engine import (
+    Assessment,
+    Attributes,
+    AttributeValue,
+    MembershipRule,
+    RangeRule,
+    Rule,
+    assess,
+)
+from buildwise_api.db.models import CompatibilityRule, Product, RuleKind, VerificationStatus
 
 
 def to_engine_rule(row: CompatibilityRule) -> Rule:
@@ -29,3 +37,28 @@ def published_rules(session: Session, category_id: int) -> list[Rule]:
         .order_by(CompatibilityRule.slug)
     )
     return [to_engine_rule(row) for row in rows]
+
+
+def verified_attributes(product: Product) -> Attributes:
+    """A product's characteristics that a human has verified against a source.
+
+    Anything not yet verified is left out, so the engine reports it as unknown
+    instead of trusting it.
+    """
+    attributes: dict[str, AttributeValue] = {}
+    for attribute in product.attributes:
+        if attribute.verification_status is not VerificationStatus.HUMAN_VERIFIED:
+            continue
+        if attribute.value_options is not None:
+            attributes[attribute.key] = frozenset(attribute.value_options)
+        elif attribute.value_num is not None:
+            attributes[attribute.key] = attribute.value_num
+        elif attribute.value_text is not None:
+            attributes[attribute.key] = attribute.value_text
+    return attributes
+
+
+def assess_product(session: Session, product: Product, conditions: Attributes) -> Assessment:
+    """Assess a catalogue product against job conditions using published rules."""
+    rules = published_rules(session, product.category_id)
+    return assess(verified_attributes(product), conditions, rules)
