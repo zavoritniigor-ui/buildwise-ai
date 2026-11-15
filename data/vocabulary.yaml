@@ -1,0 +1,38 @@
+# Controlled vocabulary shared by catalogue data, rules and job conditions.
+# A value that is not listed here is rejected by the data tests.
+
+units: [mm, mil, m, m2, C, perm, count]
+
+option_attributes:
+  allowed_substrates: substrate
+  allowed_applications: application
+  compatible_bonding_mortars: bonding_mortar
+
+substrate:
+  gypsum_wallboard: Gypsum wallboard
+  cement_backer_unit: Cement backer unit
+  fiber_cement_backerboard: Fiber-cement backerboard
+  fiber_reinforced_gypsum_backerboard: Fiber-reinforced water-resistant gypsum backerboard
+  coated_glass_mat_gypsum_backerboard: Coated glass mat water-resistant gypsum backerboard
+  portland_cement_mortar: Portland cement mortar
+  masonry: Masonry (cement block, brick)
+  concrete: Concrete, cured for foot traffic
+  cement_leveler_or_mortar_bed: Cement leveler, mortar bed or render coat, cured
+  plywood: Plywood
+  osb: Oriented strand board
+
+application:
+  interior_wet_area_wall: Interior wet-area wall
+  interior_wet_area_floor: Interior wet-area floor
+  shower_wall: Shower wall
+  shower_floor: Shower floor
+  shower_ceiling: Shower ceiling
+  bathtub_surround: Bathtub surround
+  intermittent_steam_shower: Intermittent-use steam shower
+
+bonding_mortar:
+  schluter_set: Schluter SET
+  schluter_all_set: Schluter ALL-SET
+  schluter_fast_set: Schluter FAST-SET
+  unmodified_thinset: Unmodified thin-set mortar
+  modified_thinset: Modified thin-set mortar
