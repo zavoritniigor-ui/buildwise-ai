@@ -2,11 +2,22 @@
 name = "buildwise-api"
 version = "0.0.0"
 description = "BuildWise AI backend API"
-requires-python = ">=3.12"
-dependencies = ["fastapi>=0.115"]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "alembic>=1.20.1",
+    "fastapi>=0.115",
+    "psycopg[binary]>=3",
+    "sqlalchemy>=2",
+]
 
 [dependency-groups]
-dev = ["httpx", "mypy", "pytest", "ruff"]
+dev = [
+    "httpx",
+    "mypy",
+    "pgserver>=0.1.4",
+    "pytest",
+    "ruff",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -27,7 +38,11 @@ select = ["E", "F", "I", "B", "UP", "SIM", "S"]
 
 [tool.mypy]
 strict = true
-files = ["src", "tests"]
+files = ["src", "tests", "migrations"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[[tool.mypy.overrides]]
+module = ["pgserver"]
+ignore_missing_imports = true
