@@ -9,6 +9,7 @@ from datetime import date, datetime
 from decimal import Decimal
 
 from sqlalchemy import (
+    Boolean,
     CheckConstraint,
     DateTime,
     Enum,
@@ -44,6 +45,24 @@ class Availability(enum.StrEnum):
     LIMITED = "limited"
     OUT_OF_STOCK = "out_of_stock"
     UNKNOWN = "unknown"
+
+
+class RuleKind(enum.StrEnum):
+    MEMBERSHIP = "membership"
+    RANGE = "range"
+
+
+class Stage(enum.StrEnum):
+    DEMOLITION = "demolition"
+    STRUCTURE = "structure"
+    PLUMBING = "plumbing"
+    SUBSTRATES = "substrates"
+    WATERPROOFING = "waterproofing"
+    TILING = "tiling"
+    FIXTURES = "fixtures"
+    VENTILATION = "ventilation"
+    ELECTRICAL = "electrical"
+    FINISHING = "finishing"
 
 
 def _enum(enum_cls: type[enum.StrEnum], name: str) -> Enum:
@@ -220,3 +239,63 @@ class RetailOffer(Base):
     last_checked_at: Mapped[datetime]
 
     product: Mapped[Product] = relationship(back_populates="offers")
+
+
+class Operation(Base):
+    """A technological operation of a renovation, in execution order."""
+
+    __tablename__ = "operation"
+    __table_args__ = (
+        UniqueConstraint("stage", "sequence"),
+        CheckConstraint("sequence > 0", name="sequence_positive"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    slug: Mapped[str] = mapped_column(String(100), unique=True)
+    name: Mapped[str] = mapped_column(String(200))
+    stage: Mapped[Stage] = mapped_column(_enum(Stage, "stage"))
+    sequence: Mapped[int]
+    requires_licensed_professional: Mapped[bool] = mapped_column(Boolean, default=False)
+    description: Mapped[str | None] = mapped_column(Text)
+    source_document_id: Mapped[int | None] = mapped_column(ForeignKey("source_document.id"))
+
+
+class CompatibilityRule(Base):
+    """A declarative compatibility rule for the engine.
+
+    Only human-verified rules are published to the engine, and a human-verified
+    rule must cite a source document.
+    """
+
+    __tablename__ = "compatibility_rule"
+    __table_args__ = (
+        CheckConstraint(
+            "kind <> 'membership' OR (material_attribute IS NOT NULL"
+            " AND min_attribute IS NULL AND max_attribute IS NULL)",
+            name="membership_shape",
+        ),
+        CheckConstraint(
+            "kind <> 'range' OR (material_attribute IS NULL"
+            " AND (min_attribute IS NOT NULL OR max_attribute IS NOT NULL))",
+            name="range_shape",
+        ),
+        CheckConstraint(
+            "verification_status <> 'human_verified' OR source_document_id IS NOT NULL",
+            name="verified_requires_source",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    slug: Mapped[str] = mapped_column(String(100), unique=True)
+    category_id: Mapped[int] = mapped_column(ForeignKey("material_category.id"))
+    kind: Mapped[RuleKind] = mapped_column(_enum(RuleKind, "kind"))
+    condition: Mapped[str] = mapped_column(String(100))
+    material_attribute: Mapped[str | None] = mapped_column(String(100))
+    min_attribute: Mapped[str | None] = mapped_column(String(100))
+    max_attribute: Mapped[str | None] = mapped_column(String(100))
+    description: Mapped[str] = mapped_column(Text)
+    source_document_id: Mapped[int | None] = mapped_column(ForeignKey("source_document.id"))
+    verification_status: Mapped[VerificationStatus] = mapped_column(
+        _enum(VerificationStatus, "verification_status"),
+        default=VerificationStatus.UNVERIFIED,
+    )

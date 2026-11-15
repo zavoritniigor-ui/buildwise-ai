@@ -35,6 +35,7 @@ select = ["E", "F", "I", "B", "UP", "SIM", "S"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
+"migrations/versions/*" = ["E501"]
 
 [tool.mypy]
 strict = true
