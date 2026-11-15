@@ -21,6 +21,7 @@ from sqlalchemy import (
     UniqueConstraint,
     func,
 )
+from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -158,6 +159,9 @@ class Product(Base):
 class ProductAttribute(Base):
     """One technical characteristic of a product, with its evidence.
 
+    Holds exactly one of: a text, a number, or a set of options (for example,
+    the substrates a membrane is approved for).
+
     A characteristic may only be marked human-verified when it cites a source
     document: every important characteristic must have a source.
     """
@@ -165,7 +169,12 @@ class ProductAttribute(Base):
     __tablename__ = "product_attribute"
     __table_args__ = (
         UniqueConstraint("product_id", "key"),
-        CheckConstraint("value_text IS NOT NULL OR value_num IS NOT NULL", name="value_present"),
+        CheckConstraint(
+            "num_nonnulls(value_text, value_num, value_options) = 1", name="value_present"
+        ),
+        CheckConstraint(
+            "value_options IS NULL OR cardinality(value_options) > 0", name="options_not_empty"
+        ),
         CheckConstraint(
             "verification_status <> 'human_verified' OR source_document_id IS NOT NULL",
             name="verified_requires_source",
@@ -177,6 +186,7 @@ class ProductAttribute(Base):
     key: Mapped[str] = mapped_column(String(100))
     value_text: Mapped[str | None] = mapped_column(Text)
     value_num: Mapped[Decimal | None] = mapped_column(Numeric(18, 6))
+    value_options: Mapped[list[str] | None] = mapped_column(ARRAY(String(100)))
     unit: Mapped[str | None] = mapped_column(String(20))
     source_document_id: Mapped[int | None] = mapped_column(ForeignKey("source_document.id"))
     source_page: Mapped[int | None]
