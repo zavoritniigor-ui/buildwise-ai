@@ -1,0 +1,158 @@
+# Facts from Schluter-Systems' own technical data sheet, cited by page.
+# The document itself is not stored in this repository.
+#
+# Status ai_extracted: read by Claude, not yet checked by a person.
+# To approve a fact, compare it with the cited page, then set
+#   status: human_verified
+#   verified_by: <your name>
+#   verified_on: <YYYY-MM-DD>
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: kerdi-tds
+    type: tds
+    title: Technical Data Sheet 8.1 Schluter-KERDI
+    url: https://assets.schluter.com/asset/570120892212/document_gl4h79gcu14r17g24vkuvois38/kerdi-data-sheet.pdf
+    version: 10/2026
+    pages: 4
+    sha256: 29b4c2d37c70f25dc62e937d33df67d0c0a665fe9b9ddcd79d5542e5c56c3339
+    retrieved_on: 2026-11-15
+
+categories:
+  - slug: sheet-waterproofing-membrane
+    name: Sheet-applied waterproofing membrane
+  - slug: waterproofing-band
+    name: Waterproofing band
+
+rules:
+  - slug: sheet-membrane-substrate
+    category: sheet-waterproofing-membrane
+    kind: membership
+    condition: substrate
+    material_attribute: allowed_substrates
+    description: The membrane may only be bonded to a substrate the manufacturer allows.
+    source: { document: kerdi-tds, page: 1 }
+    status: ai_extracted
+  - slug: sheet-membrane-application
+    category: sheet-waterproofing-membrane
+    kind: membership
+    condition: application
+    material_attribute: allowed_applications
+    description: The membrane may only be used where the manufacturer allows it.
+    source: { document: kerdi-tds, page: 1 }
+    status: ai_extracted
+  - slug: sheet-membrane-bonding-mortar
+    category: sheet-waterproofing-membrane
+    kind: membership
+    condition: bonding_mortar
+    material_attribute: compatible_bonding_mortars
+    description: The membrane must be bonded with a mortar the manufacturer names.
+    source: { document: kerdi-tds, page: 2 }
+    status: ai_extracted
+  - slug: sheet-membrane-working-temperature
+    category: sheet-waterproofing-membrane
+    kind: range
+    condition: material_temperature_c
+    min_attribute: min_working_temperature_c
+    max_attribute: max_working_temperature_c
+    description: The membrane must be acclimated within its working temperature range.
+    source: { document: kerdi-tds, page: 2 }
+    status: ai_extracted
+
+families:
+  - name: Schluter-KERDI
+    category: sheet-waterproofing-membrane
+    attributes:
+      - key: allowed_substrates
+        value:
+          - gypsum_wallboard
+          - cement_backer_unit
+          - fiber_cement_backerboard
+          - fiber_reinforced_gypsum_backerboard
+          - coated_glass_mat_gypsum_backerboard
+          - portland_cement_mortar
+          - masonry
+          - concrete
+          - cement_leveler_or_mortar_bed
+        source: { document: kerdi-tds, page: 1 }
+        status: ai_extracted
+        note: >-
+          Magnesium board (floors only) and Schluter boards, trays and niches are
+          also listed with conditions; they are left out until modelled. Some
+          substrates may need a primer.
+      - key: allowed_applications
+        value:
+          - interior_wet_area_wall
+          - interior_wet_area_floor
+          - shower_wall
+          - shower_floor
+          - shower_ceiling
+          - bathtub_surround
+          - intermittent_steam_shower
+        source: { document: kerdi-tds, page: 1 }
+        status: ai_extracted
+        note: >-
+          Not for primary exterior waterproofing, continuous-use steam rooms,
+          moisture-sensitive stone, or hydrostatic pressure.
+      - key: compatible_bonding_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+      - key: min_working_temperature_c
+        value: 4
+        unit: C
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+      - key: max_working_temperature_c
+        value: 35
+        unit: C
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+      - key: thickness
+        value: 8
+        unit: mil
+        source: { document: kerdi-tds, page: 1 }
+        status: ai_extracted
+      - key: vapor_permeance_astm_e96_e
+        value: 0.9
+        unit: perm
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+      - key: waterproofing_standard
+        value: ANSI A118.10-S
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+      - key: flood_test_required
+        value: "yes"
+        source: { document: kerdi-tds, page: 2 }
+        status: ai_extracted
+    variants:
+      - { sku: KERDI 200/5M, package_quantity: 5, package_unit: m2 }
+      - { sku: KERDI 200/7M, package_quantity: 7, package_unit: m2 }
+      - { sku: KERDI 200/10M, package_quantity: 10, package_unit: m2 }
+      - { sku: KERDI 200/20M, package_quantity: 20, package_unit: m2 }
+      - { sku: KERDI 200, package_quantity: 30, package_unit: m2 }
+      - { sku: KERDI 200200/15M, package_quantity: 30, package_unit: m2 }
+      - { sku: KERDI 200200, package_quantity: 60, package_unit: m2 }
+    variants_source: { document: kerdi-tds, page: 3 }
+
+  - name: Schluter-KERDI-BAND
+    category: waterproofing-band
+    attributes:
+      - key: thickness
+        value: 4
+        unit: mil
+        source: { document: kerdi-tds, page: 3 }
+        status: ai_extracted
+    variants:
+      - { sku: KEBA 100/125/5M, package_quantity: 5, package_unit: m, width_mm: 125 }
+      - { sku: KEBA 100/125/10M, package_quantity: 10, package_unit: m, width_mm: 125 }
+      - { sku: KEBA 100/185/5M, package_quantity: 5, package_unit: m, width_mm: 185 }
+      - { sku: KEBA 100/250/5M, package_quantity: 5, package_unit: m, width_mm: 250 }
+      - { sku: KEBA 100/125, package_quantity: 30, package_unit: m, width_mm: 125 }
+      - { sku: KEBA 100/185, package_quantity: 30, package_unit: m, width_mm: 185 }
+      - { sku: KEBA 100/250, package_quantity: 30, package_unit: m, width_mm: 250 }
+    variants_source: { document: kerdi-tds, page: 3 }

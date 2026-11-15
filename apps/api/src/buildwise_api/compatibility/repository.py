@@ -1,5 +1,7 @@
 """Loads published compatibility rules from the knowledge base."""
 
+from collections.abc import Iterable
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -12,7 +14,13 @@ from buildwise_api.compatibility.engine import (
     Rule,
     assess,
 )
-from buildwise_api.db.models import CompatibilityRule, Product, RuleKind, VerificationStatus
+from buildwise_api.db.models import (
+    CompatibilityRule,
+    Product,
+    ProductAttribute,
+    RuleKind,
+    VerificationStatus,
+)
 
 
 def to_engine_rule(row: CompatibilityRule) -> Rule:
@@ -39,23 +47,28 @@ def published_rules(session: Session, category_id: int) -> list[Rule]:
     return [to_engine_rule(row) for row in rows]
 
 
+def attribute_values(attributes: Iterable[ProductAttribute]) -> Attributes:
+    """Convert stored characteristics into engine values, keeping their type."""
+    values: dict[str, AttributeValue] = {}
+    for attribute in attributes:
+        if attribute.value_options is not None:
+            values[attribute.key] = frozenset(attribute.value_options)
+        elif attribute.value_num is not None:
+            values[attribute.key] = attribute.value_num
+        elif attribute.value_text is not None:
+            values[attribute.key] = attribute.value_text
+    return values
+
+
 def verified_attributes(product: Product) -> Attributes:
     """A product's characteristics that a human has verified against a source.
 
     Anything not yet verified is left out, so the engine reports it as unknown
     instead of trusting it.
     """
-    attributes: dict[str, AttributeValue] = {}
-    for attribute in product.attributes:
-        if attribute.verification_status is not VerificationStatus.HUMAN_VERIFIED:
-            continue
-        if attribute.value_options is not None:
-            attributes[attribute.key] = frozenset(attribute.value_options)
-        elif attribute.value_num is not None:
-            attributes[attribute.key] = attribute.value_num
-        elif attribute.value_text is not None:
-            attributes[attribute.key] = attribute.value_text
-    return attributes
+    return attribute_values(
+        a for a in product.attributes if a.verification_status is VerificationStatus.HUMAN_VERIFIED
+    )
 
 
 def assess_product(session: Session, product: Product, conditions: Attributes) -> Assessment:
