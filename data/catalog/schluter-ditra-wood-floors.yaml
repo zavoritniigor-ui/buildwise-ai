@@ -131,7 +131,7 @@ assemblies:
         note: Sets the tile on the membrane.
 
   - slug: schluter-d-w24-t
-    name: Tile over DITRA on a double-layer wood floor, I-joists or trusses at 610 mm (D-W24-T)
+    name: Tile over DITRA on a double-layer wood floor, framing at 610 mm (D-W24-T)
     description: >-
       Interior dry or wet floor. DITRA does not replace movement joints; where
       a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
@@ -146,10 +146,10 @@ assemblies:
         source: { document: ditra-handbook, page: 5 }
         status: ai_extracted
       - key: allowed_joist_types
-        value: [engineered_i_joist, open_web_truss]
+        value: [dimensional_lumber, engineered_i_joist, open_web_truss]
         source: { document: ditra-handbook, page: 5 }
         status: ai_extracted
-        note: The requirements name I-joists or floor trusses only; the drawing legend also lists joists.
+        note: The drawing legend lists joists, I-joists or trusses; the requirements text names only I-joists or floor trusses. The less restrictive reading is used.
       - key: max_joist_spacing_mm
         value: 610
         unit: mm
@@ -193,7 +193,7 @@ assemblies:
         note: Sets the tile on the membrane.
 
   - slug: schluter-d-w24-xl-t
-    name: Tile over DITRA-XL on a single-layer wood subfloor, I-joists or trusses at 610 mm (D-W24-XL-T)
+    name: Tile over DITRA-XL on a single-layer wood subfloor, framing at 610 mm (D-W24-XL-T)
     description: >-
       Interior dry or wet floor. DITRA does not replace movement joints; where
       a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.
@@ -208,10 +208,10 @@ assemblies:
         source: { document: ditra-handbook, page: 6 }
         status: ai_extracted
       - key: allowed_joist_types
-        value: [engineered_i_joist, open_web_truss]
+        value: [dimensional_lumber, engineered_i_joist, open_web_truss]
         source: { document: ditra-handbook, page: 6 }
         status: ai_extracted
-        note: The requirements name I-joists or floor trusses only; the drawing legend also lists joists.
+        note: The drawing legend lists joists, I-joists or trusses; the requirements text names only I-joists or floor trusses. The less restrictive reading is used.
       - key: max_joist_spacing_mm
         value: 610
         unit: mm
@@ -494,7 +494,7 @@ rules:
     kind: membership
     condition: joist_type
     material_attribute: allowed_joist_types
-    description: Framing must be I-joists, trusses.
+    description: Framing must be joists, I-joists, trusses.
     source: { document: ditra-handbook, page: 5 }
     status: ai_extracted
   - slug: d-w24-t-joist-spacing
@@ -583,7 +583,7 @@ rules:
     kind: membership
     condition: joist_type
     material_attribute: allowed_joist_types
-    description: Framing must be I-joists, trusses.
+    description: Framing must be joists, I-joists, trusses.
     source: { document: ditra-handbook, page: 6 }
     status: ai_extracted
   - slug: d-w24-xl-t-joist-spacing
