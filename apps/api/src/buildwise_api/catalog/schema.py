@@ -168,6 +168,8 @@ class Vocabulary(_Strict):
     joist_type: dict[str, str]
     shower_base: dict[str, str]
     floor_waterproofing: dict[str, str]
+    tile_material: dict[str, str]
+    uncoupling_membrane: dict[str, str]
     country: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:

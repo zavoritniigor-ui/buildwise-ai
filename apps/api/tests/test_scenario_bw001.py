@@ -5,23 +5,14 @@ importer, rule loader and engine against the Schluter shower assemblies.
 """
 
 from decimal import Decimal
-from pathlib import Path
 
 import pytest
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from buildwise_api.catalog.seed import seed
 from buildwise_api.compatibility import Attributes, Verdict
 from buildwise_api.compatibility.repository import assess_assembly
-from buildwise_api.db.models import (
-    Assembly,
-    AssemblyAttribute,
-    CompatibilityRule,
-    VerificationStatus,
-)
-
-DATA_DIR = Path(__file__).resolve().parents[3] / "data"
+from buildwise_api.db.models import Assembly
 
 # What the BW-001 brief tells us: a wood floor, in Quebec.
 BRIEF: Attributes = {"subfloor": "plywood", "country": "CA"}
@@ -39,26 +30,6 @@ COMPLETE: Attributes = {
 
 def _assembly(session: Session, slug: str) -> Assembly:
     return session.scalars(select(Assembly).filter_by(slug=slug)).one()
-
-
-@pytest.fixture
-def unreviewed(session: Session) -> Session:
-    seed(session, DATA_DIR)
-    return session
-
-
-@pytest.fixture
-def reviewed(session: Session) -> Session:
-    """The knowledge base as it will be once a person approves every fact.
-
-    Changes are rolled back after each test, like all database tests.
-    """
-    seed(session, DATA_DIR)
-    verified = {"verification_status": VerificationStatus.HUMAN_VERIFIED}
-    session.execute(update(CompatibilityRule).values(**verified))
-    session.execute(update(AssemblyAttribute).values(**verified))
-    session.expire_all()
-    return session
 
 
 def test_unreviewed_knowledge_never_concludes(unreviewed: Session) -> None:
