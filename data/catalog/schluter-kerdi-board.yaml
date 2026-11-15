@@ -1,0 +1,163 @@
+# Facts from Schluter-Systems' own technical data sheet, cited by page.
+# See data/README.md for how to review them.
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: kerdi-board-tds
+    type: tds
+    title: Technical Data Sheet 12.1 Schluter-KERDI-BOARD
+    url: https://assets.schluter.com/asset/570120892212/document_ssp6p29ns55s3ak2uaasbp467f/datasheet-kerdiboard.pdf
+    version: 10/2026
+    pages: 13
+    sha256: c893f059d9f4f5a9f8cd427897b3edf92fee8bd7bfd94a5b7b6ce23693082279
+    retrieved_on: 2026-11-15
+
+categories:
+  - slug: waterproof-building-panel
+    name: Waterproof building panel
+
+rules:
+  - slug: building-panel-mounting
+    category: waterproof-building-panel
+    kind: membership
+    condition: mounting
+    material_attribute: allowed_mountings
+    description: >-
+      The panel must be thick enough for how it is mounted. Allowed mountings
+      are derived from each panel's thickness.
+    source: { document: kerdi-board-tds, page: 2 }
+    status: ai_extracted
+  - slug: building-panel-application
+    category: waterproof-building-panel
+    kind: membership
+    condition: application
+    material_attribute: allowed_applications
+    description: The panel may only be used where the manufacturer allows it.
+    source: { document: kerdi-board-tds, page: 1 }
+    status: ai_extracted
+  - slug: building-panel-tile-mortar
+    category: waterproof-building-panel
+    kind: membership
+    condition: bonding_mortar
+    material_attribute: compatible_bonding_mortars
+    description: Tile must be set on the panel with a mortar the manufacturer names.
+    source: { document: kerdi-board-tds, page: 2 }
+    status: ai_extracted
+
+families:
+  - name: Schluter-KERDI-BOARD
+    category: waterproof-building-panel
+    attributes:
+      - key: allowed_applications
+        value: [interior_wet_area_wall, shower_wall, shower_ceiling, bathtub_surround]
+        source: { document: kerdi-board-tds, page: 1 }
+        status: ai_extracted
+        note: Not intended for exterior applications. Floors are not listed as a use.
+      - key: compatible_bonding_mortars
+        value: [schluter_set, schluter_all_set, schluter_fast_set, unmodified_thinset]
+        source: { document: kerdi-board-tds, page: 2 }
+        status: ai_extracted
+      - key: min_service_temperature_c
+        value: -50
+        unit: C
+        source: { document: kerdi-board-tds, page: 2 }
+        status: ai_extracted
+      - key: max_service_temperature_c
+        value: 70
+        unit: C
+        source: { document: kerdi-board-tds, page: 2 }
+        status: ai_extracted
+      - key: vapor_permeance_astm_e96
+        value: 0.36
+        unit: perm
+        source: { document: kerdi-board-tds, page: 2 }
+        status: ai_extracted
+        note: Measured on the 12.5 mm (1/2 in) panel.
+      - key: max_fastener_spacing_wall_mm
+        value: 300
+        unit: mm
+        source: { document: kerdi-board-tds, page: 3 }
+        status: ai_extracted
+      - key: max_fastener_spacing_ceiling_mm
+        value: 150
+        unit: mm
+        source: { document: kerdi-board-tds, page: 3 }
+        status: ai_extracted
+      - key: min_screw_embedment_wood_mm
+        value: 20
+        unit: mm
+        source: { document: kerdi-board-tds, page: 3 }
+        status: ai_extracted
+      - key: min_screw_embedment_metal_mm
+        value: 10
+        unit: mm
+        source: { document: kerdi-board-tds, page: 3 }
+        status: ai_extracted
+    derived_options:
+      - key: allowed_mountings
+        from_dimension: thickness_mm
+        status: ai_extracted
+        minimums:
+          - { option: fully_embedded, min: 5, source: { document: kerdi-board-tds, page: 2 } }
+          - { option: spot_bonded, min: 9, source: { document: kerdi-board-tds, page: 2 } }
+          - { option: framing_406_oc, min: 12.5, source: { document: kerdi-board-tds, page: 3 } }
+          - { option: framing_610_oc, min: 19, source: { document: kerdi-board-tds, page: 3 } }
+          - { option: countertop, min: 38, source: { document: kerdi-board-tds, page: 3 } }
+          - { option: partition_wall, min: 50, source: { document: kerdi-board-tds, page: 3 } }
+    variants:
+      - sku: KB 12 1220 812
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 810, thickness_mm: 12.5 }
+      - sku: KB 5 1220 1625
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1625, thickness_mm: 5 }
+      - sku: KB 9 1220 1625
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1625, thickness_mm: 9 }
+      - sku: KB 12 1220 1625
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1625, thickness_mm: 12.5 }
+      - sku: KB 5 1220 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 2440, thickness_mm: 5 }
+      - sku: KB 9 1220 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 2440, thickness_mm: 9 }
+      - sku: KB 12 1220 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 2440, thickness_mm: 12.5 }
+      - sku: KB 15 1220 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 2440, thickness_mm: 15 }
+      - sku: KB 19 625 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 625, length_mm: 2440, thickness_mm: 19 }
+      - sku: KB 25 625 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 625, length_mm: 2440, thickness_mm: 25 }
+      - sku: KB 38 625 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 625, length_mm: 2440, thickness_mm: 38 }
+      - sku: KB 50 625 2440
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 625, length_mm: 2440, thickness_mm: 50 }
+      - sku: KB 15 1220 3050
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 3050, thickness_mm: 15 }
+    variants_source: { document: kerdi-board-tds, page: 5 }

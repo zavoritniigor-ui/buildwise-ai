@@ -7,6 +7,7 @@ option_attributes:
   allowed_substrates: substrate
   allowed_applications: application
   compatible_bonding_mortars: bonding_mortar
+  allowed_mountings: mounting
 
 substrate:
   gypsum_wallboard: Gypsum wallboard
@@ -29,6 +30,7 @@ application:
   shower_ceiling: Shower ceiling
   bathtub_surround: Bathtub surround
   intermittent_steam_shower: Intermittent-use steam shower
+  exterior_wall: Exterior wall
 
 bonding_mortar:
   schluter_set: Schluter SET
@@ -36,3 +38,11 @@ bonding_mortar:
   schluter_fast_set: Schluter FAST-SET
   unmodified_thinset: Unmodified thin-set mortar
   modified_thinset: Modified thin-set mortar
+
+mounting:
+  fully_embedded: Fully embedded in thin-set mortar on an existing wall
+  spot_bonded: Spot-bonded with thin-set mortar on an existing wall
+  framing_406_oc: Screwed to wood or metal studs at 406 mm (16 in) on centre
+  framing_610_oc: Screwed to wood or metal studs at 610 mm (24 in) on centre
+  countertop: Countertop
+  partition_wall: Non-bearing partition wall
