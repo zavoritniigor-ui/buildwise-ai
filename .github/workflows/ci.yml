@@ -28,7 +28,12 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - run: npm audit --audit-level=high
+      # Gate on vulnerabilities in what ships to users. Dev and build tooling
+      # is reported but not gated, so an unpatched upstream advisory in a build
+      # tool (e.g. the picomatch ReDoS, which has no fixed version and affects
+      # vite/vitest/eslint) cannot block delivery. Decided with the owner.
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm audit --audit-level=high || true
 
   api:
     name: API (ruff, mypy, pytest)
