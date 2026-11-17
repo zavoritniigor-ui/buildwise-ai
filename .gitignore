@@ -17,3 +17,4 @@ __pycache__/
 
 # TypeScript incremental build state
 *.tsbuildinfo
+tools/house-model/.cache/

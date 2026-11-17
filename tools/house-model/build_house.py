@@ -7,8 +7,11 @@ Run headless:
         --out apps/web/src/house/house.glb
 
 The geometry comes from layout.json, the same file the web app reads, so the
-model and the areas measured in the app never diverge. Each surface a person
-can click is a separately named mesh:
+model and the areas measured in the app never diverge. Surfaces carry CC0 PBR
+textures from ambientCG (see textures.json); they are downloaded into .cache/
+on first run and embedded in the .glb.
+
+Each surface a person can click is a separately named mesh:
 
     floor__<room>     one per room
     shower__bathroom  the curbless shower zone
@@ -19,42 +22,123 @@ from the same layout.json, so this script never has to know about clicks.
 
 Coordinates: the layout's plan (x east, z south) maps to Blender (x, -z, up);
 Blender's Y-up glTF export then gives three.js (x, up, z), matching model.ts.
+Textures are mapped so one unit of UV is one metre, with the tile size baked in,
+so the repeat is at real-world scale and survives the glTF export as plain UVs.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 import bmesh  # type: ignore[import-not-found]
 import bpy  # type: ignore[import-not-found]
 from mathutils import Matrix  # type: ignore[import-not-found]
 
+HERE = Path(__file__).resolve().parent
+CACHE = HERE / ".cache"
+TEXTURES = json.loads((HERE / "textures.json").read_text(encoding="utf-8"))
+
 FLOOR_THICKNESS = 0.08
 SHOWER_THICKNESS = 0.03
 WALL_LOW = 0.95  # dollhouse height: readable from above, does not block the camera
-WALL_COLOR = "#f3efe8"
-SHOWER_COLOR = "#bcd6e0"
+TEXTURE_SIZE = 512  # downscaled from 1K: plenty for this view, keeps the .glb small
 
 
 def args_after_dashes() -> list[str]:
     return sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else []
 
 
-def srgb_to_linear(channel: float) -> float:
-    return channel / 12.92 if channel <= 0.04045 else ((channel + 0.055) / 1.055) ** 2.4
+def texture_dir(asset: str) -> Path:
+    """The extracted texture folder, downloaded from ambientCG if missing."""
+    folder = CACHE / asset
+    if not folder.exists():
+        folder.mkdir(parents=True, exist_ok=True)
+        archive = CACHE / f"{asset}.zip"
+        url = f"https://ambientcg.com/get?file={asset}_{TEXTURES['resolution']}-{TEXTURES['format']}.zip"
+        print(f"downloading {asset} from ambientCG")
+        subprocess.run(["curl", "-s", "-L", "-o", str(archive), url], check=True)
+        with zipfile.ZipFile(archive) as zf:
+            zf.extractall(folder)
+        archive.unlink()
+    return folder
 
 
-def material(name: str, hex_color: str, roughness: float = 0.85) -> bpy.types.Material:
-    mat = bpy.data.materials.new(name)
+def load_image(path: Path, non_color: bool) -> bpy.types.Image:
+    image = bpy.data.images.load(str(path), check_existing=True)
+    image.colorspace_settings.name = "Non-Color" if non_color else "sRGB"
+    if max(image.size) > TEXTURE_SIZE:
+        image.scale(TEXTURE_SIZE, TEXTURE_SIZE)
+    return image
+
+
+def maps(asset: str) -> dict[str, Path]:
+    folder = texture_dir(asset)
+    found: dict[str, Path] = {}
+    for path in folder.iterdir():
+        name = path.name.lower()
+        if name.endswith("_color.jpg"):
+            found["color"] = path
+        elif name.endswith("_normalgl.jpg"):
+            found["normal"] = path
+        elif name.endswith("_roughness.jpg"):
+            found["roughness"] = path
+    return found
+
+
+def textured_material(role: str) -> bpy.types.Material:
+    """A PBR material whose colour, roughness and normal come from the CC0 set.
+
+    The mesh UVs already carry metres, so a Mapping node scales them by 1/tile
+    to reach a real-world repeat. The glTF exporter bakes that into the UVs.
+    """
+    config = TEXTURES["sets"][role]
+    cached = maps(config["asset"])
+    tile = config["tile"]
+
+    mat = bpy.data.materials.new(f"mat_{role}")
     mat.use_nodes = True
-    bsdf = mat.node_tree.nodes["Principled BSDF"]
-    rgb = tuple(srgb_to_linear(int(hex_color[i : i + 2], 16) / 255) for i in (1, 3, 5))
-    bsdf.inputs["Base Color"].default_value = (*rgb, 1.0)
-    bsdf.inputs["Roughness"].default_value = roughness
+    nodes = mat.node_tree.nodes
+    links = mat.node_tree.links
+    bsdf = nodes["Principled BSDF"]
+    bsdf.inputs["Roughness"].default_value = 0.8
+
+    tex_coord = nodes.new("ShaderNodeTexCoord")
+    mapping = nodes.new("ShaderNodeMapping")
+    mapping.inputs["Scale"].default_value = (1.0 / tile, 1.0 / tile, 1.0 / tile)
+    links.new(tex_coord.outputs["UV"], mapping.inputs["Vector"])
+
+    def image_node(kind: str, non_color: bool) -> bpy.types.ShaderNode:
+        node = nodes.new("ShaderNodeTexImage")
+        node.image = load_image(cached[kind], non_color)
+        links.new(mapping.outputs["Vector"], node.inputs["Vector"])
+        return node
+
+    if "color" in cached:
+        links.new(image_node("color", False).outputs["Color"], bsdf.inputs["Base Color"])
+    if "roughness" in cached:
+        links.new(image_node("roughness", True).outputs["Color"], bsdf.inputs["Roughness"])
+    if "normal" in cached:
+        normal_map = nodes.new("ShaderNodeNormalMap")
+        links.new(image_node("normal", True).outputs["Color"], normal_map.inputs["Color"])
+        links.new(normal_map.outputs["Normal"], bsdf.inputs["Normal"])
     return mat
+
+
+def cube_uvs(bm: bmesh.types.BMesh) -> None:
+    """Project each face onto its dominant axis, one UV unit per metre. Local
+    vertex coordinates already carry real sizes, so the scale is in metres."""
+    uv = bm.loops.layers.uv.verify()
+    for face in bm.faces:
+        axis = max(range(3), key=lambda i: abs(face.normal[i]))
+        pick = {0: (1, 2), 1: (0, 2), 2: (0, 1)}[axis]
+        for loop in face.loops:
+            co = loop.vert.co
+            loop[uv].uv = (co[pick[0]], co[pick[1]])
 
 
 def to_blender(x: float, z: float, up: float) -> tuple[float, float, float]:
@@ -62,8 +146,8 @@ def to_blender(x: float, z: float, up: float) -> tuple[float, float, float]:
 
 
 def box(name: str, centre: tuple[float, float, float], size: tuple[float, float, float], mat: bpy.types.Material):
-    """A box mesh whose vertices already carry its size, so the object has a
-    clean identity transform (no scale baked into the object)."""
+    """A box mesh whose vertices carry its size (clean identity transform), with
+    metre-scaled UVs and the given material."""
     mesh = bpy.data.meshes.new(name)
     obj = bpy.data.objects.new(name, mesh)
     bpy.context.scene.collection.objects.link(obj)
@@ -73,6 +157,7 @@ def box(name: str, centre: tuple[float, float, float], size: tuple[float, float,
         vert.co.x *= size[0]
         vert.co.y *= size[1]
         vert.co.z *= size[2]
+    cube_uvs(bm)
     bm.to_mesh(mesh)
     bm.free()
     obj.location = centre
@@ -106,6 +191,7 @@ def wall_segments(rooms: list[dict]) -> list[tuple[float, float, float, float]]:
 def build(layout: dict) -> None:
     rooms = layout["rooms"]
     wall_thickness = layout["wallThickness"]
+    materials = {role: textured_material(role) for role in TEXTURES["sets"]}
 
     for room in rooms:
         rect = {"x": room["x"], "z": room["z"], "width": room["width"], "depth": room["depth"]}
@@ -114,7 +200,7 @@ def build(layout: dict) -> None:
             f"floor__{room['id']}",
             to_blender(cx, cz, -FLOOR_THICKNESS / 2),
             (rect["width"], rect["depth"], FLOOR_THICKNESS),
-            material(f"floor_{room['id']}", room["color"]),
+            materials[TEXTURES["rooms"][room["id"]]],
         )
         shower = room.get("shower")
         if shower:
@@ -123,7 +209,7 @@ def build(layout: dict) -> None:
                 f"shower__{room['id']}",
                 to_blender(sx, sz, SHOWER_THICKNESS / 2),
                 (shower["width"], shower["depth"], SHOWER_THICKNESS),
-                material(f"shower_{room['id']}", SHOWER_COLOR, roughness=0.4),
+                materials[TEXTURES["shower"]],
             )
 
     # All low walls as one merged mesh.
@@ -142,9 +228,10 @@ def build(layout: dict) -> None:
         bx, bz, by = to_blender((x1 + x2) / 2, (z1 + z2) / 2, WALL_LOW / 2)
         matrix = Matrix.Translation((bx, bz, by)) @ Matrix.Diagonal((*size, 1.0))
         bmesh.ops.create_cube(wbm, size=1.0, matrix=matrix)
+    cube_uvs(wbm)
     wbm.to_mesh(walls_mesh)
     wbm.free()
-    walls_mesh.materials.append(material("walls", WALL_COLOR, roughness=0.9))
+    walls_mesh.materials.append(materials[TEXTURES["walls"]])
 
 
 def main() -> None:
@@ -165,6 +252,7 @@ def main() -> None:
         use_selection=False,
         export_yup=True,
         export_apply=True,
+        export_image_format="AUTO",
     )
     print(f"wrote {options.out}")
 
