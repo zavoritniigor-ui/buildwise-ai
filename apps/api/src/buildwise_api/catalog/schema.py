@@ -144,6 +144,8 @@ class Assembly(_Strict):
 
 class Manufacturer(_Strict):
     name: str
+    brand: str
+    """The name shoppers search for in stores, e.g. Schluter."""
     website: HttpUrl
 
 
@@ -154,6 +156,11 @@ class CatalogFile(_Strict):
     rules: list[Rule] = []
     assemblies: list[Assembly] = []
     families: list[Family] = []
+
+
+class ConditionLabel(_Strict):
+    label: str
+    unit: str | None = None
 
 
 class Vocabulary(_Strict):
@@ -174,6 +181,7 @@ class Vocabulary(_Strict):
     pipe_connection: dict[str, str]
     waste_pipe_size: dict[str, str]
     country: dict[str, str]
+    conditions: dict[str, ConditionLabel]
 
     def options(self, name: str) -> dict[str, str]:
         values: dict[str, str] = getattr(self, name)

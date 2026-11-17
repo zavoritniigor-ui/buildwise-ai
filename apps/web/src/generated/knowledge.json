@@ -1,0 +1,4262 @@
+{
+  "documents": {
+    "ditra-handbook": {
+      "title": "Schluter-DITRA Installation Handbook",
+      "url": "https://assets.schluter.com/asset/570120892212/document_943vbnqrgt3ol0fc95n9ofe057/ditra-installation-handbook.pdf",
+      "version": "04/2026"
+    },
+    "kerdi-board-tds": {
+      "title": "Technical Data Sheet 12.1 Schluter-KERDI-BOARD",
+      "url": "https://assets.schluter.com/asset/570120892212/document_ssp6p29ns55s3ak2uaasbp467f/datasheet-kerdiboard.pdf",
+      "version": "10/2026"
+    },
+    "shower-data-sheet": {
+      "title": "Schluter-Shower System technical data sheets",
+      "url": "https://assets.schluter.com/asset/570120892212/document_2nqfpg0pi13itfso529nhmlr7f/shower-system-data-sheet.pdf",
+      "version": "07/2026"
+    },
+    "kerdi-tds": {
+      "title": "Technical Data Sheet 8.1 Schluter-KERDI",
+      "url": "https://assets.schluter.com/asset/570120892212/document_gl4h79gcu14r17g24vkuvois38/kerdi-data-sheet.pdf",
+      "version": "10/2026"
+    },
+    "shower-handbook": {
+      "title": "Schluter-Shower System Installation Handbook",
+      "url": "https://assets.schluter.com/asset/570120892212/document_i2tt9fh4sp2n562jmirhppbv4o/shower-system-installation-handbook.pdf",
+      "version": "04/2026"
+    }
+  },
+  "conditions": {
+    "application": {
+      "label": "Where the material is used",
+      "options": "application"
+    },
+    "bonding_mortar": {
+      "label": "Tile setting mortar",
+      "options": "bonding_mortar"
+    },
+    "country": {
+      "label": "Country",
+      "options": "country"
+    },
+    "drain_system": {
+      "label": "Drain system",
+      "options": "drain_system"
+    },
+    "floor_waterproofing": {
+      "label": "Floor waterproofing",
+      "options": "floor_waterproofing"
+    },
+    "joist_spacing_mm": {
+      "label": "Joist spacing on centre",
+      "unit": "mm"
+    },
+    "joist_type": {
+      "label": "Floor framing",
+      "options": "joist_type"
+    },
+    "material_temperature_c": {
+      "label": "Material and substrate temperature",
+      "unit": "C"
+    },
+    "membrane_bonding_mortar": {
+      "label": "Mortar under the membrane",
+      "options": "bonding_mortar"
+    },
+    "mounting": {
+      "label": "How the panel is mounted",
+      "options": "mounting"
+    },
+    "pipe_connection": {
+      "label": "How the waste pipe reaches the drain",
+      "options": "pipe_connection"
+    },
+    "shower_base": {
+      "label": "Shower base",
+      "options": "shower_base"
+    },
+    "subfloor": {
+      "label": "Subfloor material",
+      "options": "subfloor"
+    },
+    "subfloor_edge": {
+      "label": "Subfloor panel edges",
+      "options": "subfloor_edge"
+    },
+    "subfloor_thickness_mm": {
+      "label": "Subfloor thickness",
+      "unit": "mm"
+    },
+    "substrate": {
+      "label": "Substrate",
+      "options": "substrate"
+    },
+    "tile_material": {
+      "label": "Tile material",
+      "options": "tile_material"
+    },
+    "tile_min_side_mm": {
+      "label": "Shortest tile side",
+      "unit": "mm"
+    },
+    "tile_setting_mortar": {
+      "label": "Mortar over the membrane",
+      "options": "bonding_mortar"
+    },
+    "uncoupling_membrane": {
+      "label": "Uncoupling membrane",
+      "options": "uncoupling_membrane"
+    },
+    "underlayment_thickness_mm": {
+      "label": "Second layer (underlayment) thickness",
+      "unit": "mm"
+    },
+    "waste_pipe_size": {
+      "label": "Waste pipe size",
+      "options": "waste_pipe_size"
+    }
+  },
+  "vocabulary": {
+    "application": {
+      "interior_wet_area_wall": "Interior wet-area wall",
+      "interior_wet_area_floor": "Interior wet-area floor",
+      "shower_wall": "Shower wall",
+      "shower_floor": "Shower floor",
+      "shower_ceiling": "Shower ceiling",
+      "bathtub_surround": "Bathtub surround",
+      "intermittent_steam_shower": "Intermittent-use steam shower",
+      "exterior_wall": "Exterior wall"
+    },
+    "bonding_mortar": {
+      "schluter_set": "Schluter SET",
+      "schluter_all_set": "Schluter ALL-SET",
+      "schluter_fast_set": "Schluter FAST-SET",
+      "unmodified_thinset": "Unmodified thin-set mortar",
+      "modified_thinset": "Modified thin-set mortar"
+    },
+    "country": {
+      "CA": "Canada",
+      "US": "United States"
+    },
+    "drain_system": {
+      "kerdi_drain": "Schluter KERDI-DRAIN point drain",
+      "kerdi_line": "Schluter KERDI-LINE linear drain"
+    },
+    "floor_waterproofing": {
+      "kerdi": "Schluter KERDI",
+      "ditra": "Schluter DITRA or DITRA-PS",
+      "ditra_xl": "Schluter DITRA-XL",
+      "ditra_heat": "Schluter DITRA-HEAT or DITRA-HEAT-PS",
+      "ditra_heat_duo": "Schluter DITRA-HEAT-DUO or DITRA-HEAT-DUO-PS"
+    },
+    "joist_type": {
+      "dimensional_lumber": "Dimensional lumber, not ripped down",
+      "engineered_i_joist": "Engineered I-joist",
+      "open_web_truss": "Open-web floor truss"
+    },
+    "mounting": {
+      "fully_embedded": "Fully embedded in thin-set mortar on an existing wall",
+      "spot_bonded": "Spot-bonded with thin-set mortar on an existing wall",
+      "framing_406_oc": "Screwed to wood or metal studs at 406 mm (16 in) on centre",
+      "framing_610_oc": "Screwed to wood or metal studs at 610 mm (24 in) on centre",
+      "countertop": "Countertop",
+      "partition_wall": "Non-bearing partition wall"
+    },
+    "pipe_connection": {
+      "vertical": "Vertical connection to a waste pipe below the drain",
+      "horizontal": "Horizontal connection to a waste pipe beside the drain"
+    },
+    "shower_base": {
+      "kerdi_shower_t": "Schluter KERDI-SHOWER-T tray",
+      "kerdi_shower_ts": "Schluter KERDI-SHOWER-TS tray",
+      "kerdi_shower_tt": "Schluter KERDI-SHOWER-TT thin tray",
+      "kerdi_shower_lt": "Schluter KERDI-SHOWER-LT tray",
+      "kerdi_shower_lts": "Schluter KERDI-SHOWER-LTS tray",
+      "portland_cement_mortar_bed": "Portland cement mortar bed"
+    },
+    "subfloor": {
+      "plywood": "Plywood",
+      "osb": "Oriented strand board",
+      "concrete": "Concrete"
+    },
+    "subfloor_edge": {
+      "tongue_and_groove": "Tongue-and-groove",
+      "square_edge": "Square edge"
+    },
+    "substrate": {
+      "gypsum_wallboard": "Gypsum wallboard",
+      "cement_backer_unit": "Cement backer unit",
+      "fiber_cement_backerboard": "Fiber-cement backerboard",
+      "fiber_reinforced_gypsum_backerboard": "Fiber-reinforced water-resistant gypsum backerboard",
+      "coated_glass_mat_gypsum_backerboard": "Coated glass mat water-resistant gypsum backerboard",
+      "portland_cement_mortar": "Portland cement mortar",
+      "masonry": "Masonry (cement block, brick)",
+      "concrete": "Concrete, cured for foot traffic",
+      "cement_leveler_or_mortar_bed": "Cement leveler, mortar bed or render coat, cured",
+      "plywood": "Plywood",
+      "osb": "Oriented strand board"
+    },
+    "tile_material": {
+      "ceramic": "Ceramic tile",
+      "porcelain": "Porcelain tile",
+      "natural_stone": "Natural stone tile"
+    },
+    "uncoupling_membrane": {
+      "ditra": "Schluter DITRA",
+      "ditra_xl": "Schluter DITRA-XL"
+    },
+    "waste_pipe_size": {
+      "nps_2": "2 in (50 mm) waste pipe",
+      "nps_3": "3 in (75 mm) waste pipe"
+    }
+  },
+  "categories": {
+    "height-compensation-board": {
+      "name": "Height compensation board",
+      "rules": []
+    },
+    "prefabricated-shower-ramp": {
+      "name": "Prefabricated shower ramp",
+      "rules": []
+    },
+    "prefabricated-shower-tray": {
+      "name": "Prefabricated sloped shower tray",
+      "rules": [
+        {
+          "id": "shower-tray-drain-system",
+          "kind": "membership",
+          "condition": "drain_system",
+          "status": "ai_extracted",
+          "description": "The tray is made for one drain system: T, TS and TT trays take a KERDI-DRAIN point drain, LT and LTS trays take a KERDI-LINE linear drain.",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          },
+          "material_attribute": "compatible_drain_systems"
+        }
+      ]
+    },
+    "sheet-waterproofing-membrane": {
+      "name": "Sheet-applied waterproofing membrane",
+      "rules": [
+        {
+          "id": "sheet-membrane-application",
+          "kind": "membership",
+          "condition": "application",
+          "status": "ai_extracted",
+          "description": "The membrane may only be used where the manufacturer allows it.",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 1
+          },
+          "material_attribute": "allowed_applications"
+        },
+        {
+          "id": "sheet-membrane-bonding-mortar",
+          "kind": "membership",
+          "condition": "bonding_mortar",
+          "status": "ai_extracted",
+          "description": "The membrane must be bonded with a mortar the manufacturer names.",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          },
+          "material_attribute": "compatible_bonding_mortars"
+        },
+        {
+          "id": "sheet-membrane-substrate",
+          "kind": "membership",
+          "condition": "substrate",
+          "status": "ai_extracted",
+          "description": "The membrane may only be bonded to a substrate the manufacturer allows.",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 1
+          },
+          "material_attribute": "allowed_substrates"
+        },
+        {
+          "id": "sheet-membrane-working-temperature",
+          "kind": "range",
+          "condition": "material_temperature_c",
+          "status": "ai_extracted",
+          "description": "The membrane must be acclimated within its working temperature range.",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          },
+          "min_attribute": "min_working_temperature_c",
+          "max_attribute": "max_working_temperature_c"
+        }
+      ]
+    },
+    "shower-drain": {
+      "name": "Shower drain with integrated bonding flange",
+      "rules": [
+        {
+          "id": "shower-drain-pipe-connection",
+          "kind": "membership",
+          "condition": "pipe_connection",
+          "status": "ai_extracted",
+          "description": "The drain outlet must match how the waste pipe arrives, below (vertical) or beside (horizontal).",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "material_attribute": "allowed_pipe_connections"
+        },
+        {
+          "id": "shower-drain-shower-base",
+          "kind": "membership",
+          "condition": "shower_base",
+          "status": "ai_extracted",
+          "description": "The drain must be made for the chosen shower base.",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "material_attribute": "compatible_shower_bases"
+        },
+        {
+          "id": "shower-drain-waste-pipe-size",
+          "kind": "membership",
+          "condition": "waste_pipe_size",
+          "status": "ai_extracted",
+          "description": "The drain outlet must match the waste pipe size.",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "material_attribute": "allowed_waste_pipe_sizes"
+        }
+      ]
+    },
+    "waterproof-building-panel": {
+      "name": "Waterproof building panel",
+      "rules": [
+        {
+          "id": "building-panel-application",
+          "kind": "membership",
+          "condition": "application",
+          "status": "ai_extracted",
+          "description": "The panel may only be used where the manufacturer allows it.",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 1
+          },
+          "material_attribute": "allowed_applications"
+        },
+        {
+          "id": "building-panel-mounting",
+          "kind": "membership",
+          "condition": "mounting",
+          "status": "ai_extracted",
+          "description": "The panel must be thick enough for how it is mounted. Allowed mountings are derived from each panel's thickness.",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          },
+          "material_attribute": "allowed_mountings"
+        },
+        {
+          "id": "building-panel-tile-mortar",
+          "kind": "membership",
+          "condition": "bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Tile must be set on the panel with a mortar the manufacturer names.",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          },
+          "material_attribute": "compatible_bonding_mortars"
+        }
+      ]
+    },
+    "waterproofing-band": {
+      "name": "Waterproofing band",
+      "rules": []
+    }
+  },
+  "assemblies": [
+    {
+      "slug": "schluter-d-w16-t",
+      "name": "Tile over DITRA on a single-layer wood subfloor, joists at 406 mm (D-W16-T)",
+      "description": "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "note": "Exposure 1, plugged-face plywood or OSB is recommended."
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          }
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 406,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 16,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "unit": "mm",
+          "note": "19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets."
+        },
+        {
+          "key": "allowed_tile_materials",
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          }
+        },
+        {
+          "key": "min_tile_side_mm",
+          "value": 50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "unit": "mm",
+          "note": "Smaller formats need Schluter technical services (page 21)."
+        },
+        {
+          "key": "allowed_uncoupling_membranes",
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          }
+        },
+        {
+          "key": "allowed_membrane_bonding_mortars",
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "note": "Bonds the membrane to the wood."
+        },
+        {
+          "key": "allowed_tile_setting_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "note": "Sets the tile on the membrane."
+        }
+      ],
+      "rules": [
+        {
+          "id": "d-w16-t-joist-spacing",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Framing at most 406 mm on centre.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "max_attribute": "max_joist_spacing_mm"
+        },
+        {
+          "id": "d-w16-t-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Framing must be joists, I-joists, trusses.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "d-w16-t-membrane",
+          "kind": "membership",
+          "condition": "uncoupling_membrane",
+          "status": "ai_extracted",
+          "description": "The membrane must be DITRA or DITRA-XL.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_uncoupling_membranes"
+        },
+        {
+          "id": "d-w16-t-membrane-mortar",
+          "kind": "membership",
+          "condition": "membrane_bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_membrane_bonding_mortars"
+        },
+        {
+          "id": "d-w16-t-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "d-w16-t-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        },
+        {
+          "id": "d-w16-t-subfloor-thickness",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Subfloor at least 16 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "min_attribute": "min_subfloor_thickness_mm"
+        },
+        {
+          "id": "d-w16-t-tile-material",
+          "kind": "membership",
+          "condition": "tile_material",
+          "status": "ai_extracted",
+          "description": "This detail is for ceramic or porcelain tile.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_tile_materials"
+        },
+        {
+          "id": "d-w16-t-tile-mortar",
+          "kind": "membership",
+          "condition": "tile_setting_mortar",
+          "status": "ai_extracted",
+          "description": "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "material_attribute": "allowed_tile_setting_mortars"
+        },
+        {
+          "id": "d-w16-t-tile-size",
+          "kind": "range",
+          "condition": "tile_min_side_mm",
+          "status": "ai_extracted",
+          "description": "Tiles at least 50 x 50 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          },
+          "min_attribute": "min_tile_side_mm"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-d-w19-t",
+      "name": "Tile over DITRA on a single-layer wood subfloor, joists at 488 mm (D-W19-T)",
+      "description": "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Exposure 1, plugged-face plywood or OSB is recommended."
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 488,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 19,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "23/32 in (3/4 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets."
+        },
+        {
+          "key": "allowed_tile_materials",
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "min_tile_side_mm",
+          "value": 50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Smaller formats need Schluter technical services (page 21)."
+        },
+        {
+          "key": "allowed_uncoupling_membranes",
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "allowed_membrane_bonding_mortars",
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Bonds the membrane to the wood."
+        },
+        {
+          "key": "allowed_tile_setting_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Sets the tile on the membrane."
+        }
+      ],
+      "rules": [
+        {
+          "id": "d-w19-t-joist-spacing",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Framing at most 488 mm on centre.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "max_attribute": "max_joist_spacing_mm"
+        },
+        {
+          "id": "d-w19-t-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Framing must be joists, I-joists, trusses.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "d-w19-t-membrane",
+          "kind": "membership",
+          "condition": "uncoupling_membrane",
+          "status": "ai_extracted",
+          "description": "The membrane must be DITRA or DITRA-XL.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_uncoupling_membranes"
+        },
+        {
+          "id": "d-w19-t-membrane-mortar",
+          "kind": "membership",
+          "condition": "membrane_bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_membrane_bonding_mortars"
+        },
+        {
+          "id": "d-w19-t-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "d-w19-t-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        },
+        {
+          "id": "d-w19-t-subfloor-thickness",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Subfloor at least 19 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "min_attribute": "min_subfloor_thickness_mm"
+        },
+        {
+          "id": "d-w19-t-tile-material",
+          "kind": "membership",
+          "condition": "tile_material",
+          "status": "ai_extracted",
+          "description": "This detail is for ceramic or porcelain tile.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_tile_materials"
+        },
+        {
+          "id": "d-w19-t-tile-mortar",
+          "kind": "membership",
+          "condition": "tile_setting_mortar",
+          "status": "ai_extracted",
+          "description": "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_tile_setting_mortars"
+        },
+        {
+          "id": "d-w19-t-tile-size",
+          "kind": "range",
+          "condition": "tile_min_side_mm",
+          "status": "ai_extracted",
+          "description": "Tiles at least 50 x 50 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "min_attribute": "min_tile_side_mm"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-d-w24-t",
+      "name": "Tile over DITRA on a double-layer wood floor, framing at 610 mm (D-W24-T)",
+      "description": "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Exposure 1, plugged-face plywood or OSB is recommended."
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "The drawing legend lists joists, I-joists or trusses; the requirements text names only I-joists or floor trusses. The less restrictive reading is used."
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 610,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 19,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "23/32 in (3/4 in nominal) tongue-and-groove."
+        },
+        {
+          "key": "min_underlayment_thickness_mm",
+          "value": 10,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18."
+        },
+        {
+          "key": "allowed_tile_materials",
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "min_tile_side_mm",
+          "value": 50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Smaller formats need Schluter technical services (page 21)."
+        },
+        {
+          "key": "allowed_uncoupling_membranes",
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          }
+        },
+        {
+          "key": "allowed_membrane_bonding_mortars",
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Bonds the membrane to the wood."
+        },
+        {
+          "key": "allowed_tile_setting_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "note": "Sets the tile on the membrane."
+        }
+      ],
+      "rules": [
+        {
+          "id": "d-w24-t-joist-spacing",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Framing at most 610 mm on centre.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "max_attribute": "max_joist_spacing_mm"
+        },
+        {
+          "id": "d-w24-t-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Framing must be joists, I-joists, trusses.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "d-w24-t-membrane",
+          "kind": "membership",
+          "condition": "uncoupling_membrane",
+          "status": "ai_extracted",
+          "description": "The membrane must be DITRA or DITRA-XL.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_uncoupling_membranes"
+        },
+        {
+          "id": "d-w24-t-membrane-mortar",
+          "kind": "membership",
+          "condition": "membrane_bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_membrane_bonding_mortars"
+        },
+        {
+          "id": "d-w24-t-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "d-w24-t-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        },
+        {
+          "id": "d-w24-t-subfloor-thickness",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Subfloor at least 19 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "min_attribute": "min_subfloor_thickness_mm"
+        },
+        {
+          "id": "d-w24-t-tile-material",
+          "kind": "membership",
+          "condition": "tile_material",
+          "status": "ai_extracted",
+          "description": "This detail is for ceramic or porcelain tile.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_tile_materials"
+        },
+        {
+          "id": "d-w24-t-tile-mortar",
+          "kind": "membership",
+          "condition": "tile_setting_mortar",
+          "status": "ai_extracted",
+          "description": "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "material_attribute": "allowed_tile_setting_mortars"
+        },
+        {
+          "id": "d-w24-t-tile-size",
+          "kind": "range",
+          "condition": "tile_min_side_mm",
+          "status": "ai_extracted",
+          "description": "Tiles at least 50 x 50 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "min_attribute": "min_tile_side_mm"
+        },
+        {
+          "id": "d-w24-t-underlayment-thickness",
+          "kind": "range",
+          "condition": "underlayment_thickness_mm",
+          "status": "ai_extracted",
+          "description": "A second layer (underlayment) at least 10 mm is required.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 5
+          },
+          "min_attribute": "min_underlayment_thickness_mm"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-d-w24-xl-t",
+      "name": "Tile over DITRA-XL on a single-layer wood subfloor, framing at 610 mm (D-W24-XL-T)",
+      "description": "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Exposure 1, plugged-face plywood or OSB is recommended."
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "The drawing legend lists joists, I-joists or trusses; the requirements text names only I-joists or floor trusses. The less restrictive reading is used."
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 610,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 19,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm",
+          "note": "23/32 in (3/4 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets."
+        },
+        {
+          "key": "allowed_tile_materials",
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "min_tile_side_mm",
+          "value": 50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm",
+          "note": "Smaller formats need Schluter technical services (page 21)."
+        },
+        {
+          "key": "allowed_uncoupling_membranes",
+          "value": [
+            "ditra_xl"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "allowed_membrane_bonding_mortars",
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Bonds the membrane to the wood."
+        },
+        {
+          "key": "allowed_tile_setting_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Sets the tile on the membrane."
+        }
+      ],
+      "rules": [
+        {
+          "id": "d-w24-xl-t-joist-spacing",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Framing at most 610 mm on centre.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "max_attribute": "max_joist_spacing_mm"
+        },
+        {
+          "id": "d-w24-xl-t-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Framing must be joists, I-joists, trusses.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "d-w24-xl-t-membrane",
+          "kind": "membership",
+          "condition": "uncoupling_membrane",
+          "status": "ai_extracted",
+          "description": "The membrane must be DITRA-XL.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_uncoupling_membranes"
+        },
+        {
+          "id": "d-w24-xl-t-membrane-mortar",
+          "kind": "membership",
+          "condition": "membrane_bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_membrane_bonding_mortars"
+        },
+        {
+          "id": "d-w24-xl-t-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "d-w24-xl-t-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        },
+        {
+          "id": "d-w24-xl-t-subfloor-thickness",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Subfloor at least 19 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "min_attribute": "min_subfloor_thickness_mm"
+        },
+        {
+          "id": "d-w24-xl-t-tile-material",
+          "kind": "membership",
+          "condition": "tile_material",
+          "status": "ai_extracted",
+          "description": "This detail is for ceramic or porcelain tile.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_tile_materials"
+        },
+        {
+          "id": "d-w24-xl-t-tile-mortar",
+          "kind": "membership",
+          "condition": "tile_setting_mortar",
+          "status": "ai_extracted",
+          "description": "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_tile_setting_mortars"
+        },
+        {
+          "id": "d-w24-xl-t-tile-size",
+          "kind": "range",
+          "condition": "tile_min_side_mm",
+          "status": "ai_extracted",
+          "description": "Tiles at least 50 x 50 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "min_attribute": "min_tile_side_mm"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-d-w-s",
+      "name": "Natural stone over DITRA on a double-layer wood floor (D-W-S)",
+      "description": "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Exposure 1, plugged-face plywood or OSB is recommended."
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 610,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 19,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm",
+          "note": "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing."
+        },
+        {
+          "key": "min_underlayment_thickness_mm",
+          "value": 10,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm",
+          "note": "Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18."
+        },
+        {
+          "key": "allowed_tile_materials",
+          "value": [
+            "natural_stone"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "min_tile_side_mm",
+          "value": 50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "unit": "mm",
+          "note": "Smaller formats need Schluter technical services (page 21)."
+        },
+        {
+          "key": "allowed_uncoupling_membranes",
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          }
+        },
+        {
+          "key": "allowed_membrane_bonding_mortars",
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Bonds the membrane to the wood."
+        },
+        {
+          "key": "allowed_tile_setting_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "note": "Sets the tile on the membrane."
+        }
+      ],
+      "rules": [
+        {
+          "id": "d-w-s-joist-spacing",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Framing at most 610 mm on centre.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "max_attribute": "max_joist_spacing_mm"
+        },
+        {
+          "id": "d-w-s-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Framing must be joists, I-joists, trusses.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "d-w-s-membrane",
+          "kind": "membership",
+          "condition": "uncoupling_membrane",
+          "status": "ai_extracted",
+          "description": "The membrane must be DITRA or DITRA-XL.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_uncoupling_membranes"
+        },
+        {
+          "id": "d-w-s-membrane-mortar",
+          "kind": "membership",
+          "condition": "membrane_bonding_mortar",
+          "status": "ai_extracted",
+          "description": "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_membrane_bonding_mortars"
+        },
+        {
+          "id": "d-w-s-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "d-w-s-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        },
+        {
+          "id": "d-w-s-subfloor-thickness",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Subfloor at least 19 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "min_attribute": "min_subfloor_thickness_mm"
+        },
+        {
+          "id": "d-w-s-tile-material",
+          "kind": "membership",
+          "condition": "tile_material",
+          "status": "ai_extracted",
+          "description": "This detail is for natural stone.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_tile_materials"
+        },
+        {
+          "id": "d-w-s-tile-mortar",
+          "kind": "membership",
+          "condition": "tile_setting_mortar",
+          "status": "ai_extracted",
+          "description": "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "material_attribute": "allowed_tile_setting_mortars"
+        },
+        {
+          "id": "d-w-s-tile-size",
+          "kind": "range",
+          "condition": "tile_min_side_mm",
+          "status": "ai_extracted",
+          "description": "Tiles at least 50 x 50 mm.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "min_attribute": "min_tile_side_mm"
+        },
+        {
+          "id": "d-w-s-underlayment-thickness",
+          "kind": "range",
+          "condition": "underlayment_thickness_mm",
+          "status": "ai_extracted",
+          "description": "A second layer (underlayment) at least 10 mm is required.",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 6
+          },
+          "min_attribute": "min_underlayment_thickness_mm"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-k-shcr",
+      "name": "Recessed curbless shower over a wood subfloor (K-SHCR)",
+      "description": "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          }
+        },
+        {
+          "key": "allowed_subfloor_edges",
+          "value": [
+            "tongue_and_groove"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          }
+        },
+        {
+          "key": "allowed_joist_types",
+          "value": [
+            "dimensional_lumber"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "note": "Only dimensional lumber is supported; it must not be ripped down."
+        },
+        {
+          "key": "allowed_shower_bases",
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt",
+            "kerdi_shower_lt",
+            "kerdi_shower_lts"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          }
+        },
+        {
+          "key": "allowed_floor_waterproofing",
+          "value": [
+            "kerdi",
+            "ditra",
+            "ditra_xl",
+            "ditra_heat",
+            "ditra_heat_duo"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "note": "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND."
+        },
+        {
+          "key": "min_subfloor_thickness_mm",
+          "value": 19,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "unit": "mm",
+          "note": "23/32 in (3/4 in nominal) tongue-and-groove, with a 1/8 in gap between sheets."
+        },
+        {
+          "key": "max_joist_spacing_mm",
+          "value": 488,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "reduced_subfloor_countries",
+          "value": [
+            "CA"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          }
+        },
+        {
+          "key": "reduced_min_subfloor_thickness_mm",
+          "value": 16,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "unit": "mm",
+          "note": "Canada only; 19 mm is still recommended."
+        },
+        {
+          "key": "reduced_max_joist_spacing_mm",
+          "value": 406,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_wait_before_water_test_h",
+          "value": 24,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "unit": "h"
+        }
+      ],
+      "rules": [
+        {
+          "id": "k-shcr-floor-waterproofing",
+          "kind": "membership",
+          "condition": "floor_waterproofing",
+          "status": "ai_extracted",
+          "description": "Floor areas exposed to water need KERDI or a DITRA-family membrane.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "allowed_floor_waterproofing"
+        },
+        {
+          "id": "k-shcr-joist-type",
+          "kind": "membership",
+          "condition": "joist_type",
+          "status": "ai_extracted",
+          "description": "Joists must be dimensional lumber.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "allowed_joist_types"
+        },
+        {
+          "id": "k-shcr-shower-base",
+          "kind": "membership",
+          "condition": "shower_base",
+          "status": "ai_extracted",
+          "description": "The shower base must be a KERDI-SHOWER tray.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "allowed_shower_bases"
+        },
+        {
+          "id": "k-shcr-stiffness-reduced-country",
+          "kind": "membership",
+          "condition": "country",
+          "status": "ai_extracted",
+          "description": "The thinner subfloor option is allowed in Canada only.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "reduced_subfloor_countries",
+          "alternative": {
+            "group": "k-shcr-subfloor-stiffness",
+            "number": 2
+          }
+        },
+        {
+          "id": "k-shcr-stiffness-reduced-joists",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Canadian option, joists at most 406 mm on centre.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "max_attribute": "reduced_max_joist_spacing_mm",
+          "alternative": {
+            "group": "k-shcr-subfloor-stiffness",
+            "number": 2
+          }
+        },
+        {
+          "id": "k-shcr-stiffness-reduced-subfloor",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Canadian option, subfloor at least 16 mm.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "min_attribute": "reduced_min_subfloor_thickness_mm",
+          "alternative": {
+            "group": "k-shcr-subfloor-stiffness",
+            "number": 2
+          }
+        },
+        {
+          "id": "k-shcr-stiffness-standard-joists",
+          "kind": "range",
+          "condition": "joist_spacing_mm",
+          "status": "ai_extracted",
+          "description": "Standard build-up, joists at most 488 mm on centre.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "max_attribute": "max_joist_spacing_mm",
+          "alternative": {
+            "group": "k-shcr-subfloor-stiffness",
+            "number": 1
+          }
+        },
+        {
+          "id": "k-shcr-stiffness-standard-subfloor",
+          "kind": "range",
+          "condition": "subfloor_thickness_mm",
+          "status": "ai_extracted",
+          "description": "Standard build-up, subfloor at least 19 mm.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "min_attribute": "min_subfloor_thickness_mm",
+          "alternative": {
+            "group": "k-shcr-subfloor-stiffness",
+            "number": 1
+          }
+        },
+        {
+          "id": "k-shcr-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood or OSB.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "allowed_subfloors"
+        },
+        {
+          "id": "k-shcr-subfloor-edge",
+          "kind": "membership",
+          "condition": "subfloor_edge",
+          "status": "ai_extracted",
+          "description": "Subfloor panels must be tongue-and-groove.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 15
+          },
+          "material_attribute": "allowed_subfloor_edges"
+        }
+      ]
+    },
+    {
+      "slug": "schluter-k-shbf",
+      "name": "Curbless shower over a wood or concrete subfloor (K-SHBF)",
+      "description": "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_subfloors",
+          "value": [
+            "plywood",
+            "osb",
+            "concrete"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          }
+        },
+        {
+          "key": "allowed_shower_bases",
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt",
+            "kerdi_shower_lt",
+            "kerdi_shower_lts",
+            "portland_cement_mortar_bed"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          }
+        },
+        {
+          "key": "allowed_floor_waterproofing",
+          "value": [
+            "kerdi",
+            "ditra",
+            "ditra_xl",
+            "ditra_heat",
+            "ditra_heat_duo"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          },
+          "note": "KERDI over mortar beds; DITRA family over plywood, OSB or concrete."
+        },
+        {
+          "key": "min_wait_before_water_test_h",
+          "value": 24,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          },
+          "unit": "h"
+        }
+      ],
+      "rules": [
+        {
+          "id": "k-shbf-floor-waterproofing",
+          "kind": "membership",
+          "condition": "floor_waterproofing",
+          "status": "ai_extracted",
+          "description": "Floor areas exposed to water need KERDI or a DITRA-family membrane.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          },
+          "material_attribute": "allowed_floor_waterproofing"
+        },
+        {
+          "id": "k-shbf-shower-base",
+          "kind": "membership",
+          "condition": "shower_base",
+          "status": "ai_extracted",
+          "description": "The shower base must be a KERDI-SHOWER tray or a mortar bed.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          },
+          "material_attribute": "allowed_shower_bases"
+        },
+        {
+          "id": "k-shbf-subfloor",
+          "kind": "membership",
+          "condition": "subfloor",
+          "status": "ai_extracted",
+          "description": "The subfloor must be plywood, OSB or concrete.",
+          "source": {
+            "document": "shower-handbook",
+            "page": 13
+          },
+          "material_attribute": "allowed_subfloors"
+        }
+      ]
+    }
+  ],
+  "families": [
+    {
+      "name": "Schluter-KERDI-BOARD",
+      "category": "waterproof-building-panel",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_applications",
+          "value": [
+            "interior_wet_area_wall",
+            "shower_wall",
+            "shower_ceiling",
+            "bathtub_surround"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 1
+          },
+          "note": "Not intended for exterior applications. Floors are not listed as a use."
+        },
+        {
+          "key": "compatible_bonding_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          }
+        },
+        {
+          "key": "min_service_temperature_c",
+          "value": -50,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          },
+          "unit": "C"
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 70,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          },
+          "unit": "C"
+        },
+        {
+          "key": "vapor_permeance_astm_e96",
+          "value": 0.36,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 2
+          },
+          "unit": "perm",
+          "note": "Measured on the 12.5 mm (1/2 in) panel."
+        },
+        {
+          "key": "max_fastener_spacing_wall_mm",
+          "value": 300,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 3
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "max_fastener_spacing_ceiling_mm",
+          "value": 150,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 3
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_screw_embedment_wood_mm",
+          "value": 20,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 3
+          },
+          "unit": "mm"
+        },
+        {
+          "key": "min_screw_embedment_metal_mm",
+          "value": 10,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 3
+          },
+          "unit": "mm"
+        }
+      ],
+      "variants_source": {
+        "document": "kerdi-board-tds",
+        "page": 5
+      },
+      "variants": [
+        {
+          "sku": "KB 12 1220 812",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 810,
+            "thickness_mm": 12.5
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 5 1220 1625",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1625,
+            "thickness_mm": 5
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 2
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 9 1220 1625",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1625,
+            "thickness_mm": 9
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 2
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 12 1220 1625",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1625,
+            "thickness_mm": 12.5
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 5 1220 2440",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 2440,
+            "thickness_mm": 5
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 2
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 9 1220 2440",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 2440,
+            "thickness_mm": 9
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 2
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 12 1220 2440",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 2440,
+            "thickness_mm": 12.5
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 15 1220 2440",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 2440,
+            "thickness_mm": 15
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 19 625 2440",
+          "dimensions": {
+            "width_mm": 625,
+            "length_mm": 2440,
+            "thickness_mm": 19
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 25 625 2440",
+          "dimensions": {
+            "width_mm": 625,
+            "length_mm": 2440,
+            "thickness_mm": 25
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 38 625 2440",
+          "dimensions": {
+            "width_mm": 625,
+            "length_mm": 2440,
+            "thickness_mm": 38
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc",
+                "countertop"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 50 625 2440",
+          "dimensions": {
+            "width_mm": 625,
+            "length_mm": 2440,
+            "thickness_mm": 50
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc",
+                "countertop",
+                "partition_wall"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        },
+        {
+          "sku": "KB 15 1220 3050",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 3050,
+            "thickness_mm": 15
+          },
+          "attributes": [
+            {
+              "key": "allowed_mountings",
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
+              "status": "ai_extracted",
+              "source": {
+                "document": "kerdi-board-tds",
+                "page": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-DRAIN kit, ABS or PVC flange, 4 in stainless steel grate",
+      "category": "shower-drain",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "compatible_shower_bases",
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          },
+          "note": "The T, TS and TT trays are designed to integrate with KERDI-DRAIN."
+        },
+        {
+          "key": "allowed_pipe_connections",
+          "value": [
+            "vertical"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "Attached directly to the waste line with solvent cement."
+        },
+        {
+          "key": "allowed_waste_pipe_sizes",
+          "value": [
+            "nps_2"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 24
+          }
+        },
+        {
+          "key": "flange_material",
+          "value": "abs_or_pvc",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 24
+          },
+          "note": "KD2/ABS/E is ABS, KD2/PVC/E is PVC. Kit includes flange, grate and frame, height collar, lateral ring, 4 inside and 2 outside corners, pipe and mixing valve seals."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 24
+      },
+      "variants": [
+        {
+          "sku": "KD2/ABS/E",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KD2/PVC/E",
+          "dimensions": {},
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-DRAIN stainless steel flange",
+      "category": "shower-drain",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "compatible_shower_bases",
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "allowed_pipe_connections",
+          "value": [
+            "vertical"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "No-hub outlets use a mechanical coupling; the threaded outlet uses thread sealant or tape."
+        },
+        {
+          "key": "allowed_waste_pipe_sizes",
+          "value": [
+            "nps_2",
+            "nps_3"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 16
+          },
+          "note": "KD2 FLK E and KD2 FLK ETH are 2 in, KD3 FLK E is 3 in. With a 3 in outlet a 6 in grate is recommended."
+        },
+        {
+          "key": "flange_material",
+          "value": "stainless_steel_304",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 6
+          },
+          "note": "KERDI is bonded to the stainless steel flange with KERDI-FIX (page 8); 100 ml is included."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 16
+      },
+      "variants": [
+        {
+          "sku": "KD2 FLK E",
+          "dimensions": {
+            "width_mm": 250,
+            "length_mm": 250
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KD2 FLK ETH",
+          "dimensions": {
+            "width_mm": 250,
+            "length_mm": 250
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KD3 FLK E",
+          "dimensions": {
+            "width_mm": 250,
+            "length_mm": 250
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-DRAIN-H horizontal outlet flange",
+      "category": "shower-drain",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "Takes the standard KERDI-DRAIN grates."
+        },
+        {
+          "key": "compatible_shower_bases",
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt",
+            "portland_cement_mortar_bed"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2)."
+        },
+        {
+          "key": "allowed_pipe_connections",
+          "value": [
+            "horizontal"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved."
+        },
+        {
+          "key": "allowed_waste_pipe_sizes",
+          "value": [
+            "nps_2"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 17
+          }
+        },
+        {
+          "key": "flange_material",
+          "value": "abs_or_pvc",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 17
+          },
+          "note": "KDH2 FLK ABS is ABS, KDH2 FLK PVC is PVC."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 17
+      },
+      "variants": [
+        {
+          "sku": "KDH2 FLK ABS",
+          "dimensions": {
+            "width_mm": 300,
+            "length_mm": 300
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KDH2 FLK PVC",
+          "dimensions": {
+            "width_mm": 300,
+            "length_mm": 300
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-LINE channel body, center outlet",
+      "category": "shower-drain",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_line"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "compatible_shower_bases",
+          "value": [
+            "kerdi_shower_lt",
+            "kerdi_shower_lts"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "The included foam channel support sets the drain elevation to the LT and LTS trays."
+        },
+        {
+          "key": "allowed_pipe_connections",
+          "value": [
+            "vertical"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "2 in no-hub outlet with a mechanical coupling."
+        },
+        {
+          "key": "allowed_waste_pipe_sizes",
+          "value": [
+            "nps_2"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "max_tile_thickness_mm",
+          "value": 25,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Standard grate assemblies adjust for 3 to 25 mm coverings; STYLE grates for 6 to 18 mm."
+        },
+        {
+          "key": "flange_material",
+          "value": "stainless_steel_316l",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 6
+          },
+          "note": "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6)."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 28
+      },
+      "variants": [
+        {
+          "sku": "KL1V 60 E 50",
+          "dimensions": {
+            "length_mm": 500
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 60",
+          "dimensions": {
+            "length_mm": 600
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 70",
+          "dimensions": {
+            "length_mm": 700
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 80",
+          "dimensions": {
+            "length_mm": 800
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 90",
+          "dimensions": {
+            "length_mm": 900
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 100",
+          "dimensions": {
+            "length_mm": 1000
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 110",
+          "dimensions": {
+            "length_mm": 1100
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 120",
+          "dimensions": {
+            "length_mm": 1200
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 130",
+          "dimensions": {
+            "length_mm": 1300
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 140",
+          "dimensions": {
+            "length_mm": 1400
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 150",
+          "dimensions": {
+            "length_mm": 1500
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 160",
+          "dimensions": {
+            "length_mm": 1600
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 170",
+          "dimensions": {
+            "length_mm": 1700
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1V 60 E 180",
+          "dimensions": {
+            "length_mm": 1800
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-LINE channel body, off-set outlet",
+      "category": "shower-drain",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_line"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "compatible_shower_bases",
+          "value": [
+            "kerdi_shower_lt",
+            "kerdi_shower_lts"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "The included foam channel support sets the drain elevation to the LT and LTS trays."
+        },
+        {
+          "key": "allowed_pipe_connections",
+          "value": [
+            "vertical"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "note": "2 in no-hub outlet with a mechanical coupling."
+        },
+        {
+          "key": "allowed_waste_pipe_sizes",
+          "value": [
+            "nps_2"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "key": "max_tile_thickness_mm",
+          "value": 25,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Standard grate assemblies adjust for 3 to 25 mm coverings; STYLE grates for 6 to 18 mm."
+        },
+        {
+          "key": "flange_material",
+          "value": "stainless_steel_316l",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 6
+          },
+          "note": "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6)."
+        },
+        {
+          "key": "outlet_offset_mm",
+          "value": 203,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          },
+          "unit": "mm",
+          "note": "Outlet 8 in from the channel end, to avoid obstacles such as joists."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 28
+      },
+      "variants": [
+        {
+          "sku": "KL1VO 60 E 70",
+          "dimensions": {
+            "length_mm": 700
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1VO 60 E 80",
+          "dimensions": {
+            "length_mm": 800
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1VO 60 E 90",
+          "dimensions": {
+            "length_mm": 900
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1VO 60 E 100",
+          "dimensions": {
+            "length_mm": 1000
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1VO 60 E 110",
+          "dimensions": {
+            "length_mm": 1100
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KL1VO 60 E 120",
+          "dimensions": {
+            "length_mm": 1200
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-CB height compensation board",
+      "category": "height-compensation-board",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "use",
+          "value": "drain_height_compensation",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 17
+          },
+          "note": "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2)."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 17
+      },
+      "variants": [
+        {
+          "sku": "KSCB 25 610 1220",
+          "dimensions": {
+            "width_mm": 610,
+            "length_mm": 1220,
+            "thickness_mm": 25
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSCB 90 610 1220",
+          "dimensions": {
+            "width_mm": 610,
+            "length_mm": 1220,
+            "thickness_mm": 89
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-T",
+      "category": "prefabricated-shower-tray",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "drain_placement",
+          "value": "center",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 9
+          }
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KST965/1525",
+          "dimensions": {
+            "width_mm": 970,
+            "length_mm": 1520,
+            "height_mm": 29
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST1220/1525",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1520,
+            "height_mm": 28
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST1220/1830",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1830,
+            "height_mm": 32
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST1525",
+          "dimensions": {
+            "width_mm": 1520,
+            "length_mm": 1520,
+            "height_mm": 30
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST1830",
+          "dimensions": {
+            "width_mm": 1830,
+            "length_mm": 1830,
+            "height_mm": 32
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-TS",
+      "category": "prefabricated-shower-tray",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "drain_placement",
+          "value": "off_center",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 9
+          }
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KST965/1525S",
+          "dimensions": {
+            "width_mm": 970,
+            "length_mm": 1520,
+            "height_mm": 29
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-TT",
+      "category": "prefabricated-shower-tray",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_drain"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "drain_placement",
+          "value": "center",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 9
+          },
+          "note": "Except the neo-angle KST965NA/BF, whose drain is off-center."
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KST965/810BF",
+          "dimensions": {
+            "width_mm": 810,
+            "length_mm": 970,
+            "height_mm": 23
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST915/1220BF",
+          "dimensions": {
+            "width_mm": 910,
+            "length_mm": 1220,
+            "height_mm": 25
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST915BF",
+          "dimensions": {
+            "width_mm": 910,
+            "length_mm": 910,
+            "height_mm": 22
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST965BF",
+          "dimensions": {
+            "width_mm": 970,
+            "length_mm": 970,
+            "height_mm": 23
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST1220BF",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1220,
+            "height_mm": 25
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KST965NA/BF",
+          "dimensions": {
+            "width_mm": 970,
+            "length_mm": 970,
+            "height_mm": 26
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-LT",
+      "category": "prefabricated-shower-tray",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_line"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "drain_placement",
+          "value": "center",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 9
+          }
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KSLT1000",
+          "dimensions": {
+            "width_mm": 1000,
+            "length_mm": 1000,
+            "height_mm": 32
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT1220",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1220,
+            "height_mm": 34
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT1395",
+          "dimensions": {
+            "width_mm": 1400,
+            "length_mm": 1400,
+            "height_mm": 36
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-LTS",
+      "category": "prefabricated-shower-tray",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "compatible_drain_systems",
+          "value": [
+            "kerdi_line"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "key": "drain_placement",
+          "value": "perimeter",
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 9
+          }
+        },
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KSLT1000S",
+          "dimensions": {
+            "width_mm": 1000,
+            "length_mm": 1000,
+            "height_mm": 42
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT1220S",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 1220,
+            "height_mm": 46
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT1395S",
+          "dimensions": {
+            "width_mm": 1400,
+            "length_mm": 1400,
+            "height_mm": 50
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT915/1395S",
+          "dimensions": {
+            "width_mm": 910,
+            "length_mm": 1400,
+            "height_mm": 50
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT915/1830S",
+          "dimensions": {
+            "width_mm": 910,
+            "length_mm": 1830,
+            "height_mm": 58
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT965/1930S",
+          "dimensions": {
+            "width_mm": 970,
+            "length_mm": 1930,
+            "height_mm": 60
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KSLT1930/965S",
+          "dimensions": {
+            "width_mm": 1930,
+            "length_mm": 970,
+            "height_mm": 41
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-SHOWER-R",
+      "category": "prefabricated-shower-ramp",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "max_service_temperature_c",
+          "value": 79,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "C"
+        },
+        {
+          "key": "compressive_strength_kpa",
+          "value": 552,
+          "status": "ai_extracted",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 3
+          },
+          "unit": "kPa",
+          "note": "Integrated KERDI waterproofing; used to build access ramps for curbless showers."
+        }
+      ],
+      "variants_source": {
+        "document": "shower-data-sheet",
+        "page": 9
+      },
+      "variants": [
+        {
+          "sku": "KSR 305/1220",
+          "dimensions": {
+            "width_mm": 1220,
+            "length_mm": 305,
+            "height_mm": 32
+          },
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI",
+      "category": "sheet-waterproofing-membrane",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "allowed_substrates",
+          "value": [
+            "gypsum_wallboard",
+            "cement_backer_unit",
+            "fiber_cement_backerboard",
+            "fiber_reinforced_gypsum_backerboard",
+            "coated_glass_mat_gypsum_backerboard",
+            "portland_cement_mortar",
+            "masonry",
+            "concrete",
+            "cement_leveler_or_mortar_bed"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 1
+          },
+          "note": "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer."
+        },
+        {
+          "key": "allowed_applications",
+          "value": [
+            "interior_wet_area_wall",
+            "interior_wet_area_floor",
+            "shower_wall",
+            "shower_floor",
+            "shower_ceiling",
+            "bathtub_surround",
+            "intermittent_steam_shower"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 1
+          },
+          "note": "Not for primary exterior waterproofing, continuous-use steam rooms, moisture-sensitive stone, or hydrostatic pressure."
+        },
+        {
+          "key": "compatible_bonding_mortars",
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          }
+        },
+        {
+          "key": "min_working_temperature_c",
+          "value": 4,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          },
+          "unit": "C"
+        },
+        {
+          "key": "max_working_temperature_c",
+          "value": 35,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          },
+          "unit": "C"
+        },
+        {
+          "key": "thickness",
+          "value": 8,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 1
+          },
+          "unit": "mil"
+        },
+        {
+          "key": "vapor_permeance_astm_e96_e",
+          "value": 0.9,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          },
+          "unit": "perm"
+        },
+        {
+          "key": "waterproofing_standard",
+          "value": "ANSI A118.10-S",
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          }
+        },
+        {
+          "key": "flood_test_required",
+          "value": "yes",
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 2
+          }
+        }
+      ],
+      "variants_source": {
+        "document": "kerdi-tds",
+        "page": 3
+      },
+      "variants": [
+        {
+          "sku": "KERDI 200/5M",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200/7M",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200/10M",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200/20M",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200200/15M",
+          "dimensions": {},
+          "attributes": []
+        },
+        {
+          "sku": "KERDI 200200",
+          "dimensions": {},
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Schluter-KERDI-BAND",
+      "category": "waterproofing-band",
+      "manufacturer": {
+        "name": "Schluter-Systems",
+        "brand": "Schluter"
+      },
+      "attributes": [
+        {
+          "key": "thickness",
+          "value": 4,
+          "status": "ai_extracted",
+          "source": {
+            "document": "kerdi-tds",
+            "page": 3
+          },
+          "unit": "mil"
+        }
+      ],
+      "variants_source": {
+        "document": "kerdi-tds",
+        "page": 3
+      },
+      "variants": [
+        {
+          "sku": "KEBA 100/125/5M",
+          "dimensions": {
+            "width_mm": 125
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/125/10M",
+          "dimensions": {
+            "width_mm": 125
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/185/5M",
+          "dimensions": {
+            "width_mm": 185
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/250/5M",
+          "dimensions": {
+            "width_mm": 250
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/125",
+          "dimensions": {
+            "width_mm": 125
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/185",
+          "dimensions": {
+            "width_mm": 185
+          },
+          "attributes": []
+        },
+        {
+          "sku": "KEBA 100/250",
+          "dimensions": {
+            "width_mm": 250
+          },
+          "attributes": []
+        }
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "bw-001",
+      "title": "Curbless shower in a Montreal bathroom on a wood floor",
+      "job": {
+        "country": "CA",
+        "subfloor": "plywood",
+        "subfloor_edge": "tongue_and_groove",
+        "subfloor_thickness_mm": 16,
+        "joist_type": "dimensional_lumber",
+        "joist_spacing_mm": 406,
+        "shower_base": "kerdi_shower_tt",
+        "floor_waterproofing": "ditra",
+        "uncoupling_membrane": "ditra",
+        "tile_material": "porcelain",
+        "tile_min_side_mm": 300,
+        "membrane_bonding_mortar": "modified_thinset",
+        "tile_setting_mortar": "unmodified_thinset",
+        "drain_system": "kerdi_drain",
+        "pipe_connection": "vertical",
+        "waste_pipe_size": "nps_2"
+      },
+      "cases": [
+        {
+          "id": "brief-only",
+          "title": "Only the brief is known",
+          "assembly": "schluter-k-shcr",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "unknown",
+              "missing": [
+                "floor_waterproofing",
+                "joist_spacing_mm",
+                "joist_type",
+                "shower_base",
+                "subfloor_edge",
+                "subfloor_thickness_mm"
+              ]
+            }
+          }
+        },
+        {
+          "id": "recessed-shower",
+          "title": "Recessed curbless shower over the wood floor",
+          "assembly": "schluter-k-shcr",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "compatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "recessed-shower-wide-joists",
+          "title": "Recessed shower with joists at 488 mm",
+          "assembly": "schluter-k-shcr",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 488,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "incompatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "bathroom-floor-406",
+          "title": "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm",
+          "assembly": "schluter-d-w16-t",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "compatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "bathroom-floor-488-detail",
+          "title": "The 488 mm detail needs a thicker subfloor",
+          "assembly": "schluter-d-w19-t",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "incompatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "stone-floor-single-layer",
+          "title": "Natural stone on a single layer asks about the second layer",
+          "assembly": "schluter-d-w-s",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 19,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "natural_stone",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "unknown",
+              "missing": [
+                "underlayment_thickness_mm"
+              ]
+            }
+          }
+        },
+        {
+          "id": "thin-tray-drain",
+          "title": "Thin tray with a KERDI-DRAIN point drain",
+          "sku": "KST915/1220BF",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "compatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "drain-kit",
+          "title": "KERDI-DRAIN kit with the pipe straight below",
+          "sku": "KD2/PVC/E",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "vertical",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "compatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "drain-kit-sideways",
+          "title": "KERDI-DRAIN kit when the pipe arrives from the side",
+          "sku": "KD2/PVC/E",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "horizontal",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "incompatible",
+              "missing": []
+            }
+          }
+        },
+        {
+          "id": "horizontal-drain",
+          "title": "KERDI-DRAIN-H when the pipe arrives from the side",
+          "sku": "KDH2 FLK PVC",
+          "job": {
+            "country": "CA",
+            "subfloor": "plywood",
+            "subfloor_edge": "tongue_and_groove",
+            "subfloor_thickness_mm": 16,
+            "joist_type": "dimensional_lumber",
+            "joist_spacing_mm": 406,
+            "shower_base": "kerdi_shower_tt",
+            "floor_waterproofing": "ditra",
+            "uncoupling_membrane": "ditra",
+            "tile_material": "porcelain",
+            "tile_min_side_mm": 300,
+            "membrane_bonding_mortar": "modified_thinset",
+            "tile_setting_mortar": "unmodified_thinset",
+            "drain_system": "kerdi_drain",
+            "pipe_connection": "horizontal",
+            "waste_pipe_size": "nps_2"
+          },
+          "expected": {
+            "verified": {
+              "verdict": "unknown",
+              "missing": []
+            },
+            "preview": {
+              "verdict": "compatible",
+              "missing": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

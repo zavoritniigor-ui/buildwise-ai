@@ -14,3 +14,6 @@ __pycache__/
 
 # Cloudflare Wrangler local state
 .wrangler/
+
+# TypeScript incremental build state
+*.tsbuildinfo
