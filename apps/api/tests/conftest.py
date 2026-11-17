@@ -9,7 +9,12 @@ from sqlalchemy import Engine, create_engine, update
 from sqlalchemy.orm import Session
 
 from buildwise_api.catalog.seed import seed
-from buildwise_api.db.models import AssemblyAttribute, CompatibilityRule, VerificationStatus
+from buildwise_api.db.models import (
+    AssemblyAttribute,
+    CompatibilityRule,
+    ProductAttribute,
+    VerificationStatus,
+)
 
 API_ROOT = Path(__file__).resolve().parent.parent
 
@@ -70,5 +75,6 @@ def reviewed(session: Session) -> Session:
     verified = {"verification_status": VerificationStatus.HUMAN_VERIFIED}
     session.execute(update(CompatibilityRule).values(**verified))
     session.execute(update(AssemblyAttribute).values(**verified))
+    session.execute(update(ProductAttribute).values(**verified))
     session.expire_all()
     return session

@@ -1,0 +1,267 @@
+# Schluter-KERDI-SHOWER prefabricated trays and ramp from the Shower System
+# technical data sheets (sections 8.3 and 8.8), cited by page.
+# Sizes are the metric values printed in the item table (page 9); height_mm is
+# the tray perimeter height. See data/README.md for how to review them.
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: shower-data-sheet
+    type: tds
+    title: Schluter-Shower System technical data sheets
+    url: https://assets.schluter.com/asset/570120892212/document_2nqfpg0pi13itfso529nhmlr7f/shower-system-data-sheet.pdf
+    version: 07/2026
+    pages: 48
+    sha256: b85c222d462848a24f510d347be30769cc8158af4d2f756f34b262f65eb104ac
+    retrieved_on: 2026-11-17
+
+categories:
+  - slug: prefabricated-shower-tray
+    name: Prefabricated sloped shower tray
+  - slug: prefabricated-shower-ramp
+    name: Prefabricated shower ramp
+
+rules:
+  - slug: shower-tray-drain-system
+    category: prefabricated-shower-tray
+    kind: membership
+    condition: drain_system
+    material_attribute: compatible_drain_systems
+    description: >-
+      The tray is made for one drain system: T, TS and TT trays take a
+      KERDI-DRAIN point drain, LT and LTS trays take a KERDI-LINE linear drain.
+    source: { document: shower-data-sheet, page: 2 }
+    status: ai_extracted
+
+families:
+  - name: Schluter-KERDI-SHOWER-T
+    category: prefabricated-shower-tray
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: drain_placement
+        value: center
+        source: { document: shower-data-sheet, page: 9 }
+        status: ai_extracted
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KST965/1525
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 970, length_mm: 1520, height_mm: 29 }
+      - sku: KST1220/1525
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1520, height_mm: 28 }
+      - sku: KST1220/1830
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1830, height_mm: 32 }
+      - sku: KST1525
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1520, length_mm: 1520, height_mm: 30 }
+      - sku: KST1830
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1830, length_mm: 1830, height_mm: 32 }
+  - name: Schluter-KERDI-SHOWER-TS
+    category: prefabricated-shower-tray
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: drain_placement
+        value: off_center
+        source: { document: shower-data-sheet, page: 9 }
+        status: ai_extracted
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KST965/1525S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 970, length_mm: 1520, height_mm: 29 }
+  - name: Schluter-KERDI-SHOWER-TT
+    category: prefabricated-shower-tray
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: drain_placement
+        value: center
+        source: { document: shower-data-sheet, page: 9 }
+        status: ai_extracted
+        note: Except the neo-angle KST965NA/BF, whose drain is off-center.
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KST965/810BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 810, length_mm: 970, height_mm: 23 }
+      - sku: KST915/1220BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 910, length_mm: 1220, height_mm: 25 }
+      - sku: KST915BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 910, length_mm: 910, height_mm: 22 }
+      - sku: KST965BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 970, length_mm: 970, height_mm: 23 }
+      - sku: KST1220BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1220, height_mm: 25 }
+      - sku: KST965NA/BF
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 970, length_mm: 970, height_mm: 26 }
+  - name: Schluter-KERDI-SHOWER-LT
+    category: prefabricated-shower-tray
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_line]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: drain_placement
+        value: center
+        source: { document: shower-data-sheet, page: 9 }
+        status: ai_extracted
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KSLT1000
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1000, length_mm: 1000, height_mm: 32 }
+      - sku: KSLT1220
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1220, height_mm: 34 }
+      - sku: KSLT1395
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1400, length_mm: 1400, height_mm: 36 }
+  - name: Schluter-KERDI-SHOWER-LTS
+    category: prefabricated-shower-tray
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_line]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: drain_placement
+        value: perimeter
+        source: { document: shower-data-sheet, page: 9 }
+        status: ai_extracted
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KSLT1000S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1000, length_mm: 1000, height_mm: 42 }
+      - sku: KSLT1220S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 1220, height_mm: 46 }
+      - sku: KSLT1395S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1400, length_mm: 1400, height_mm: 50 }
+      - sku: KSLT915/1395S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 910, length_mm: 1400, height_mm: 50 }
+      - sku: KSLT915/1830S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 910, length_mm: 1830, height_mm: 58 }
+      - sku: KSLT965/1930S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 970, length_mm: 1930, height_mm: 60 }
+      - sku: KSLT1930/965S
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1930, length_mm: 970, height_mm: 41 }
+  - name: Schluter-KERDI-SHOWER-R
+    category: prefabricated-shower-ramp
+    attributes:
+      - key: max_service_temperature_c
+        value: 79
+        unit: C
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+      - key: compressive_strength_kpa
+        value: 552
+        unit: kPa
+        source: { document: shower-data-sheet, page: 3 }
+        status: ai_extracted
+        note: Integrated KERDI waterproofing; used to build access ramps for curbless showers.
+    variants_source: { document: shower-data-sheet, page: 9 }
+    variants:
+      - sku: KSR 305/1220
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 1220, length_mm: 305, height_mm: 32 }
