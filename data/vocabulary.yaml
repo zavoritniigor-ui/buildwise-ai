@@ -19,6 +19,9 @@ option_attributes:
   allowed_membrane_bonding_mortars: bonding_mortar
   allowed_tile_setting_mortars: bonding_mortar
   compatible_drain_systems: drain_system
+  compatible_shower_bases: shower_base
+  allowed_pipe_connections: pipe_connection
+  allowed_waste_pipe_sizes: waste_pipe_size
 
 substrate:
   gypsum_wallboard: Gypsum wallboard
@@ -99,6 +102,14 @@ uncoupling_membrane:
 drain_system:
   kerdi_drain: Schluter KERDI-DRAIN point drain
   kerdi_line: Schluter KERDI-LINE linear drain
+
+pipe_connection:
+  vertical: Vertical connection to a waste pipe below the drain
+  horizontal: Horizontal connection to a waste pipe beside the drain
+
+waste_pipe_size:
+  nps_2: 2 in (50 mm) waste pipe
+  nps_3: 3 in (75 mm) waste pipe
 
 country:
   CA: Canada

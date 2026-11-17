@@ -1,0 +1,335 @@
+# Schluter KERDI-DRAIN and KERDI-LINE drain bodies and the KERDI-SHOWER-CB
+# compensation board, from the Shower System technical data sheets (sections
+# 8.2, 8.7 and 8.3), cited by page. Grates are not entered yet.
+# See data/README.md for how to review them.
+
+manufacturer:
+  name: Schluter-Systems
+  website: https://www.schluter.ca
+
+documents:
+  - id: shower-data-sheet
+    type: tds
+    title: Schluter-Shower System technical data sheets
+    url: https://assets.schluter.com/asset/570120892212/document_2nqfpg0pi13itfso529nhmlr7f/shower-system-data-sheet.pdf
+    version: 07/2026
+    pages: 48
+    sha256: b85c222d462848a24f510d347be30769cc8158af4d2f756f34b262f65eb104ac
+    retrieved_on: 2026-11-17
+
+categories:
+  - slug: shower-drain
+    name: Shower drain with integrated bonding flange
+  - slug: height-compensation-board
+    name: Height compensation board
+
+rules:
+  - slug: shower-drain-shower-base
+    category: shower-drain
+    kind: membership
+    condition: shower_base
+    material_attribute: compatible_shower_bases
+    description: The drain must be made for the chosen shower base.
+    source: { document: shower-data-sheet, page: 5 }
+    status: ai_extracted
+  - slug: shower-drain-pipe-connection
+    category: shower-drain
+    kind: membership
+    condition: pipe_connection
+    material_attribute: allowed_pipe_connections
+    description: The drain outlet must match how the waste pipe arrives, below (vertical) or beside (horizontal).
+    source: { document: shower-data-sheet, page: 5 }
+    status: ai_extracted
+  - slug: shower-drain-waste-pipe-size
+    category: shower-drain
+    kind: membership
+    condition: waste_pipe_size
+    material_attribute: allowed_waste_pipe_sizes
+    description: The drain outlet must match the waste pipe size.
+    source: { document: shower-data-sheet, page: 5 }
+    status: ai_extracted
+
+families:
+  - name: Schluter-KERDI-DRAIN kit, ABS or PVC flange, 4 in stainless steel grate
+    category: shower-drain
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: compatible_shower_bases
+        value: [kerdi_shower_t, kerdi_shower_ts, kerdi_shower_tt]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+        note: The T, TS and TT trays are designed to integrate with KERDI-DRAIN.
+      - key: allowed_pipe_connections
+        value: [vertical]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: Attached directly to the waste line with solvent cement.
+      - key: allowed_waste_pipe_sizes
+        value: [nps_2]
+        source: { document: shower-data-sheet, page: 24 }
+        status: ai_extracted
+      - key: flange_material
+        value: abs_or_pvc
+        source: { document: shower-data-sheet, page: 24 }
+        status: ai_extracted
+        note: KD2/ABS/E is ABS, KD2/PVC/E is PVC. Kit includes flange, grate and frame, height collar, lateral ring, 4 inside and 2 outside corners, pipe and mixing valve seals.
+    variants_source: { document: shower-data-sheet, page: 24 }
+    variants:
+      - sku: KD2/ABS/E
+        package_quantity: 1
+        package_unit: count
+      - sku: KD2/PVC/E
+        package_quantity: 1
+        package_unit: count
+  - name: Schluter-KERDI-DRAIN stainless steel flange
+    category: shower-drain
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: compatible_shower_bases
+        value: [kerdi_shower_t, kerdi_shower_ts, kerdi_shower_tt]
+        source: { document: shower-data-sheet, page: 2 }
+        status: ai_extracted
+      - key: allowed_pipe_connections
+        value: [vertical]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: No-hub outlets use a mechanical coupling; the threaded outlet uses thread sealant or tape.
+      - key: allowed_waste_pipe_sizes
+        value: [nps_2, nps_3]
+        source: { document: shower-data-sheet, page: 16 }
+        status: ai_extracted
+        note: KD2 FLK E and KD2 FLK ETH are 2 in, KD3 FLK E is 3 in. With a 3 in outlet a 6 in grate is recommended.
+      - key: flange_material
+        value: stainless_steel_304
+        source: { document: shower-data-sheet, page: 6 }
+        status: ai_extracted
+        note: KERDI is bonded to the stainless steel flange with KERDI-FIX (page 8); 100 ml is included.
+    variants_source: { document: shower-data-sheet, page: 16 }
+    variants:
+      - sku: KD2 FLK E
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 250, length_mm: 250 }
+      - sku: KD2 FLK ETH
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 250, length_mm: 250 }
+      - sku: KD3 FLK E
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 250, length_mm: 250 }
+  - name: Schluter-KERDI-DRAIN-H horizontal outlet flange
+    category: shower-drain
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_drain]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: Takes the standard KERDI-DRAIN grates.
+      - key: compatible_shower_bases
+        value: [kerdi_shower_t, kerdi_shower_ts, kerdi_shower_tt, portland_cement_mortar_bed]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).
+      - key: allowed_pipe_connections
+        value: [horizontal]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.
+      - key: allowed_waste_pipe_sizes
+        value: [nps_2]
+        source: { document: shower-data-sheet, page: 17 }
+        status: ai_extracted
+      - key: flange_material
+        value: abs_or_pvc
+        source: { document: shower-data-sheet, page: 17 }
+        status: ai_extracted
+        note: KDH2 FLK ABS is ABS, KDH2 FLK PVC is PVC.
+    variants_source: { document: shower-data-sheet, page: 17 }
+    variants:
+      - sku: KDH2 FLK ABS
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 300, length_mm: 300 }
+      - sku: KDH2 FLK PVC
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 300, length_mm: 300 }
+  - name: Schluter-KERDI-LINE channel body, center outlet
+    category: shower-drain
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_line]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: compatible_shower_bases
+        value: [kerdi_shower_lt, kerdi_shower_lts]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: The included foam channel support sets the drain elevation to the LT and LTS trays.
+      - key: allowed_pipe_connections
+        value: [vertical]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: 2 in no-hub outlet with a mechanical coupling.
+      - key: allowed_waste_pipe_sizes
+        value: [nps_2]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: max_tile_thickness_mm
+        value: 25
+        unit: mm
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: Standard grate assemblies adjust for 3 to 25 mm coverings; STYLE grates for 6 to 18 mm.
+      - key: flange_material
+        value: stainless_steel_316l
+        source: { document: shower-data-sheet, page: 6 }
+        status: ai_extracted
+        note: Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).
+    variants_source: { document: shower-data-sheet, page: 28 }
+    variants:
+      - sku: KL1V 60 E 50
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 500 }
+      - sku: KL1V 60 E 60
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 600 }
+      - sku: KL1V 60 E 70
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 700 }
+      - sku: KL1V 60 E 80
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 800 }
+      - sku: KL1V 60 E 90
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 900 }
+      - sku: KL1V 60 E 100
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1000 }
+      - sku: KL1V 60 E 110
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1100 }
+      - sku: KL1V 60 E 120
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1200 }
+      - sku: KL1V 60 E 130
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1300 }
+      - sku: KL1V 60 E 140
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1400 }
+      - sku: KL1V 60 E 150
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1500 }
+      - sku: KL1V 60 E 160
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1600 }
+      - sku: KL1V 60 E 170
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1700 }
+      - sku: KL1V 60 E 180
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1800 }
+  - name: Schluter-KERDI-LINE channel body, off-set outlet
+    category: shower-drain
+    attributes:
+      - key: compatible_drain_systems
+        value: [kerdi_line]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: compatible_shower_bases
+        value: [kerdi_shower_lt, kerdi_shower_lts]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: The included foam channel support sets the drain elevation to the LT and LTS trays.
+      - key: allowed_pipe_connections
+        value: [vertical]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: 2 in no-hub outlet with a mechanical coupling.
+      - key: allowed_waste_pipe_sizes
+        value: [nps_2]
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+      - key: max_tile_thickness_mm
+        value: 25
+        unit: mm
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: Standard grate assemblies adjust for 3 to 25 mm coverings; STYLE grates for 6 to 18 mm.
+      - key: flange_material
+        value: stainless_steel_316l
+        source: { document: shower-data-sheet, page: 6 }
+        status: ai_extracted
+        note: Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).
+      - key: outlet_offset_mm
+        value: 203
+        unit: mm
+        source: { document: shower-data-sheet, page: 5 }
+        status: ai_extracted
+        note: Outlet 8 in from the channel end, to avoid obstacles such as joists.
+    variants_source: { document: shower-data-sheet, page: 28 }
+    variants:
+      - sku: KL1VO 60 E 70
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 700 }
+      - sku: KL1VO 60 E 80
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 800 }
+      - sku: KL1VO 60 E 90
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 900 }
+      - sku: KL1VO 60 E 100
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1000 }
+      - sku: KL1VO 60 E 110
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1100 }
+      - sku: KL1VO 60 E 120
+        package_quantity: 1
+        package_unit: count
+        dimensions: { length_mm: 1200 }
+  - name: Schluter-KERDI-SHOWER-CB height compensation board
+    category: height-compensation-board
+    attributes:
+      - key: use
+        value: drain_height_compensation
+        source: { document: shower-data-sheet, page: 17 }
+        status: ai_extracted
+        note: 25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).
+    variants_source: { document: shower-data-sheet, page: 17 }
+    variants:
+      - sku: KSCB 25 610 1220
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 610, length_mm: 1220, thickness_mm: 25 }
+      - sku: KSCB 90 610 1220
+        package_quantity: 1
+        package_unit: count
+        dimensions: { width_mm: 610, length_mm: 1220, thickness_mm: 89 }
