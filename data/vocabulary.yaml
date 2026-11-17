@@ -114,3 +114,28 @@ waste_pipe_size:
 country:
   CA: Canada
   US: United States
+
+# Job conditions that rules ask about. Numeric conditions carry their unit.
+conditions:
+  application: { label: Where the material is used }
+  bonding_mortar: { label: Tile setting mortar }
+  country: { label: Country }
+  drain_system: { label: Drain system }
+  floor_waterproofing: { label: Floor waterproofing }
+  joist_spacing_mm: { label: Joist spacing on centre, unit: mm }
+  joist_type: { label: Floor framing }
+  material_temperature_c: { label: Material and substrate temperature, unit: C }
+  membrane_bonding_mortar: { label: Mortar under the membrane }
+  mounting: { label: How the panel is mounted }
+  pipe_connection: { label: How the waste pipe reaches the drain }
+  shower_base: { label: Shower base }
+  subfloor: { label: Subfloor material }
+  subfloor_edge: { label: Subfloor panel edges }
+  subfloor_thickness_mm: { label: Subfloor thickness, unit: mm }
+  substrate: { label: Substrate }
+  tile_material: { label: Tile material }
+  tile_min_side_mm: { label: Shortest tile side, unit: mm }
+  tile_setting_mortar: { label: Mortar over the membrane }
+  uncoupling_membrane: { label: Uncoupling membrane }
+  underlayment_thickness_mm: { label: Second layer (underlayment) thickness, unit: mm }
+  waste_pipe_size: { label: Waste pipe size }

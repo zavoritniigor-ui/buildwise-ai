@@ -1,0 +1,63 @@
+# Scenario BW-001 from docs/concept.md, section 17: a 3 x 2.5 m bathroom in
+# Montreal on a wood floor, with a 0.9 x 1.2 m curbless shower.
+# Each case is evaluated by the Python engine when the web snapshot is
+# exported, and the web app must reach the same verdicts. A case's job is laid
+# over the scenario job, unless the case says `from_scratch: true`.
+
+id: bw-001
+title: Curbless shower in a Montreal bathroom on a wood floor
+job:
+  country: CA
+  subfloor: plywood
+  subfloor_edge: tongue_and_groove
+  subfloor_thickness_mm: 16
+  joist_type: dimensional_lumber
+  joist_spacing_mm: 406
+  shower_base: kerdi_shower_tt
+  floor_waterproofing: ditra
+  uncoupling_membrane: ditra
+  tile_material: porcelain
+  tile_min_side_mm: 300
+  membrane_bonding_mortar: modified_thinset
+  tile_setting_mortar: unmodified_thinset
+  drain_system: kerdi_drain
+  pipe_connection: vertical
+  waste_pipe_size: nps_2
+
+cases:
+  - id: brief-only
+    title: Only the brief is known
+    assembly: schluter-k-shcr
+    from_scratch: true
+    job: { country: CA, subfloor: plywood }
+  - id: recessed-shower
+    title: Recessed curbless shower over the wood floor
+    assembly: schluter-k-shcr
+  - id: recessed-shower-wide-joists
+    title: Recessed shower with joists at 488 mm
+    assembly: schluter-k-shcr
+    job: { joist_spacing_mm: 488 }
+  - id: bathroom-floor-406
+    title: Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm
+    assembly: schluter-d-w16-t
+  - id: bathroom-floor-488-detail
+    title: The 488 mm detail needs a thicker subfloor
+    assembly: schluter-d-w19-t
+  - id: stone-floor-single-layer
+    title: Natural stone on a single layer asks about the second layer
+    assembly: schluter-d-w-s
+    job: { subfloor_thickness_mm: 19, tile_material: natural_stone }
+  - id: thin-tray-drain
+    title: Thin tray with a KERDI-DRAIN point drain
+    sku: KST915/1220BF
+  - id: drain-kit
+    title: KERDI-DRAIN kit with the pipe straight below
+    sku: KD2/PVC/E
+  - id: drain-kit-sideways
+    title: KERDI-DRAIN kit when the pipe arrives from the side
+    sku: KD2/PVC/E
+    job: { pipe_connection: horizontal }
+  - id: horizontal-drain
+    title: KERDI-DRAIN-H when the pipe arrives from the side
+    sku: KDH2 FLK PVC
+    job: { pipe_connection: horizontal }

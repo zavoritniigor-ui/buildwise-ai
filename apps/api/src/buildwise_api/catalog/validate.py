@@ -1,6 +1,7 @@
 """Consistency checks that a schema alone cannot express."""
 
 from buildwise_api.catalog.schema import Attribute, CatalogFile, SourceRef, Vocabulary
+from buildwise_api.db.models import RuleKind
 
 
 def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
@@ -52,6 +53,11 @@ def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
             alternatives.setdefault(rule.alternative.group, set()).add(rule.alternative.number)
         if rule.material_attribute and rule.material_attribute not in vocabulary.option_attributes:
             found.append(f"{where}: {rule.material_attribute!r} has no vocabulary")
+        condition = vocabulary.conditions.get(rule.condition)
+        if condition is None:
+            found.append(f"{where}: condition {rule.condition!r} has no label")
+        elif (condition.unit is None) != (rule.kind is RuleKind.MEMBERSHIP):
+            found.append(f"{where}: only numeric conditions carry a unit")
 
     for group, numbers in alternatives.items():
         if len(numbers) < 2:

@@ -5,3 +5,4 @@ package-lock.json
 apps/api
 docs/concept.md
 LICENSE
+apps/web/src/generated
