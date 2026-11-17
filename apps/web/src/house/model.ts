@@ -1,8 +1,12 @@
 /**
- * A simple single-storey house for the planner. Sizes are in metres; x runs
- * east and z south. The bathroom matches scenario BW-001: 3 x 2.5 m with a
+ * The house layout. Rooms come from layout.json, the single source of truth
+ * shared with the Blender build script (tools/house-model), so the 3D model
+ * and the areas measured here never diverge. Sizes are in metres; x runs east
+ * and z south. The bathroom matches scenario BW-001: 3 x 2.5 m with a
  * 0.9 x 1.2 m curbless shower in the corner.
  */
+import layout from "./layout.json";
+
 export type RoomId = "living" | "kitchen" | "bedroom" | "hallway" | "bathroom";
 export type SurfaceId = "floor" | "walls" | "shower";
 
@@ -23,42 +27,16 @@ export interface Room {
   shower?: Rect;
 }
 
-export const WALL_HEIGHT = 2.6;
-export const WALL_THICKNESS = 0.12;
+export const WALL_HEIGHT = layout.wallHeight;
+export const WALL_THICKNESS = layout.wallThickness;
 
-export const ROOMS: readonly Room[] = [
-  {
-    id: "living",
-    rect: { x: 0, z: 0, width: 5.5, depth: 4.5 },
-    color: "#e9dcc6",
-    surfaces: ["floor", "walls"],
-  },
-  {
-    id: "kitchen",
-    rect: { x: 5.5, z: 0, width: 3.5, depth: 4.5 },
-    color: "#dfe6d4",
-    surfaces: ["floor", "walls"],
-  },
-  {
-    id: "bedroom",
-    rect: { x: 0, z: 4.5, width: 4, depth: 2.5 },
-    color: "#e5dde9",
-    surfaces: ["floor", "walls"],
-  },
-  {
-    id: "hallway",
-    rect: { x: 4, z: 4.5, width: 2, depth: 2.5 },
-    color: "#ece7df",
-    surfaces: ["floor", "walls"],
-  },
-  {
-    id: "bathroom",
-    rect: { x: 6, z: 4.5, width: 3, depth: 2.5 },
-    color: "#d6e5ec",
-    surfaces: ["floor", "shower", "walls"],
-    shower: { x: 8.1, z: 4.5, width: 0.9, depth: 1.2 },
-  },
-];
+export const ROOMS: readonly Room[] = layout.rooms.map((r) => ({
+  id: r.id as RoomId,
+  rect: { x: r.x, z: r.z, width: r.width, depth: r.depth },
+  color: r.color,
+  surfaces: r.surfaces as readonly SurfaceId[],
+  shower: r.shower,
+}));
 
 export const area = (rect: Rect) => Math.round(rect.width * rect.depth * 100) / 100;
 

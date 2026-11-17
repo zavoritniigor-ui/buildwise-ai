@@ -1,7 +1,17 @@
-import { CameraControls, ContactShadows, Html } from "@react-three/drei";
+import { CameraControls, Html, useGLTF } from "@react-three/drei";
 import { Canvas, type ThreeEvent } from "@react-three/fiber";
-import { type RefObject, createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  type RefObject,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import type { Mesh } from "three";
 import { useI18n } from "../i18n";
+import houseUrl from "./house.glb?url";
 import {
   FOOTPRINT,
   ROOMS,
@@ -9,12 +19,9 @@ import {
   type Room,
   type RoomId,
   type SurfaceId,
-  WALL_HEIGHT,
-  WALL_THICKNESS,
   area,
   centre,
   findRoom,
-  wallSegments,
 } from "./model";
 
 export interface HouseSceneProps {
@@ -24,133 +31,83 @@ export interface HouseSceneProps {
   onSurface: (surface: SurfaceId) => void;
 }
 
-const LOW_WALL = 1.0;
-const CUT_WALL = 0.2;
-const SLAB = 0.08;
 const ACCENT = "#2f7d6d";
-const WALL = "#f7f4ee";
 
-function pointer(over: boolean) {
+useGLTF.preload(houseUrl);
+
+function cursor(over: boolean) {
   document.body.style.cursor = over ? "pointer" : "auto";
 }
 
-/** Hover and click wiring shared by every clickable mesh. */
-function useClickable(onSelect: () => void) {
-  const [hovered, setHovered] = useState(false);
-  useEffect(() => () => pointer(false), []);
-  return {
-    hovered,
-    handlers: {
-      onPointerOver: (e: ThreeEvent<PointerEvent>) => {
-        e.stopPropagation();
-        setHovered(true);
-        pointer(true);
-      },
-      onPointerOut: () => {
-        setHovered(false);
-        pointer(false);
-      },
-      onClick: (e: ThreeEvent<MouseEvent>) => {
-        e.stopPropagation();
-        onSelect();
-      },
-    },
-  };
+/**
+ * Labels are portalled into a layer next to the canvas so the first one does
+ * not mount before the canvas is attached.
+ */
+const LabelLayer = createContext<RefObject<HTMLDivElement | null> | null>(null);
+
+/** The Blender model, shown as a picture only; clicks are handled by the planes. */
+function Model() {
+  const { scene } = useGLTF(houseUrl);
+  const model = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((node) => {
+      const mesh = node as Mesh;
+      if (mesh.isMesh) {
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+      }
+    });
+    return clone;
+  }, [scene]);
+  return <primitive object={model} />;
 }
 
-function Slab({
+/**
+ * An invisible plane over a floor rect that catches clicks and, when active or
+ * hovered, tints the surface. The 3D model stays untouched.
+ */
+function Clickable({
   rect,
-  color,
-  y = 0,
+  y,
   active,
   onSelect,
 }: {
   rect: Rect;
-  color: string;
-  y?: number;
+  y: number;
   active: boolean;
-  onSelect?: () => void;
+  onSelect: () => void;
 }) {
-  const { hovered, handlers } = useClickable(onSelect ?? (() => undefined));
+  const [hovered, setHovered] = useState(false);
   const [cx, cz] = centre(rect);
-  return (
-    <mesh position={[cx, y + SLAB / 2, cz]} receiveShadow {...(onSelect ? handlers : {})}>
-      <boxGeometry args={[rect.width - 0.02, SLAB, rect.depth - 0.02]} />
-      <meshStandardMaterial color={active || hovered ? ACCENT : color} roughness={0.9} />
-    </mesh>
-  );
-}
-
-type Segment = [number, number, number, number];
-
-function Wall({
-  segment,
-  height,
-  opacity = 1,
-  active = false,
-  onSelect,
-}: {
-  segment: Segment;
-  height: number;
-  opacity?: number;
-  active?: boolean;
-  onSelect?: () => void;
-}) {
-  const { hovered, handlers } = useClickable(onSelect ?? (() => undefined));
-  const [x1, z1, x2, z2] = segment;
-  const horizontal = z1 === z2;
-  const length = horizontal ? Math.abs(x2 - x1) : Math.abs(z2 - z1);
+  useEffect(() => () => cursor(false), []);
   return (
     <mesh
-      position={[(x1 + x2) / 2, SLAB + height / 2, (z1 + z2) / 2]}
-      castShadow
-      receiveShadow
-      {...(onSelect ? handlers : {})}
+      position={[cx, y, cz]}
+      rotation={[-Math.PI / 2, 0, 0]}
+      onPointerOver={(e: ThreeEvent<PointerEvent>) => {
+        e.stopPropagation();
+        setHovered(true);
+        cursor(true);
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        cursor(false);
+      }}
+      onClick={(e: ThreeEvent<MouseEvent>) => {
+        e.stopPropagation();
+        onSelect();
+      }}
     >
-      <boxGeometry
-        args={
-          horizontal
-            ? [length + WALL_THICKNESS, height, WALL_THICKNESS]
-            : [WALL_THICKNESS, height, length]
-        }
-      />
-      <meshStandardMaterial
-        color={active || hovered ? ACCENT : WALL}
-        transparent={opacity < 1}
-        opacity={opacity}
-        roughness={0.95}
+      <planeGeometry args={[rect.width, rect.depth]} />
+      <meshBasicMaterial
+        color={ACCENT}
+        transparent
+        opacity={active || hovered ? 0.28 : 0}
+        depthWrite={false}
       />
     </mesh>
   );
 }
-
-const onEdge = (segment: Segment, rect: Rect) => {
-  const [x1, z1, x2, z2] = segment;
-  const within = (v: number, lo: number, hi: number) => v >= lo - 1e-6 && v <= hi + 1e-6;
-  const xs = [rect.x, rect.x + rect.width];
-  const zs = [rect.z, rect.z + rect.depth];
-  if (z1 === z2)
-    return (
-      zs.includes(z1) && within(x1, xs[0] ?? 0, xs[1] ?? 0) && within(x2, xs[0] ?? 0, xs[1] ?? 0)
-    );
-  return (
-    xs.includes(x1) && within(z1, zs[0] ?? 0, zs[1] ?? 0) && within(z2, zs[0] ?? 0, zs[1] ?? 0)
-  );
-};
-
-/** The south and east walls face the camera and are cut down so the room shows. */
-const facesCamera = (segment: Segment, rect: Rect) => {
-  const [x1, z1, x2, z2] = segment;
-  if (z1 === z2) return Math.abs(z1 - (rect.z + rect.depth)) < 1e-6;
-  return Math.abs(x1 - (rect.x + rect.width)) < 1e-6 && x1 === x2;
-};
-
-/**
- * Labels are portalled into a layer next to the canvas. Without an explicit
- * portal, the first label could mount before the canvas was attached and
- * never appear.
- */
-const LabelLayer = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
 function RoomLabel({ room, onSelect }: { room: Room; onSelect: () => void }) {
   const { t, language } = useI18n();
@@ -176,17 +133,9 @@ function Overview({ onRoom }: { onRoom: (room: RoomId) => void }) {
     <group>
       {ROOMS.map((room) => (
         <group key={room.id}>
-          <Slab
-            rect={room.rect}
-            color={room.color}
-            active={false}
-            onSelect={() => onRoom(room.id)}
-          />
+          <Clickable rect={room.rect} y={0.02} active={false} onSelect={() => onRoom(room.id)} />
           <RoomLabel room={room} onSelect={() => onRoom(room.id)} />
         </group>
-      ))}
-      {wallSegments().map((s) => (
-        <Wall key={s.join(",")} segment={s} height={LOW_WALL} />
       ))}
     </group>
   );
@@ -201,41 +150,22 @@ function RoomView({
   surface: SurfaceId | null;
   onSurface: (surface: SurfaceId) => void;
 }) {
-  const others = ROOMS.filter((r) => r.id !== room.id);
   return (
     <group>
-      {others.map((r) => (
-        <Slab key={r.id} rect={r.rect} color={r.color} active={false} />
-      ))}
-      <Slab
+      <Clickable
         rect={room.rect}
-        color={room.color}
+        y={0.02}
         active={surface === "floor"}
         onSelect={() => onSurface("floor")}
       />
       {room.shower && room.surfaces.includes("shower") && (
-        <Slab
+        <Clickable
           rect={room.shower}
-          color="#bcd6e0"
-          y={0.01}
+          y={0.05}
           active={surface === "shower"}
           onSelect={() => onSurface("shower")}
         />
       )}
-      {wallSegments().map((s) => {
-        const mine = onEdge(s, room.rect);
-        if (!mine) return <Wall key={s.join(",")} segment={s} height={LOW_WALL} opacity={0.35} />;
-        const cut = facesCamera(s, room.rect);
-        return (
-          <Wall
-            key={s.join(",")}
-            segment={s}
-            height={cut ? CUT_WALL : WALL_HEIGHT}
-            active={surface === "walls"}
-            onSelect={() => onSurface("walls")}
-          />
-        );
-      })}
     </group>
   );
 }
@@ -276,21 +206,23 @@ export default function HouseScene({ room, surface, onRoom, onSurface }: HouseSc
           <hemisphereLight args={["#ffffff", "#d9d2c5", 1.1]} />
           <directionalLight
             position={[cx - 6, 14, cz - 4]}
-            intensity={1.6}
+            intensity={1.7}
             castShadow
             shadow-mapSize={[2048, 2048]}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
+            shadow-camera-left={-12}
+            shadow-camera-right={12}
+            shadow-camera-top={12}
+            shadow-camera-bottom={-12}
           />
           <Camera room={room} />
-          {room ? (
-            <RoomView room={findRoom(room)} surface={surface} onSurface={onSurface} />
-          ) : (
-            <Overview onRoom={onRoom} />
-          )}
-          <ContactShadows position={[cx, -0.01, cz]} scale={24} blur={2.5} opacity={0.35} far={4} />
+          <group>
+            <Model />
+            {room ? (
+              <RoomView room={findRoom(room)} surface={surface} onSurface={onSurface} />
+            ) : (
+              <Overview onRoom={onRoom} />
+            )}
+          </group>
         </Canvas>
       </LabelLayer.Provider>
       <div ref={labels} className="label-layer" />

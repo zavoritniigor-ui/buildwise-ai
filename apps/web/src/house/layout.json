@@ -1,0 +1,52 @@
+{
+  "wallHeight": 2.6,
+  "wallThickness": 0.12,
+  "rooms": [
+    {
+      "id": "living",
+      "x": 0,
+      "z": 0,
+      "width": 5.5,
+      "depth": 4.5,
+      "color": "#e9dcc6",
+      "surfaces": ["floor", "walls"]
+    },
+    {
+      "id": "kitchen",
+      "x": 5.5,
+      "z": 0,
+      "width": 3.5,
+      "depth": 4.5,
+      "color": "#dfe6d4",
+      "surfaces": ["floor", "walls"]
+    },
+    {
+      "id": "bedroom",
+      "x": 0,
+      "z": 4.5,
+      "width": 4,
+      "depth": 2.5,
+      "color": "#e5dde9",
+      "surfaces": ["floor", "walls"]
+    },
+    {
+      "id": "hallway",
+      "x": 4,
+      "z": 4.5,
+      "width": 2,
+      "depth": 2.5,
+      "color": "#ece7df",
+      "surfaces": ["floor", "walls"]
+    },
+    {
+      "id": "bathroom",
+      "x": 6,
+      "z": 4.5,
+      "width": 3,
+      "depth": 2.5,
+      "color": "#d6e5ec",
+      "surfaces": ["floor", "shower", "walls"],
+      "shower": { "x": 8.1, "z": 4.5, "width": 0.9, "depth": 1.2 }
+    }
+  ]
+}
