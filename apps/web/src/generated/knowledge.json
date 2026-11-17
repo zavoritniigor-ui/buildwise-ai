@@ -389,7 +389,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -399,7 +402,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -408,7 +413,11 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber", "engineered_i_joist", "open_web_truss"],
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -438,7 +447,10 @@
         },
         {
           "key": "allowed_tile_materials",
-          "value": ["ceramic", "porcelain"],
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -458,7 +470,10 @@
         },
         {
           "key": "allowed_uncoupling_membranes",
-          "value": ["ditra", "ditra_xl"],
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -467,7 +482,11 @@
         },
         {
           "key": "allowed_membrane_bonding_mortars",
-          "value": ["schluter_all_set", "schluter_fast_set", "modified_thinset"],
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -477,7 +496,12 @@
         },
         {
           "key": "allowed_tile_setting_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -620,7 +644,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -630,7 +657,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -639,7 +668,11 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber", "engineered_i_joist", "open_web_truss"],
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -669,7 +702,10 @@
         },
         {
           "key": "allowed_tile_materials",
-          "value": ["ceramic", "porcelain"],
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -689,7 +725,10 @@
         },
         {
           "key": "allowed_uncoupling_membranes",
-          "value": ["ditra", "ditra_xl"],
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -698,7 +737,11 @@
         },
         {
           "key": "allowed_membrane_bonding_mortars",
-          "value": ["schluter_all_set", "schluter_fast_set", "modified_thinset"],
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -708,7 +751,12 @@
         },
         {
           "key": "allowed_tile_setting_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -851,7 +899,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -861,7 +912,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -870,7 +923,11 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber", "engineered_i_joist", "open_web_truss"],
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -912,7 +969,10 @@
         },
         {
           "key": "allowed_tile_materials",
-          "value": ["ceramic", "porcelain"],
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -932,7 +992,10 @@
         },
         {
           "key": "allowed_uncoupling_membranes",
-          "value": ["ditra", "ditra_xl"],
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -941,7 +1004,11 @@
         },
         {
           "key": "allowed_membrane_bonding_mortars",
-          "value": ["schluter_all_set", "schluter_fast_set", "modified_thinset"],
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -951,7 +1018,12 @@
         },
         {
           "key": "allowed_tile_setting_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1106,7 +1178,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1116,7 +1191,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1125,7 +1202,11 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber", "engineered_i_joist", "open_web_truss"],
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1156,7 +1237,10 @@
         },
         {
           "key": "allowed_tile_materials",
-          "value": ["ceramic", "porcelain"],
+          "value": [
+            "ceramic",
+            "porcelain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1176,7 +1260,9 @@
         },
         {
           "key": "allowed_uncoupling_membranes",
-          "value": ["ditra_xl"],
+          "value": [
+            "ditra_xl"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1185,7 +1271,11 @@
         },
         {
           "key": "allowed_membrane_bonding_mortars",
-          "value": ["schluter_all_set", "schluter_fast_set", "modified_thinset"],
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1195,7 +1285,12 @@
         },
         {
           "key": "allowed_tile_setting_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1338,7 +1433,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1348,7 +1446,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1357,7 +1457,11 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber", "engineered_i_joist", "open_web_truss"],
+          "value": [
+            "dimensional_lumber",
+            "engineered_i_joist",
+            "open_web_truss"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1398,7 +1502,9 @@
         },
         {
           "key": "allowed_tile_materials",
-          "value": ["natural_stone"],
+          "value": [
+            "natural_stone"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1418,7 +1524,10 @@
         },
         {
           "key": "allowed_uncoupling_membranes",
-          "value": ["ditra", "ditra_xl"],
+          "value": [
+            "ditra",
+            "ditra_xl"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1427,7 +1536,11 @@
         },
         {
           "key": "allowed_membrane_bonding_mortars",
-          "value": ["schluter_all_set", "schluter_fast_set", "modified_thinset"],
+          "value": [
+            "schluter_all_set",
+            "schluter_fast_set",
+            "modified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1437,7 +1550,12 @@
         },
         {
           "key": "allowed_tile_setting_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "ditra-handbook",
@@ -1592,7 +1710,10 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb"],
+          "value": [
+            "plywood",
+            "osb"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1601,7 +1722,9 @@
         },
         {
           "key": "allowed_subfloor_edges",
-          "value": ["tongue_and_groove"],
+          "value": [
+            "tongue_and_groove"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1610,7 +1733,9 @@
         },
         {
           "key": "allowed_joist_types",
-          "value": ["dimensional_lumber"],
+          "value": [
+            "dimensional_lumber"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1635,7 +1760,13 @@
         },
         {
           "key": "allowed_floor_waterproofing",
-          "value": ["kerdi", "ditra", "ditra_xl", "ditra_heat", "ditra_heat_duo"],
+          "value": [
+            "kerdi",
+            "ditra",
+            "ditra_xl",
+            "ditra_heat",
+            "ditra_heat_duo"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1666,7 +1797,9 @@
         },
         {
           "key": "reduced_subfloor_countries",
-          "value": ["CA"],
+          "value": [
+            "CA"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1859,7 +1992,11 @@
       "attributes": [
         {
           "key": "allowed_subfloors",
-          "value": ["plywood", "osb", "concrete"],
+          "value": [
+            "plywood",
+            "osb",
+            "concrete"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1884,7 +2021,13 @@
         },
         {
           "key": "allowed_floor_waterproofing",
-          "value": ["kerdi", "ditra", "ditra_xl", "ditra_heat", "ditra_heat_duo"],
+          "value": [
+            "kerdi",
+            "ditra",
+            "ditra_xl",
+            "ditra_heat",
+            "ditra_heat_duo"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-handbook",
@@ -1954,7 +2097,12 @@
       "attributes": [
         {
           "key": "allowed_applications",
-          "value": ["interior_wet_area_wall", "shower_wall", "shower_ceiling", "bathtub_surround"],
+          "value": [
+            "interior_wet_area_wall",
+            "shower_wall",
+            "shower_ceiling",
+            "bathtub_surround"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "kerdi-board-tds",
@@ -1964,7 +2112,12 @@
         },
         {
           "key": "compatible_bonding_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "kerdi-board-tds",
@@ -2058,7 +2211,11 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2077,7 +2234,9 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded"],
+              "value": [
+                "fully_embedded"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2096,7 +2255,10 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2115,7 +2277,11 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2134,7 +2300,9 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded"],
+              "value": [
+                "fully_embedded"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2153,7 +2321,10 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2172,7 +2343,11 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2191,7 +2366,11 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2210,7 +2389,12 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc", "framing_610_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2229,7 +2413,12 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc", "framing_610_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc",
+                "framing_610_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2299,7 +2488,11 @@
           "attributes": [
             {
               "key": "allowed_mountings",
-              "value": ["fully_embedded", "spot_bonded", "framing_406_oc"],
+              "value": [
+                "fully_embedded",
+                "spot_bonded",
+                "framing_406_oc"
+              ],
               "status": "ai_extracted",
               "source": {
                 "document": "kerdi-board-tds",
@@ -2320,7 +2513,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2329,7 +2524,11 @@
         },
         {
           "key": "compatible_shower_bases",
-          "value": ["kerdi_shower_t", "kerdi_shower_ts", "kerdi_shower_tt"],
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2339,7 +2538,9 @@
         },
         {
           "key": "allowed_pipe_connections",
-          "value": ["vertical"],
+          "value": [
+            "vertical"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2349,7 +2550,9 @@
         },
         {
           "key": "allowed_waste_pipe_sizes",
-          "value": ["nps_2"],
+          "value": [
+            "nps_2"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2394,7 +2597,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2403,7 +2608,11 @@
         },
         {
           "key": "compatible_shower_bases",
-          "value": ["kerdi_shower_t", "kerdi_shower_ts", "kerdi_shower_tt"],
+          "value": [
+            "kerdi_shower_t",
+            "kerdi_shower_ts",
+            "kerdi_shower_tt"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2412,7 +2621,9 @@
         },
         {
           "key": "allowed_pipe_connections",
-          "value": ["vertical"],
+          "value": [
+            "vertical"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2422,7 +2633,10 @@
         },
         {
           "key": "allowed_waste_pipe_sizes",
-          "value": ["nps_2", "nps_3"],
+          "value": [
+            "nps_2",
+            "nps_3"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2482,7 +2696,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2507,7 +2723,9 @@
         },
         {
           "key": "allowed_pipe_connections",
-          "value": ["horizontal"],
+          "value": [
+            "horizontal"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2517,7 +2735,9 @@
         },
         {
           "key": "allowed_waste_pipe_sizes",
-          "value": ["nps_2"],
+          "value": [
+            "nps_2"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2568,7 +2788,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_line"],
+          "value": [
+            "kerdi_line"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2577,7 +2799,10 @@
         },
         {
           "key": "compatible_shower_bases",
-          "value": ["kerdi_shower_lt", "kerdi_shower_lts"],
+          "value": [
+            "kerdi_shower_lt",
+            "kerdi_shower_lts"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2587,7 +2812,9 @@
         },
         {
           "key": "allowed_pipe_connections",
-          "value": ["vertical"],
+          "value": [
+            "vertical"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2597,7 +2824,9 @@
         },
         {
           "key": "allowed_waste_pipe_sizes",
-          "value": ["nps_2"],
+          "value": [
+            "nps_2"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2741,7 +2970,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_line"],
+          "value": [
+            "kerdi_line"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2750,7 +2981,10 @@
         },
         {
           "key": "compatible_shower_bases",
-          "value": ["kerdi_shower_lt", "kerdi_shower_lts"],
+          "value": [
+            "kerdi_shower_lt",
+            "kerdi_shower_lts"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2760,7 +2994,9 @@
         },
         {
           "key": "allowed_pipe_connections",
-          "value": ["vertical"],
+          "value": [
+            "vertical"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2770,7 +3006,9 @@
         },
         {
           "key": "allowed_waste_pipe_sizes",
-          "value": ["nps_2"],
+          "value": [
+            "nps_2"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -2913,7 +3151,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -3013,7 +3253,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -3077,7 +3319,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_drain"],
+          "value": [
+            "kerdi_drain"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -3187,7 +3431,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_line"],
+          "value": [
+            "kerdi_line"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -3269,7 +3515,9 @@
       "attributes": [
         {
           "key": "compatible_drain_systems",
-          "value": ["kerdi_line"],
+          "value": [
+            "kerdi_line"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "shower-data-sheet",
@@ -3471,7 +3719,12 @@
         },
         {
           "key": "compatible_bonding_mortars",
-          "value": ["schluter_set", "schluter_all_set", "schluter_fast_set", "unmodified_thinset"],
+          "value": [
+            "schluter_set",
+            "schluter_all_set",
+            "schluter_fast_set",
+            "unmodified_thinset"
+          ],
           "status": "ai_extracted",
           "source": {
             "document": "kerdi-tds",
@@ -3865,7 +4118,9 @@
             },
             "preview": {
               "verdict": "unknown",
-              "missing": ["underlayment_thickness_mm"]
+              "missing": [
+                "underlayment_thickness_mm"
+              ]
             }
           }
         },
