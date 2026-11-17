@@ -182,6 +182,8 @@ class Vocabulary(_Strict):
     waste_pipe_size: dict[str, str]
     country: dict[str, str]
     conditions: dict[str, ConditionLabel]
+    attributes: dict[str, str]
+    values: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:
         values: dict[str, str] = getattr(self, name)

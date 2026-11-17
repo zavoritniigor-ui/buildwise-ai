@@ -139,3 +139,61 @@ conditions:
   uncoupling_membrane: { label: Uncoupling membrane }
   underlayment_thickness_mm: { label: Second layer (underlayment) thickness, unit: mm }
   waste_pipe_size: { label: Waste pipe size }
+
+# Labels of material and assembly characteristics shown to people.
+attributes:
+  allowed_applications: Allowed uses
+  allowed_floor_waterproofing: Allowed floor waterproofing
+  allowed_joist_types: Allowed floor framing
+  allowed_membrane_bonding_mortars: Mortars allowed under the membrane
+  allowed_mountings: Allowed mountings
+  allowed_pipe_connections: Waste pipe connection
+  allowed_shower_bases: Allowed shower bases
+  allowed_subfloor_edges: Allowed subfloor panel edges
+  allowed_subfloors: Allowed subfloors
+  allowed_substrates: Allowed substrates
+  allowed_tile_materials: Allowed tile materials
+  allowed_tile_setting_mortars: Mortars allowed over the membrane
+  allowed_uncoupling_membranes: Allowed uncoupling membranes
+  allowed_waste_pipe_sizes: Waste pipe sizes
+  compatible_bonding_mortars: Compatible tile setting mortars
+  compatible_drain_systems: Compatible drain systems
+  compatible_shower_bases: Compatible shower bases
+  compressive_strength_kpa: Compressive strength
+  drain_placement: Drain placement
+  flange_material: Drain body material
+  flood_test_required: Flood test required
+  max_fastener_spacing_ceiling_mm: Maximum fastener spacing on ceilings
+  max_fastener_spacing_wall_mm: Maximum fastener spacing on walls
+  max_joist_spacing_mm: Maximum joist spacing
+  max_service_temperature_c: Maximum service temperature
+  max_tile_thickness_mm: Maximum tile thickness
+  max_working_temperature_c: Maximum working temperature
+  min_screw_embedment_metal_mm: Minimum screw embedment in metal studs
+  min_screw_embedment_wood_mm: Minimum screw embedment in wood studs
+  min_service_temperature_c: Minimum service temperature
+  min_subfloor_thickness_mm: Minimum subfloor thickness
+  min_tile_side_mm: Minimum tile size
+  min_underlayment_thickness_mm: Minimum second layer (underlayment) thickness
+  min_wait_before_water_test_h: Wait before the water test
+  min_working_temperature_c: Minimum working temperature
+  outlet_offset_mm: Outlet distance from the channel end
+  reduced_max_joist_spacing_mm: Canadian option, maximum joist spacing
+  reduced_min_subfloor_thickness_mm: Canadian option, minimum subfloor thickness
+  reduced_subfloor_countries: Canadian option applies in
+  thickness: Thickness
+  use: Use
+  vapor_permeance_astm_e96: Vapour permeance (ASTM E96)
+  vapor_permeance_astm_e96_e: Vapour permeance (ASTM E96, method E)
+  waterproofing_standard: Waterproofing standard
+
+# Labels of coded text values; other text values are shown as written.
+values:
+  abs_or_pvc: ABS or PVC
+  center: Center
+  off_center: Off-center
+  perimeter: Along the perimeter
+  drain_height_compensation: Raising the tray around a drain or adaptor
+  stainless_steel_304: Stainless steel 304
+  stainless_steel_316l: Stainless steel 316L
+  "yes": "Yes"

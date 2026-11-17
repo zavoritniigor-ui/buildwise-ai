@@ -3,7 +3,15 @@
 import json
 from pathlib import Path
 
-from buildwise_api.catalog.export import render
+import pytest
+
+from buildwise_api.catalog.export import (
+    LANGUAGES,
+    load_translations,
+    render,
+    source_texts,
+    translation_gaps,
+)
 
 ROOT = Path(__file__).resolve().parents[3]
 SNAPSHOT = ROOT / "apps" / "web" / "src" / "generated" / "knowledge.json"
@@ -36,3 +44,15 @@ def test_preview_matches_the_database_engine_for_bw001() -> None:
         "subfloor_thickness_mm",
     ]
     assert all(case["verified"]["verdict"] == "unknown" for case in cases.values())
+
+
+@pytest.mark.parametrize("language", LANGUAGES)
+def test_every_text_is_translated(language: str) -> None:
+    assert translation_gaps(ROOT / "data")[language] == []
+
+
+@pytest.mark.parametrize("language", LANGUAGES)
+def test_no_translation_is_left_over(language: str) -> None:
+    """A translation of English text that no longer exists is stale."""
+    needed = source_texts(json.loads(render(ROOT / "data")))
+    assert sorted(load_translations(ROOT / "data", language).keys() - needed) == []

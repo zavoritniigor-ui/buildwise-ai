@@ -103,6 +103,10 @@ export interface Knowledge {
   assemblies: AssemblySpec[];
   families: Family[];
   scenarios: Scenario[];
+  attribute_labels: Record<string, string>;
+  value_labels: Record<string, string>;
+  /** English text to its translation, per language. */
+  translations: Record<string, Record<string, string>>;
 }
 
 export const KNOWLEDGE = snapshot as Knowledge;
