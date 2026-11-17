@@ -171,6 +171,8 @@ class Vocabulary(_Strict):
     tile_material: dict[str, str]
     uncoupling_membrane: dict[str, str]
     drain_system: dict[str, str]
+    pipe_connection: dict[str, str]
+    waste_pipe_size: dict[str, str]
     country: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:
