@@ -1,92 +1,119 @@
-import { useState } from "react";
-import type { Trust } from "./engine";
-import type { Job } from "./knowledge";
-import { KNOWLEDGE } from "./knowledge";
-import { Catalogue } from "./ui/Catalogue";
-import { JobForm } from "./ui/JobForm";
-import { Results } from "./ui/Results";
+import { Suspense, lazy, useState } from "react";
+import { LANGUAGES, type Language, useI18n } from "./i18n";
+import { type RoomId, type SurfaceId, findRoom, surfaceArea } from "./house/model";
 
-const BW001 = KNOWLEDGE.scenarios.find((s) => s.id === "bw-001");
-const BRIEF: Job = { country: "CA", subfloor: "plywood" };
+import PlanView from "./house/PlanView";
+import { supportsWebGL } from "./house/webgl";
 
-type Tab = "check" | "catalogue";
+const HouseScene = lazy(() => import("./house/HouseScene"));
+const has3D = supportsWebGL();
 
 export function App() {
-  const [tab, setTab] = useState<Tab>("check");
-  const [trust, setTrust] = useState<Trust>("preview");
-  const [job, setJob] = useState<Job>(BW001?.job ?? BRIEF);
+  const { t, language, setLanguage } = useI18n();
+  const [room, setRoom] = useState<RoomId | null>(null);
+  const [surface, setSurface] = useState<SurfaceId | null>(null);
+
+  const selectRoom = (next: RoomId | null) => {
+    setRoom(next);
+    setSurface(null);
+  };
+  const format = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
 
   return (
-    <div className="page">
-      <header className="site-header">
-        <h1>BuildWise AI</h1>
-        <p>Renovation planning with verified material compatibility.</p>
+    <div className="app">
+      <Suspense fallback={<div className="scene-loading" aria-hidden="true" />}>
+        <div className="scene">
+          {has3D ? (
+            <HouseScene room={room} surface={surface} onRoom={selectRoom} onSurface={setSurface} />
+          ) : (
+            <PlanView room={room} surface={surface} onRoom={selectRoom} onSurface={setSurface} />
+          )}
+        </div>
+      </Suspense>
+
+      <header className="topbar">
+        <div className="brand">
+          <strong>BuildWise</strong>
+          <span>{t.tagline}</span>
+        </div>
+        <label className="language">
+          <span className="visually-hidden">{t.language}</span>
+          <select value={language} onChange={(e) => setLanguage(e.target.value as Language)}>
+            {LANGUAGES.map((l) => (
+              <option key={l.code} value={l.code}>
+                {l.name}
+              </option>
+            ))}
+          </select>
+        </label>
       </header>
 
-      <aside className="notice" role="note">
-        <strong>Preview data.</strong> Facts were read from manufacturer documents and are waiting
-        for a person to check them against the cited pages.{" "}
-        {trust === "preview"
-          ? "Verdicts show what the rules will say once the facts are confirmed."
-          : "Only verified facts count, so most verdicts are “Not enough information” for now."}
-        <label className="toggle">
-          <input
-            type="checkbox"
-            checked={trust === "verified"}
-            onChange={(e) => setTrust(e.target.checked ? "verified" : "preview")}
-          />
-          Use only verified facts
-        </label>
-      </aside>
-
-      <nav className="tabs" aria-label="Sections">
-        <button type="button" aria-pressed={tab === "check"} onClick={() => setTab("check")}>
-          Bathroom check
-        </button>
+      <nav className="crumbs" aria-label={t.house}>
         <button
           type="button"
-          aria-pressed={tab === "catalogue"}
-          onClick={() => setTab("catalogue")}
+          onClick={() => selectRoom(null)}
+          aria-current={room ? undefined : "page"}
         >
-          Catalogue
+          {t.house}
         </button>
+        {room && (
+          <>
+            <span aria-hidden="true">›</span>
+            <button
+              type="button"
+              onClick={() => setSurface(null)}
+              aria-current={surface ? undefined : "page"}
+            >
+              {t.rooms[room]}
+            </button>
+          </>
+        )}
+        {room && surface && (
+          <>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{t.surfaces[surface]}</span>
+          </>
+        )}
       </nav>
 
-      {tab === "check" ? (
-        <main className="check">
-          <section className="panel conditions" aria-labelledby="conditions-title">
-            <h2 id="conditions-title">Your job</h2>
-            <div className="presets">
-              {BW001 && (
-                <button type="button" onClick={() => setJob(BW001.job)}>
-                  Example: {BW001.title}
-                </button>
-              )}
-              <button type="button" onClick={() => setJob(BRIEF)}>
-                Only “wood floor in Quebec”
-              </button>
-              <button type="button" onClick={() => setJob({})}>
-                Clear
-              </button>
-            </div>
-            <JobForm job={job} onChange={setJob} />
-          </section>
-          <section className="verdicts" aria-labelledby="verdicts-title">
-            <h2 id="verdicts-title">What fits</h2>
-            <Results job={job} trust={trust} />
-          </section>
-        </main>
-      ) : (
-        <main>
-          <h2>Catalogue</h2>
-          <Catalogue />
-        </main>
+      {!surface && (
+        <p className="hint" role="status">
+          {room ? t.chooseSurface : t.chooseRoom}
+        </p>
       )}
 
-      <footer className="site-footer">
-        Free, non-commercial project. Store buttons open the retailer&apos;s own search; BuildWise
-        does not collect prices or stock.
-      </footer>
+      {room && !surface && (
+        <div className="surface-picker" role="group" aria-label={t.chooseSurface}>
+          {findRoom(room).surfaces.map((s) => (
+            <button key={s} type="button" onClick={() => setSurface(s)}>
+              {t.surfaces[s]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {room && surface && (
+        <aside className="sheet" aria-labelledby="sheet-title">
+          <header>
+            <div>
+              <p className="sheet-kicker">{t.rooms[room]}</p>
+              <h1 id="sheet-title">{t.surfaces[surface]}</h1>
+            </div>
+            <button
+              type="button"
+              className="icon"
+              onClick={() => setSurface(null)}
+              aria-label={t.close}
+            >
+              ×
+            </button>
+          </header>
+          <p className="sheet-area">{t.area(format(surfaceArea(findRoom(room), surface)))}</p>
+          {surface === "walls" && <p className="muted">{t.wallsNote}</p>}
+          <p className="placeholder">{t.nextStep}</p>
+          <p className="muted small">{t.dataNote}</p>
+        </aside>
+      )}
     </div>
   );
 }

@@ -39,6 +39,13 @@ will be once the facts are reviewed."""
 
 TRUST_LEVELS: tuple[Trust, ...] = ("verified", "preview")
 
+LANGUAGES = ("uk", "ru", "fr")
+"""Translations kept in data/i18n/<language>.yaml; English is the source."""
+
+
+class Translations(schema._Strict):
+    texts: dict[str, str]
+
 
 class Case(schema._Strict):
     id: str
@@ -276,6 +283,8 @@ def snapshot(data_dir: Path) -> Json:
         "vocabulary": {
             name: dict(vocabulary.options(name)) for name in sorted(option_vocabularies)
         },
+        "attribute_labels": dict(sorted(vocabulary.attributes.items())),
+        "value_labels": dict(sorted(vocabulary.values.items())),
         "categories": {
             slug: {
                 **c,
@@ -318,8 +327,88 @@ def snapshot(data_dir: Path) -> Json:
     }
 
 
+def source_texts(snap: dict[str, Json]) -> set[str]:
+    """Every English text a person sees, so each can be translated."""
+    texts: set[str] = set()
+
+    def add(value: Json) -> None:
+        if isinstance(value, str) and value:
+            texts.add(value)
+
+    for words in _dicts(snap["vocabulary"]):
+        for label in words.values():
+            add(label)
+    for condition in _dicts(snap["conditions"]):
+        add(condition["label"])
+    for name in ("attribute_labels", "value_labels"):
+        for label in _dict(snap[name]).values():
+            add(label)
+    for category in _dicts(snap["categories"]):
+        add(category["name"])
+        for rule in _list(category["rules"]):
+            add(_dict(rule)["description"])
+    for owner in [*_list(snap["assemblies"]), *_list(snap["families"])]:
+        item = _dict(owner)
+        if "slug" in item:
+            add(item["name"])
+            add(item["description"])
+            for rule in _list(item["rules"]):
+                add(_dict(rule)["description"])
+        for attribute in _list(item["attributes"]):
+            add(_dict(attribute).get("note"))
+    for scenario in _list(snap["scenarios"]):
+        add(_dict(scenario)["title"])
+        for case in _list(_dict(scenario)["cases"]):
+            add(_dict(case)["title"])
+    return texts
+
+
+def _dict(value: Json) -> dict[str, Json]:
+    if not isinstance(value, dict):
+        raise TypeError("expected an object")
+    return value
+
+
+def _list(value: Json) -> list[Json]:
+    if not isinstance(value, list):
+        raise TypeError("expected a list")
+    return value
+
+
+def _dicts(value: Json) -> list[dict[str, Json]]:
+    return [_dict(v) for v in _dict(value).values()]
+
+
+def translation_gaps(data_dir: Path) -> dict[str, list[str]]:
+    """English texts without a translation, per language."""
+    snap = _dict(snapshot(data_dir))
+    needed = source_texts(snap)
+    gaps: dict[str, list[str]] = {}
+    for language in LANGUAGES:
+        known = load_translations(data_dir, language)
+        gaps[language] = sorted(needed - known.keys())
+    return gaps
+
+
+def load_translations(data_dir: Path, language: str) -> dict[str, str]:
+    path = data_dir / "i18n" / f"{language}.yaml"
+    if not path.exists():
+        return {}
+    return Translations.model_validate(read_yaml(path)).texts
+
+
 def render(data_dir: Path) -> str:
-    return json.dumps(snapshot(data_dir), indent=2, ensure_ascii=False) + "\n"
+    snap = _dict(snapshot(data_dir))
+    needed = source_texts(snap)
+    snap["translations"] = {
+        language: {
+            text: translated
+            for text, translated in sorted(load_translations(data_dir, language).items())
+            if text in needed
+        }
+        for language in LANGUAGES
+    }
+    return json.dumps(snap, indent=2, ensure_ascii=False) + "\n"
 
 
 def main(argv: Sequence[str] | None = None) -> None:

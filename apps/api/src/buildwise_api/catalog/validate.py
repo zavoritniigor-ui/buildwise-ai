@@ -17,6 +17,8 @@ def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
 
     def check_attribute(where: str, attribute: Attribute) -> None:
         check_source(where, attribute.source)
+        if attribute.key not in vocabulary.attributes:
+            found.append(f"{where}: attribute {attribute.key!r} has no label")
         if attribute.unit is not None and attribute.unit not in vocabulary.units:
             found.append(f"{where}: unknown unit {attribute.unit!r}")
         vocab_name = vocabulary.option_attributes.get(attribute.key)
@@ -75,6 +77,8 @@ def problems(catalog: CatalogFile, vocabulary: Vocabulary) -> list[str]:
             check_attribute(f"{family.name}.{attribute.key}", attribute)
         for derived in family.derived_options:
             where = f"{family.name}.{derived.key}"
+            if derived.key not in vocabulary.attributes:
+                found.append(f"{where}: attribute {derived.key!r} has no label")
             vocab_name = vocabulary.option_attributes.get(derived.key)
             if vocab_name is None:
                 found.append(f"{where}: {derived.key!r} has no vocabulary for its options")
