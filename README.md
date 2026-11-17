@@ -27,6 +27,14 @@ npm run dev -w apps/web
 cd apps/api && uv sync && uv run fastapi dev src/buildwise_api/main.py
 ```
 
+## Публікація
+
+- Cloudflare: https://buildwise-ai.zavoritniigor.workers.dev. Публікація
+  вручну з `apps/web`: `VITE_BASE=/ npm run build && npx wrangler@4 deploy`
+  (налаштування в `apps/web/wrangler.jsonc`).
+- GitHub Pages: https://zavoritniigor-ui.github.io/buildwise-ai/ оновлюється
+  автоматично після кожного злиття в `main`.
+
 ## Перевірки (ті самі, що в CI)
 
 ```bash

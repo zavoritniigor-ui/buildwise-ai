@@ -1,0 +1,11 @@
+// Cloudflare Workers static assets for the web app.
+// Deploy from apps/web: npm run build && npx wrangler deploy
+{
+  "$schema": "https://unpkg.com/wrangler@4.164.0/config-schema.json",
+  "name": "buildwise-ai",
+  "compatibility_date": "2026-11-17",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+  },
+}
