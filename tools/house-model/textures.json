@@ -1,0 +1,22 @@
+{
+  "_comment": "CC0 PBR textures from ambientCG (https://ambientcg.com), public domain. build_house.py downloads them into .cache/ (gitignored) and embeds them in the GLB. tile = metres per texture repeat.",
+  "source": "ambientCG",
+  "license": "CC0 1.0 (public domain)",
+  "resolution": "1K",
+  "format": "JPG",
+  "sets": {
+    "wood": { "asset": "WoodFloor051", "tile": 1.2 },
+    "tile_floor": { "asset": "Tiles141", "tile": 0.6 },
+    "tile_bath": { "asset": "Tiles143", "tile": 0.3 },
+    "wall": { "asset": "Plaster001", "tile": 2.0 }
+  },
+  "rooms": {
+    "living": "wood",
+    "kitchen": "tile_floor",
+    "bedroom": "wood",
+    "hallway": "wood",
+    "bathroom": "tile_bath"
+  },
+  "shower": "tile_bath",
+  "walls": "wall"
+}
