@@ -81,7 +81,7 @@ class Attribute(_Reviewed):
     note: str | None = None
 
 
-type Dimension = Literal["width_mm", "length_mm", "thickness_mm"]
+type Dimension = Literal["width_mm", "length_mm", "thickness_mm", "height_mm"]
 
 
 class Variant(_Strict):
@@ -170,6 +170,7 @@ class Vocabulary(_Strict):
     floor_waterproofing: dict[str, str]
     tile_material: dict[str, str]
     uncoupling_membrane: dict[str, str]
+    drain_system: dict[str, str]
     country: dict[str, str]
 
     def options(self, name: str) -> dict[str, str]:

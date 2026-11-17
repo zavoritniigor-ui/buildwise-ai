@@ -1,7 +1,7 @@
 # Controlled vocabulary shared by catalogue data, rules and job conditions.
 # A value that is not listed here is rejected by the data tests.
 
-units: [mm, mil, m, m2, C, perm, count, h]
+units: [mm, mil, m, m2, C, perm, count, h, kPa]
 
 option_attributes:
   allowed_substrates: substrate
@@ -18,6 +18,7 @@ option_attributes:
   allowed_uncoupling_membranes: uncoupling_membrane
   allowed_membrane_bonding_mortars: bonding_mortar
   allowed_tile_setting_mortars: bonding_mortar
+  compatible_drain_systems: drain_system
 
 substrate:
   gypsum_wallboard: Gypsum wallboard
@@ -94,6 +95,10 @@ tile_material:
 uncoupling_membrane:
   ditra: Schluter DITRA
   ditra_xl: Schluter DITRA-XL
+
+drain_system:
+  kerdi_drain: Schluter KERDI-DRAIN point drain
+  kerdi_line: Schluter KERDI-LINE linear drain
 
 country:
   CA: Canada
