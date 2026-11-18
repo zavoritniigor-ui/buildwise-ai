@@ -372,3 +372,97 @@ select:focus-visible {
 .label-layer .room-label {
   pointer-events: auto;
 }
+
+/* Build-up ("sandwich") */
+.buildup {
+  margin-top: 14px;
+}
+
+.buildup h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.buildup-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.layers {
+  list-style: none;
+  margin: 12px 0 8px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 8px 10px;
+  background: var(--bg);
+  border-left: 4px solid var(--border);
+  border-radius: 6px;
+}
+
+.layer-role {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  padding-top: 2px;
+}
+
+.layer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer-label {
+  font-size: 0.92rem;
+}
+
+.layer-material {
+  font-weight: 600;
+}
+
+.buildup .citation {
+  font-size: 0.78rem;
+}
+
+/* role accents */
+.role-structure {
+  border-left-color: #8a8178;
+}
+.role-substrate {
+  border-left-color: #b79b6b;
+}
+.role-underlayment {
+  border-left-color: #a0a4ac;
+}
+.role-membrane {
+  border-left-color: #2f7d6d;
+}
+.role-drain {
+  border-left-color: #4a7ba6;
+}
+.role-mortar {
+  border-left-color: #9a8c7a;
+}
+.role-covering {
+  border-left-color: #c08a5a;
+}
+.role-grout {
+  border-left-color: #c9c3b8;
+}
+.role-finish {
+  border-left-color: #b57b9a;
+}

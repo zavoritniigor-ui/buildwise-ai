@@ -1,9 +1,11 @@
 import { Suspense, lazy, useState } from "react";
 import { LANGUAGES, type Language, useI18n } from "./i18n";
-import { type RoomId, type SurfaceId, findRoom, surfaceArea } from "./house/model";
+import { type RoomId, type SurfaceId, findRoom } from "./house/model";
 
 import PlanView from "./house/PlanView";
 import { supportsWebGL } from "./house/webgl";
+
+import { SurfaceSheet } from "./ui/SurfaceSheet";
 
 const HouseScene = lazy(() => import("./house/HouseScene"));
 const has3D = supportsWebGL();
@@ -17,7 +19,6 @@ export function App() {
     setRoom(next);
     setSurface(null);
   };
-  const format = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
 
   return (
     <div className="app">
@@ -93,26 +94,7 @@ export function App() {
       )}
 
       {room && surface && (
-        <aside className="sheet" aria-labelledby="sheet-title">
-          <header>
-            <div>
-              <p className="sheet-kicker">{t.rooms[room]}</p>
-              <h1 id="sheet-title">{t.surfaces[surface]}</h1>
-            </div>
-            <button
-              type="button"
-              className="icon"
-              onClick={() => setSurface(null)}
-              aria-label={t.close}
-            >
-              ×
-            </button>
-          </header>
-          <p className="sheet-area">{t.area(format(surfaceArea(findRoom(room), surface)))}</p>
-          {surface === "walls" && <p className="muted">{t.wallsNote}</p>}
-          <p className="placeholder">{t.nextStep}</p>
-          <p className="muted small">{t.dataNote}</p>
-        </aside>
+        <SurfaceSheet room={room} surface={surface} onClose={() => setSurface(null)} />
       )}
     </div>
   );

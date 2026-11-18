@@ -95,6 +95,31 @@ export interface Scenario {
   cases: ScenarioCase[];
 }
 
+export type BuildupRole =
+  | "structure"
+  | "substrate"
+  | "underlayment"
+  | "membrane"
+  | "drain"
+  | "mortar"
+  | "covering"
+  | "grout"
+  | "finish";
+
+export interface Layer {
+  role: BuildupRole;
+  label: string;
+  material?: string;
+  source?: SourceRef;
+}
+
+export interface Buildup {
+  id: string;
+  title: string;
+  summary: string;
+  layers: Layer[];
+}
+
 export interface Knowledge {
   documents: Record<string, { title: string; url: string; version: string }>;
   conditions: Record<string, Condition>;
@@ -105,6 +130,9 @@ export interface Knowledge {
   scenarios: Scenario[];
   attribute_labels: Record<string, string>;
   value_labels: Record<string, string>;
+  buildups: Buildup[];
+  /** room id -> surface -> buildup id */
+  surfaceBuildups: Record<string, Record<string, string>>;
   /** English text to its translation, per language. */
   translations: Record<string, Record<string, string>>;
 }
@@ -116,4 +144,14 @@ export function citationUrl(source: SourceRef, knowledge: Knowledge = KNOWLEDGE)
   const document = knowledge.documents[source.document];
   if (!document) throw new Error(`Unknown document ${source.document}`);
   return `${document.url}#page=${source.page}`;
+}
+
+/** The build-up ("sandwich") proposed for a surface of the demo house. */
+export function buildupForSurface(
+  room: string,
+  surface: string,
+  knowledge: Knowledge = KNOWLEDGE,
+): Buildup | undefined {
+  const id = knowledge.surfaceBuildups[room]?.[surface];
+  return id ? knowledge.buildups.find((b) => b.id === id) : undefined;
 }
