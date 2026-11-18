@@ -1,0 +1,96 @@
+# Surface build-ups ("sandwiches"): the ordered layers of a floor or wall,
+# bottom to top, with the material each layer uses. These are the proposals
+# shown when a person clicks a surface in the demo house. They are grounded in
+# the manufacturer data in catalog/, cited by page where a product is named.
+#
+# roles (a small controlled set, labelled in the app):
+#   structure substrate underlayment membrane drain mortar covering grout finish
+
+buildups:
+  - id: dry-floor-wood
+    title: Tiled-ready wood floor
+    summary: A dry-room floor on wood joists, finished with engineered wood.
+    layers:
+      - { role: structure, label: Floor joists }
+      - { role: substrate, label: Plywood subfloor, material: Plywood }
+      - { role: underlayment, label: Acoustic underlayment }
+      - { role: covering, label: Engineered wood flooring }
+
+  - id: tiled-floor-wood
+    title: Tiled floor on wood
+    summary: Tile over an uncoupling membrane, so the tile does not crack as the wood moves.
+    layers:
+      - { role: structure, label: Floor joists }
+      - { role: substrate, label: Plywood subfloor, material: Plywood }
+      - role: membrane
+        label: Uncoupling membrane, bonded with modified thin-set
+        material: Schluter DITRA
+        source: { document: ditra-handbook, page: 4 }
+      - { role: mortar, label: Unmodified thin-set mortar }
+      - { role: covering, label: Porcelain tile }
+      - { role: grout, label: Grout }
+
+  - id: wet-floor-wood
+    title: Waterproof bathroom floor on wood
+    summary: A tiled, waterproofed floor for a bathroom over a wood subfloor.
+    layers:
+      - { role: structure, label: Floor joists }
+      - role: substrate
+        label: Plywood subfloor, 16 mm tongue-and-groove
+        material: Plywood
+      - role: membrane
+        label: Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND
+        material: Schluter DITRA
+        source: { document: ditra-handbook, page: 14 }
+      - { role: mortar, label: Unmodified thin-set mortar }
+      - { role: covering, label: Porcelain tile }
+      - { role: grout, label: Grout }
+
+  - id: curbless-shower-floor
+    title: Curbless shower floor
+    summary: A sloped tray drained to a point drain, waterproofed and tiled.
+    layers:
+      - { role: structure, label: Recessed wood subfloor between the joists }
+      - role: substrate
+        label: Sloped shower tray with integrated waterproofing
+        material: Schluter KERDI-SHOWER tray
+        source: { document: shower-data-sheet, page: 2 }
+      - role: drain
+        label: Point drain with a bonded flange
+        material: Schluter KERDI-DRAIN
+        source: { document: shower-data-sheet, page: 5 }
+      - { role: mortar, label: Unmodified thin-set mortar }
+      - { role: covering, label: Porcelain mosaic tile }
+      - { role: grout, label: Grout }
+
+  - id: painted-wall
+    title: Painted wall
+    summary: A standard dry-room wall of gypsum board on studs.
+    layers:
+      - { role: structure, label: Wood or metal studs }
+      - { role: substrate, label: Gypsum wallboard }
+      - { role: finish, label: Primer and paint }
+
+  - id: tiled-wet-wall
+    title: Waterproof tiled wall
+    summary: A shower or wet-area wall waterproofed behind the tile.
+    layers:
+      - { role: structure, label: Wood or metal studs }
+      - role: substrate
+        label: Waterproof building panel
+        material: Schluter KERDI-BOARD
+        source: { document: kerdi-board-tds, page: 1 }
+      - role: membrane
+        label: Bonded waterproofing at joints and corners
+        material: Schluter KERDI-BAND
+      - { role: mortar, label: Thin-set mortar }
+      - { role: covering, label: Ceramic tile }
+      - { role: grout, label: Grout }
+
+# Which build-up each surface of the demo house proposes.
+surfaces:
+  living: { floor: dry-floor-wood, walls: painted-wall }
+  kitchen: { floor: tiled-floor-wood, walls: painted-wall }
+  bedroom: { floor: dry-floor-wood, walls: painted-wall }
+  hallway: { floor: dry-floor-wood, walls: painted-wall }
+  bathroom: { floor: wet-floor-wood, walls: tiled-wet-wall, shower: curbless-shower-floor }

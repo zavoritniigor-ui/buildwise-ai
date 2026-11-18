@@ -66,3 +66,33 @@ test.each([
   fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
   expect(screen.getByRole("button", { name: bathroom })).toBeDefined();
 });
+
+test("the bathroom floor proposes a waterproof build-up with Schluter DITRA", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Floor" }));
+  const buildup = screen.getByRole("region", { name: "Proposed build-up" });
+  expect(within(buildup).getByText("Schluter DITRA")).toBeDefined();
+  // layers run from the covering down to the structure
+  const roles = within(buildup)
+    .getAllByText(/Covering|Grout|Mortar|Membrane|Base layer|Structure/)
+    .map((e) => e.textContent);
+  expect(roles[0]).toBe("Grout");
+  expect(roles[roles.length - 1]).toBe("Structure");
+});
+
+test("the bathroom wall build-up names Schluter KERDI-BOARD", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Walls" }));
+  const buildup = screen.getByRole("region", { name: "Proposed build-up" });
+  expect(within(buildup).getByText("Schluter KERDI-BOARD")).toBeDefined();
+});
+
+test("the build-up is translated", async () => {
+  renderApp("uk");
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Підлога" }));
+  const buildup = screen.getByRole("region", { name: "Пропонований пиріг" });
+  expect(within(buildup).getByText("Лаги перекриття")).toBeDefined();
+});

@@ -187,6 +187,24 @@ def _rule(rule: schema.Rule) -> Json:
     return out
 
 
+def _layer(layer: schema.Layer) -> Json:
+    out: dict[str, Json] = {"role": layer.role, "label": layer.label}
+    if layer.material is not None:
+        out["material"] = layer.material
+    if layer.source is not None:
+        out["source"] = _source(layer.source)
+    return out
+
+
+def _buildup(buildup: schema.Buildup) -> Json:
+    return {
+        "id": buildup.id,
+        "title": buildup.title,
+        "summary": buildup.summary,
+        "layers": [_layer(layer) for layer in buildup.layers],
+    }
+
+
 def _outcome(attributes: Attributes, job: dict[str, str | Decimal], rules: Sequence[Rule]) -> Json:
     result = assess(attributes, job, rules)
     return {"verdict": result.verdict.value, "missing": list(result.missing_conditions)}
@@ -277,6 +295,19 @@ def snapshot(data_dir: Path) -> Json:
             }
         )
 
+    buildups = schema.load_buildups(data_dir)
+    known_buildups = {b.id for b in buildups.buildups}
+    for buildup in buildups.buildups:
+        for layer in buildup.layers:
+            if layer.source is not None and layer.source.document not in documents:
+                raise ValueError(
+                    f"buildup {buildup.id!r} cites unknown document {layer.source.document!r}"
+                )
+    for room, surfaces in buildups.surfaces.items():
+        for surface, bid in surfaces.items():
+            if bid not in known_buildups:
+                raise ValueError(f"surface {room}.{surface} uses unknown buildup {bid!r}")
+
     return {
         "documents": documents,
         "conditions": dict(sorted(conditions.items())),
@@ -324,6 +355,11 @@ def snapshot(data_dir: Path) -> Json:
             for manufacturer, f in families
         ],
         "scenarios": scenarios,
+        "buildups": [_buildup(b) for b in buildups.buildups],
+        "surfaceBuildups": {
+            room: dict(sorted(surfaces.items()))
+            for room, surfaces in sorted(buildups.surfaces.items())
+        },
     }
 
 
@@ -356,6 +392,14 @@ def source_texts(snap: dict[str, Json]) -> set[str]:
                 add(_dict(rule)["description"])
         for attribute in _list(item["attributes"]):
             add(_dict(attribute).get("note"))
+    for buildup in _list(snap["buildups"]):
+        item = _dict(buildup)
+        add(item["title"])
+        add(item["summary"])
+        for layer in _list(item["layers"]):
+            layer_d = _dict(layer)
+            add(layer_d["label"])
+            add(layer_d.get("material"))
     for scenario in _list(snap["scenarios"]):
         add(_dict(scenario)["title"])
         for case in _list(_dict(scenario)["cases"]):

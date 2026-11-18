@@ -190,6 +190,42 @@ class Vocabulary(_Strict):
         return values
 
 
+BuildupRole = Literal[
+    "structure",
+    "substrate",
+    "underlayment",
+    "membrane",
+    "drain",
+    "mortar",
+    "covering",
+    "grout",
+    "finish",
+]
+
+
+class Layer(_Strict):
+    role: BuildupRole
+    label: str
+    material: str | None = None
+    source: SourceRef | None = None
+
+
+class Buildup(_Strict):
+    id: str
+    title: str
+    summary: str
+    layers: list[Layer] = Field(min_length=1)
+
+
+class BuildupFile(_Strict):
+    buildups: list[Buildup] = Field(min_length=1)
+    surfaces: dict[str, dict[str, str]]
+
+
+def load_buildups(data_dir: Path) -> BuildupFile:
+    return BuildupFile.model_validate(read_yaml(data_dir / "buildups.yaml"))
+
+
 def read_yaml(path: Path) -> object:
     with path.open(encoding="utf-8") as handle:
         return yaml.safe_load(handle)

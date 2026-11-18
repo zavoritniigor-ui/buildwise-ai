@@ -4315,6 +4315,226 @@
       ]
     }
   ],
+  "buildups": [
+    {
+      "id": "dry-floor-wood",
+      "title": "Tiled-ready wood floor",
+      "summary": "A dry-room floor on wood joists, finished with engineered wood.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Floor joists"
+        },
+        {
+          "role": "substrate",
+          "label": "Plywood subfloor",
+          "material": "Plywood"
+        },
+        {
+          "role": "underlayment",
+          "label": "Acoustic underlayment"
+        },
+        {
+          "role": "covering",
+          "label": "Engineered wood flooring"
+        }
+      ]
+    },
+    {
+      "id": "tiled-floor-wood",
+      "title": "Tiled floor on wood",
+      "summary": "Tile over an uncoupling membrane, so the tile does not crack as the wood moves.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Floor joists"
+        },
+        {
+          "role": "substrate",
+          "label": "Plywood subfloor",
+          "material": "Plywood"
+        },
+        {
+          "role": "membrane",
+          "label": "Uncoupling membrane, bonded with modified thin-set",
+          "material": "Schluter DITRA",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 4
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Unmodified thin-set mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Porcelain tile"
+        },
+        {
+          "role": "grout",
+          "label": "Grout"
+        }
+      ]
+    },
+    {
+      "id": "wet-floor-wood",
+      "title": "Waterproof bathroom floor on wood",
+      "summary": "A tiled, waterproofed floor for a bathroom over a wood subfloor.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Floor joists"
+        },
+        {
+          "role": "substrate",
+          "label": "Plywood subfloor, 16 mm tongue-and-groove",
+          "material": "Plywood"
+        },
+        {
+          "role": "membrane",
+          "label": "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND",
+          "material": "Schluter DITRA",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 14
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Unmodified thin-set mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Porcelain tile"
+        },
+        {
+          "role": "grout",
+          "label": "Grout"
+        }
+      ]
+    },
+    {
+      "id": "curbless-shower-floor",
+      "title": "Curbless shower floor",
+      "summary": "A sloped tray drained to a point drain, waterproofed and tiled.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Recessed wood subfloor between the joists"
+        },
+        {
+          "role": "substrate",
+          "label": "Sloped shower tray with integrated waterproofing",
+          "material": "Schluter KERDI-SHOWER tray",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 2
+          }
+        },
+        {
+          "role": "drain",
+          "label": "Point drain with a bonded flange",
+          "material": "Schluter KERDI-DRAIN",
+          "source": {
+            "document": "shower-data-sheet",
+            "page": 5
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Unmodified thin-set mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Porcelain mosaic tile"
+        },
+        {
+          "role": "grout",
+          "label": "Grout"
+        }
+      ]
+    },
+    {
+      "id": "painted-wall",
+      "title": "Painted wall",
+      "summary": "A standard dry-room wall of gypsum board on studs.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Wood or metal studs"
+        },
+        {
+          "role": "substrate",
+          "label": "Gypsum wallboard"
+        },
+        {
+          "role": "finish",
+          "label": "Primer and paint"
+        }
+      ]
+    },
+    {
+      "id": "tiled-wet-wall",
+      "title": "Waterproof tiled wall",
+      "summary": "A shower or wet-area wall waterproofed behind the tile.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Wood or metal studs"
+        },
+        {
+          "role": "substrate",
+          "label": "Waterproof building panel",
+          "material": "Schluter KERDI-BOARD",
+          "source": {
+            "document": "kerdi-board-tds",
+            "page": 1
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Bonded waterproofing at joints and corners",
+          "material": "Schluter KERDI-BAND"
+        },
+        {
+          "role": "mortar",
+          "label": "Thin-set mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Ceramic tile"
+        },
+        {
+          "role": "grout",
+          "label": "Grout"
+        }
+      ]
+    }
+  ],
+  "surfaceBuildups": {
+    "bathroom": {
+      "floor": "wet-floor-wood",
+      "shower": "curbless-shower-floor",
+      "walls": "tiled-wet-wall"
+    },
+    "bedroom": {
+      "floor": "dry-floor-wood",
+      "walls": "painted-wall"
+    },
+    "hallway": {
+      "floor": "dry-floor-wood",
+      "walls": "painted-wall"
+    },
+    "kitchen": {
+      "floor": "tiled-floor-wood",
+      "walls": "painted-wall"
+    },
+    "living": {
+      "floor": "dry-floor-wood",
+      "walls": "painted-wall"
+    }
+  },
   "translations": {
     "uk": {
       "19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.": "19/32 дюйма (номінально 5/8 дюйма), шпунт-паз, зазор 3 мм (1/8 дюйма) між листами.",
@@ -4326,8 +4546,14 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 дюйма (номінально 3/4 дюйма), шпунт-паз. Для натурального каменю потрібен подвійний шар незалежно від кроку лаг.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для перехідних кілець KERDI-DRAIN-A чи KERDI-LINE-A; плита 89 мм — для корпусу KERDI-DRAIN-H і труби під піддонами T, TS чи TT (с. 2).",
       "3 in (75 mm) waste pipe": "Каналізаційна труба 75 мм (3 дюйми)",
+      "A dry-room floor on wood joists, finished with engineered wood.": "Підлога сухої кімнати на дерев'яних лагах з інженерною дошкою.",
       "A second layer (underlayment) at least 10 mm is required.": "Потрібен другий шар (підкладка) завтовшки щонайменше 10 мм.",
+      "A shower or wet-area wall waterproofed behind the tile.": "Стіна душової чи вологої зони з гідроізоляцією під плиткою.",
+      "A sloped tray drained to a point drain, waterproofed and tiled.": "Піддон з ухилом до точкового трапа, гідроізольований і облицьований плиткою.",
+      "A standard dry-room wall of gypsum board on studs.": "Звичайна стіна сухої кімнати: гіпсокартон на стійках.",
+      "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицьована плиткою гідроізольована підлога ванної на дерев'яній основі.",
       "ABS or PVC": "ABS або ПВХ",
+      "Acoustic underlayment": "Акустична підкладка",
       "Allowed floor framing": "Дозволені несучі елементи підлоги",
       "Allowed floor waterproofing": "Дозволена гідроізоляція підлоги",
       "Allowed mountings": "Дозволені способи монтажу",
@@ -4342,6 +4568,7 @@
       "Attached directly to the waste line with solvent cement.": "Приєднується прямо до каналізації на клей для труб.",
       "Bathtub surround": "Стіни навколо ванни",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеять на ALL-SET, FAST-SET або модифікований клейовий розчин.",
+      "Bonded waterproofing at joints and corners": "Приклеювана гідроізоляція на стиках і кутах",
       "Bonds the membrane to the wood.": "Приклеює мембрану до дерев'яної основи.",
       "Canada": "Канада",
       "Canada only; 19 mm is still recommended.": "Лише в Канаді; рекомендовано все ж 19 мм.",
@@ -4363,6 +4590,7 @@
       "Concrete, cured for foot traffic": "Бетон, достатньо міцний для ходіння",
       "Countertop": "Стільниця",
       "Country": "Країна",
+      "Curbless shower floor": "Підлога душової без порога",
       "Curbless shower in a Montreal bathroom on a wood floor": "Душова без порога у ванній у Монреалі на дерев'яній підлозі",
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душова без порога на дерев'яній чи бетонній основі (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душова без порога зі стінами з KERDI або KERDI-BOARD. Заглиблення підлоги не повинно послабити конструкцію; може знадобитися проєктувальник.",
@@ -4372,6 +4600,7 @@
       "Drain placement": "Розташування трапа",
       "Drain system": "Тип трапа",
       "Engineered I-joist": "Двотаврова клеєна балка",
+      "Engineered wood flooring": "Інженерна дерев'яна підлога",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Крім кутового KST965NA/BF, у якого трап зміщений від центру.",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Пінополістирол 60 кг/м³, виміряно при деформації 10 %. Берегти від вуглеводнів, естерів, амінів, альдегідів і тривалого ультрафіолету.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Рекомендовано фанеру Exposure 1 з виправленою лицьовою стороною або OSB.",
@@ -4382,6 +4611,7 @@
       "Flood test required": "Потрібне випробування заливанням водою",
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Ділянки підлоги, на які потрапляє вода, потребують KERDI або мембрани з родини DITRA.",
       "Floor framing": "Несучі елементи підлоги",
+      "Floor joists": "Лаги перекриття",
       "Floor waterproofing": "Гідроізоляція підлоги",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для підлог, де вертикальне підключення незручне, наприклад дерев'яна підлога, у якій не можна перенести отвір.",
       "Framing at most 406 mm on centre.": "Несучі елементи не частіше ніж через 406 мм по осях.",
@@ -4389,6 +4619,7 @@
       "Framing at most 610 mm on centre.": "Несучі елементи не частіше ніж через 610 мм по осях.",
       "Framing must be joists, I-joists, trusses.": "Несучі елементи: лаги, двотаврові балки або ферми.",
       "Fully embedded in thin-set mortar on an existing wall": "Повністю вклеєна в клейовий розчин на наявній стіні",
+      "Grout": "Затирка",
       "Gypsum wallboard": "Гіпсокартон",
       "Height compensation board": "Плита для вирівнювання висоти",
       "Horizontal connection to a waste pipe beside the drain": "Горизонтальне підключення до труби збоку від трапа",
@@ -4445,16 +4676,23 @@
       "Oriented strand board": "OSB-плита",
       "Outlet 8 in from the channel end, to avoid obstacles such as joists.": "Вихід за 203 мм (8 дюймів) від краю каналу, щоб обійти перешкоди, як-от лаги.",
       "Outlet distance from the channel end": "Відстань виходу від краю каналу",
+      "Painted wall": "Пофарбована стіна",
       "Plywood": "Фанера",
+      "Plywood subfloor": "Фанерна основа",
+      "Plywood subfloor, 16 mm tongue-and-groove": "Фанерна основа, 16 мм, шпунт-паз",
+      "Point drain with a bonded flange": "Точковий трап з фланцем під гідроізоляцію",
+      "Porcelain mosaic tile": "Мозаїка з керамограніту",
       "Porcelain tile": "Керамограніт",
       "Portland cement mortar": "Цементно-піщаний розчин",
       "Portland cement mortar bed": "Цементно-піщана стяжка",
       "Prefabricated shower ramp": "Готовий пандус для душової",
       "Prefabricated sloped shower tray": "Готовий піддон з ухилом",
+      "Primer and paint": "Ґрунтовка і фарба",
       "Raising the tray around a drain or adaptor": "Підняття піддона навколо трапа чи перехідника",
       "Recessed curbless shower over a wood subfloor (K-SHCR)": "Заглиблена душова без порога на дерев'яній основі (K-SHCR)",
       "Recessed curbless shower over the wood floor": "Заглиблена душова без порога на дерев'яній підлозі",
       "Recessed shower with joists at 488 mm": "Заглиблена душова з лагами через 488 мм",
+      "Recessed wood subfloor between the joists": "Заглиблена дерев'яна основа між лагами",
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Рекомендовано, коли витрата води понад 9,5 л/хв (2,5 гал/хв), наприклад кілька лійок чи бічні форсунки (с. 6).",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Потрібна в мокрій зоні та зоні витирання; примикання підлоги до стін закривають KERDI-BAND.",
       "Schluter ALL-SET": "Schluter ALL-SET",
@@ -4465,8 +4703,12 @@
       "Schluter DITRA-XL": "Schluter DITRA-XL",
       "Schluter FAST-SET": "Schluter FAST-SET",
       "Schluter KERDI": "Schluter KERDI",
+      "Schluter KERDI-BAND": "Schluter KERDI-BAND",
+      "Schluter KERDI-BOARD": "Schluter KERDI-BOARD",
+      "Schluter KERDI-DRAIN": "Schluter KERDI-DRAIN",
       "Schluter KERDI-DRAIN point drain": "Точковий трап Schluter KERDI-DRAIN",
       "Schluter KERDI-LINE linear drain": "Лінійний трап Schluter KERDI-LINE",
+      "Schluter KERDI-SHOWER tray": "Піддон Schluter KERDI-SHOWER",
       "Schluter KERDI-SHOWER-LT tray": "Піддон Schluter KERDI-SHOWER-LT",
       "Schluter KERDI-SHOWER-LTS tray": "Піддон Schluter KERDI-SHOWER-LTS",
       "Schluter KERDI-SHOWER-T tray": "Піддон Schluter KERDI-SHOWER-T",
@@ -4485,6 +4727,7 @@
       "Shower drain with integrated bonding flange": "Душовий трап з інтегрованим фланцем для гідроізоляції",
       "Shower floor": "Підлога душової",
       "Shower wall": "Стіна душової",
+      "Sloped shower tray with integrated waterproofing": "Піддон з ухилом і вбудованою гідроізоляцією",
       "Smaller formats need Schluter technical services (page 21).": "Для менших форматів зверніться до технічної служби Schluter (с. 21).",
       "Spot-bonded with thin-set mortar on an existing wall": "Точково наклеєна на клейовий розчин на наявній стіні",
       "Square edge": "Прямі крайки",
@@ -4524,6 +4767,7 @@
       "The tray is made for one drain system: T, TS and TT trays take a KERDI-DRAIN point drain, LT and LTS trays take a KERDI-LINE linear drain.": "Піддон розрахований на один тип трапа: T, TS і TT — на точковий KERDI-DRAIN, LT і LTS — на лінійний KERDI-LINE.",
       "Thickness": "Товщина",
       "Thin tray with a KERDI-DRAIN point drain": "Тонкий піддон із точковим трапом KERDI-DRAIN",
+      "Thin-set mortar": "Клейовий розчин",
       "This detail is for ceramic or porcelain tile.": "Цей варіант — для керамічної плитки чи керамограніту.",
       "This detail is for natural stone.": "Цей варіант — для натурального каменю.",
       "Tile material": "Матеріал плитки",
@@ -4532,11 +4776,16 @@
       "Tile over DITRA on a single-layer wood subfloor, joists at 406 mm (D-W16-T)": "Плитка на DITRA по одношаровій дерев'яній основі, лаги через 406 мм (D-W16-T)",
       "Tile over DITRA on a single-layer wood subfloor, joists at 488 mm (D-W19-T)": "Плитка на DITRA по одношаровій дерев'яній основі, лаги через 488 мм (D-W19-T)",
       "Tile over DITRA-XL on a single-layer wood subfloor, framing at 610 mm (D-W24-XL-T)": "Плитка на DITRA-XL по одношаровій дерев'яній основі, несучі елементи через 610 мм (D-W24-XL-T)",
+      "Tile over an uncoupling membrane, so the tile does not crack as the wood moves.": "Плитка на розділювальній мембрані, щоб вона не тріснула від руху дерева.",
       "Tile setting mortar": "Клейовий розчин для плитки",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Підлога ванної з плиткою, DITRA на фанері 16 мм з лагами через 406 мм",
+      "Tiled floor on wood": "Плиткова підлога на дереві",
+      "Tiled-ready wood floor": "Дерев'яна підлога",
       "Tiles at least 50 x 50 mm.": "Плитка щонайменше 50 × 50 мм.",
       "Tongue-and-groove": "Шпунт-паз",
+      "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Розділювальна й гідроізоляційна мембрана; стики підлоги зі стінами закривають KERDI-BAND",
       "Uncoupling membrane": "Розділювальна мембрана",
+      "Uncoupling membrane, bonded with modified thin-set": "Розділювальна мембрана, приклеєна модифікованим розчином",
       "United States": "США",
       "Unmodified thin-set mortar": "Немодифікований клейовий розчин",
       "Use": "Призначення",
@@ -4547,11 +4796,14 @@
       "Waste pipe connection": "Підключення до каналізації",
       "Waste pipe size": "Діаметр каналізаційної труби",
       "Waste pipe sizes": "Діаметри каналізаційної труби",
+      "Waterproof bathroom floor on wood": "Водонепроникна підлога ванної на дереві",
       "Waterproof building panel": "Водонепроникна будівельна плита",
+      "Waterproof tiled wall": "Водонепроникна облицьована стіна",
       "Waterproofing band": "Гідроізоляційна стрічка",
       "Waterproofing standard": "Стандарт гідроізоляції",
       "Where the material is used": "Де застосовується матеріал",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "З піддонами T, TS чи TT навколо корпусу трапа й труби потрібна компенсаційна плита KERDI-SHOWER-CB 89 мм (с. 2).",
+      "Wood or metal studs": "Дерев'яні чи металеві стійки",
       "Yes": "Так"
     },
     "ru": {
@@ -4564,8 +4816,14 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 дюйма (номинально 3/4 дюйма), шпунт-паз. Для натурального камня нужен двойной слой независимо от шага лаг.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для переходных колец KERDI-DRAIN-A или KERDI-LINE-A; плита 89 мм — для корпуса KERDI-DRAIN-H и трубы под поддонами T, TS или TT (с. 2).",
       "3 in (75 mm) waste pipe": "Канализационная труба 75 мм (3 дюйма)",
+      "A dry-room floor on wood joists, finished with engineered wood.": "Пол сухой комнаты на деревянных лагах с инженерной доской.",
       "A second layer (underlayment) at least 10 mm is required.": "Нужен второй слой (подложка) толщиной не менее 10 мм.",
+      "A shower or wet-area wall waterproofed behind the tile.": "Стена душевой или влажной зоны с гидроизоляцией под плиткой.",
+      "A sloped tray drained to a point drain, waterproofed and tiled.": "Поддон с уклоном к точечному трапу, гидроизолированный и облицованный плиткой.",
+      "A standard dry-room wall of gypsum board on studs.": "Обычная стена сухой комнаты: гипсокартон на стойках.",
+      "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицованный плиткой гидроизолированный пол ванной на деревянном основании.",
       "ABS or PVC": "ABS или ПВХ",
+      "Acoustic underlayment": "Акустическая подложка",
       "Allowed floor framing": "Допустимые несущие элементы пола",
       "Allowed floor waterproofing": "Допустимая гидроизоляция пола",
       "Allowed mountings": "Допустимые способы монтажа",
@@ -4580,6 +4838,7 @@
       "Attached directly to the waste line with solvent cement.": "Присоединяется прямо к канализации на клей для труб.",
       "Bathtub surround": "Стены вокруг ванны",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеят на ALL-SET, FAST-SET или модифицированный плиточный клей.",
+      "Bonded waterproofing at joints and corners": "Приклеиваемая гидроизоляция на стыках и углах",
       "Bonds the membrane to the wood.": "Приклеивает мембрану к деревянному основанию.",
       "Canada": "Канада",
       "Canada only; 19 mm is still recommended.": "Только в Канаде; рекомендуется всё же 19 мм.",
@@ -4601,6 +4860,7 @@
       "Concrete, cured for foot traffic": "Бетон, достаточно прочный для хождения",
       "Countertop": "Столешница",
       "Country": "Страна",
+      "Curbless shower floor": "Пол душевой без порога",
       "Curbless shower in a Montreal bathroom on a wood floor": "Душевая без порога в ванной в Монреале на деревянном полу",
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душевая без порога на деревянном или бетонном основании (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душевая без порога со стенами из KERDI или KERDI-BOARD. Углубление пола не должно ослабить конструкцию; может понадобиться проектировщик.",
@@ -4610,6 +4870,7 @@
       "Drain placement": "Расположение трапа",
       "Drain system": "Тип трапа",
       "Engineered I-joist": "Двутавровая клеёная балка",
+      "Engineered wood flooring": "Инженерная деревянная доска",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Кроме углового KST965NA/BF, у которого трап смещён от центра.",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Пенополистирол 60 кг/м³, измерено при деформации 10 %. Беречь от углеводородов, эфиров, аминов, альдегидов и длительного ультрафиолета.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Рекомендуется фанера Exposure 1 с исправленной лицевой стороной или OSB.",
@@ -4620,6 +4881,7 @@
       "Flood test required": "Требуется испытание заливом водой",
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Участки пола, на которые попадает вода, требуют KERDI или мембраны семейства DITRA.",
       "Floor framing": "Несущие элементы пола",
+      "Floor joists": "Лаги перекрытия",
       "Floor waterproofing": "Гидроизоляция пола",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для полов, где вертикальное подключение неудобно, например деревянный пол, в котором нельзя перенести отверстие.",
       "Framing at most 406 mm on centre.": "Несущие элементы с шагом не более 406 мм по осям.",
@@ -4627,6 +4889,7 @@
       "Framing at most 610 mm on centre.": "Несущие элементы с шагом не более 610 мм по осям.",
       "Framing must be joists, I-joists, trusses.": "Несущие элементы: лаги, двутавровые балки или фермы.",
       "Fully embedded in thin-set mortar on an existing wall": "Полностью вклеена в плиточный клей на существующей стене",
+      "Grout": "Затирка",
       "Gypsum wallboard": "Гипсокартон",
       "Height compensation board": "Плита для выравнивания высоты",
       "Horizontal connection to a waste pipe beside the drain": "Горизонтальное подключение к трубе сбоку от трапа",
@@ -4683,16 +4946,23 @@
       "Oriented strand board": "OSB-плита",
       "Outlet 8 in from the channel end, to avoid obstacles such as joists.": "Выход в 203 мм (8 дюймов) от края канала, чтобы обойти препятствия, например лаги.",
       "Outlet distance from the channel end": "Расстояние выхода от края канала",
+      "Painted wall": "Окрашенная стена",
       "Plywood": "Фанера",
+      "Plywood subfloor": "Фанерное основание",
+      "Plywood subfloor, 16 mm tongue-and-groove": "Фанерное основание, 16 мм, шпунт-паз",
+      "Point drain with a bonded flange": "Точечный трап с фланцем под гидроизоляцию",
+      "Porcelain mosaic tile": "Мозаика из керамогранита",
       "Porcelain tile": "Керамогранит",
       "Portland cement mortar": "Цементно-песчаный раствор",
       "Portland cement mortar bed": "Цементно-песчаная стяжка",
       "Prefabricated shower ramp": "Готовый пандус для душевой",
       "Prefabricated sloped shower tray": "Готовый поддон с уклоном",
+      "Primer and paint": "Грунтовка и краска",
       "Raising the tray around a drain or adaptor": "Подъём поддона вокруг трапа или переходника",
       "Recessed curbless shower over a wood subfloor (K-SHCR)": "Углублённая душевая без порога на деревянном основании (K-SHCR)",
       "Recessed curbless shower over the wood floor": "Углублённая душевая без порога на деревянном полу",
       "Recessed shower with joists at 488 mm": "Углублённая душевая с лагами через 488 мм",
+      "Recessed wood subfloor between the joists": "Углублённое деревянное основание между лагами",
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Рекомендуется, когда расход воды больше 9,5 л/мин (2,5 гал/мин), например несколько леек или боковые форсунки (с. 6).",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Нужна в мокрой зоне и зоне вытирания; примыкания пола к стенам закрывают KERDI-BAND.",
       "Schluter ALL-SET": "Schluter ALL-SET",
@@ -4703,8 +4973,12 @@
       "Schluter DITRA-XL": "Schluter DITRA-XL",
       "Schluter FAST-SET": "Schluter FAST-SET",
       "Schluter KERDI": "Schluter KERDI",
+      "Schluter KERDI-BAND": "Schluter KERDI-BAND",
+      "Schluter KERDI-BOARD": "Schluter KERDI-BOARD",
+      "Schluter KERDI-DRAIN": "Schluter KERDI-DRAIN",
       "Schluter KERDI-DRAIN point drain": "Точечный трап Schluter KERDI-DRAIN",
       "Schluter KERDI-LINE linear drain": "Линейный трап Schluter KERDI-LINE",
+      "Schluter KERDI-SHOWER tray": "Поддон Schluter KERDI-SHOWER",
       "Schluter KERDI-SHOWER-LT tray": "Поддон Schluter KERDI-SHOWER-LT",
       "Schluter KERDI-SHOWER-LTS tray": "Поддон Schluter KERDI-SHOWER-LTS",
       "Schluter KERDI-SHOWER-T tray": "Поддон Schluter KERDI-SHOWER-T",
@@ -4723,6 +4997,7 @@
       "Shower drain with integrated bonding flange": "Душевой трап со встроенным фланцем для гидроизоляции",
       "Shower floor": "Пол душевой",
       "Shower wall": "Стена душевой",
+      "Sloped shower tray with integrated waterproofing": "Поддон с уклоном и встроенной гидроизоляцией",
       "Smaller formats need Schluter technical services (page 21).": "Для меньших форматов обратитесь в техническую службу Schluter (с. 21).",
       "Spot-bonded with thin-set mortar on an existing wall": "Точечно наклеена на плиточный клей на существующей стене",
       "Square edge": "Прямые кромки",
@@ -4762,6 +5037,7 @@
       "The tray is made for one drain system: T, TS and TT trays take a KERDI-DRAIN point drain, LT and LTS trays take a KERDI-LINE linear drain.": "Поддон рассчитан на один тип трапа: T, TS и TT — на точечный KERDI-DRAIN, LT и LTS — на линейный KERDI-LINE.",
       "Thickness": "Толщина",
       "Thin tray with a KERDI-DRAIN point drain": "Тонкий поддон с точечным трапом KERDI-DRAIN",
+      "Thin-set mortar": "Плиточный клей",
       "This detail is for ceramic or porcelain tile.": "Этот вариант — для керамической плитки или керамогранита.",
       "This detail is for natural stone.": "Этот вариант — для натурального камня.",
       "Tile material": "Материал плитки",
@@ -4770,11 +5046,16 @@
       "Tile over DITRA on a single-layer wood subfloor, joists at 406 mm (D-W16-T)": "Плитка на DITRA по однослойному деревянному основанию, лаги через 406 мм (D-W16-T)",
       "Tile over DITRA on a single-layer wood subfloor, joists at 488 mm (D-W19-T)": "Плитка на DITRA по однослойному деревянному основанию, лаги через 488 мм (D-W19-T)",
       "Tile over DITRA-XL on a single-layer wood subfloor, framing at 610 mm (D-W24-XL-T)": "Плитка на DITRA-XL по однослойному деревянному основанию, несущие элементы через 610 мм (D-W24-XL-T)",
+      "Tile over an uncoupling membrane, so the tile does not crack as the wood moves.": "Плитка на разделительной мембране, чтобы она не треснула от движения дерева.",
       "Tile setting mortar": "Плиточный клей",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Пол ванной с плиткой, DITRA на фанере 16 мм с лагами через 406 мм",
+      "Tiled floor on wood": "Плиточный пол на дереве",
+      "Tiled-ready wood floor": "Деревянный пол",
       "Tiles at least 50 x 50 mm.": "Плитка не менее 50 × 50 мм.",
       "Tongue-and-groove": "Шпунт-паз",
+      "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Разделительная и гидроизоляционная мембрана; стыки пола со стенами закрывают KERDI-BAND",
       "Uncoupling membrane": "Разделительная мембрана",
+      "Uncoupling membrane, bonded with modified thin-set": "Разделительная мембрана, приклеенная модифицированным клеем",
       "United States": "США",
       "Unmodified thin-set mortar": "Немодифицированный плиточный клей",
       "Use": "Назначение",
@@ -4785,11 +5066,14 @@
       "Waste pipe connection": "Подключение к канализации",
       "Waste pipe size": "Диаметр канализационной трубы",
       "Waste pipe sizes": "Диаметры канализационной трубы",
+      "Waterproof bathroom floor on wood": "Водонепроницаемый пол ванной на дереве",
       "Waterproof building panel": "Водонепроницаемая строительная плита",
+      "Waterproof tiled wall": "Водонепроницаемая облицованная стена",
       "Waterproofing band": "Гидроизоляционная лента",
       "Waterproofing standard": "Стандарт гидроизоляции",
       "Where the material is used": "Где применяется материал",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "С поддонами T, TS или TT вокруг корпуса трапа и трубы нужна компенсационная плита KERDI-SHOWER-CB 89 мм (с. 2).",
+      "Wood or metal studs": "Деревянные или металлические стойки",
       "Yes": "Да"
     },
     "fr": {
@@ -4802,8 +5086,14 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 po (3/4 po nominal), bouveté. La pierre naturelle exige une double couche, quel que soit l'espacement des solives.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Panneau de 25 mm pour les bagues d'adaptation KERDI-DRAIN-A ou KERDI-LINE-A; panneau de 89 mm pour le corps du KERDI-DRAIN-H et le tuyau sous les receveurs T, TS ou TT (p. 2).",
       "3 in (75 mm) waste pipe": "Tuyau d'évacuation de 75 mm (3 po)",
+      "A dry-room floor on wood joists, finished with engineered wood.": "Un plancher de pièce sèche sur solives de bois, fini en bois d'ingénierie.",
       "A second layer (underlayment) at least 10 mm is required.": "Une deuxième couche (sous-couche) d'au moins 10 mm est requise.",
+      "A shower or wet-area wall waterproofed behind the tile.": "Un mur de douche ou de zone humide imperméabilisé derrière le carreau.",
+      "A sloped tray drained to a point drain, waterproofed and tiled.": "Un receveur en pente vers un drain ponctuel, imperméabilisé et carrelé.",
+      "A standard dry-room wall of gypsum board on studs.": "Un mur standard de pièce sèche en plaques de gypse sur montants.",
+      "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Un plancher de salle de bain carrelé et imperméabilisé sur sous-plancher de bois.",
       "ABS or PVC": "ABS ou PVC",
+      "Acoustic underlayment": "Sous-couche acoustique",
       "Allowed floor framing": "Ossature de plancher admise",
       "Allowed floor waterproofing": "Imperméabilisation de plancher admise",
       "Allowed mountings": "Modes de pose admis",
@@ -4818,6 +5108,7 @@
       "Attached directly to the waste line with solvent cement.": "Raccordé directement à la conduite d'évacuation avec de la colle à solvant.",
       "Bathtub surround": "Pourtour de baignoire",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Coller la membrane avec ALL-SET, FAST-SET ou un mortier-colle modifié.",
+      "Bonded waterproofing at joints and corners": "Imperméabilisation collée aux joints et aux coins",
       "Bonds the membrane to the wood.": "Colle la membrane au support en bois.",
       "Canada": "Canada",
       "Canada only; 19 mm is still recommended.": "Au Canada seulement; 19 mm reste recommandé.",
@@ -4839,6 +5130,7 @@
       "Concrete, cured for foot traffic": "Béton mûri pour la circulation piétonne",
       "Countertop": "Comptoir",
       "Country": "Pays",
+      "Curbless shower floor": "Plancher de douche sans seuil",
       "Curbless shower in a Montreal bathroom on a wood floor": "Douche sans seuil dans une salle de bain à Montréal sur plancher de bois",
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Douche sans seuil sur sous-plancher de bois ou de béton (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Douche sans seuil avec murs en KERDI ou KERDI-BOARD. L'abaissement du plancher doit préserver la structure et peut exiger un professionnel de la conception.",
@@ -4848,6 +5140,7 @@
       "Drain placement": "Position du drain",
       "Drain system": "Type de drain",
       "Engineered I-joist": "Poutrelle en I",
+      "Engineered wood flooring": "Plancher en bois d'ingénierie",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Sauf le receveur en angle KST965NA/BF, dont le drain est excentré.",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Polystyrène expansé, 60 kg/m³, mesuré à 10 % de déformation. Tenir à l'écart des hydrocarbures, esters, amines, aldéhydes et d'une longue exposition aux UV.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Contreplaqué Exposure 1 à face réparée ou OSB recommandé.",
@@ -4858,6 +5151,7 @@
       "Flood test required": "Essai d'étanchéité par inondation requis",
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Les zones de plancher exposées à l'eau exigent KERDI ou une membrane de la famille DITRA.",
       "Floor framing": "Ossature du plancher",
+      "Floor joists": "Solives de plancher",
       "Floor waterproofing": "Imperméabilisation du plancher",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Pour les planchers où un raccord vertical est peu pratique, p. ex. un plancher de bois où l'on ne peut pas déplacer l'ouverture.",
       "Framing at most 406 mm on centre.": "Ossature à 406 mm c/c au plus.",
@@ -4865,6 +5159,7 @@
       "Framing at most 610 mm on centre.": "Ossature à 610 mm c/c au plus.",
       "Framing must be joists, I-joists, trusses.": "L'ossature doit être en solives, poutrelles en I ou fermes.",
       "Fully embedded in thin-set mortar on an existing wall": "Entièrement noyé dans le mortier-colle sur un mur existant",
+      "Grout": "Coulis",
       "Gypsum wallboard": "Panneau de gypse",
       "Height compensation board": "Panneau de compensation de hauteur",
       "Horizontal connection to a waste pipe beside the drain": "Raccord horizontal à un tuyau situé à côté du drain",
@@ -4921,16 +5216,23 @@
       "Oriented strand board": "Panneau à copeaux orientés (OSB)",
       "Outlet 8 in from the channel end, to avoid obstacles such as joists.": "Sortie à 8 po de l'extrémité du canal, pour éviter des obstacles comme les solives.",
       "Outlet distance from the channel end": "Distance de la sortie à l'extrémité du canal",
+      "Painted wall": "Mur peint",
       "Plywood": "Contreplaqué",
+      "Plywood subfloor": "Sous-plancher en contreplaqué",
+      "Plywood subfloor, 16 mm tongue-and-groove": "Sous-plancher en contreplaqué, 16 mm, bouveté",
+      "Point drain with a bonded flange": "Drain ponctuel avec bride d'adhérence",
+      "Porcelain mosaic tile": "Mosaïque de porcelaine",
       "Porcelain tile": "Carreau de porcelaine",
       "Portland cement mortar": "Mortier de ciment Portland",
       "Portland cement mortar bed": "Lit de mortier de ciment Portland",
       "Prefabricated shower ramp": "Rampe de douche préfabriquée",
       "Prefabricated sloped shower tray": "Receveur de douche préfabriqué en pente",
+      "Primer and paint": "Apprêt et peinture",
       "Raising the tray around a drain or adaptor": "Rehausse du receveur autour d'un drain ou d'un adaptateur",
       "Recessed curbless shower over a wood subfloor (K-SHCR)": "Douche sans seuil encastrée sur sous-plancher de bois (K-SHCR)",
       "Recessed curbless shower over the wood floor": "Douche sans seuil encastrée sur le plancher de bois",
       "Recessed shower with joists at 488 mm": "Douche encastrée avec solives à 488 mm",
+      "Recessed wood subfloor between the joists": "Sous-plancher de bois abaissé entre les solives",
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Recommandé si le débit dépasse 9,5 L/min (2,5 gal/min), p. ex. plusieurs pommeaux ou jets de corps (p. 6).",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Requise dans la zone mouillée et la zone de séchage; jonctions plancher/mur scellées avec KERDI-BAND.",
       "Schluter ALL-SET": "Schluter ALL-SET",
@@ -4941,8 +5243,12 @@
       "Schluter DITRA-XL": "Schluter DITRA-XL",
       "Schluter FAST-SET": "Schluter FAST-SET",
       "Schluter KERDI": "Schluter KERDI",
+      "Schluter KERDI-BAND": "Schluter KERDI-BAND",
+      "Schluter KERDI-BOARD": "Schluter KERDI-BOARD",
+      "Schluter KERDI-DRAIN": "Schluter KERDI-DRAIN",
       "Schluter KERDI-DRAIN point drain": "Drain ponctuel Schluter KERDI-DRAIN",
       "Schluter KERDI-LINE linear drain": "Drain linéaire Schluter KERDI-LINE",
+      "Schluter KERDI-SHOWER tray": "Receveur Schluter KERDI-SHOWER",
       "Schluter KERDI-SHOWER-LT tray": "Receveur Schluter KERDI-SHOWER-LT",
       "Schluter KERDI-SHOWER-LTS tray": "Receveur Schluter KERDI-SHOWER-LTS",
       "Schluter KERDI-SHOWER-T tray": "Receveur Schluter KERDI-SHOWER-T",
@@ -4961,6 +5267,7 @@
       "Shower drain with integrated bonding flange": "Drain de douche avec bride d'adhérence intégrée",
       "Shower floor": "Plancher de douche",
       "Shower wall": "Mur de douche",
+      "Sloped shower tray with integrated waterproofing": "Receveur en pente avec imperméabilisation intégrée",
       "Smaller formats need Schluter technical services (page 21).": "Les formats plus petits exigent l'avis du service technique de Schluter (p. 21).",
       "Spot-bonded with thin-set mortar on an existing wall": "Collé par points au mortier-colle sur un mur existant",
       "Square edge": "Rive droite",
@@ -5000,6 +5307,7 @@
       "The tray is made for one drain system: T, TS and TT trays take a KERDI-DRAIN point drain, LT and LTS trays take a KERDI-LINE linear drain.": "Le receveur est conçu pour un seul type de drain : T, TS et TT reçoivent le drain ponctuel KERDI-DRAIN, LT et LTS le drain linéaire KERDI-LINE.",
       "Thickness": "Épaisseur",
       "Thin tray with a KERDI-DRAIN point drain": "Receveur mince avec drain ponctuel KERDI-DRAIN",
+      "Thin-set mortar": "Mortier-colle",
       "This detail is for ceramic or porcelain tile.": "Ce détail vise les carreaux de céramique ou de porcelaine.",
       "This detail is for natural stone.": "Ce détail vise la pierre naturelle.",
       "Tile material": "Matériau du carreau",
@@ -5008,11 +5316,16 @@
       "Tile over DITRA on a single-layer wood subfloor, joists at 406 mm (D-W16-T)": "Carreaux sur DITRA, sous-plancher de bois à simple couche, solives à 406 mm (D-W16-T)",
       "Tile over DITRA on a single-layer wood subfloor, joists at 488 mm (D-W19-T)": "Carreaux sur DITRA, sous-plancher de bois à simple couche, solives à 488 mm (D-W19-T)",
       "Tile over DITRA-XL on a single-layer wood subfloor, framing at 610 mm (D-W24-XL-T)": "Carreaux sur DITRA-XL, sous-plancher de bois à simple couche, ossature à 610 mm (D-W24-XL-T)",
+      "Tile over an uncoupling membrane, so the tile does not crack as the wood moves.": "Carreau sur membrane de désolidarisation, pour qu'il ne fissure pas quand le bois bouge.",
       "Tile setting mortar": "Mortier-colle",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Plancher de salle de bain carrelé, DITRA sur contreplaqué de 16 mm, solives à 406 mm",
+      "Tiled floor on wood": "Plancher carrelé sur bois",
+      "Tiled-ready wood floor": "Plancher de bois",
       "Tiles at least 50 x 50 mm.": "Carreaux d'au moins 50 × 50 mm.",
       "Tongue-and-groove": "Bouveté",
+      "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Membrane de désolidarisation et d'imperméabilisation; jonctions plancher/mur scellées avec KERDI-BAND",
       "Uncoupling membrane": "Membrane de désolidarisation",
+      "Uncoupling membrane, bonded with modified thin-set": "Membrane de désolidarisation, collée au mortier-colle modifié",
       "United States": "États-Unis",
       "Unmodified thin-set mortar": "Mortier-colle non modifié",
       "Use": "Usage",
@@ -5023,11 +5336,14 @@
       "Waste pipe connection": "Raccord à l'évacuation",
       "Waste pipe size": "Diamètre du tuyau d'évacuation",
       "Waste pipe sizes": "Diamètres de tuyau d'évacuation",
+      "Waterproof bathroom floor on wood": "Plancher de salle de bain étanche sur bois",
       "Waterproof building panel": "Panneau de construction étanche",
+      "Waterproof tiled wall": "Mur carrelé étanche",
       "Waterproofing band": "Bande d'imperméabilisation",
       "Waterproofing standard": "Norme d'imperméabilisation",
       "Where the material is used": "Où le matériau est utilisé",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "Avec les receveurs T, TS ou TT, le panneau de compensation KERDI-SHOWER-CB de 89 mm est requis autour du corps du drain et du tuyau (p. 2).",
+      "Wood or metal studs": "Montants de bois ou de métal",
       "Yes": "Oui"
     }
   }
