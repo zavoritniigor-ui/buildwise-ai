@@ -67,6 +67,12 @@ export function surfaceArea(room: Room, surface: SurfaceId): number {
   return Math.round(perimeter * WALL_HEIGHT * 100) / 100;
 }
 
+/** Length of the floor/wall joint a surface runs along, in metres. */
+export function surfacePerimeter(room: Room, surface: SurfaceId): number {
+  const r = surface === "shower" && room.shower ? room.shower : room.rect;
+  return Math.round(2 * (r.width + r.depth) * 100) / 100;
+}
+
 /**
  * Wall segments as [x1, z1, x2, z2]. Each shared edge appears once, so the
  * walls between rooms are not drawn twice.

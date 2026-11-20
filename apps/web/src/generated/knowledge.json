@@ -4318,7 +4318,7 @@
   "buildups": [
     {
       "id": "dry-floor-wood",
-      "title": "Tiled-ready wood floor",
+      "title": "Wood floor",
       "summary": "A dry-room floor on wood joists, finished with engineered wood.",
       "layers": [
         {
@@ -4328,15 +4328,39 @@
         {
           "role": "substrate",
           "label": "Plywood subfloor",
-          "material": "Plywood"
+          "material": "Plywood",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "plywood subfloor 5/8 tongue and groove"
+          }
         },
         {
           "role": "underlayment",
-          "label": "Acoustic underlayment"
+          "label": "Acoustic underlayment",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.05,
+            "basis": "geometry",
+            "search": "flooring underlayment"
+          }
         },
         {
           "role": "covering",
-          "label": "Engineered wood flooring"
+          "label": "Engineered wood flooring",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.08,
+            "basis": "geometry",
+            "search": "engineered hardwood flooring"
+          }
         }
       ]
     },
@@ -4352,7 +4376,35 @@
         {
           "role": "substrate",
           "label": "Plywood subfloor",
-          "material": "Plywood"
+          "material": "Plywood",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "plywood subfloor 5/8 tongue and groove"
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar under the membrane",
+          "quantity": {
+            "per": "area",
+            "amount": 2.12,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "modified thinset mortar",
+            "source": {
+              "document": "ditra-handbook",
+              "page": 19
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "membrane",
@@ -4361,19 +4413,59 @@
           "source": {
             "document": "ditra-handbook",
             "page": 4
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Schluter DITRA"
           }
         },
         {
           "role": "mortar",
-          "label": "Unmodified thin-set mortar"
+          "label": "Unmodified thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 6.13,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "unmodified thinset mortar",
+            "source": {
+              "document": "ditra-handbook",
+              "page": 19
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "covering",
-          "label": "Porcelain tile"
+          "label": "Porcelain tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "porcelain floor tile"
+          }
         },
         {
           "role": "grout",
-          "label": "Grout"
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
         }
       ]
     },
@@ -4389,7 +4481,35 @@
         {
           "role": "substrate",
           "label": "Plywood subfloor, 16 mm tongue-and-groove",
-          "material": "Plywood"
+          "material": "Plywood",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "plywood subfloor 5/8 tongue and groove"
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar under the membrane",
+          "quantity": {
+            "per": "area",
+            "amount": 2.12,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "modified thinset mortar",
+            "source": {
+              "document": "ditra-handbook",
+              "page": 19
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "membrane",
@@ -4398,19 +4518,76 @@
           "source": {
             "document": "ditra-handbook",
             "page": 14
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Schluter DITRA"
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Waterproofing band at the floor and wall joints",
+          "material": "Schluter KERDI-BAND",
+          "source": {
+            "document": "ditra-handbook",
+            "page": 14
+          },
+          "quantity": {
+            "per": "perimeter",
+            "amount": 1,
+            "unit": "m",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Schluter KERDI-BAND"
           }
         },
         {
           "role": "mortar",
-          "label": "Unmodified thin-set mortar"
+          "label": "Unmodified thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 6.13,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "unmodified thinset mortar",
+            "source": {
+              "document": "ditra-handbook",
+              "page": 19
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "covering",
-          "label": "Porcelain tile"
+          "label": "Porcelain tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "porcelain floor tile"
+          }
         },
         {
           "role": "grout",
-          "label": "Grout"
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
         }
       ]
     },
@@ -4430,6 +4607,14 @@
           "source": {
             "document": "shower-data-sheet",
             "page": 2
+          },
+          "quantity": {
+            "per": "each",
+            "amount": 1,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "geometry",
+            "search": "Schluter KERDI-SHOWER-TT KST915/1220BF"
           }
         },
         {
@@ -4439,19 +4624,55 @@
           "source": {
             "document": "shower-data-sheet",
             "page": 5
+          },
+          "quantity": {
+            "per": "each",
+            "amount": 1,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "geometry",
+            "search": "Schluter KERDI-DRAIN kit"
           }
         },
         {
           "role": "mortar",
-          "label": "Unmodified thin-set mortar"
+          "label": "Unmodified thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 6,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "unmodified thinset mortar",
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "covering",
-          "label": "Porcelain mosaic tile"
+          "label": "Porcelain mosaic tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.15,
+            "basis": "geometry",
+            "search": "porcelain mosaic tile"
+          }
         },
         {
           "role": "grout",
-          "label": "Grout"
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
         }
       ]
     },
@@ -4466,11 +4687,27 @@
         },
         {
           "role": "substrate",
-          "label": "Gypsum wallboard"
+          "label": "Gypsum wallboard",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "drywall 1/2 inch"
+          }
         },
         {
           "role": "finish",
-          "label": "Primer and paint"
+          "label": "Primer and paint",
+          "quantity": {
+            "per": "area",
+            "amount": 0.25,
+            "unit": "L",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "interior paint"
+          }
         }
       ]
     },
@@ -4490,24 +4727,68 @@
           "source": {
             "document": "kerdi-board-tds",
             "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Schluter KERDI-BOARD"
           }
         },
         {
           "role": "membrane",
           "label": "Bonded waterproofing at joints and corners",
-          "material": "Schluter KERDI-BAND"
+          "material": "Schluter KERDI-BAND",
+          "quantity": {
+            "per": "area",
+            "amount": 0.9,
+            "unit": "m",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Schluter KERDI-BAND"
+          }
         },
         {
           "role": "mortar",
-          "label": "Thin-set mortar"
+          "label": "Thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "unmodified thinset mortar",
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
         },
         {
           "role": "covering",
-          "label": "Ceramic tile"
+          "label": "Ceramic tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "ceramic wall tile"
+          }
         },
         {
           "role": "grout",
-          "label": "Grout"
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
         }
       ]
     }
@@ -4658,6 +4939,7 @@
       "Minimum tile size": "Найменший розмір плитки",
       "Minimum working temperature": "Найнижча температура монтажу",
       "Modified thin-set mortar": "Модифікований клейовий розчин",
+      "Modified thin-set mortar under the membrane": "Модифікований клейовий розчин під мембраною",
       "Mortar over the membrane": "Розчин над мембраною",
       "Mortar under the membrane": "Розчин під мембраною",
       "Mortars allowed over the membrane": "Дозволені розчини над мембраною",
@@ -4780,7 +5062,6 @@
       "Tile setting mortar": "Клейовий розчин для плитки",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Підлога ванної з плиткою, DITRA на фанері 16 мм з лагами через 406 мм",
       "Tiled floor on wood": "Плиткова підлога на дереві",
-      "Tiled-ready wood floor": "Дерев'яна підлога",
       "Tiles at least 50 x 50 mm.": "Плитка щонайменше 50 × 50 мм.",
       "Tongue-and-groove": "Шпунт-паз",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Розділювальна й гідроізоляційна мембрана; стики підлоги зі стінами закривають KERDI-BAND",
@@ -4800,9 +5081,11 @@
       "Waterproof building panel": "Водонепроникна будівельна плита",
       "Waterproof tiled wall": "Водонепроникна облицьована стіна",
       "Waterproofing band": "Гідроізоляційна стрічка",
+      "Waterproofing band at the floor and wall joints": "Гідроізоляційна стрічка на стиках підлоги зі стінами",
       "Waterproofing standard": "Стандарт гідроізоляції",
       "Where the material is used": "Де застосовується матеріал",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "З піддонами T, TS чи TT навколо корпусу трапа й труби потрібна компенсаційна плита KERDI-SHOWER-CB 89 мм (с. 2).",
+      "Wood floor": "Дерев'яна підлога",
       "Wood or metal studs": "Дерев'яні чи металеві стійки",
       "Yes": "Так"
     },
@@ -4928,6 +5211,7 @@
       "Minimum tile size": "Наименьший размер плитки",
       "Minimum working temperature": "Наименьшая температура монтажа",
       "Modified thin-set mortar": "Модифицированный плиточный клей",
+      "Modified thin-set mortar under the membrane": "Модифицированный плиточный клей под мембраной",
       "Mortar over the membrane": "Клей над мембраной",
       "Mortar under the membrane": "Клей под мембраной",
       "Mortars allowed over the membrane": "Допустимые клеи над мембраной",
@@ -5050,7 +5334,6 @@
       "Tile setting mortar": "Плиточный клей",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Пол ванной с плиткой, DITRA на фанере 16 мм с лагами через 406 мм",
       "Tiled floor on wood": "Плиточный пол на дереве",
-      "Tiled-ready wood floor": "Деревянный пол",
       "Tiles at least 50 x 50 mm.": "Плитка не менее 50 × 50 мм.",
       "Tongue-and-groove": "Шпунт-паз",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Разделительная и гидроизоляционная мембрана; стыки пола со стенами закрывают KERDI-BAND",
@@ -5070,9 +5353,11 @@
       "Waterproof building panel": "Водонепроницаемая строительная плита",
       "Waterproof tiled wall": "Водонепроницаемая облицованная стена",
       "Waterproofing band": "Гидроизоляционная лента",
+      "Waterproofing band at the floor and wall joints": "Гидроизоляционная лента на стыках пола со стенами",
       "Waterproofing standard": "Стандарт гидроизоляции",
       "Where the material is used": "Где применяется материал",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "С поддонами T, TS или TT вокруг корпуса трапа и трубы нужна компенсационная плита KERDI-SHOWER-CB 89 мм (с. 2).",
+      "Wood floor": "Деревянный пол",
       "Wood or metal studs": "Деревянные или металлические стойки",
       "Yes": "Да"
     },
@@ -5198,6 +5483,7 @@
       "Minimum tile size": "Format minimal du carreau",
       "Minimum working temperature": "Température de pose minimale",
       "Modified thin-set mortar": "Mortier-colle modifié",
+      "Modified thin-set mortar under the membrane": "Mortier-colle modifié sous la membrane",
       "Mortar over the membrane": "Mortier sur la membrane",
       "Mortar under the membrane": "Mortier sous la membrane",
       "Mortars allowed over the membrane": "Mortiers admis sur la membrane",
@@ -5320,7 +5606,6 @@
       "Tile setting mortar": "Mortier-colle",
       "Tiled bathroom floor, DITRA on 16 mm plywood at 406 mm": "Plancher de salle de bain carrelé, DITRA sur contreplaqué de 16 mm, solives à 406 mm",
       "Tiled floor on wood": "Plancher carrelé sur bois",
-      "Tiled-ready wood floor": "Plancher de bois",
       "Tiles at least 50 x 50 mm.": "Carreaux d'au moins 50 × 50 mm.",
       "Tongue-and-groove": "Bouveté",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Membrane de désolidarisation et d'imperméabilisation; jonctions plancher/mur scellées avec KERDI-BAND",
@@ -5340,9 +5625,11 @@
       "Waterproof building panel": "Panneau de construction étanche",
       "Waterproof tiled wall": "Mur carrelé étanche",
       "Waterproofing band": "Bande d'imperméabilisation",
+      "Waterproofing band at the floor and wall joints": "Bande d'imperméabilisation aux jonctions plancher/mur",
       "Waterproofing standard": "Norme d'imperméabilisation",
       "Where the material is used": "Où le matériau est utilisé",
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "Avec les receveurs T, TS ou TT, le panneau de compensation KERDI-SHOWER-CB de 89 mm est requis autour du corps du drain et du tuyau (p. 2).",
+      "Wood floor": "Plancher de bois",
       "Wood or metal studs": "Montants de bois ou de métal",
       "Yes": "Oui"
     }

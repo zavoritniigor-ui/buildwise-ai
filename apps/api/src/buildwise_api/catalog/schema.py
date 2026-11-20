@@ -203,11 +203,36 @@ BuildupRole = Literal[
 ]
 
 
+class Package(_Strict):
+    size: Decimal = Field(gt=0)
+    kind: Literal["bag", "roll", "box"]
+
+
+class Quantity(_Strict):
+    """How much of a layer's material one surface needs."""
+
+    per: Literal["area", "perimeter", "each"]
+    amount: Decimal = Field(gt=0)
+    unit: Literal["kg", "m2", "m", "L", "pcs"]
+    waste: Decimal = Field(default=Decimal(0), ge=0, lt=1)
+    basis: Literal["manufacturer", "geometry", "estimate"]
+    source: SourceRef | None = None
+    package: Package | None = None
+    search: str = Field(min_length=2)
+
+    @model_validator(mode="after")
+    def _manufacturer_is_cited(self) -> Self:
+        if self.basis == "manufacturer" and self.source is None:
+            raise ValueError("a manufacturer rate must cite its document and page")
+        return self
+
+
 class Layer(_Strict):
     role: BuildupRole
     label: str
     material: str | None = None
     source: SourceRef | None = None
+    quantity: Quantity | None = None
 
 
 class Buildup(_Strict):
