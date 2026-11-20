@@ -5,30 +5,125 @@
 #
 # roles (a small controlled set, labelled in the app):
 #   structure substrate underlayment membrane drain mortar covering grout finish
+#
+# quantity: how much of the layer's material one surface needs.
+#   per:    area (per m² of the surface) | perimeter (per metre of the room's
+#           floor/wall joint) | each (a fixed count per surface)
+#   amount: the rate (per m², per m or a count)
+#   unit:   kg | m2 | m | L | pcs
+#   waste:  extra fraction for cuts and overlaps (0.10 = +10 %)
+#   basis:  manufacturer (rate from a cited document) | geometry (the surface
+#           itself) | estimate (common practice, to be replaced by
+#           manufacturer data)
+#   package: optional sale unit, e.g. a 22.68 kg bag, to count packages
+#   search: the query opened in the retailers' own search
+#
+# Mortar rates come from the DITRA handbook, page 19: one 50 lb (22.68 kg) bag
+# bonds 150 ft² (10.7 m²) of DITRA, and sets 40-50 ft² (3.7-4.6 m²) of tile on
+# DITRA; the conservative end (3.7 m²) is used.
 
 buildups:
   - id: dry-floor-wood
-    title: Tiled-ready wood floor
+    title: Wood floor
     summary: A dry-room floor on wood joists, finished with engineered wood.
     layers:
       - { role: structure, label: Floor joists }
-      - { role: substrate, label: Plywood subfloor, material: Plywood }
-      - { role: underlayment, label: Acoustic underlayment }
-      - { role: covering, label: Engineered wood flooring }
+      - role: substrate
+        label: Plywood subfloor
+        material: Plywood
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: plywood subfloor 5/8 tongue and groove,
+          }
+      - role: underlayment
+        label: Acoustic underlayment
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.05,
+            basis: geometry,
+            search: flooring underlayment,
+          }
+      - role: covering
+        label: Engineered wood flooring
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.08,
+            basis: geometry,
+            search: engineered hardwood flooring,
+          }
 
   - id: tiled-floor-wood
     title: Tiled floor on wood
     summary: Tile over an uncoupling membrane, so the tile does not crack as the wood moves.
     layers:
       - { role: structure, label: Floor joists }
-      - { role: substrate, label: Plywood subfloor, material: Plywood }
+      - role: substrate
+        label: Plywood subfloor
+        material: Plywood
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: plywood subfloor 5/8 tongue and groove,
+          }
+      - role: mortar
+        label: Modified thin-set mortar under the membrane
+        quantity:
+          {
+            per: area,
+            amount: 2.12,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: ditra-handbook, page: 19 },
+            package: { size: 22.68, kind: bag },
+            search: modified thinset mortar,
+          }
       - role: membrane
         label: Uncoupling membrane, bonded with modified thin-set
         material: Schluter DITRA
         source: { document: ditra-handbook, page: 4 }
-      - { role: mortar, label: Unmodified thin-set mortar }
-      - { role: covering, label: Porcelain tile }
-      - { role: grout, label: Grout }
+        quantity:
+          { per: area, amount: 1, unit: m2, waste: 0.1, basis: geometry, search: Schluter DITRA }
+      - role: mortar
+        label: Unmodified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 6.13,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: ditra-handbook, page: 19 },
+            package: { size: 22.68, kind: bag },
+            search: unmodified thinset mortar,
+          }
+      - role: covering
+        label: Porcelain tile
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: porcelain floor tile,
+          }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
 
   - id: wet-floor-wood
     title: Waterproof bathroom floor on wood
@@ -38,13 +133,72 @@ buildups:
       - role: substrate
         label: Plywood subfloor, 16 mm tongue-and-groove
         material: Plywood
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: plywood subfloor 5/8 tongue and groove,
+          }
+      - role: mortar
+        label: Modified thin-set mortar under the membrane
+        quantity:
+          {
+            per: area,
+            amount: 2.12,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: ditra-handbook, page: 19 },
+            package: { size: 22.68, kind: bag },
+            search: modified thinset mortar,
+          }
       - role: membrane
         label: Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND
         material: Schluter DITRA
         source: { document: ditra-handbook, page: 14 }
-      - { role: mortar, label: Unmodified thin-set mortar }
-      - { role: covering, label: Porcelain tile }
-      - { role: grout, label: Grout }
+        quantity:
+          { per: area, amount: 1, unit: m2, waste: 0.1, basis: geometry, search: Schluter DITRA }
+      - role: membrane
+        label: Waterproofing band at the floor and wall joints
+        material: Schluter KERDI-BAND
+        source: { document: ditra-handbook, page: 14 }
+        quantity:
+          {
+            per: perimeter,
+            amount: 1,
+            unit: m,
+            waste: 0.1,
+            basis: geometry,
+            search: Schluter KERDI-BAND,
+          }
+      - role: mortar
+        label: Unmodified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 6.13,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: ditra-handbook, page: 19 },
+            package: { size: 22.68, kind: bag },
+            search: unmodified thinset mortar,
+          }
+      - role: covering
+        label: Porcelain tile
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: porcelain floor tile,
+          }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
 
   - id: curbless-shower-floor
     title: Curbless shower floor
@@ -55,21 +209,58 @@ buildups:
         label: Sloped shower tray with integrated waterproofing
         material: Schluter KERDI-SHOWER tray
         source: { document: shower-data-sheet, page: 2 }
+        quantity:
+          {
+            per: each,
+            amount: 1,
+            unit: pcs,
+            basis: geometry,
+            search: Schluter KERDI-SHOWER-TT KST915/1220BF,
+          }
       - role: drain
         label: Point drain with a bonded flange
         material: Schluter KERDI-DRAIN
         source: { document: shower-data-sheet, page: 5 }
-      - { role: mortar, label: Unmodified thin-set mortar }
-      - { role: covering, label: Porcelain mosaic tile }
-      - { role: grout, label: Grout }
+        quantity:
+          { per: each, amount: 1, unit: pcs, basis: geometry, search: Schluter KERDI-DRAIN kit }
+      - role: mortar
+        label: Unmodified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 6,
+            unit: kg,
+            basis: estimate,
+            package: { size: 22.68, kind: bag },
+            search: unmodified thinset mortar,
+          }
+      - role: covering
+        label: Porcelain mosaic tile
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.15,
+            basis: geometry,
+            search: porcelain mosaic tile,
+          }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 1, unit: kg, basis: estimate, search: sanded grout }
 
   - id: painted-wall
     title: Painted wall
     summary: A standard dry-room wall of gypsum board on studs.
     layers:
       - { role: structure, label: Wood or metal studs }
-      - { role: substrate, label: Gypsum wallboard }
-      - { role: finish, label: Primer and paint }
+      - role: substrate
+        label: Gypsum wallboard
+        quantity:
+          { per: area, amount: 1, unit: m2, waste: 0.1, basis: geometry, search: drywall 1/2 inch }
+      - role: finish
+        label: Primer and paint
+        quantity: { per: area, amount: 0.25, unit: L, basis: estimate, search: interior paint }
 
   - id: tiled-wet-wall
     title: Waterproof tiled wall
@@ -80,12 +271,37 @@ buildups:
         label: Waterproof building panel
         material: Schluter KERDI-BOARD
         source: { document: kerdi-board-tds, page: 1 }
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: Schluter KERDI-BOARD,
+          }
       - role: membrane
         label: Bonded waterproofing at joints and corners
         material: Schluter KERDI-BAND
-      - { role: mortar, label: Thin-set mortar }
-      - { role: covering, label: Ceramic tile }
-      - { role: grout, label: Grout }
+        quantity: { per: area, amount: 0.9, unit: m, basis: estimate, search: Schluter KERDI-BAND }
+      - role: mortar
+        label: Thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 5,
+            unit: kg,
+            basis: estimate,
+            package: { size: 22.68, kind: bag },
+            search: unmodified thinset mortar,
+          }
+      - role: covering
+        label: Ceramic tile
+        quantity:
+          { per: area, amount: 1, unit: m2, waste: 0.1, basis: geometry, search: ceramic wall tile }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
 
 # Which build-up each surface of the demo house proposes.
 surfaces:

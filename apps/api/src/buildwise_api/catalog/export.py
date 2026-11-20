@@ -193,6 +193,24 @@ def _layer(layer: schema.Layer) -> Json:
         out["material"] = layer.material
     if layer.source is not None:
         out["source"] = _source(layer.source)
+    if layer.quantity is not None:
+        out["quantity"] = _quantity(layer.quantity)
+    return out
+
+
+def _quantity(quantity: schema.Quantity) -> Json:
+    out: dict[str, Json] = {
+        "per": quantity.per,
+        "amount": _number(quantity.amount),
+        "unit": quantity.unit,
+        "waste": _number(quantity.waste),
+        "basis": quantity.basis,
+        "search": quantity.search,
+    }
+    if quantity.source is not None:
+        out["source"] = _source(quantity.source)
+    if quantity.package is not None:
+        out["package"] = {"size": _number(quantity.package.size), "kind": quantity.package.kind}
     return out
 
 
@@ -299,10 +317,12 @@ def snapshot(data_dir: Path) -> Json:
     known_buildups = {b.id for b in buildups.buildups}
     for buildup in buildups.buildups:
         for layer in buildup.layers:
-            if layer.source is not None and layer.source.document not in documents:
-                raise ValueError(
-                    f"buildup {buildup.id!r} cites unknown document {layer.source.document!r}"
-                )
+            cited = [layer.source, layer.quantity.source if layer.quantity else None]
+            for ref in (r for r in cited if r is not None):
+                if ref.document not in documents:
+                    raise ValueError(
+                        f"buildup {buildup.id!r} cites unknown document {ref.document!r}"
+                    )
     for room, surfaces in buildups.surfaces.items():
         for surface, bid in surfaces.items():
             if bid not in known_buildups:

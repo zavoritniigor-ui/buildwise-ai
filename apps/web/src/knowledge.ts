@@ -106,11 +106,27 @@ export type BuildupRole =
   | "grout"
   | "finish";
 
+export interface Quantity {
+  /** area: per m² of the surface; perimeter: per metre of floor/wall joint; each: a fixed count */
+  per: "area" | "perimeter" | "each";
+  amount: number;
+  unit: "kg" | "m2" | "m" | "L" | "pcs";
+  /** extra fraction for cuts and overlaps */
+  waste: number;
+  /** manufacturer: cited rate; geometry: the surface itself; estimate: common practice */
+  basis: "manufacturer" | "geometry" | "estimate";
+  source?: SourceRef;
+  package?: { size: number; kind: "bag" | "roll" | "box" };
+  /** the query opened in the retailers' own search */
+  search: string;
+}
+
 export interface Layer {
   role: BuildupRole;
   label: string;
   material?: string;
   source?: SourceRef;
+  quantity?: Quantity;
 }
 
 export interface Buildup {

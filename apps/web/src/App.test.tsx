@@ -96,3 +96,28 @@ test("the build-up is translated", async () => {
   const buildup = screen.getByRole("region", { name: "Пропонований пиріг" });
   expect(within(buildup).getByText("Лаги перекриття")).toBeDefined();
 });
+
+test("collecting the purchase lists each material with store search links", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Floor" }));
+  fireEvent.click(screen.getByRole("button", { name: "Collect purchase" }));
+  const list = screen.getByRole("region", { name: "Shopping list" });
+  expect(within(list).getByText("39.4 kg · 2 × bag of 22.68 kg")).toBeDefined();
+  const ditra = within(list).getByRole("list", { name: "Find Schluter DITRA in stores" });
+  const rona = within(ditra).getByRole("link", { name: "RONA" });
+  expect(rona.getAttribute("href")).toBe("https://www.rona.ca/en/search?q=Schluter%20DITRA");
+  expect(rona.getAttribute("target")).toBe("_blank");
+});
+
+test("each layer shows its rate per square metre", async () => {
+  renderApp("uk");
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Підлога" }));
+  const buildup = screen.getByRole("region", { name: "Пропонований пиріг" });
+  expect(within(buildup).getByText("2,12 кг на 1 м²")).toBeDefined();
+  expect(
+    within(buildup).getAllByRole("link", { name: "Schluter-DITRA Installation Handbook, с. 19" })
+      .length,
+  ).toBe(2);
+});
