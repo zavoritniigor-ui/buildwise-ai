@@ -205,7 +205,7 @@ BuildupRole = Literal[
 
 class Package(_Strict):
     size: Decimal = Field(gt=0)
-    kind: Literal["bag", "roll", "box", "pail", "can"]
+    kind: Literal["bag", "roll", "box", "pail", "can", "sheet"]
 
 
 class Quantity(_Strict):

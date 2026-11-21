@@ -66,11 +66,31 @@ def test_liquid_membrane_and_paint_rates_come_from_their_data_sheets() -> None:
 
 
 def test_gypsum_finishing_rates_come_from_the_cgc_handbook() -> None:
-    for search, amount in (("drywall joint tape", "1.13"), ("all purpose joint compound", "0.63")):
+    for search, amount in (
+        ("drywall joint tape", "1.13"),
+        ("Sheetrock all purpose lite joint compound", "0.36"),
+    ):
         rate = _rate("painted-moisture-wall", search)
         assert rate.amount == Decimal(amount)
         assert rate.source is not None
         assert (rate.source.document, rate.source.page) == ("cgc-handbook-ch03", 3)
+    compound = _rate("painted-wall", "Sheetrock all purpose lite joint compound")
+    assert compound.package is not None
+    assert (compound.package.size, compound.package.kind) == (Decimal("17"), "pail")
+
+
+def test_gypsum_board_is_counted_in_4x8_sheets() -> None:
+    board = _rate("painted-wall", "Sheetrock drywall 1/2 4x8")
+    assert board.package is not None and board.package.kind == "sheet"
+    # 1220 x 2440 mm
+    assert board.package.size == Decimal("2.97")
+
+
+def test_wall_paint_rate_comes_from_regal_select() -> None:
+    paint = _rate("painted-wall", "Benjamin Moore Regal Select")
+    assert paint.basis == "manufacturer"
+    # two coats at 37.1 m2 per 3.79 L
+    assert paint.amount == Decimal("0.21")
 
 
 def test_a_surface_must_offer_distinct_build_ups() -> None:
