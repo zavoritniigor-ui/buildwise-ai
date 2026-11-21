@@ -1,5 +1,5 @@
-# Benjamin Moore Aura Bath & Spa interior paint, from the manufacturer's own
-# Canadian technical data sheet (K532). Cited by page of the PDF.
+# Benjamin Moore interior paints (Aura Bath & Spa K532, Regal Select K549),
+# from the manufacturer's own Canadian technical data sheets. Cited by page of the PDF.
 #
 # Status: documents only; the build-ups in buildups.yaml cite these pages.
 
@@ -17,5 +17,14 @@ documents:
     pages: 2
     sha256: 8d62d9f3f20049d524cfabce48303f06c19032485762ff01ea4626588fdb002b
     retrieved_on: 2026-11-20
+
+  - id: regal-select-tds
+    type: tds
+    title: Regal Select Premium Interior Paint & Primer Eggshell (K549), Technical Data Sheet
+    url: https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0549/K549_TDS_CE.pdf
+    version: ©2014, 2018
+    pages: 2
+    sha256: 0176ca273b14df78578dd905b8cdd6de77ed39a92019e9ee50fa344a93f63ebf
+    retrieved_on: 2026-11-21
 
 categories: []

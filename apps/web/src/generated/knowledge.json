@@ -5,6 +5,11 @@
       "url": "https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0532/K532_TDS_CE.pdf",
       "version": "©2017, 2025"
     },
+    "regal-select-tds": {
+      "title": "Regal Select Premium Interior Paint & Primer Eggshell (K549), Technical Data Sheet",
+      "url": "https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0549/K549_TDS_CE.pdf",
+      "version": "©2014, 2018"
+    },
     "cgc-handbook-ch04": {
       "title": "CGC Gypsum Construction Handbook, Chapter 4 Cement Board Construction",
       "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch04-cement-board-construction-can-en.pdf",
@@ -19,6 +24,16 @@
       "title": "CGC Sheetrock Brand UltraLight Panels Mold Tough, Submittal Sheet",
       "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/sheetrock-brand-ultralight-panels-mold-tough-data-sheet-en-can.pdf",
       "version": "EWB2660-CAN-ENG rev. 5-20"
+    },
+    "cgc-handbook-ch01": {
+      "title": "CGC Gypsum Construction Handbook, Chapter 1 Drywall and Veneer Plaster Products",
+      "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch01-drywall-and-veneer-plaster-products-can-en.pdf",
+      "version": "Canadian edition"
+    },
+    "cgc-finishings-catalog": {
+      "title": "CGC Interior Finishings Catalog (J1424)",
+      "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-interior-finishings-catalog-en-J1424.pdf",
+      "version": "J1424-CAN-ENG rev. 08/22"
     },
     "redgard-sell-sheet": {
       "title": "RedGard Family Sell Sheet (SS178)",
@@ -4716,34 +4731,237 @@
     {
       "id": "painted-wall",
       "title": "Painted wall",
-      "summary": "A standard dry-room wall of gypsum board on studs.",
+      "summary": "A standard dry-room wall of gypsum board on studs, taped, finished and painted.",
       "layers": [
         {
           "role": "structure",
-          "label": "Wood or metal studs"
+          "label": "Wood or metal studs, 400 mm apart"
         },
         {
           "role": "substrate",
-          "label": "Gypsum wallboard",
+          "label": "Gypsum board, 12.7 mm",
+          "material": "CGC Sheetrock 1/2 in panels",
+          "source": {
+            "document": "cgc-handbook-ch01",
+            "page": 9
+          },
           "quantity": {
             "per": "area",
             "amount": 1,
             "unit": "m2",
             "waste": 0.1,
             "basis": "geometry",
-            "search": "drywall 1/2 inch"
+            "search": "Sheetrock drywall 1/2 4x8",
+            "source": {
+              "document": "cgc-handbook-ch01",
+              "page": 9
+            },
+            "package": {
+              "size": 2.97,
+              "kind": "sheet"
+            }
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Drywall screws, Type W",
+          "material": "Drywall screws, Type W",
+          "quantity": {
+            "per": "area",
+            "amount": 10,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall screws 1 1/4",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
           }
         },
         {
           "role": "finish",
-          "label": "Primer and paint",
+          "label": "Paper joint tape",
           "quantity": {
             "per": "area",
-            "amount": 0.25,
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall joint tape",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            },
+            "package": {
+              "size": 76.2,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Lightweight all-purpose ready-mixed joint compound",
+          "material": "CGC Sheetrock All Purpose Lite",
+          "quantity": {
+            "per": "area",
+            "amount": 0.36,
             "unit": "L",
             "waste": 0,
+            "basis": "manufacturer",
+            "search": "Sheetrock all purpose lite joint compound",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            },
+            "package": {
+              "size": 17,
+              "kind": "pail"
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Interior paint and primer, two coats",
+          "material": "Benjamin Moore Regal Select",
+          "source": {
+            "document": "regal-select-tds",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.21,
+            "unit": "L",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Benjamin Moore Regal Select",
+            "source": {
+              "document": "regal-select-tds",
+              "page": 1
+            },
+            "package": {
+              "size": 3.79,
+              "kind": "can"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "painted-ceiling",
+      "title": "Painted ceiling",
+      "summary": "A dry-room ceiling of gypsum board on joists or strapping, taped, finished and painted.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Ceiling joists or strapping"
+        },
+        {
+          "role": "substrate",
+          "label": "Gypsum board, 12.7 mm",
+          "material": "CGC Sheetrock 1/2 in panels",
+          "source": {
+            "document": "cgc-handbook-ch01",
+            "page": 9
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Sheetrock drywall 1/2 4x8",
+            "source": {
+              "document": "cgc-handbook-ch01",
+              "page": 9
+            },
+            "package": {
+              "size": 2.97,
+              "kind": "sheet"
+            }
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Drywall screws, Type W, 300 mm apart on ceilings",
+          "material": "Drywall screws, Type W",
+          "quantity": {
+            "per": "area",
+            "amount": 12,
+            "unit": "pcs",
+            "waste": 0,
             "basis": "estimate",
-            "search": "interior paint"
+            "search": "drywall screws 1 1/4",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 11
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Paper joint tape",
+          "quantity": {
+            "per": "area",
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall joint tape",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            },
+            "package": {
+              "size": 76.2,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Lightweight all-purpose ready-mixed joint compound",
+          "material": "CGC Sheetrock All Purpose Lite",
+          "quantity": {
+            "per": "area",
+            "amount": 0.36,
+            "unit": "L",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Sheetrock all purpose lite joint compound",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            },
+            "package": {
+              "size": 17,
+              "kind": "pail"
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Interior paint and primer, two coats",
+          "material": "Benjamin Moore Regal Select",
+          "source": {
+            "document": "regal-select-tds",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.21,
+            "unit": "L",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Benjamin Moore Regal Select",
+            "source": {
+              "document": "regal-select-tds",
+              "page": 1
+            },
+            "package": {
+              "size": 3.79,
+              "kind": "can"
+            }
           }
         }
       ]
@@ -4997,7 +5215,15 @@
             "unit": "m2",
             "waste": 0.1,
             "basis": "geometry",
-            "search": "Durock cement board 1/2"
+            "search": "Durock cement board 1/2",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 2
+            },
+            "package": {
+              "size": 1.39,
+              "kind": "sheet"
+            }
           }
         },
         {
@@ -5132,7 +5358,15 @@
             "unit": "m2",
             "waste": 0.1,
             "basis": "geometry",
-            "search": "Sheetrock Mold Tough 1/2"
+            "search": "Sheetrock Mold Tough 1/2",
+            "source": {
+              "document": "cgc-handbook-ch01",
+              "page": 9
+            },
+            "package": {
+              "size": 2.97,
+              "kind": "sheet"
+            }
           }
         },
         {
@@ -5164,22 +5398,31 @@
             "source": {
               "document": "cgc-handbook-ch03",
               "page": 3
+            },
+            "package": {
+              "size": 76.2,
+              "kind": "roll"
             }
           }
         },
         {
           "role": "finish",
-          "label": "All-purpose ready-mixed joint compound",
+          "label": "Lightweight all-purpose ready-mixed joint compound",
+          "material": "CGC Sheetrock All Purpose Lite",
           "quantity": {
             "per": "area",
-            "amount": 0.63,
-            "unit": "kg",
+            "amount": 0.36,
+            "unit": "L",
             "waste": 0,
             "basis": "manufacturer",
-            "search": "all purpose joint compound",
+            "search": "Sheetrock all purpose lite joint compound",
             "source": {
               "document": "cgc-handbook-ch03",
               "page": 3
+            },
+            "package": {
+              "size": 17,
+              "kind": "pail"
             }
           }
         },
@@ -5233,7 +5476,15 @@
             "unit": "m2",
             "waste": 0.1,
             "basis": "geometry",
-            "search": "Sheetrock Mold Tough 1/2"
+            "search": "Sheetrock Mold Tough 1/2",
+            "source": {
+              "document": "cgc-handbook-ch01",
+              "page": 9
+            },
+            "package": {
+              "size": 2.97,
+              "kind": "sheet"
+            }
           }
         },
         {
@@ -5266,22 +5517,31 @@
             "source": {
               "document": "cgc-handbook-ch03",
               "page": 3
+            },
+            "package": {
+              "size": 76.2,
+              "kind": "roll"
             }
           }
         },
         {
           "role": "finish",
-          "label": "All-purpose ready-mixed joint compound",
+          "label": "Lightweight all-purpose ready-mixed joint compound",
+          "material": "CGC Sheetrock All Purpose Lite",
           "quantity": {
             "per": "area",
-            "amount": 0.63,
-            "unit": "kg",
+            "amount": 0.36,
+            "unit": "L",
             "waste": 0,
             "basis": "manufacturer",
-            "search": "all purpose joint compound",
+            "search": "Sheetrock all purpose lite joint compound",
             "source": {
               "document": "cgc-handbook-ch03",
               "page": 3
+            },
+            "package": {
+              "size": 17,
+              "kind": "pail"
             }
           }
         },
@@ -5828,10 +6088,27 @@
       "measure": "each",
       "summary": "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.",
       "search": "riser clamp 3 inch"
+    },
+    {
+      "id": "electrical_box",
+      "name": "Electrical box",
+      "category": "electrical",
+      "measure": "each",
+      "summary": "Size the box for the number of wires and devices it holds; use a box rated for the fixture's weight under a ceiling light.",
+      "search": "electrical box"
+    },
+    {
+      "id": "nmd90_cable",
+      "name": "NMD90 cable 14/2",
+      "category": "electrical",
+      "measure": "length",
+      "summary": "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.",
+      "search": "NMD90 14/2"
     }
   ],
   "translations": {
     "uk": {
+      "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.": "Мідний NMD90 14/2 підходить для ліній освітлення й розеток на 15 А; для більших навантажень потрібен 12/2 на автоматі 20 А.",
       "19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.": "19/32 дюйма (номінально 5/8 дюйма), шпунт-паз, зазор 3 мм (1/8 дюйма) між листами.",
       "2 in (50 mm) waste pipe": "Каналізаційна труба 50 мм (2 дюйми)",
       "2 in no-hub outlet with a mechanical coupling.": "Вихід 2 дюйми без розтруба, з механічною муфтою.",
@@ -5842,13 +6119,14 @@
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для перехідних кілець KERDI-DRAIN-A чи KERDI-LINE-A; плита 89 мм — для корпусу KERDI-DRAIN-H і труби під піддонами T, TS чи TT (с. 2).",
       "3 in (75 mm) waste pipe": "Каналізаційна труба 75 мм (3 дюйми)",
       "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Стеля ванної з вологостійкого й стійкого до плісняви гіпсокартону, зі стрічкою на швах, шпаклюванням і фарбою для ванних.",
+      "A dry-room ceiling of gypsum board on joists or strapping, taped, finished and painted.": "Стеля сухої кімнати: гіпсокартон на балках чи обрешітці, зі стрічкою на швах, шпаклюванням і фарбою.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Підлога сухої кімнати на дерев'яних лагах з інженерною дошкою.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Найкраще працює витяжка з виведенням назовні; вона має бути не вужчою за варильну поверхню.",
       "A second layer (underlayment) at least 10 mm is required.": "Потрібен другий шар (підкладка) завтовшки щонайменше 10 мм.",
       "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe.": "Для душу з витратою 9,5–20 л/хв потрібна відвідна труба щонайменше 2 дюйми.",
       "A shower or wet-area wall waterproofed behind the tile.": "Стіна душової чи вологої зони з гідроізоляцією під плиткою.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Піддон з ухилом до точкового трапа, гідроізольований і облицьований плиткою.",
-      "A standard dry-room wall of gypsum board on studs.": "Звичайна стіна сухої кімнати: гіпсокартон на стійках.",
+      "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Звичайна стіна сухої кімнати: гіпсокартон на стійках, зі стрічкою на швах, шпаклюванням і фарбою.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиткова підлога ванної на дерев'яній основі, на цементній плиті, покритій рідкою гідроізоляцією.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицьована плиткою стіна душової чи вологої зони з цементної плити, покритої рідкою гідроізоляцією.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицьована плиткою гідроізольована підлога ванної на дерев'яній основі.",
@@ -5866,7 +6144,6 @@
       "ABS sanitary tee": "Санітарний трійник ABS",
       "Acoustic underlayment": "Акустична підкладка",
       "Alkali-resistant joint tape, 50 mm": "Лугостійка стрічка для швів, 50 мм",
-      "All-purpose ready-mixed joint compound": "Готова універсальна шпаклівка для швів",
       "Allowed floor framing": "Дозволені несучі елементи підлоги",
       "Allowed floor waterproofing": "Дозволена гідроізоляція підлоги",
       "Allowed mountings": "Дозволені способи монтажу",
@@ -5890,6 +6167,7 @@
       "Bathtub surround": "Стіни навколо ванни",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Перед купівлею виміряйте відстань від готової стіни до центру каналізаційного отвору в підлозі.",
       "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
+      "Benjamin Moore Regal Select": "Benjamin Moore Regal Select",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеять на ALL-SET, FAST-SET або модифікований клейовий розчин.",
       "Bonded waterproofing at joints and corners": "Приклеювана гідроізоляція на стиках і кутах",
       "Bonds the membrane to the wood.": "Приклеює мембрану до дерев'яної основи.",
@@ -5901,6 +6179,8 @@
       "CGC Durock": "CGC Durock",
       "CGC Durock interior tape": "Стрічка CGC Durock для внутрішніх робіт",
       "CGC Durock wood screws": "Шурупи CGC Durock по дереву",
+      "CGC Sheetrock 1/2 in panels": "Гіпсокартон CGC Sheetrock 1/2 дюйма",
+      "CGC Sheetrock All Purpose Lite": "CGC Sheetrock All Purpose Lite",
       "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Меблева ручка",
       "Canada": "Канада",
@@ -5954,6 +6234,7 @@
       "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупи для гіпсокартону, тип W, крок 300 мм на стелі",
       "Duplex receptacle": "Подвійна розетка",
       "Electric baseboard heater": "Електричний конвектор",
+      "Electrical box": "Монтажна коробка",
       "Electrical panel": "Електричний щиток",
       "Engineered I-joist": "Двотаврова клеєна балка",
       "Engineered wood flooring": "Інженерна дерев'яна підлога",
@@ -5983,6 +6264,7 @@
       "Fully embedded in thin-set mortar on an existing wall": "Повністю вклеєна в клейовий розчин на наявній стіні",
       "GFCI receptacle": "Розетка з захистом від витоку (GFCI)",
       "Grout": "Затирка",
+      "Gypsum board, 12.7 mm": "Гіпсокартон, 12,7 мм",
       "Gypsum wallboard": "Гіпсокартон",
       "Hangers must not compress, cut or abrade the pipe; add one at each change of direction.": "Підвіс не має перетискати, різати чи стирати трубу; ставте його й на кожному повороті.",
       "Hard-wired, interconnected alarms sound together; a combined unit also detects carbon monoxide.": "Дротові з'єднані між собою датчики спрацьовують разом; комбінований датчик виявляє й чадний газ.",
@@ -5992,6 +6274,7 @@
       "How the waste pipe reaches the drain": "Як каналізаційна труба підходить до трапа",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "З вбудованою гідроізоляцією KERDI; для пандусів до душових без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутрішня суха чи мокра підлога. DITRA не замінює деформаційних швів; де потрібна водонепроникна підлога, стики та примикання підлоги до стін закривають KERDI-BAND.",
+      "Interior paint and primer, two coats": "Інтер'єрна фарба з ґрунтом, два шари",
       "Interior wet-area floor": "Підлога у вологому приміщенні",
       "Interior wet-area wall": "Стіна у вологому приміщенні",
       "Intermittent-use steam shower": "Парова душова періодичного використання",
@@ -6010,6 +6293,7 @@
       "Kitchen sink": "Кухонна мийка",
       "Kitchen wall cabinet": "Верхня кухонна шафа",
       "Light switch": "Вимикач",
+      "Lightweight all-purpose ready-mixed joint compound": "Легка готова універсальна шпаклівка для швів",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Лінійний душовий трап",
       "Liquid waterproofing membrane, rolled on": "Рідка гідроізоляційна мембрана, наноситься валиком",
@@ -6049,6 +6333,7 @@
       "Mortar under the membrane": "Розчин під мембраною",
       "Mortars allowed over the membrane": "Дозволені розчини над мембраною",
       "Mortars allowed under the membrane": "Дозволені розчини під мембраною",
+      "NMD90 cable 14/2": "Кабель NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Натуральний камінь на одному шарі: система питає про другий шар",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Натуральний камінь на DITRA по двошаровій дерев'яній основі (D-W-S)",
       "Natural stone tile": "Плитка з натурального каменю",
@@ -6077,6 +6362,7 @@
       "PEX pipe, 1/2 in": "Труба PEX, 1/2 дюйма",
       "PEX pipe, 3/4 in": "Труба PEX, 3/4 дюйма",
       "PEX tee": "Трійник PEX",
+      "Painted ceiling": "Фарбована стеля",
       "Painted wall": "Пофарбована стіна",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Поєднайте із засувним замком і перевірте отвір у дверях та відступ від краю.",
       "Paper joint tape": "Паперова стрічка для швів",
@@ -6093,7 +6379,6 @@
       "Prefabricated shower ramp": "Готовий пандус для душової",
       "Prefabricated sloped shower tray": "Готовий піддон з ухилом",
       "Prehung interior door": "Міжкімнатні двері з коробкою",
-      "Primer and paint": "Ґрунтовка і фарба",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Кульові вентилі на чверть оберту дають змогу перекрити окремий прилад, не вимикаючи воду в домі.",
       "Rain shower head": "Тропічна душова лійка",
       "Raising the tray around a drain or adaptor": "Підняття піддона навколо трапа чи перехідника",
@@ -6147,6 +6432,7 @@
       "Shut-off valve": "Запірний вентиль",
       "Single-hole or widespread: match the holes in the vanity top.": "На один отвір чи розставний: звірте з отворами в стільниці.",
       "Size it to the room's heat loss, not only its area, and keep it clear of curtains.": "Підбирайте потужність за тепловтратами кімнати, а не лише за площею, і не закривайте його шторами.",
+      "Size the box for the number of wires and devices it holds; use a box rated for the fixture's weight under a ceiling light.": "Підбирайте коробку за кількістю проводів і пристроїв; під стельовий світильник — коробку, розраховану на його вагу.",
       "Sloped shower tray with integrated waterproofing": "Піддон з ухилом і вбудованою гідроізоляцією",
       "Smaller formats need Schluter technical services (page 21).": "Для менших форматів зверніться до технічної служби Schluter (с. 21).",
       "Smoke and CO alarm": "Датчик диму та CO",
@@ -6245,6 +6531,7 @@
       "Yes": "Так"
     },
     "ru": {
+      "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.": "Медный NMD90 14/2 подходит для линий освещения и розеток на 15 А; для больших нагрузок нужен 12/2 на автомате 20 А.",
       "19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.": "19/32 дюйма (номинально 5/8 дюйма), шпунт-паз, зазор 3 мм (1/8 дюйма) между листами.",
       "2 in (50 mm) waste pipe": "Канализационная труба 50 мм (2 дюйма)",
       "2 in no-hub outlet with a mechanical coupling.": "Выход 2 дюйма без раструба, с механической муфтой.",
@@ -6255,13 +6542,14 @@
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для переходных колец KERDI-DRAIN-A или KERDI-LINE-A; плита 89 мм — для корпуса KERDI-DRAIN-H и трубы под поддонами T, TS или TT (с. 2).",
       "3 in (75 mm) waste pipe": "Канализационная труба 75 мм (3 дюйма)",
       "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Потолок ванной из влагостойкого и устойчивого к плесени гипсокартона, с лентой на швах, шпаклёвкой и краской для ванных.",
+      "A dry-room ceiling of gypsum board on joists or strapping, taped, finished and painted.": "Потолок сухой комнаты: гипсокартон на балках или обрешётке, с лентой на швах, шпаклёвкой и краской.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Пол сухой комнаты на деревянных лагах с инженерной доской.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Лучше всего работает вытяжка с выводом наружу; она должна быть не уже варочной поверхности.",
       "A second layer (underlayment) at least 10 mm is required.": "Нужен второй слой (подложка) толщиной не менее 10 мм.",
       "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe.": "Для душа с расходом 9,5–20 л/мин нужна отводная труба не менее 2 дюймов.",
       "A shower or wet-area wall waterproofed behind the tile.": "Стена душевой или влажной зоны с гидроизоляцией под плиткой.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Поддон с уклоном к точечному трапу, гидроизолированный и облицованный плиткой.",
-      "A standard dry-room wall of gypsum board on studs.": "Обычная стена сухой комнаты: гипсокартон на стойках.",
+      "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Обычная стена сухой комнаты: гипсокартон на стойках, с лентой на швах, шпаклёвкой и краской.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиточный пол ванной на деревянном основании, на цементной плите, покрытой жидкой гидроизоляцией.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицованная плиткой стена душевой или влажной зоны из цементной плиты, покрытой жидкой гидроизоляцией.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицованный плиткой гидроизолированный пол ванной на деревянном основании.",
@@ -6279,7 +6567,6 @@
       "ABS sanitary tee": "Санитарный тройник ABS",
       "Acoustic underlayment": "Акустическая подложка",
       "Alkali-resistant joint tape, 50 mm": "Щелочестойкая лента для швов, 50 мм",
-      "All-purpose ready-mixed joint compound": "Готовая универсальная шпаклёвка для швов",
       "Allowed floor framing": "Допустимые несущие элементы пола",
       "Allowed floor waterproofing": "Допустимая гидроизоляция пола",
       "Allowed mountings": "Допустимые способы монтажа",
@@ -6303,6 +6590,7 @@
       "Bathtub surround": "Стены вокруг ванны",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Перед покупкой измерьте расстояние от готовой стены до центра канализационного отверстия в полу.",
       "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
+      "Benjamin Moore Regal Select": "Benjamin Moore Regal Select",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеят на ALL-SET, FAST-SET или модифицированный плиточный клей.",
       "Bonded waterproofing at joints and corners": "Приклеиваемая гидроизоляция на стыках и углах",
       "Bonds the membrane to the wood.": "Приклеивает мембрану к деревянному основанию.",
@@ -6314,6 +6602,8 @@
       "CGC Durock": "CGC Durock",
       "CGC Durock interior tape": "Лента CGC Durock для внутренних работ",
       "CGC Durock wood screws": "Шурупы CGC Durock по дереву",
+      "CGC Sheetrock 1/2 in panels": "Гипсокартон CGC Sheetrock 1/2 дюйма",
+      "CGC Sheetrock All Purpose Lite": "CGC Sheetrock All Purpose Lite",
       "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Мебельная ручка",
       "Canada": "Канада",
@@ -6367,6 +6657,7 @@
       "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупы для гипсокартона, тип W, шаг 300 мм на потолке",
       "Duplex receptacle": "Двойная розетка",
       "Electric baseboard heater": "Электрический конвектор",
+      "Electrical box": "Монтажная коробка",
       "Electrical panel": "Электрический щиток",
       "Engineered I-joist": "Двутавровая клеёная балка",
       "Engineered wood flooring": "Инженерная деревянная доска",
@@ -6396,6 +6687,7 @@
       "Fully embedded in thin-set mortar on an existing wall": "Полностью вклеена в плиточный клей на существующей стене",
       "GFCI receptacle": "Розетка с защитой от утечки (GFCI)",
       "Grout": "Затирка",
+      "Gypsum board, 12.7 mm": "Гипсокартон, 12,7 мм",
       "Gypsum wallboard": "Гипсокартон",
       "Hangers must not compress, cut or abrade the pipe; add one at each change of direction.": "Подвес не должен пережимать, резать или истирать трубу; ставьте его и на каждом повороте.",
       "Hard-wired, interconnected alarms sound together; a combined unit also detects carbon monoxide.": "Проводные связанные между собой датчики срабатывают вместе; комбинированный датчик обнаруживает и угарный газ.",
@@ -6405,6 +6697,7 @@
       "How the waste pipe reaches the drain": "Как канализационная труба подходит к трапу",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Со встроенной гидроизоляцией KERDI; для пандусов к душевым без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутренний сухой или мокрый пол. DITRA не заменяет деформационных швов; где нужен водонепроницаемый пол, стыки и примыкания пола к стенам закрывают KERDI-BAND.",
+      "Interior paint and primer, two coats": "Интерьерная краска с грунтом, два слоя",
       "Interior wet-area floor": "Пол во влажном помещении",
       "Interior wet-area wall": "Стена во влажном помещении",
       "Intermittent-use steam shower": "Паровая душевая периодического использования",
@@ -6423,6 +6716,7 @@
       "Kitchen sink": "Кухонная мойка",
       "Kitchen wall cabinet": "Верхний кухонный шкаф",
       "Light switch": "Выключатель",
+      "Lightweight all-purpose ready-mixed joint compound": "Лёгкая готовая универсальная шпаклёвка для швов",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Линейный душевой трап",
       "Liquid waterproofing membrane, rolled on": "Жидкая гидроизоляционная мембрана, наносится валиком",
@@ -6462,6 +6756,7 @@
       "Mortar under the membrane": "Клей под мембраной",
       "Mortars allowed over the membrane": "Допустимые клеи над мембраной",
       "Mortars allowed under the membrane": "Допустимые клеи под мембраной",
+      "NMD90 cable 14/2": "Кабель NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Натуральный камень на одном слое: система спрашивает о втором слое",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Натуральный камень на DITRA по двухслойному деревянному основанию (D-W-S)",
       "Natural stone tile": "Плитка из натурального камня",
@@ -6490,6 +6785,7 @@
       "PEX pipe, 1/2 in": "Труба PEX, 1/2 дюйма",
       "PEX pipe, 3/4 in": "Труба PEX, 3/4 дюйма",
       "PEX tee": "Тройник PEX",
+      "Painted ceiling": "Окрашенный потолок",
       "Painted wall": "Окрашенная стена",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Совместите с засовным замком и проверьте отверстие в двери и отступ от края.",
       "Paper joint tape": "Бумажная лента для швов",
@@ -6506,7 +6802,6 @@
       "Prefabricated shower ramp": "Готовый пандус для душевой",
       "Prefabricated sloped shower tray": "Готовый поддон с уклоном",
       "Prehung interior door": "Межкомнатная дверь с коробкой",
-      "Primer and paint": "Грунтовка и краска",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Шаровые вентили на четверть оборота позволяют перекрыть отдельный прибор, не отключая воду в доме.",
       "Rain shower head": "Тропический душ",
       "Raising the tray around a drain or adaptor": "Подъём поддона вокруг трапа или переходника",
@@ -6560,6 +6855,7 @@
       "Shut-off valve": "Запорный вентиль",
       "Single-hole or widespread: match the holes in the vanity top.": "На одно отверстие или раздельный: сверьте с отверстиями в столешнице.",
       "Size it to the room's heat loss, not only its area, and keep it clear of curtains.": "Подбирайте мощность по теплопотерям комнаты, а не только по площади, и не закрывайте его шторами.",
+      "Size the box for the number of wires and devices it holds; use a box rated for the fixture's weight under a ceiling light.": "Подбирайте коробку по количеству проводов и устройств; под потолочный светильник — коробку, рассчитанную на его вес.",
       "Sloped shower tray with integrated waterproofing": "Поддон с уклоном и встроенной гидроизоляцией",
       "Smaller formats need Schluter technical services (page 21).": "Для меньших форматов обратитесь в техническую службу Schluter (с. 21).",
       "Smoke and CO alarm": "Датчик дыма и CO",
@@ -6658,6 +6954,7 @@
       "Yes": "Да"
     },
     "fr": {
+      "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.": "Le NMD90 14/2 en cuivre convient aux circuits d'éclairage et de prises de 15 A; les charges plus fortes exigent du 12/2 sur un disjoncteur de 20 A.",
       "19/32 in (5/8 in nominal) tongue-and-groove, 1/8 in (3 mm) gap between sheets.": "19/32 po (5/8 po nominal), bouveté, joint de 3 mm (1/8 po) entre les panneaux.",
       "2 in (50 mm) waste pipe": "Tuyau d'évacuation de 50 mm (2 po)",
       "2 in no-hub outlet with a mechanical coupling.": "Sortie sans emboîtement de 2 po avec raccord mécanique.",
@@ -6668,13 +6965,14 @@
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Panneau de 25 mm pour les bagues d'adaptation KERDI-DRAIN-A ou KERDI-LINE-A; panneau de 89 mm pour le corps du KERDI-DRAIN-H et le tuyau sous les receveurs T, TS ou TT (p. 2).",
       "3 in (75 mm) waste pipe": "Tuyau d'évacuation de 75 mm (3 po)",
       "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Plafond de salle de bain en panneaux de gypse résistants à l'humidité et à la moisissure, tirés à joints et peints avec une peinture pour salle de bain.",
+      "A dry-room ceiling of gypsum board on joists or strapping, taped, finished and painted.": "Plafond de pièce sèche : panneaux de gypse sur solives ou fourrures, tirés à joints et peints.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Un plancher de pièce sèche sur solives de bois, fini en bois d'ingénierie.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Une hotte évacuée vers l'extérieur est la plus efficace; prenez-la au moins aussi large que la surface de cuisson.",
       "A second layer (underlayment) at least 10 mm is required.": "Une deuxième couche (sous-couche) d'au moins 10 mm est requise.",
       "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe.": "Une douche débitant de 9,5 à 20 L/min exige un tuyau d'évacuation d'au moins 2 po.",
       "A shower or wet-area wall waterproofed behind the tile.": "Un mur de douche ou de zone humide imperméabilisé derrière le carreau.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Un receveur en pente vers un drain ponctuel, imperméabilisé et carrelé.",
-      "A standard dry-room wall of gypsum board on studs.": "Un mur standard de pièce sèche en plaques de gypse sur montants.",
+      "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Mur ordinaire de pièce sèche : panneaux de gypse sur montants, tirés à joints et peints.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Plancher de salle de bain carrelé sur un sous-plancher de bois, sur une sous-couche de panneau de ciment enduite d'une membrane d'étanchéité liquide.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Mur de douche ou de zone humide carrelé, en panneau de ciment enduit d'une membrane d'étanchéité liquide.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Un plancher de salle de bain carrelé et imperméabilisé sur sous-plancher de bois.",
@@ -6692,7 +6990,6 @@
       "ABS sanitary tee": "Té sanitaire ABS",
       "Acoustic underlayment": "Sous-couche acoustique",
       "Alkali-resistant joint tape, 50 mm": "Ruban à joints résistant aux alcalis, 50 mm",
-      "All-purpose ready-mixed joint compound": "Composé à joints tout usage prémélangé",
       "Allowed floor framing": "Ossature de plancher admise",
       "Allowed floor waterproofing": "Imperméabilisation de plancher admise",
       "Allowed mountings": "Modes de pose admis",
@@ -6716,6 +7013,7 @@
       "Bathtub surround": "Pourtour de baignoire",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Avant l'achat, mesurez la distance du mur fini au centre du drain au plancher.",
       "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
+      "Benjamin Moore Regal Select": "Benjamin Moore Regal Select",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Coller la membrane avec ALL-SET, FAST-SET ou un mortier-colle modifié.",
       "Bonded waterproofing at joints and corners": "Imperméabilisation collée aux joints et aux coins",
       "Bonds the membrane to the wood.": "Colle la membrane au support en bois.",
@@ -6727,6 +7025,8 @@
       "CGC Durock": "CGC Durock",
       "CGC Durock interior tape": "Ruban intérieur CGC Durock",
       "CGC Durock wood screws": "Vis à bois CGC Durock",
+      "CGC Sheetrock 1/2 in panels": "Panneaux CGC Sheetrock de 1/2 po",
+      "CGC Sheetrock All Purpose Lite": "CGC Sheetrock All Purpose Lite",
       "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Poignée d'armoire",
       "Canada": "Canada",
@@ -6780,6 +7080,7 @@
       "Drywall screws, Type W, 300 mm apart on ceilings": "Vis à gypse, type W, aux 300 mm au plafond",
       "Duplex receptacle": "Prise de courant double",
       "Electric baseboard heater": "Plinthe électrique",
+      "Electrical box": "Boîte électrique",
       "Electrical panel": "Panneau électrique",
       "Engineered I-joist": "Poutrelle en I",
       "Engineered wood flooring": "Plancher en bois d'ingénierie",
@@ -6809,6 +7110,7 @@
       "Fully embedded in thin-set mortar on an existing wall": "Entièrement noyé dans le mortier-colle sur un mur existant",
       "GFCI receptacle": "Prise DDFT",
       "Grout": "Coulis",
+      "Gypsum board, 12.7 mm": "Panneau de gypse, 12,7 mm",
       "Gypsum wallboard": "Panneau de gypse",
       "Hangers must not compress, cut or abrade the pipe; add one at each change of direction.": "Le support ne doit pas comprimer, couper ni user le tuyau; ajoutez-en un à chaque changement de direction.",
       "Hard-wired, interconnected alarms sound together; a combined unit also detects carbon monoxide.": "Des avertisseurs raccordés et reliés entre eux sonnent ensemble; un appareil combiné détecte aussi le monoxyde de carbone.",
@@ -6818,6 +7120,7 @@
       "How the waste pipe reaches the drain": "Arrivée du tuyau d'évacuation au drain",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Imperméabilisation KERDI intégrée; sert à construire des rampes d'accès aux douches sans seuil.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Plancher intérieur sec ou humide. DITRA ne remplace pas les joints de mouvement; si le plancher doit être étanche, les joints et les jonctions plancher/mur reçoivent KERDI-BAND.",
+      "Interior paint and primer, two coats": "Peinture d'intérieur et apprêt, deux couches",
       "Interior wet-area floor": "Plancher intérieur en zone humide",
       "Interior wet-area wall": "Mur intérieur en zone humide",
       "Intermittent-use steam shower": "Douche vapeur à usage intermittent",
@@ -6836,6 +7139,7 @@
       "Kitchen sink": "Évier de cuisine",
       "Kitchen wall cabinet": "Armoire de cuisine du haut",
       "Light switch": "Interrupteur",
+      "Lightweight all-purpose ready-mixed joint compound": "Composé à joints tout usage léger prémélangé",
       "Line-voltage thermostat": "Thermostat électronique",
       "Linear shower drain": "Drain de douche linéaire",
       "Liquid waterproofing membrane, rolled on": "Membrane d'étanchéité liquide, appliquée au rouleau",
@@ -6875,6 +7179,7 @@
       "Mortar under the membrane": "Mortier sous la membrane",
       "Mortars allowed over the membrane": "Mortiers admis sur la membrane",
       "Mortars allowed under the membrane": "Mortiers admis sous la membrane",
+      "NMD90 cable 14/2": "Câble NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Pierre naturelle sur une seule couche : le système demande la deuxième couche",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Pierre naturelle sur DITRA sur plancher de bois à double couche (D-W-S)",
       "Natural stone tile": "Carreau de pierre naturelle",
@@ -6903,6 +7208,7 @@
       "PEX pipe, 1/2 in": "Tuyau PEX, 1/2 po",
       "PEX pipe, 3/4 in": "Tuyau PEX, 3/4 po",
       "PEX tee": "Té PEX",
+      "Painted ceiling": "Plafond peint",
       "Painted wall": "Mur peint",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Associez-la à un pêne dormant et vérifiez le trou de la porte et l'écartement.",
       "Paper joint tape": "Ruban à joints en papier",
@@ -6919,7 +7225,6 @@
       "Prefabricated shower ramp": "Rampe de douche préfabriquée",
       "Prefabricated sloped shower tray": "Receveur de douche préfabriqué en pente",
       "Prehung interior door": "Porte intérieure prémontée",
-      "Primer and paint": "Apprêt et peinture",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Un robinet quart de tour permet de fermer chaque appareil sans couper l'eau de la maison.",
       "Rain shower head": "Pomme de douche pluie",
       "Raising the tray around a drain or adaptor": "Rehausse du receveur autour d'un drain ou d'un adaptateur",
@@ -6973,6 +7278,7 @@
       "Shut-off valve": "Robinet d'arrêt",
       "Single-hole or widespread: match the holes in the vanity top.": "Monotrou ou à trois trous : suivez les trous du dessus de meuble.",
       "Size it to the room's heat loss, not only its area, and keep it clear of curtains.": "Choisissez la puissance selon les pertes de chaleur de la pièce, pas seulement sa surface, et dégagez-la des rideaux.",
+      "Size the box for the number of wires and devices it holds; use a box rated for the fixture's weight under a ceiling light.": "Choisissez la boîte selon le nombre de fils et de dispositifs; sous un plafonnier, prenez une boîte adaptée à son poids.",
       "Sloped shower tray with integrated waterproofing": "Receveur en pente avec imperméabilisation intégrée",
       "Smaller formats need Schluter technical services (page 21).": "Les formats plus petits exigent l'avis du service technique de Schluter (p. 21).",
       "Smoke and CO alarm": "Avertisseur de fumée et de CO",

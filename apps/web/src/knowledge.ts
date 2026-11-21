@@ -116,7 +116,7 @@ export interface Quantity {
   /** manufacturer: cited rate; geometry: the surface itself; estimate: common practice */
   basis: "manufacturer" | "geometry" | "estimate";
   source?: SourceRef;
-  package?: { size: number; kind: "bag" | "roll" | "box" | "pail" | "can" };
+  package?: { size: number; kind: "bag" | "roll" | "box" | "pail" | "can" | "sheet" };
   /** the query opened in the retailers' own search */
   search: string;
 }

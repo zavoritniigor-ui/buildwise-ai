@@ -5,6 +5,7 @@ import { ROOMS, type RoomId, type SurfaceId, findRoom } from "./house/model";
 import PlanView from "./house/PlanView";
 import { supportsWebGL } from "./house/webgl";
 
+import { CalculatorSheet } from "./ui/CalculatorSheet";
 import { InventorySheet } from "./ui/InventorySheet";
 import { ItemSheet, type Selection } from "./ui/ItemSheet";
 import { SurfaceSheet } from "./ui/SurfaceSheet";
@@ -20,6 +21,7 @@ export function App() {
   const [selection, setSelection] = useState<Selection | null>(null);
   const [listing, setListing] = useState(false);
   const [xray, setXray] = useState(false);
+  const [calculating, setCalculating] = useState(false);
   /** the technology picked per "room.surface" */
   const [choices, setChoices] = useState<Record<string, string>>({});
 
@@ -75,16 +77,26 @@ export function App() {
           <strong>BuildWise</strong>
           <span>{t.tagline}</span>
         </div>
-        <label className="language">
-          <span className="visually-hidden">{t.language}</span>
-          <select value={language} onChange={(e) => setLanguage(e.target.value as Language)}>
-            {LANGUAGES.map((l) => (
-              <option key={l.code} value={l.code}>
-                {l.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="topbar-actions">
+          <button
+            type="button"
+            className="calc-button"
+            aria-expanded={calculating}
+            onClick={() => setCalculating((open) => !open)}
+          >
+            {t.calculator}
+          </button>
+          <label className="language">
+            <span className="visually-hidden">{t.language}</span>
+            <select value={language} onChange={(e) => setLanguage(e.target.value as Language)}>
+              {LANGUAGES.map((l) => (
+                <option key={l.code} value={l.code}>
+                  {l.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </header>
 
       <nav className="crumbs" aria-label={t.house}>
@@ -150,7 +162,7 @@ export function App() {
         </div>
       )}
 
-      {listing && !leaf && (
+      {listing && !leaf && !calculating && (
         <InventorySheet
           rooms={room ? [room] : ROOMS.map((r) => r.id)}
           title={room ? t.roomList : t.houseList}
@@ -160,7 +172,7 @@ export function App() {
         />
       )}
 
-      {room && surface && (
+      {room && surface && !calculating && (
         <SurfaceSheet
           room={room}
           surface={surface}
@@ -170,7 +182,11 @@ export function App() {
         />
       )}
 
-      {selection && <ItemSheet selection={selection} onClose={() => setSelection(null)} />}
+      {selection && !calculating && (
+        <ItemSheet selection={selection} onClose={() => setSelection(null)} />
+      )}
+
+      {calculating && <CalculatorSheet onClose={() => setCalculating(false)} />}
     </div>
   );
 }

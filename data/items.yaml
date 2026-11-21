@@ -311,3 +311,14 @@ items:
     category: plumbing
     summary: "A vertical stack rests on a clamp at its base, and again at least every 7.5 m."
     search: "riser clamp 3 inch"
+  - id: electrical_box
+    name: "Electrical box"
+    category: electrical
+    summary: "Size the box for the number of wires and devices it holds; use a box rated for the fixture's weight under a ceiling light."
+    search: "electrical box"
+  - id: nmd90_cable
+    name: "NMD90 cable 14/2"
+    category: electrical
+    measure: length
+    summary: "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker."
+    search: "NMD90 14/2"

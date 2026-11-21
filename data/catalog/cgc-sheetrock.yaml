@@ -26,4 +26,21 @@ documents:
     sha256: 4439ff129ed59e451b2aaef5570992f482986935221f8f19a3d3f5723bca8f0f
     retrieved_on: 2026-11-20
 
+  - id: cgc-handbook-ch01
+    type: installation_manual
+    title: CGC Gypsum Construction Handbook, Chapter 1 Drywall and Veneer Plaster Products
+    url: https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch01-drywall-and-veneer-plaster-products-can-en.pdf
+    version: Canadian edition
+    pages: 62
+    sha256: 7740e5989ac17d48ebf9532d93101fe1c4eb573be7d2895e97d4f41e7292ec5d
+    retrieved_on: 2026-11-21
+  - id: cgc-finishings-catalog
+    type: tds
+    title: CGC Interior Finishings Catalog (J1424)
+    url: https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-interior-finishings-catalog-en-J1424.pdf
+    version: J1424-CAN-ENG rev. 08/22
+    pages: 30
+    sha256: 7d26461c6df410f8ac42cac2eace02c416f1dcb6b29dad17616a6b7b3009e456
+    retrieved_on: 2026-11-21
+
 categories: []

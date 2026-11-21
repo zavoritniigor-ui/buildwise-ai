@@ -177,9 +177,17 @@ function localSize(node: Object3D): [number, number, number] {
   return [wide ?? 0, deep ?? 0, size.y].map((m) => Math.round(m * 100)) as [number, number, number];
 }
 
-/** Makes the floors nearly clear and the pipes glow in their colours, so
- * the runs under the floor read as clearly as those in the walls. */
-function seeThrough(floors: Material[], pipes: MeshStandardMaterial[], on: boolean) {
+/** In the pipe view, shows the pipes, makes the floors nearly clear and the
+ * pipes glow in their colours, so runs under the floor read as clearly as
+ * those in the walls. */
+function seeThrough(
+  floors: Material[],
+  pipes: MeshStandardMaterial[],
+  pipeNodes: Object3D[],
+  on: boolean,
+) {
+  // pipes live inside walls and floors: show them only in the pipe view
+  for (const node of pipeNodes) node.visible = on;
   for (const material of floors) {
     material.transparent = on;
     material.opacity = on ? 0.12 : 1;
@@ -213,6 +221,8 @@ function paint(items: ItemNode[], hovered: string | null, selected: string | nul
 /** The item a pointer event hit, skipping walls cut away above the hit point. */
 function hitItem(event: ThreeEvent<PointerEvent | MouseEvent>, byNode: Map<Object3D, ItemNode>) {
   for (let n: Object3D | null = event.object; n; n = n.parent) {
+    // the raycaster also hits hidden objects, such as pipes outside the pipe view
+    if (!n.visible) return { hidden: true as const };
     const cut = n.userData.cut as Plane | undefined;
     if (cut && event.point.y > cut.constant + 0.01) return { hidden: true as const };
   }
@@ -250,11 +260,12 @@ function Model({
 }) {
   const { scene } = useGLTF(houseUrl);
   const [hovered, setHovered] = useState<string | null>(null);
-  const { model, walls, items, floors, pipes } = useMemo(() => {
+  const { model, walls, items, floors, pipes, pipeNodes } = useMemo(() => {
     const clone = scene.clone(true);
     const pieces: WallPiece[] = [];
     const floorMaterials: Material[] = [];
     const pipeMaterials: MeshStandardMaterial[] = [];
+    const pipeNodes: Object3D[] = [];
     const tagged = (n: Object3D | null): boolean =>
       !!n && (typeof n.userData.item === "string" || tagged(n.parent));
     clone.traverse((node) => {
@@ -294,6 +305,8 @@ function Model({
     });
     const found: ItemNode[] = [];
     clone.traverse((node) => {
+      if (/__plumbing_/.test(node.name) && typeof node.userData.item === "string")
+        pipeNodes.push(node);
       if (typeof node.userData.item !== "string") return;
       const materials: MeshStandardMaterial[] = [];
       node.traverse((n) => {
@@ -308,13 +321,14 @@ function Model({
       items: found,
       floors: floorMaterials,
       pipes: pipeMaterials,
+      pipeNodes,
     };
   }, [scene]);
   const byNode = useMemo(() => new Map(items.map((i) => [i.node, i])), [items]);
 
   useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, !room, xray, delta));
   useEffect(() => paint(items, hovered, selected), [items, hovered, selected]);
-  useEffect(() => seeThrough(floors, pipes, xray), [floors, pipes, xray]);
+  useEffect(() => seeThrough(floors, pipes, pipeNodes, xray), [floors, pipes, pipeNodes, xray]);
   useEffect(() => () => cursor(false), []);
 
   const roomWall = (line: ReturnType<typeof wallLine>, point: Vector3): boolean => {
