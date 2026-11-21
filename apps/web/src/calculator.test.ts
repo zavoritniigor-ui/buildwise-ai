@@ -116,7 +116,9 @@ test("grout and MAPEI products follow their own data sheets", () => {
   const unsanded = surfaceMaterials("bathroom", bath, wall, { "tile-grout": "mapei-keracolor-u" });
   expect(line(unsanded, "Mapei Keracolor U unsanded grout")?.need.total).toBe(7.2);
   expect(line(unsanded, "Polyblend Plus sanded grout")).toBeUndefined();
-  const ultraflex = surfaceMaterials("bathroom", bath, wall, { "tile-mortar": "mapei-ultraflex-2" });
+  const ultraflex = surfaceMaterials("bathroom", bath, wall, {
+    "tile-mortar": "mapei-ultraflex-2",
+  });
   // 3.26 kg/m² x 23.42 m² = 76.3 kg, four 22.7 kg bags
   expect(line(ultraflex, "Mapei Ultraflex 2")?.need.packages).toBe(4);
   const aqua = surfaceMaterials("bathroom", bath, wall, {
