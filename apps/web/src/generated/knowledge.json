@@ -1,5 +1,30 @@
 {
   "documents": {
+    "aura-bath-spa-tds": {
+      "title": "Aura Bath & Spa Waterborne Interior Paint Matte (K532), Technical Data Sheet",
+      "url": "https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0532/K532_TDS_CE.pdf",
+      "version": "©2017, 2025"
+    },
+    "cgc-handbook-ch04": {
+      "title": "CGC Gypsum Construction Handbook, Chapter 4 Cement Board Construction",
+      "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch04-cement-board-construction-can-en.pdf",
+      "version": "Canadian edition (PDF created 2005-02-07)"
+    },
+    "cgc-handbook-ch03": {
+      "title": "CGC Gypsum Construction Handbook, Chapter 3 Cladding",
+      "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch03-cladding-can-en.pdf",
+      "version": "Canadian edition (PDF created 2005-03-01)"
+    },
+    "mold-tough-ultralight": {
+      "title": "CGC Sheetrock Brand UltraLight Panels Mold Tough, Submittal Sheet",
+      "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/sheetrock-brand-ultralight-panels-mold-tough-data-sheet-en-can.pdf",
+      "version": "EWB2660-CAN-ENG rev. 5-20"
+    },
+    "redgard-sell-sheet": {
+      "title": "RedGard Family Sell Sheet (SS178)",
+      "url": "https://www.custombuildingproducts.com/wp-content/uploads/RedGard_Family_SellSheet_SS178.pdf",
+      "version": "SS178 8/26R"
+    },
     "ditra-handbook": {
       "title": "Schluter-DITRA Installation Handbook",
       "url": "https://assets.schluter.com/asset/570120892212/document_943vbnqrgt3ol0fc95n9ofe057/ditra-installation-handbook.pdf",
@@ -4791,29 +4816,537 @@
           }
         }
       ]
+    },
+    {
+      "id": "wet-floor-cement-board",
+      "title": "Cement board floor with liquid waterproofing",
+      "summary": "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Floor joists"
+        },
+        {
+          "role": "substrate",
+          "label": "Plywood subfloor, 16 mm tongue-and-groove",
+          "material": "Plywood",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "plywood subfloor 5/8 tongue and groove"
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar bed under the cement board",
+          "quantity": {
+            "per": "area",
+            "amount": 3,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "modified thinset mortar",
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "underlayment",
+          "label": "Cement board underlayment, 8 mm",
+          "material": "CGC Durock",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 2
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Durock cement board underlayment"
+          }
+        },
+        {
+          "role": "underlayment",
+          "label": "Cement board screws, 200 mm apart on floors",
+          "material": "CGC Durock wood screws",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 3
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 25,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Durock cement board screws",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Liquid waterproofing membrane, rolled on",
+          "material": "Custom RedGard",
+          "source": {
+            "document": "redgard-sell-sheet",
+            "page": 2
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.74,
+            "unit": "L",
+            "waste": 0.1,
+            "basis": "manufacturer",
+            "search": "RedGard waterproofing membrane",
+            "source": {
+              "document": "redgard-sell-sheet",
+              "page": 2
+            },
+            "package": {
+              "size": 3.78,
+              "kind": "pail"
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "modified thinset mortar",
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "covering",
+          "label": "Porcelain tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "porcelain floor tile"
+          }
+        },
+        {
+          "role": "grout",
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tiled-wall-cement-board",
+      "title": "Cement board wall with liquid waterproofing",
+      "summary": "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Wood or metal studs, 400 mm apart"
+        },
+        {
+          "role": "substrate",
+          "label": "Cement board, 12.7 mm",
+          "material": "CGC Durock",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 2
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Durock cement board 1/2"
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Cement board screws, 200 mm apart on walls",
+          "material": "CGC Durock wood screws",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 3
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 15,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Durock cement board screws",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Alkali-resistant joint tape, 50 mm",
+          "material": "CGC Durock interior tape",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 5
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Durock alkali resistant tape",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 5
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Liquid waterproofing membrane, rolled on",
+          "material": "Custom RedGard",
+          "source": {
+            "document": "redgard-sell-sheet",
+            "page": 2
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.74,
+            "unit": "L",
+            "waste": 0.1,
+            "basis": "manufacturer",
+            "search": "RedGard waterproofing membrane",
+            "source": {
+              "document": "redgard-sell-sheet",
+              "page": 2
+            },
+            "package": {
+              "size": 3.78,
+              "kind": "pail"
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "modified thinset mortar",
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "covering",
+          "label": "Ceramic tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "ceramic wall tile"
+          }
+        },
+        {
+          "role": "grout",
+          "label": "Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.5,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "sanded grout"
+          }
+        }
+      ]
+    },
+    {
+      "id": "painted-moisture-wall",
+      "title": "Moisture-resistant painted wall",
+      "summary": "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Wood or metal studs, 400 mm apart"
+        },
+        {
+          "role": "substrate",
+          "label": "Moisture- and mould-resistant gypsum board, 12.7 mm",
+          "material": "CGC Sheetrock UltraLight Mold Tough",
+          "source": {
+            "document": "mold-tough-ultralight",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Sheetrock Mold Tough 1/2"
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Drywall screws, Type W",
+          "quantity": {
+            "per": "area",
+            "amount": 10,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall screws 1 1/4",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Paper joint tape",
+          "quantity": {
+            "per": "area",
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall joint tape",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "All-purpose ready-mixed joint compound",
+          "quantity": {
+            "per": "area",
+            "amount": 0.63,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "all purpose joint compound",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Bathroom paint, two coats (self-priming)",
+          "material": "Benjamin Moore Aura Bath & Spa",
+          "source": {
+            "document": "aura-bath-spa-tds",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.23,
+            "unit": "L",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Benjamin Moore Aura Bath and Spa",
+            "source": {
+              "document": "aura-bath-spa-tds",
+              "page": 1
+            },
+            "package": {
+              "size": 3.79,
+              "kind": "can"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "painted-moisture-ceiling",
+      "title": "Moisture-resistant painted ceiling",
+      "summary": "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Ceiling joists or strapping"
+        },
+        {
+          "role": "substrate",
+          "label": "Moisture- and mould-resistant gypsum board, 12.7 mm",
+          "material": "CGC Sheetrock UltraLight Mold Tough",
+          "source": {
+            "document": "mold-tough-ultralight",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Sheetrock Mold Tough 1/2"
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Drywall screws, Type W, 300 mm apart on ceilings",
+          "quantity": {
+            "per": "area",
+            "amount": 12,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "drywall screws 1 1/4",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 11
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Paper joint tape",
+          "quantity": {
+            "per": "area",
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "drywall joint tape",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "All-purpose ready-mixed joint compound",
+          "quantity": {
+            "per": "area",
+            "amount": 0.63,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "all purpose joint compound",
+            "source": {
+              "document": "cgc-handbook-ch03",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "finish",
+          "label": "Bathroom paint, two coats (self-priming)",
+          "material": "Benjamin Moore Aura Bath & Spa",
+          "source": {
+            "document": "aura-bath-spa-tds",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 0.23,
+            "unit": "L",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Benjamin Moore Aura Bath and Spa",
+            "source": {
+              "document": "aura-bath-spa-tds",
+              "page": 1
+            },
+            "package": {
+              "size": 3.79,
+              "kind": "can"
+            }
+          }
+        }
+      ]
     }
   ],
   "surfaceBuildups": {
     "bathroom": {
-      "floor": "wet-floor-wood",
-      "shower": "curbless-shower-floor",
-      "walls": "tiled-wet-wall"
+      "ceiling": [
+        "painted-moisture-ceiling"
+      ],
+      "floor": [
+        "wet-floor-wood",
+        "wet-floor-cement-board"
+      ],
+      "shower": [
+        "curbless-shower-floor"
+      ],
+      "walls": [
+        "tiled-wet-wall",
+        "tiled-wall-cement-board",
+        "painted-moisture-wall"
+      ]
     },
     "bedroom": {
-      "floor": "dry-floor-wood",
-      "walls": "painted-wall"
+      "floor": [
+        "dry-floor-wood"
+      ],
+      "walls": [
+        "painted-wall"
+      ]
     },
     "hallway": {
-      "floor": "dry-floor-wood",
-      "walls": "painted-wall"
+      "floor": [
+        "dry-floor-wood"
+      ],
+      "walls": [
+        "painted-wall"
+      ]
     },
     "kitchen": {
-      "floor": "tiled-floor-wood",
-      "walls": "painted-wall"
+      "floor": [
+        "tiled-floor-wood"
+      ],
+      "walls": [
+        "painted-wall"
+      ]
     },
     "living": {
-      "floor": "dry-floor-wood",
-      "walls": "painted-wall"
+      "floor": [
+        "dry-floor-wood"
+      ],
+      "walls": [
+        "painted-wall"
+      ]
     }
   },
   "items": [
@@ -5101,15 +5634,20 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 дюйма (номінально 3/4 дюйма), шпунт-паз. Для натурального каменю потрібен подвійний шар незалежно від кроку лаг.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для перехідних кілець KERDI-DRAIN-A чи KERDI-LINE-A; плита 89 мм — для корпусу KERDI-DRAIN-H і труби під піддонами T, TS чи TT (с. 2).",
       "3 in (75 mm) waste pipe": "Каналізаційна труба 75 мм (3 дюйми)",
+      "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Стеля ванної з вологостійкого й стійкого до плісняви гіпсокартону, зі стрічкою на швах, шпаклюванням і фарбою для ванних.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Підлога сухої кімнати на дерев'яних лагах з інженерною дошкою.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Найкраще працює витяжка з виведенням назовні; вона має бути не вужчою за варильну поверхню.",
       "A second layer (underlayment) at least 10 mm is required.": "Потрібен другий шар (підкладка) завтовшки щонайменше 10 мм.",
       "A shower or wet-area wall waterproofed behind the tile.": "Стіна душової чи вологої зони з гідроізоляцією під плиткою.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Піддон з ухилом до точкового трапа, гідроізольований і облицьований плиткою.",
       "A standard dry-room wall of gypsum board on studs.": "Звичайна стіна сухої кімнати: гіпсокартон на стійках.",
+      "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиткова підлога ванної на дерев'яній основі, на цементній плиті, покритій рідкою гідроізоляцією.",
+      "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицьована плиткою стіна душової чи вологої зони з цементної плити, покритої рідкою гідроізоляцією.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицьована плиткою гідроізольована підлога ванної на дерев'яній основі.",
       "ABS or PVC": "ABS або ПВХ",
       "Acoustic underlayment": "Акустична підкладка",
+      "Alkali-resistant joint tape, 50 mm": "Лугостійка стрічка для швів, 50 мм",
+      "All-purpose ready-mixed joint compound": "Готова універсальна шпаклівка для швів",
       "Allowed floor framing": "Дозволені несучі елементи підлоги",
       "Allowed floor waterproofing": "Дозволена гідроізоляція підлоги",
       "Allowed mountings": "Дозволені способи монтажу",
@@ -5128,15 +5666,21 @@
       "Bathroom exhaust fan": "Витяжний вентилятор для ванної",
       "Bathroom faucet": "Змішувач для умивальника",
       "Bathroom mirror": "Дзеркало для ванної",
+      "Bathroom paint, two coats (self-priming)": "Фарба для ванних, два шари (без окремого ґрунту)",
       "Bathroom vanity": "Тумба для ванної",
       "Bathtub surround": "Стіни навколо ванни",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Перед купівлею виміряйте відстань від готової стіни до центру каналізаційного отвору в підлозі.",
+      "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеять на ALL-SET, FAST-SET або модифікований клейовий розчин.",
       "Bonded waterproofing at joints and corners": "Приклеювана гідроізоляція на стиках і кутах",
       "Bonds the membrane to the wood.": "Приклеює мембрану до дерев'яної основи.",
       "Buy a little more than the measured length to allow for the corner cuts.": "Купуйте трохи більше за виміряну довжину, щоб вистачило на кутові підрізки.",
       "Buy the board deeper than the wall so it overhangs the trim.": "Беріть дошку глибшу за стіну, щоб вона виступала над лиштвою.",
       "Buy the valve body and its trim from the same brand; a pressure-balancing valve keeps the temperature steady.": "Корпус і накладку купуйте одного бренду; змішувач з вирівнюванням тиску тримає температуру стабільною.",
+      "CGC Durock": "CGC Durock",
+      "CGC Durock interior tape": "Стрічка CGC Durock для внутрішніх робіт",
+      "CGC Durock wood screws": "Шурупи CGC Durock по дереву",
+      "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Меблева ручка",
       "Canada": "Канада",
       "Canada only; 19 mm is still recommended.": "Лише в Канаді; рекомендовано все ж 19 мм.",
@@ -5145,8 +5689,15 @@
       "Canadian option, maximum joist spacing": "Канадський варіант, найбільший крок лаг",
       "Canadian option, minimum subfloor thickness": "Канадський варіант, найменша товщина основи",
       "Canadian option, subfloor at least 16 mm.": "Канадський варіант: основа щонайменше 16 мм.",
+      "Ceiling joists or strapping": "Балки перекриття чи обрешітка",
       "Ceiling light fixture": "Стельовий світильник",
       "Cement backer unit": "Цементна плита",
+      "Cement board floor with liquid waterproofing": "Підлога на цементній плиті з рідкою гідроізоляцією",
+      "Cement board screws, 200 mm apart on floors": "Шурупи для цементної плити, крок 200 мм на підлозі",
+      "Cement board screws, 200 mm apart on walls": "Шурупи для цементної плити, крок 200 мм на стінах",
+      "Cement board underlayment, 8 mm": "Цементна плита-підкладка, 8 мм",
+      "Cement board wall with liquid waterproofing": "Стіна з цементної плити з рідкою гідроізоляцією",
+      "Cement board, 12.7 mm": "Цементна плита, 12,7 мм",
       "Cement leveler, mortar bed or render coat, cured": "Цементна вирівнювальна суміш, стяжка або штукатурка, що набрали міцність",
       "Center": "По центру",
       "Ceramic tile": "Керамічна плитка",
@@ -5170,12 +5721,15 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душова без порога на дерев'яній чи бетонній основі (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душова без порога зі стінами з KERDI або KERDI-BOARD. Заглиблення підлоги не повинно послабити конструкцію; може знадобитися проєктувальник.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Душова без порога з підлогою, заглибленою між лагами з цільного пиломатеріалу, піддоном KERDI-SHOWER і гідроізоляцією KERDI чи з родини DITRA на підлозі. Заглиблення не повинно послабити конструкцію; може знадобитися проєктувальник.",
+      "Custom RedGard": "Custom RedGard",
       "Dimensional lumber, not ripped down": "Цільний пиломатеріал, не розпиляний уздовж",
       "Door casing": "Лиштва",
       "Door lever": "Дверна ручка",
       "Drain body material": "Матеріал корпусу трапа",
       "Drain placement": "Розташування трапа",
       "Drain system": "Тип трапа",
+      "Drywall screws, Type W": "Шурупи для гіпсокартону, тип W",
+      "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупи для гіпсокартону, тип W, крок 300 мм на стелі",
       "Duplex receptacle": "Подвійна розетка",
       "Electric baseboard heater": "Електричний конвектор",
       "Electrical panel": "Електричний щиток",
@@ -5196,6 +5750,7 @@
       "Floor framing": "Несучі елементи підлоги",
       "Floor joists": "Лаги перекриття",
       "Floor waterproofing": "Гідроізоляція підлоги",
+      "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стін ванної поза душовою: вологостійкий і стійкий до плісняви гіпсокартон, зі стрічкою на швах, шпаклюванням і фарбою для ванних.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для підлог, де вертикальне підключення незручне, наприклад дерев'яна підлога, у якій не можна перенести отвір.",
       "Framing at most 406 mm on centre.": "Несучі елементи не частіше ніж через 406 мм по осях.",
       "Framing at most 488 mm on centre.": "Несучі елементи не частіше ніж через 488 мм по осях.",
@@ -5232,6 +5787,7 @@
       "Light switch": "Вимикач",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Лінійний душовий трап",
+      "Liquid waterproofing membrane, rolled on": "Рідка гідроізоляційна мембрана, наноситься валиком",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитова плита (лише підлоги) та плити, піддони й ніші Schluter теж дозволені з умовами; їх поки не внесено. Деяким основам може знадобитися ґрунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонні блоки, цегла)",
       "Match the circuit's amperage (15 A or 20 A) and choose tamper-resistant receptacles.": "Підберіть під струм лінії (15 А чи 20 А) і обирайте розетки із захисними шторками.",
@@ -5255,7 +5811,11 @@
       "Minimum tile size": "Найменший розмір плитки",
       "Minimum working temperature": "Найнижча температура монтажу",
       "Modified thin-set mortar": "Модифікований клейовий розчин",
+      "Modified thin-set mortar bed under the cement board": "Шар модифікованого клейового розчину під цементною плитою",
       "Modified thin-set mortar under the membrane": "Модифікований клейовий розчин під мембраною",
+      "Moisture- and mould-resistant gypsum board, 12.7 mm": "Вологостійкий і стійкий до плісняви гіпсокартон, 12,7 мм",
+      "Moisture-resistant painted ceiling": "Вологостійка фарбована стеля",
+      "Moisture-resistant painted wall": "Вологостійка фарбована стіна",
       "Mortar over the membrane": "Розчин над мембраною",
       "Mortar under the membrane": "Розчин під мембраною",
       "Mortars allowed over the membrane": "Дозволені розчини над мембраною",
@@ -5280,6 +5840,7 @@
       "Outlet distance from the channel end": "Відстань виходу від краю каналу",
       "Painted wall": "Пофарбована стіна",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Поєднайте із засувним замком і перевірте отвір у дверях та відступ від краю.",
+      "Paper joint tape": "Паперова стрічка для швів",
       "Passage for halls; privacy, with a lock, for bathrooms and bedrooms.": "Без замка — для проходів; із фіксатором — для ванної та спальні.",
       "Pick one no wider than the vanity and fix it to studs or rated anchors.": "Оберіть не ширше за тумбу і кріпіть до стійок або на розраховані дюбелі.",
       "Plywood": "Фанера",
@@ -5428,6 +5989,7 @@
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "З піддонами T, TS чи TT навколо корпусу трапа й труби потрібна компенсаційна плита KERDI-SHOWER-CB 89 мм (с. 2).",
       "Wood floor": "Дерев'яна підлога",
       "Wood or metal studs": "Дерев'яні чи металеві стійки",
+      "Wood or metal studs, 400 mm apart": "Дерев'яні чи металеві стійки, крок 400 мм",
       "Yes": "Так"
     },
     "ru": {
@@ -5440,15 +6002,20 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 дюйма (номинально 3/4 дюйма), шпунт-паз. Для натурального камня нужен двойной слой независимо от шага лаг.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Плита 25 мм — для переходных колец KERDI-DRAIN-A или KERDI-LINE-A; плита 89 мм — для корпуса KERDI-DRAIN-H и трубы под поддонами T, TS или TT (с. 2).",
       "3 in (75 mm) waste pipe": "Канализационная труба 75 мм (3 дюйма)",
+      "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Потолок ванной из влагостойкого и устойчивого к плесени гипсокартона, с лентой на швах, шпаклёвкой и краской для ванных.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Пол сухой комнаты на деревянных лагах с инженерной доской.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Лучше всего работает вытяжка с выводом наружу; она должна быть не уже варочной поверхности.",
       "A second layer (underlayment) at least 10 mm is required.": "Нужен второй слой (подложка) толщиной не менее 10 мм.",
       "A shower or wet-area wall waterproofed behind the tile.": "Стена душевой или влажной зоны с гидроизоляцией под плиткой.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Поддон с уклоном к точечному трапу, гидроизолированный и облицованный плиткой.",
       "A standard dry-room wall of gypsum board on studs.": "Обычная стена сухой комнаты: гипсокартон на стойках.",
+      "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиточный пол ванной на деревянном основании, на цементной плите, покрытой жидкой гидроизоляцией.",
+      "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицованная плиткой стена душевой или влажной зоны из цементной плиты, покрытой жидкой гидроизоляцией.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицованный плиткой гидроизолированный пол ванной на деревянном основании.",
       "ABS or PVC": "ABS или ПВХ",
       "Acoustic underlayment": "Акустическая подложка",
+      "Alkali-resistant joint tape, 50 mm": "Щелочестойкая лента для швов, 50 мм",
+      "All-purpose ready-mixed joint compound": "Готовая универсальная шпаклёвка для швов",
       "Allowed floor framing": "Допустимые несущие элементы пола",
       "Allowed floor waterproofing": "Допустимая гидроизоляция пола",
       "Allowed mountings": "Допустимые способы монтажа",
@@ -5467,15 +6034,21 @@
       "Bathroom exhaust fan": "Вытяжной вентилятор для ванной",
       "Bathroom faucet": "Смеситель для раковины",
       "Bathroom mirror": "Зеркало для ванной",
+      "Bathroom paint, two coats (self-priming)": "Краска для ванных, два слоя (без отдельной грунтовки)",
       "Bathroom vanity": "Тумба для ванной",
       "Bathtub surround": "Стены вокруг ванны",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Перед покупкой измерьте расстояние от готовой стены до центра канализационного отверстия в полу.",
+      "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Мембрану клеят на ALL-SET, FAST-SET или модифицированный плиточный клей.",
       "Bonded waterproofing at joints and corners": "Приклеиваемая гидроизоляция на стыках и углах",
       "Bonds the membrane to the wood.": "Приклеивает мембрану к деревянному основанию.",
       "Buy a little more than the measured length to allow for the corner cuts.": "Покупайте немного больше измеренной длины, чтобы хватило на угловые подрезки.",
       "Buy the board deeper than the wall so it overhangs the trim.": "Берите доску глубже стены, чтобы она выступала над наличником.",
       "Buy the valve body and its trim from the same brand; a pressure-balancing valve keeps the temperature steady.": "Корпус и накладку покупайте одного бренда; смеситель с выравниванием давления держит температуру стабильной.",
+      "CGC Durock": "CGC Durock",
+      "CGC Durock interior tape": "Лента CGC Durock для внутренних работ",
+      "CGC Durock wood screws": "Шурупы CGC Durock по дереву",
+      "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Мебельная ручка",
       "Canada": "Канада",
       "Canada only; 19 mm is still recommended.": "Только в Канаде; рекомендуется всё же 19 мм.",
@@ -5484,8 +6057,15 @@
       "Canadian option, maximum joist spacing": "Канадский вариант, наибольший шаг лаг",
       "Canadian option, minimum subfloor thickness": "Канадский вариант, наименьшая толщина основания",
       "Canadian option, subfloor at least 16 mm.": "Канадский вариант: основание не менее 16 мм.",
+      "Ceiling joists or strapping": "Балки перекрытия или обрешётка",
       "Ceiling light fixture": "Потолочный светильник",
       "Cement backer unit": "Цементная плита",
+      "Cement board floor with liquid waterproofing": "Пол на цементной плите с жидкой гидроизоляцией",
+      "Cement board screws, 200 mm apart on floors": "Шурупы для цементной плиты, шаг 200 мм на полу",
+      "Cement board screws, 200 mm apart on walls": "Шурупы для цементной плиты, шаг 200 мм на стенах",
+      "Cement board underlayment, 8 mm": "Цементная плита-подложка, 8 мм",
+      "Cement board wall with liquid waterproofing": "Стена из цементной плиты с жидкой гидроизоляцией",
+      "Cement board, 12.7 mm": "Цементная плита, 12,7 мм",
       "Cement leveler, mortar bed or render coat, cured": "Цементная выравнивающая смесь, стяжка или штукатурка, набравшие прочность",
       "Center": "По центру",
       "Ceramic tile": "Керамическая плитка",
@@ -5509,12 +6089,15 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душевая без порога на деревянном или бетонном основании (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душевая без порога со стенами из KERDI или KERDI-BOARD. Углубление пола не должно ослабить конструкцию; может понадобиться проектировщик.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Душевая без порога с полом, углублённым между лагами из цельного пиломатериала, поддоном KERDI-SHOWER и гидроизоляцией KERDI или из семейства DITRA на полу. Углубление не должно ослабить конструкцию; может понадобиться проектировщик.",
+      "Custom RedGard": "Custom RedGard",
       "Dimensional lumber, not ripped down": "Цельный пиломатериал, не распиленный вдоль",
       "Door casing": "Наличник",
       "Door lever": "Дверная ручка",
       "Drain body material": "Материал корпуса трапа",
       "Drain placement": "Расположение трапа",
       "Drain system": "Тип трапа",
+      "Drywall screws, Type W": "Шурупы для гипсокартона, тип W",
+      "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупы для гипсокартона, тип W, шаг 300 мм на потолке",
       "Duplex receptacle": "Двойная розетка",
       "Electric baseboard heater": "Электрический конвектор",
       "Electrical panel": "Электрический щиток",
@@ -5535,6 +6118,7 @@
       "Floor framing": "Несущие элементы пола",
       "Floor joists": "Лаги перекрытия",
       "Floor waterproofing": "Гидроизоляция пола",
+      "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стен ванной вне душевой: влагостойкий и устойчивый к плесени гипсокартон, с лентой на швах, шпаклёвкой и краской для ванных.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для полов, где вертикальное подключение неудобно, например деревянный пол, в котором нельзя перенести отверстие.",
       "Framing at most 406 mm on centre.": "Несущие элементы с шагом не более 406 мм по осям.",
       "Framing at most 488 mm on centre.": "Несущие элементы с шагом не более 488 мм по осям.",
@@ -5571,6 +6155,7 @@
       "Light switch": "Выключатель",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Линейный душевой трап",
+      "Liquid waterproofing membrane, rolled on": "Жидкая гидроизоляционная мембрана, наносится валиком",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитовая плита (только полы) и плиты, поддоны и ниши Schluter тоже допускаются с условиями; их пока не внесли. Некоторым основаниям может понадобиться грунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонные блоки, кирпич)",
       "Match the circuit's amperage (15 A or 20 A) and choose tamper-resistant receptacles.": "Подберите под ток линии (15 А или 20 А) и выбирайте розетки с защитными шторками.",
@@ -5594,7 +6179,11 @@
       "Minimum tile size": "Наименьший размер плитки",
       "Minimum working temperature": "Наименьшая температура монтажа",
       "Modified thin-set mortar": "Модифицированный плиточный клей",
+      "Modified thin-set mortar bed under the cement board": "Слой модифицированного клеевого раствора под цементной плитой",
       "Modified thin-set mortar under the membrane": "Модифицированный плиточный клей под мембраной",
+      "Moisture- and mould-resistant gypsum board, 12.7 mm": "Влагостойкий и устойчивый к плесени гипсокартон, 12,7 мм",
+      "Moisture-resistant painted ceiling": "Влагостойкий окрашенный потолок",
+      "Moisture-resistant painted wall": "Влагостойкая окрашенная стена",
       "Mortar over the membrane": "Клей над мембраной",
       "Mortar under the membrane": "Клей под мембраной",
       "Mortars allowed over the membrane": "Допустимые клеи над мембраной",
@@ -5619,6 +6208,7 @@
       "Outlet distance from the channel end": "Расстояние выхода от края канала",
       "Painted wall": "Окрашенная стена",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Совместите с засовным замком и проверьте отверстие в двери и отступ от края.",
+      "Paper joint tape": "Бумажная лента для швов",
       "Passage for halls; privacy, with a lock, for bathrooms and bedrooms.": "Без замка — для проходов; с фиксатором — для ванной и спальни.",
       "Pick one no wider than the vanity and fix it to studs or rated anchors.": "Выберите не шире тумбы и крепите к стойкам или на рассчитанные дюбели.",
       "Plywood": "Фанера",
@@ -5767,6 +6357,7 @@
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "С поддонами T, TS или TT вокруг корпуса трапа и трубы нужна компенсационная плита KERDI-SHOWER-CB 89 мм (с. 2).",
       "Wood floor": "Деревянный пол",
       "Wood or metal studs": "Деревянные или металлические стойки",
+      "Wood or metal studs, 400 mm apart": "Деревянные или металлические стойки, шаг 400 мм",
       "Yes": "Да"
     },
     "fr": {
@@ -5779,15 +6370,20 @@
       "23/32 in (3/4 in nominal) tongue-and-groove. Natural stone needs a double layer regardless of joist spacing.": "23/32 po (3/4 po nominal), bouveté. La pierre naturelle exige une double couche, quel que soit l'espacement des solives.",
       "25 mm board for KERDI-DRAIN-A or KERDI-LINE-A adaptor rings; 89 mm board for KERDI-DRAIN-H drain body and pipe under T, TS or TT trays (page 2).": "Panneau de 25 mm pour les bagues d'adaptation KERDI-DRAIN-A ou KERDI-LINE-A; panneau de 89 mm pour le corps du KERDI-DRAIN-H et le tuyau sous les receveurs T, TS ou TT (p. 2).",
       "3 in (75 mm) waste pipe": "Tuyau d'évacuation de 75 mm (3 po)",
+      "A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Plafond de salle de bain en panneaux de gypse résistants à l'humidité et à la moisissure, tirés à joints et peints avec une peinture pour salle de bain.",
       "A dry-room floor on wood joists, finished with engineered wood.": "Un plancher de pièce sèche sur solives de bois, fini en bois d'ingénierie.",
       "A hood ducted to the outside works best; make it at least as wide as the cooktop.": "Une hotte évacuée vers l'extérieur est la plus efficace; prenez-la au moins aussi large que la surface de cuisson.",
       "A second layer (underlayment) at least 10 mm is required.": "Une deuxième couche (sous-couche) d'au moins 10 mm est requise.",
       "A shower or wet-area wall waterproofed behind the tile.": "Un mur de douche ou de zone humide imperméabilisé derrière le carreau.",
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Un receveur en pente vers un drain ponctuel, imperméabilisé et carrelé.",
       "A standard dry-room wall of gypsum board on studs.": "Un mur standard de pièce sèche en plaques de gypse sur montants.",
+      "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Plancher de salle de bain carrelé sur un sous-plancher de bois, sur une sous-couche de panneau de ciment enduite d'une membrane d'étanchéité liquide.",
+      "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Mur de douche ou de zone humide carrelé, en panneau de ciment enduit d'une membrane d'étanchéité liquide.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Un plancher de salle de bain carrelé et imperméabilisé sur sous-plancher de bois.",
       "ABS or PVC": "ABS ou PVC",
       "Acoustic underlayment": "Sous-couche acoustique",
+      "Alkali-resistant joint tape, 50 mm": "Ruban à joints résistant aux alcalis, 50 mm",
+      "All-purpose ready-mixed joint compound": "Composé à joints tout usage prémélangé",
       "Allowed floor framing": "Ossature de plancher admise",
       "Allowed floor waterproofing": "Imperméabilisation de plancher admise",
       "Allowed mountings": "Modes de pose admis",
@@ -5806,15 +6402,21 @@
       "Bathroom exhaust fan": "Ventilateur de salle de bain",
       "Bathroom faucet": "Robinet de lavabo",
       "Bathroom mirror": "Miroir de salle de bain",
+      "Bathroom paint, two coats (self-priming)": "Peinture pour salle de bain, deux couches (apprêt intégré)",
       "Bathroom vanity": "Meuble-lavabo",
       "Bathtub surround": "Pourtour de baignoire",
       "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain.": "Avant l'achat, mesurez la distance du mur fini au centre du drain au plancher.",
+      "Benjamin Moore Aura Bath & Spa": "Benjamin Moore Aura Bath & Spa",
       "Bond the membrane with ALL-SET, FAST-SET or modified thin-set.": "Coller la membrane avec ALL-SET, FAST-SET ou un mortier-colle modifié.",
       "Bonded waterproofing at joints and corners": "Imperméabilisation collée aux joints et aux coins",
       "Bonds the membrane to the wood.": "Colle la membrane au support en bois.",
       "Buy a little more than the measured length to allow for the corner cuts.": "Achetez un peu plus que la longueur mesurée pour les coupes d'angle.",
       "Buy the board deeper than the wall so it overhangs the trim.": "Prenez une planche plus profonde que le mur pour qu'elle dépasse la moulure.",
       "Buy the valve body and its trim from the same brand; a pressure-balancing valve keeps the temperature steady.": "Achetez le corps et la garniture de la même marque; un robinet à pression équilibrée garde la température stable.",
+      "CGC Durock": "CGC Durock",
+      "CGC Durock interior tape": "Ruban intérieur CGC Durock",
+      "CGC Durock wood screws": "Vis à bois CGC Durock",
+      "CGC Sheetrock UltraLight Mold Tough": "CGC Sheetrock UltraLight Mold Tough",
       "Cabinet pull": "Poignée d'armoire",
       "Canada": "Canada",
       "Canada only; 19 mm is still recommended.": "Au Canada seulement; 19 mm reste recommandé.",
@@ -5823,8 +6425,15 @@
       "Canadian option, maximum joist spacing": "Option canadienne, espacement maximal des solives",
       "Canadian option, minimum subfloor thickness": "Option canadienne, épaisseur minimale du sous-plancher",
       "Canadian option, subfloor at least 16 mm.": "Option canadienne : sous-plancher d'au moins 16 mm.",
+      "Ceiling joists or strapping": "Solives de plafond ou fourrures",
       "Ceiling light fixture": "Plafonnier",
       "Cement backer unit": "Panneau de ciment",
+      "Cement board floor with liquid waterproofing": "Plancher sur panneau de ciment avec étanchéité liquide",
+      "Cement board screws, 200 mm apart on floors": "Vis pour panneau de ciment, aux 200 mm au plancher",
+      "Cement board screws, 200 mm apart on walls": "Vis pour panneau de ciment, aux 200 mm aux murs",
+      "Cement board underlayment, 8 mm": "Sous-couche en panneau de ciment, 8 mm",
+      "Cement board wall with liquid waterproofing": "Mur en panneau de ciment avec étanchéité liquide",
+      "Cement board, 12.7 mm": "Panneau de ciment, 12,7 mm",
       "Cement leveler, mortar bed or render coat, cured": "Ragréage, lit de mortier ou crépi à base de ciment, mûri",
       "Center": "Au centre",
       "Ceramic tile": "Carreau de céramique",
@@ -5848,12 +6457,15 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Douche sans seuil sur sous-plancher de bois ou de béton (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Douche sans seuil avec murs en KERDI ou KERDI-BOARD. L'abaissement du plancher doit préserver la structure et peut exiger un professionnel de la conception.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Douche sans seuil dont le plancher est abaissé entre des solives de bois de sciage, avec receveur KERDI-SHOWER et imperméabilisation KERDI ou de la famille DITRA au sol. L'abaissement doit préserver la structure et peut exiger un professionnel de la conception.",
+      "Custom RedGard": "Custom RedGard",
       "Dimensional lumber, not ripped down": "Bois de sciage, non refendu",
       "Door casing": "Moulure de porte",
       "Door lever": "Poignée de porte",
       "Drain body material": "Matériau du corps du drain",
       "Drain placement": "Position du drain",
       "Drain system": "Type de drain",
+      "Drywall screws, Type W": "Vis à gypse, type W",
+      "Drywall screws, Type W, 300 mm apart on ceilings": "Vis à gypse, type W, aux 300 mm au plafond",
       "Duplex receptacle": "Prise de courant double",
       "Electric baseboard heater": "Plinthe électrique",
       "Electrical panel": "Panneau électrique",
@@ -5874,6 +6486,7 @@
       "Floor framing": "Ossature du plancher",
       "Floor joists": "Solives de plancher",
       "Floor waterproofing": "Imperméabilisation du plancher",
+      "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Pour les murs de salle de bain hors de la douche : panneaux de gypse résistants à l'humidité et à la moisissure, tirés à joints et peints avec une peinture pour salle de bain.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Pour les planchers où un raccord vertical est peu pratique, p. ex. un plancher de bois où l'on ne peut pas déplacer l'ouverture.",
       "Framing at most 406 mm on centre.": "Ossature à 406 mm c/c au plus.",
       "Framing at most 488 mm on centre.": "Ossature à 488 mm c/c au plus.",
@@ -5910,6 +6523,7 @@
       "Light switch": "Interrupteur",
       "Line-voltage thermostat": "Thermostat électronique",
       "Linear shower drain": "Drain de douche linéaire",
+      "Liquid waterproofing membrane, rolled on": "Membrane d'étanchéité liquide, appliquée au rouleau",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Le panneau de magnésie (planchers seulement) ainsi que les panneaux, receveurs et niches Schluter sont aussi admis sous conditions; ils seront ajoutés plus tard. Certains supports peuvent exiger un apprêt.",
       "Masonry (cement block, brick)": "Maçonnerie (bloc de béton, brique)",
       "Match the circuit's amperage (15 A or 20 A) and choose tamper-resistant receptacles.": "Choisissez selon l'intensité du circuit (15 A ou 20 A) et prenez des prises inviolables.",
@@ -5933,7 +6547,11 @@
       "Minimum tile size": "Format minimal du carreau",
       "Minimum working temperature": "Température de pose minimale",
       "Modified thin-set mortar": "Mortier-colle modifié",
+      "Modified thin-set mortar bed under the cement board": "Lit de mortier-colle modifié sous le panneau de ciment",
       "Modified thin-set mortar under the membrane": "Mortier-colle modifié sous la membrane",
+      "Moisture- and mould-resistant gypsum board, 12.7 mm": "Panneau de gypse résistant à l'humidité et à la moisissure, 12,7 mm",
+      "Moisture-resistant painted ceiling": "Plafond peint résistant à l'humidité",
+      "Moisture-resistant painted wall": "Mur peint résistant à l'humidité",
       "Mortar over the membrane": "Mortier sur la membrane",
       "Mortar under the membrane": "Mortier sous la membrane",
       "Mortars allowed over the membrane": "Mortiers admis sur la membrane",
@@ -5958,6 +6576,7 @@
       "Outlet distance from the channel end": "Distance de la sortie à l'extrémité du canal",
       "Painted wall": "Mur peint",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Associez-la à un pêne dormant et vérifiez le trou de la porte et l'écartement.",
+      "Paper joint tape": "Ruban à joints en papier",
       "Passage for halls; privacy, with a lock, for bathrooms and bedrooms.": "Passage pour les corridors; intimité, avec verrou, pour les salles de bain et les chambres.",
       "Pick one no wider than the vanity and fix it to studs or rated anchors.": "Choisissez-le pas plus large que le meuble et fixez-le aux montants ou avec des ancrages adaptés.",
       "Plywood": "Contreplaqué",
@@ -6106,6 +6725,7 @@
       "With T, TS or TT trays the 89 mm KERDI-SHOWER-CB compensation board is needed around the drain body and pipe (page 2).": "Avec les receveurs T, TS ou TT, le panneau de compensation KERDI-SHOWER-CB de 89 mm est requis autour du corps du drain et du tuyau (p. 2).",
       "Wood floor": "Plancher de bois",
       "Wood or metal studs": "Montants de bois ou de métal",
+      "Wood or metal studs, 400 mm apart": "Montants de bois ou de métal aux 400 mm",
       "Yes": "Oui"
     }
   }

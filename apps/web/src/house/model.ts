@@ -8,7 +8,7 @@
 import layout from "./layout.json";
 
 export type RoomId = "living" | "kitchen" | "bedroom" | "hallway" | "bathroom";
-export type SurfaceId = "floor" | "walls" | "shower";
+export type SurfaceId = "floor" | "walls" | "shower" | "ceiling";
 
 export interface Rect {
   x: number;
@@ -151,6 +151,7 @@ export function surfaceArea(room: Room, surface: SurfaceId): number {
   if (surface === "shower") return room.shower ? area(room.shower) : 0;
   if (surface === "floor")
     return Math.round((area(room.rect) - (room.shower ? area(room.shower) : 0)) * 100) / 100;
+  if (surface === "ceiling") return area(room.rect);
   const perimeter = 2 * (room.rect.width + room.rect.depth);
   const holes = roomOpenings(room).reduce((sum, o) => sum + o.width * o.height, 0);
   return Math.round((perimeter * WALL_HEIGHT - holes) * 100) / 100;

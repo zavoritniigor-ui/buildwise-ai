@@ -1,6 +1,6 @@
 import { useI18n } from "../i18n";
 import type { RoomId } from "../house/model";
-import { inventory } from "../inventory";
+import { inventory, surfacePurchases } from "../inventory";
 import { StoreLinks } from "../StoreLinks";
 
 /** Everything a room, or the whole house, needs, counted from the model, with
@@ -9,15 +9,19 @@ export function InventorySheet({
   rooms,
   title,
   kicker,
+  choices,
   onClose,
 }: {
   rooms: readonly RoomId[];
   title: string;
   kicker: string;
+  /** chosen build-up per "room.surface"; the default where none is chosen */
+  choices: Readonly<Record<string, string>>;
   onClose: () => void;
 }) {
   const { t, d, language } = useI18n();
   const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
+  const materials = surfacePurchases(rooms, choices);
   return (
     <aside className="sheet" aria-labelledby="sheet-title">
       <header>
@@ -29,6 +33,41 @@ export function InventorySheet({
           ×
         </button>
       </header>
+      {materials.length > 0 && (
+        <>
+          <h2 className="list-section">{t.surfaceMaterials}</h2>
+          <ul className="purchase-lines">
+            {materials.map((line) => {
+              const unit = t.units[line.quantity.unit];
+              const name = d(line.name);
+              const pack = line.quantity.package;
+              return (
+                <li key={`${line.quantity.search}|${line.quantity.unit}`} className="purchase-line">
+                  <span className="purchase-name">{name}</span>
+                  <span className="purchase-amount">
+                    {fmt(line.need.total)} {unit}
+                    {pack && line.need.packages !== undefined && (
+                      <>
+                        {" · "}
+                        {t.packages(
+                          line.need.packages,
+                          t.packageKind[pack.kind],
+                          `${fmt(pack.size)} ${unit}`,
+                        )}
+                      </>
+                    )}
+                    {line.quantity.basis === "estimate" && (
+                      <span className="basis basis-estimate"> {t.basis.estimate}</span>
+                    )}
+                  </span>
+                  <StoreLinks query={line.quantity.search} label={t.findIn(name)} />
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
+      <h2 className="list-section">{t.fixturesTitle}</h2>
       <ul className="purchase-lines">
         {inventory(rooms).map(({ item, amount }) => {
           const name = d(item.name);

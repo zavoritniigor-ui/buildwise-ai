@@ -1,0 +1,21 @@
+# Benjamin Moore Aura Bath & Spa interior paint, from the manufacturer's own
+# Canadian technical data sheet (K532). Cited by page of the PDF.
+#
+# Status: documents only; the build-ups in buildups.yaml cite these pages.
+
+manufacturer:
+  name: Benjamin Moore & Co.
+  brand: Benjamin Moore
+  website: https://www.benjaminmoore.com/en-ca
+
+documents:
+  - id: aura-bath-spa-tds
+    type: tds
+    title: Aura Bath & Spa Waterborne Interior Paint Matte (K532), Technical Data Sheet
+    url: https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0532/K532_TDS_CE.pdf
+    version: ©2017, 2025
+    pages: 2
+    sha256: 8d62d9f3f20049d524cfabce48303f06c19032485762ff01ea4626588fdb002b
+    retrieved_on: 2026-11-20
+
+categories: []

@@ -19,6 +19,8 @@ export function App() {
   const [surface, setSurface] = useState<SurfaceId | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [listing, setListing] = useState(false);
+  /** the technology picked per "room.surface" */
+  const [choices, setChoices] = useState<Record<string, string>>({});
 
   const selectRoom = (next: RoomId | null) => {
     setRoom(next);
@@ -141,12 +143,19 @@ export function App() {
           rooms={room ? [room] : ROOMS.map((r) => r.id)}
           title={room ? t.roomList : t.houseList}
           kicker={room ? t.rooms[room] : t.house}
+          choices={choices}
           onClose={() => setListing(false)}
         />
       )}
 
       {room && surface && (
-        <SurfaceSheet room={room} surface={surface} onClose={() => selectSurface(null)} />
+        <SurfaceSheet
+          room={room}
+          surface={surface}
+          chosen={choices[`${room}.${surface}`]}
+          onChoose={(id) => setChoices((c) => ({ ...c, [`${room}.${surface}`]: id }))}
+          onClose={() => selectSurface(null)}
+        />
       )}
 
       {selection && <ItemSheet selection={selection} onClose={() => setSelection(null)} />}

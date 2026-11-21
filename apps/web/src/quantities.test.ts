@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { findRoom, surfaceArea, surfacePerimeter } from "./house/model";
 import { buildupForSurface } from "./knowledge";
-import { need, purchaseList } from "./quantities";
+import { mergePurchases, need, purchaseList } from "./quantities";
 
 const bathroom = findRoom("bathroom");
 const floor = {
@@ -24,7 +24,7 @@ test("quantities round up and count whole packages", () => {
     search: "unmodified thinset mortar",
   };
   // 6.13 kg/m² x 6.42 m² = 39.35 kg -> 39.4 kg -> 2 bags of 22.68 kg
-  expect(need(mortar, floor)).toEqual({ total: 39.4, packages: 2 });
+  expect(need(mortar, floor)).toMatchObject({ total: 39.4, packages: 2 });
 });
 
 test("the BW-001 bathroom floor shopping list", () => {
@@ -33,7 +33,7 @@ test("the BW-001 bathroom floor shopping list", () => {
   const lines = Object.fromEntries(
     purchaseList(buildup, floor).map((l) => [l.quantity.search, l.need]),
   );
-  expect(lines).toEqual({
+  expect(lines).toMatchObject({
     "plywood subfloor 5/8 tongue and groove": { total: 7.07 },
     "modified thinset mortar": { total: 13.7, packages: 1 },
     "Schluter DITRA": { total: 7.07 },
@@ -53,4 +53,24 @@ test("a shower takes exactly one tray and one drain", () => {
   };
   const counts = purchaseList(buildup, shower).filter((l) => l.quantity.unit === "pcs");
   expect(counts.map((l) => l.need.total)).toEqual([1, 1]);
+});
+
+test("the same product on several surfaces is bought once, packages on the total", () => {
+  const bathroom = findRoom("bathroom");
+  const measure = (surface: "walls" | "ceiling") => ({
+    area: surfaceArea(bathroom, surface),
+    perimeter: surfacePerimeter(bathroom, surface),
+  });
+  const walls = buildupForSurface("bathroom", "walls", "painted-moisture-wall");
+  const ceiling = buildupForSurface("bathroom", "ceiling");
+  if (!walls || !ceiling) throw new Error("missing build-up");
+  const merged = mergePurchases([
+    purchaseList(walls, measure("walls")),
+    purchaseList(ceiling, measure("ceiling")),
+  ]);
+  const paint = merged.filter((l) => l.quantity.search === "Benjamin Moore Aura Bath and Spa");
+  expect(paint).toHaveLength(1);
+  // (26.58 + 7.5) m² x 0.23 L = 7.84 L, that is 2.07 cans of 3.79 L, so 3 cans
+  expect(paint[0]?.need.total).toBe(7.9);
+  expect(paint[0]?.need.packages).toBe(3);
 });

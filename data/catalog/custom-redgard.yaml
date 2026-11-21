@@ -1,0 +1,21 @@
+# Custom Building Products RedGard liquid waterproofing membrane, from the
+# manufacturer's own RedGard family sell sheet. Cited by page of the PDF.
+#
+# Status: documents only; the build-ups in buildups.yaml cite these pages.
+
+manufacturer:
+  name: Custom Building Products
+  brand: RedGard
+  website: https://www.custombuildingproducts.com
+
+documents:
+  - id: redgard-sell-sheet
+    type: tds
+    title: RedGard Family Sell Sheet (SS178)
+    url: https://www.custombuildingproducts.com/wp-content/uploads/RedGard_Family_SellSheet_SS178.pdf
+    version: SS178 8/26R
+    pages: 2
+    sha256: de8b4a5ecdfed0b79b42b6077c327957d46df9dcce8e0405a98d30850d73091d
+    retrieved_on: 2026-11-20
+
+categories: []
