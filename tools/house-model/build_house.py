@@ -22,6 +22,9 @@ Each surface a person can click is a separately named mesh:
     fixture__<room>__<piece>_<n>__<item>
                                      what the builder installs (fixtures.json)
                                      and the baseboards
+    fixture__<room>__plumbing_<run>__<pipe>
+                                     supply and drain-waste-vent pipes
+                                     (plumbing.json)
 
 The web app treats the model as a picture only and places invisible hit-planes
 from the same layout.json, so this script never has to know about clicks. It
@@ -218,9 +221,16 @@ class Parts:
             self.slots.append(mat)
         return self.slots.index(mat)
 
-    def add(self, shape: str, centre, size, mat: bpy.types.Material, bevel: float = 0.0) -> None:
-        """centre and size are Blender (x, y, up); centre is the shape's middle."""
-        matrix = Matrix.Translation(centre) @ Matrix.Diagonal((*size, 1.0))
+    def add(
+        self, shape: str, centre, size, mat: bpy.types.Material, bevel: float = 0.0, rotation=None
+    ) -> None:
+        """centre and size are Blender (x, y, up); centre is the shape's middle.
+        rotation, a 4x4 matrix, turns the shape after sizing (pipes along x or y)."""
+        matrix = (
+            Matrix.Translation(centre)
+            @ (rotation or Matrix.Identity(4))
+            @ Matrix.Diagonal((*size, 1.0))
+        )
         before = set(self.bm.faces)
         if shape == "box":
             geom = bmesh.ops.create_cube(self.bm, size=1.0, matrix=matrix)
@@ -591,6 +601,41 @@ def build_baseboards(layout: dict, mats: dict) -> None:
         )
 
 
+def build_plumbing(plumbing: dict) -> None:
+    """Supply and drain-waste-vent runs as pipes, one object per run, coloured
+    by system (cold, hot, drain, vent) and tagged with the pipe's item."""
+    import math
+
+    mats = {
+        system: flat_material(f"mat_pipe_{system}", {"color": spec["color"], "roughness": 0.45})
+        for system, spec in plumbing["systems"].items()
+    }
+    for run in plumbing["runs"]:
+        radius = plumbing["pipes"][run["pipe"]]["radius"]
+        mat = mats[run["system"]]
+        parts = Parts()
+        points = [to_blender(x, z, y) for x, y, z in run["points"]]
+        for a, b in zip(points, points[1:], strict=False):
+            delta = [b[i] - a[i] for i in range(3)]
+            length = math.sqrt(sum(c * c for c in delta))
+            if length < 1e-6:
+                continue
+            centre = tuple((a[i] + b[i]) / 2 for i in range(3))
+            axis = max(range(3), key=lambda i: abs(delta[i]))
+            rotation = {
+                0: Matrix.Rotation(math.pi / 2, 4, "Y"),
+                1: Matrix.Rotation(math.pi / 2, 4, "X"),
+                2: None,
+            }[axis]
+            parts.add("cylinder", centre, (2 * radius, 2 * radius, length), mat, rotation=rotation)
+        for point in points[1:-1]:
+            parts.add("sphere", point, (2.2 * radius, 2.2 * radius, 2.2 * radius), mat)
+        parts.object(
+            f"fixture__{run['room']}__plumbing_{run['id']}__{run['pipe']}",
+            extras={"item": run["pipe"], "room": run["room"]},
+        )
+
+
 JOINERY = {
     "frame_white": {"color": "#f4f4f1", "roughness": 0.45},
     "door_white": {"color": "#efece6", "roughness": 0.4},
@@ -598,7 +643,7 @@ JOINERY = {
 }
 
 
-def build(layout: dict, fixtures: dict) -> None:
+def build(layout: dict, fixtures: dict, plumbing: dict) -> None:
     rooms = layout["rooms"]
     materials = {role: textured_material(role) for role in TEXTURES["sets"]}
     flat = {
@@ -628,6 +673,7 @@ def build(layout: dict, fixtures: dict) -> None:
     build_walls(layout, materials[TEXTURES["walls"]], flat)
     build_fixtures(fixtures, flat)
     build_baseboards(layout, flat)
+    build_plumbing(plumbing)
 
 
 def main() -> None:
@@ -642,9 +688,10 @@ def main() -> None:
     layout = json.loads(options.layout.read_text(encoding="utf-8"))
     fixtures_path = options.fixtures or options.layout.with_name("fixtures.json")
     fixtures = json.loads(fixtures_path.read_text(encoding="utf-8"))
+    plumbing = json.loads(options.layout.with_name("plumbing.json").read_text(encoding="utf-8"))
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    build(layout, fixtures)
+    build(layout, fixtures, plumbing)
 
     options.out.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.export_scene.gltf(

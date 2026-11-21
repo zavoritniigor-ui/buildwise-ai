@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { KNOWLEDGE } from "../knowledge";
+import { inventory } from "../inventory";
 import fixtures from "./fixtures.json";
 import {
   FOOTPRINT,
@@ -120,8 +121,9 @@ test("every object in the 3D model is an item of the knowledge base", () => {
     const where = node.extras?.room ?? node.extras?.opening;
     expect(where, node.name).toBeDefined();
   }
-  // every item is used somewhere in the house
-  const used = new Set(tagged.map((n) => n.extras?.item));
+  // every item is used somewhere in the house: built in 3D or counted
+  const used = new Set<string | undefined>(tagged.map((n) => n.extras?.item));
+  for (const line of inventory(ROOMS.map((r) => r.id))) used.add(line.item.id);
   expect([...known].filter((id) => !used.has(id))).toEqual([]);
 });
 

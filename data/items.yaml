@@ -186,3 +186,123 @@ items:
     measure: length
     summary: "Buy a little more than the measured length to allow for the corner cuts."
     search: "baseboard moulding"
+  - id: pex_pipe_3_4
+    name: "PEX pipe, 3/4 in"
+    category: plumbing
+    measure: length
+    summary: "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally."
+    search: "PEX pipe 3/4"
+  - id: pex_pipe_1_2
+    name: "PEX pipe, 1/2 in"
+    category: plumbing
+    measure: length
+    summary: "Buy the same PEX type (A, B or C) as the fittings and tools you will use."
+    search: "PEX pipe 1/2"
+  - id: pex_elbow_3_4
+    name: "PEX elbow, 3/4 in"
+    category: plumbing
+    summary: "Match the fitting system (crimp, clamp or expansion) to your tool."
+    search: "PEX elbow 3/4"
+  - id: pex_elbow_1_2
+    name: "PEX elbow, 1/2 in"
+    category: plumbing
+    summary: "Match the fitting system (crimp, clamp or expansion) to your tool."
+    search: "PEX elbow 1/2"
+  - id: pex_tee
+    name: "PEX tee"
+    category: plumbing
+    summary: "Where a 1/2 in branch leaves a 3/4 in line, buy a reducing tee."
+    search: "PEX tee 3/4 x 1/2"
+  - id: pex_crimp_ring
+    name: "PEX crimp ring"
+    category: plumbing
+    summary: "One ring per pipe end in each fitting; buy rings in both sizes, 1/2 in and 3/4 in."
+    search: "PEX crimp ring"
+  - id: pex_pipe_clip
+    name: "PEX pipe clip"
+    category: plumbing
+    summary: "Clips must hold the pipe without pinching or cutting it."
+    search: "PEX pipe clip"
+  - id: pex_stub_elbow
+    name: "PEX drop-ear elbow"
+    category: plumbing
+    summary: "Screwed to blocking, it holds the stub-out firmly where the shut-off valve will go."
+    search: "PEX drop ear elbow"
+  - id: abs_pipe_3
+    name: "ABS pipe, 3 in"
+    category: plumbing
+    measure: length
+    summary: "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m."
+    search: "ABS pipe 3"
+  - id: abs_pipe_2
+    name: "ABS pipe, 2 in"
+    category: plumbing
+    measure: length
+    summary: "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe."
+    search: "ABS pipe 2"
+  - id: abs_pipe_1_1_2
+    name: "ABS pipe, 1-1/2 in"
+    category: plumbing
+    measure: length
+    summary: "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory."
+    search: "ABS pipe 1 1/2"
+  - id: abs_elbow_3
+    name: "ABS elbow, 3 in"
+    category: plumbing
+    summary: "Use long-sweep bends where the flow changes from vertical to horizontal."
+    search: "ABS elbow 3"
+  - id: abs_elbow_2
+    name: "ABS elbow, 2 in"
+    category: plumbing
+    summary: "Use long-sweep bends where the flow changes from vertical to horizontal."
+    search: "ABS elbow 2"
+  - id: abs_elbow_1_1_2
+    name: "ABS elbow, 1-1/2 in"
+    category: plumbing
+    summary: "Use long-sweep bends where the flow changes from vertical to horizontal."
+    search: "ABS elbow 1 1/2"
+  - id: abs_sanitary_tee
+    name: "ABS sanitary tee"
+    category: plumbing
+    summary: "Match the run and branch sizes, and point the sweep in the direction of flow."
+    search: "ABS sanitary tee"
+  - id: abs_pipe_hanger
+    name: "ABS pipe hanger"
+    category: plumbing
+    summary: "Hangers must not compress, cut or abrade the pipe; add one at each change of direction."
+    search: "ABS pipe hanger"
+  - id: shutoff_valve
+    name: "Shut-off valve"
+    category: plumbing
+    summary: "Quarter-turn valves let you close each fixture without shutting off the house."
+    search: "quarter turn shut off valve"
+  - id: faucet_supply_line
+    name: "Braided supply line"
+    category: plumbing
+    summary: "Measure from the valve to the fixture inlet and check both thread sizes."
+    search: "braided faucet supply line"
+  - id: p_trap
+    name: "P-trap, 1-1/4 in"
+    category: plumbing
+    summary: "Every fixture needs a trap; a lavatory takes a 1-1/4 in trap."
+    search: "P-trap 1 1/4"
+  - id: closet_flange
+    name: "Toilet flange, 3 in"
+    category: plumbing
+    summary: "Set its top level with the finished floor, centred at the toilet's rough-in distance from the wall."
+    search: "ABS closet flange 3"
+  - id: toilet_wax_ring
+    name: "Toilet seal with closet bolts"
+    category: plumbing
+    summary: "Use a thicker or wax-free seal if the flange sits below the finished floor."
+    search: "toilet wax ring with bolts"
+  - id: abs_cement
+    name: "ABS cement"
+    category: plumbing
+    summary: "Use cement made for ABS; never join ABS and PVC with it unless the can says so."
+    search: "ABS cement"
+  - id: roof_vent_flashing
+    name: "Roof vent flashing"
+    category: plumbing
+    summary: "Match the boot to the vent pipe size and the roof slope."
+    search: "plumbing vent flashing"

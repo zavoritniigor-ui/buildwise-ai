@@ -293,7 +293,7 @@ ItemCategory = Literal[
 class Item(_Strict):
     """Something in the example house a person can click and go and buy."""
 
-    id: str = Field(pattern=r"^[a-z][a-z_]*$")
+    id: str = Field(pattern=r"^[a-z][a-z0-9_]*$")
     name: str
     category: ItemCategory
     measure: Literal["each", "length"] = "each"

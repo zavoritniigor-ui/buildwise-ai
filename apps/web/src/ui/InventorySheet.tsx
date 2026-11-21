@@ -1,7 +1,9 @@
 import { useI18n } from "../i18n";
 import type { RoomId } from "../house/model";
 import { inventory, surfacePurchases } from "../inventory";
+import { RUNS } from "../plumbing";
 import { StoreLinks } from "../StoreLinks";
+import { KNOWLEDGE, citationUrl } from "../knowledge";
 
 /** Everything a room, or the whole house, needs, counted from the model, with
  * the retailers' own search for each line. */
@@ -83,6 +85,25 @@ export function InventorySheet({
           );
         })}
       </ul>
+      {RUNS.some((r) => rooms.includes(r.room as RoomId)) && (
+        <p className="muted small">
+          {t.plumbingNote} {KNOWLEDGE.documents["npc-2020"]?.title}:{" "}
+          {[96, 107, 108].map((page, i) => (
+            <span key={page}>
+              {i > 0 && ", "}
+              <a
+                className="citation"
+                href={citationUrl({ document: "npc-2020", page })}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t.page(page)}
+              </a>
+            </span>
+          ))}
+          .
+        </p>
+      )}
       <p className="muted small">{t.inventoryNote}</p>
     </aside>
   );

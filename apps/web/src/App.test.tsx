@@ -49,7 +49,14 @@ test("choosing the bathroom offers its floor, shower and walls", async () => {
   const names = within(picker)
     .getAllByRole("button")
     .map((b) => b.textContent);
-  expect(names).toEqual(["Floor", "Shower", "Walls", "Ceiling", "Room shopping list"]);
+  expect(names).toEqual([
+    "Floor",
+    "Shower",
+    "Walls",
+    "Ceiling",
+    "Show pipes",
+    "Room shopping list",
+  ]);
 });
 
 test("the bathroom floor shows its area without the shower", async () => {
