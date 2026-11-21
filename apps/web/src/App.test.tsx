@@ -6,10 +6,20 @@ import { I18nProvider, type Language } from "./i18n";
 
 // WebGL is not available in jsdom; the scene is replaced by plain buttons.
 vi.mock("./house/HouseScene", () => ({
-  default: ({ onRoom }: HouseSceneProps) => (
-    <button type="button" onClick={() => onRoom("bathroom")}>
-      3D bathroom
-    </button>
+  default: ({ onRoom, onItem }: HouseSceneProps) => (
+    <>
+      <button type="button" onClick={() => onRoom("bathroom")}>
+        3D bathroom
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          onItem({ item: "toilet", object: "toilet_0", room: "bathroom", size: [70, 42, 82] })
+        }
+      >
+        3D toilet
+      </button>
+    </>
   ),
 }));
 
@@ -33,7 +43,9 @@ test("starts at the house and asks for a room", async () => {
 test("choosing the bathroom offers its floor, shower and walls", async () => {
   renderApp();
   fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
-  const picker = screen.getByRole("group", { name: "Click a floor, the walls or the shower" });
+  const picker = screen.getByRole("group", {
+    name: "Click the floor, the walls, the shower or anything in the room",
+  });
   const names = within(picker)
     .getAllByRole("button")
     .map((b) => b.textContent);
@@ -120,4 +132,25 @@ test("each layer shows its rate per square metre", async () => {
     within(buildup).getAllByRole("link", { name: "Schluter-DITRA Installation Handbook, с. 19" })
       .length,
   ).toBe(2);
+});
+
+test("clicking a fixture shows what to check and opens the stores' search", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D toilet" }));
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Toilet");
+  expect(screen.getByText("Size in the model: 70 × 42 × 82 cm")).toBeDefined();
+  expect(screen.getByText(/measure the rough-in/)).toBeDefined();
+  const stores = screen.getByRole("list", { name: "Find Toilet in stores" });
+  expect(within(stores).getByRole("link", { name: "RONA" }).getAttribute("href")).toBe(
+    "https://www.rona.ca/en/search?q=toilet",
+  );
+  expect(screen.getByRole("navigation").textContent).toContain("Toilet");
+});
+
+test("the item card speaks the person's language", async () => {
+  renderApp("uk");
+  fireEvent.click(await screen.findByRole("button", { name: "3D toilet" }));
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Унітаз");
+  expect(screen.getByText("Ванна кімната · Сантехніка")).toBeDefined();
+  expect(screen.getByText(/виміряйте відстань від готової стіни/)).toBeDefined();
 });

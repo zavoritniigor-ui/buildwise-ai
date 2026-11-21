@@ -1,0 +1,255 @@
+# Everything in the example house a person can click: furniture, fixtures,
+# appliances, doors, windows and their hardware. The 3D model tags each object
+# with one of these ids (tools/house-model/build_house.py), and the app opens
+# the retailers' own search with `search` (no prices or stock are stored here).
+#
+# category: furniture | cabinetry | appliance | plumbing | lighting | door |
+#           window | hardware | textile | decor
+# summary:  what to check before buying, in one sentence
+
+items:
+  - id: sofa
+    name: "Sofa"
+    category: furniture
+    summary: "Measure the doorways and hallway it has to pass through, not only the wall it will stand against."
+    search: "sofa"
+  - id: coffee_table
+    name: "Coffee table"
+    category: furniture
+    summary: "Pick a size that leaves a comfortable walkway around it."
+    search: "coffee table"
+  - id: area_rug
+    name: "Area rug"
+    category: textile
+    summary: "Put a non-slip rug pad under it on hard floors."
+    search: "area rug"
+  - id: tv_stand
+    name: "TV stand"
+    category: furniture
+    summary: "Check that it carries the TV's weight and is wider than the TV's base."
+    search: "tv stand"
+  - id: television
+    name: "Television"
+    category: appliance
+    summary: "Measure the distance from the sofa before choosing the screen size."
+    search: "television"
+  - id: planter
+    name: "Planter"
+    category: decor
+    summary: "Choose one with a drainage hole and a saucer to protect the floor."
+    search: "planter"
+  - id: artificial_plant
+    name: "Artificial plant"
+    category: decor
+    summary: "Check its height against the space it has to fill."
+    search: "artificial plant"
+  - id: floor_lamp
+    name: "Floor lamp"
+    category: lighting
+    summary: "Check the bulb base, and that the cord reaches an outlet without crossing a walkway."
+    search: "floor lamp"
+  - id: refrigerator
+    name: "Refrigerator"
+    category: appliance
+    summary: "Measure the opening's width, height and depth, and leave room for the door to open fully."
+    search: "refrigerator"
+  - id: base_cabinet
+    name: "Kitchen base cabinet"
+    category: cabinetry
+    summary: "Base cabinets come in standard widths: plan the run around the sink and the appliances first."
+    search: "kitchen base cabinet"
+  - id: wall_cabinet
+    name: "Kitchen wall cabinet"
+    category: cabinetry
+    summary: "Screw it to the studs, never only into the drywall."
+    search: "kitchen wall cabinet"
+  - id: countertop
+    name: "Countertop"
+    category: cabinetry
+    summary: "Order it once the base cabinets are installed and level, with the cut-outs for the sink and the cooktop."
+    search: "kitchen countertop"
+  - id: kitchen_sink
+    name: "Kitchen sink"
+    category: plumbing
+    summary: "Check the smallest cabinet it fits and whether it mounts under or on top of the counter."
+    search: "kitchen sink"
+  - id: kitchen_faucet
+    name: "Kitchen faucet"
+    category: plumbing
+    summary: "Match the number of holes in the sink or the counter."
+    search: "kitchen faucet"
+  - id: cooktop
+    name: "Cooktop"
+    category: appliance
+    summary: "Check the power or gas supply it needs and its cut-out size before cutting the counter."
+    search: "cooktop"
+  - id: range_hood
+    name: "Range hood"
+    category: appliance
+    summary: "A hood ducted to the outside works best; make it at least as wide as the cooktop."
+    search: "range hood"
+  - id: cabinet_pull
+    name: "Cabinet pull"
+    category: hardware
+    summary: "When replacing pulls, match the hole spacing, centre to centre."
+    search: "cabinet pull"
+  - id: dining_table
+    name: "Dining table"
+    category: furniture
+    summary: "Leave room behind each chair to pull it out and sit down."
+    search: "dining table"
+  - id: dining_chair
+    name: "Dining chair"
+    category: furniture
+    summary: "Check the seat height against the table height."
+    search: "dining chair"
+  - id: bed_frame
+    name: "Bed frame"
+    category: furniture
+    summary: "Buy it for the mattress size, and check whether it needs a box spring or has slats."
+    search: "bed frame"
+  - id: mattress
+    name: "Mattress"
+    category: textile
+    summary: "Check the size matches the bed frame."
+    search: "mattress"
+  - id: duvet
+    name: "Duvet"
+    category: textile
+    summary: "Choose the size for the mattress and the warmth for the room."
+    search: "duvet"
+  - id: pillow
+    name: "Pillow"
+    category: textile
+    summary: "Choose the firmness for how you sleep."
+    search: "pillow"
+  - id: nightstand
+    name: "Nightstand"
+    category: furniture
+    summary: "A top about level with the mattress is the easiest to reach."
+    search: "nightstand"
+  - id: table_lamp
+    name: "Table lamp"
+    category: lighting
+    summary: "Check the bulb base and where the switch is."
+    search: "table lamp"
+  - id: wardrobe
+    name: "Wardrobe"
+    category: furniture
+    summary: "Anchor tall furniture to the wall so it cannot tip over."
+    search: "wardrobe"
+  - id: storage_bench
+    name: "Entryway storage bench"
+    category: furniture
+    summary: "Measure the depth so it leaves the door free to open."
+    search: "storage bench"
+  - id: wall_mirror
+    name: "Wall mirror"
+    category: decor
+    summary: "Hang a heavy mirror on studs or on anchors rated for its weight."
+    search: "wall mirror"
+  - id: coat_hook
+    name: "Coat hook"
+    category: hardware
+    summary: "Screw it into a stud or use anchors rated for the load."
+    search: "coat hook"
+  - id: door_mat
+    name: "Door mat"
+    category: textile
+    summary: "Choose one thin enough for the door to open over it."
+    search: "door mat"
+  - id: bathroom_vanity
+    name: "Bathroom vanity"
+    category: cabinetry
+    summary: "Check the water and drain positions in the wall against the open back of the cabinet."
+    search: "bathroom vanity"
+  - id: vanity_top
+    name: "Vanity top with sink"
+    category: plumbing
+    summary: "Match the top to the cabinet width and its faucet holes to the faucet."
+    search: "vanity top"
+  - id: bathroom_faucet
+    name: "Bathroom faucet"
+    category: plumbing
+    summary: "Single-hole or widespread: match the holes in the vanity top."
+    search: "bathroom faucet"
+  - id: bathroom_mirror
+    name: "Bathroom mirror"
+    category: decor
+    summary: "Pick one no wider than the vanity and fix it to studs or rated anchors."
+    search: "bathroom mirror"
+  - id: toilet
+    name: "Toilet"
+    category: plumbing
+    summary: "Before buying, measure the rough-in: from the finished wall to the centre of the floor drain."
+    search: "toilet"
+  - id: shower_glass_panel
+    name: "Shower glass panel"
+    category: plumbing
+    summary: "Use tempered safety glass; a fixed panel mounts in a floor channel with a wall bracket."
+    search: "shower glass panel"
+  - id: shower_valve
+    name: "Shower valve"
+    category: plumbing
+    summary: "Buy the valve body and its trim from the same brand; a pressure-balancing valve keeps the temperature steady."
+    search: "shower valve"
+  - id: rain_shower_head
+    name: "Rain shower head"
+    category: plumbing
+    summary: "Check that the arm and the thread match the valve's outlet."
+    search: "rain shower head"
+  - id: linear_drain
+    name: "Linear shower drain"
+    category: plumbing
+    summary: "The drain must belong to the waterproofing system used on the shower floor."
+    search: "linear shower drain"
+  - id: towel_bar
+    name: "Towel bar"
+    category: hardware
+    summary: "Fix it into studs or with anchors rated for pulling loads."
+    search: "towel bar"
+  - id: bath_towel
+    name: "Bath towel"
+    category: textile
+    summary: "Choose the size and the weight of the cotton."
+    search: "bath towel"
+  - id: bath_mat
+    name: "Bath mat"
+    category: textile
+    summary: "Choose one with a non-slip backing."
+    search: "bath mat"
+  - id: interior_door
+    name: "Prehung interior door"
+    category: door
+    summary: "Measure the rough opening and the wall thickness, and choose the hand from the side it opens toward."
+    search: "prehung interior door"
+  - id: entry_door
+    name: "Exterior entry door"
+    category: door
+    summary: "Choose an insulated steel or fibreglass door with weatherstripping; measure the rough opening and choose the hand."
+    search: "exterior door"
+  - id: door_lever
+    name: "Door lever"
+    category: hardware
+    summary: "Passage for halls; privacy, with a lock, for bathrooms and bedrooms."
+    search: "door lever"
+  - id: entry_handleset
+    name: "Entry door handleset"
+    category: hardware
+    summary: "Pair it with a deadbolt and check the door's bore hole and backset."
+    search: "entry door handleset"
+  - id: window
+    name: "Window"
+    category: window
+    summary: "Order by the rough opening; a bedroom needs a window that opens wide enough to get out through."
+    search: "window"
+  - id: window_sill
+    name: "Window sill"
+    category: window
+    summary: "Buy the board deeper than the wall so it overhangs the trim."
+    search: "window stool moulding"
+  - id: door_casing
+    name: "Door casing"
+    category: door
+    summary: "Measure both sides of the opening; casing is sold in lengths to cut at 45°."
+    search: "door casing moulding"

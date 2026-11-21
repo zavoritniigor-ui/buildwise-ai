@@ -10,9 +10,12 @@ import {
   useState,
 } from "react";
 import {
+  Box3,
+  Color,
   DoubleSide,
   type Material,
   type Mesh,
+  type MeshStandardMaterial,
   type Object3D,
   PMREMGenerator,
   Plane,
@@ -22,9 +25,11 @@ import {
 } from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { useI18n } from "../i18n";
+import type { Selection } from "../ui/ItemSheet";
 import houseUrl from "./house.glb?url";
 import {
   FOOTPRINT,
+  OPENINGS,
   ROOMS,
   type Rect,
   type Room,
@@ -33,16 +38,23 @@ import {
   area,
   centre,
   findRoom,
+  roomOpenings,
+  sideLine,
 } from "./model";
 
 export interface HouseSceneProps {
   room: RoomId | null;
   surface: SurfaceId | null;
+  /** The model object of the selected item, highlighted in the scene. */
+  selected: string | null;
   onRoom: (room: RoomId) => void;
   onSurface: (surface: SurfaceId) => void;
+  onItem: (selection: Selection) => void;
 }
 
 const ACCENT = "#2f7d6d";
+/** Height of the floor's click plane: just above the floor, below rugs and mats. */
+const FLOOR_HIT = 0.006;
 
 useGLTF.preload(houseUrl);
 
@@ -126,40 +138,186 @@ function light(gl: WebGLRenderer, scene: Scene): () => void {
   };
 }
 
+/** An object in the model that is sold as an item (data/items.yaml). */
+interface ItemNode {
+  node: Object3D;
+  item: string;
+  /** Rooms it belongs to: one for furniture, both sides for a door or window. */
+  rooms: RoomId[];
+  materials: MeshStandardMaterial[];
+}
+
+function itemRooms(data: Record<string, unknown>): RoomId[] {
+  if (typeof data.room === "string") return [data.room as RoomId];
+  const opening = OPENINGS.find((o) => o.id === data.opening);
+  if (!opening) return [];
+  return ROOMS.filter((r) => roomOpenings(r).includes(opening)).map((r) => r.id);
+}
+
+/** Width, depth (the larger first) and height of an object, in centimetres,
+ * measured in its own frame so an open door still reads as its real size. */
+function localSize(node: Object3D): [number, number, number] {
+  const box = new Box3();
+  node.traverse((n) => {
+    const mesh = n as Mesh;
+    if (!mesh.isMesh) return;
+    mesh.geometry.computeBoundingBox();
+    const bounds = mesh.geometry.boundingBox?.clone();
+    if (!bounds) return;
+    if (mesh !== node) bounds.applyMatrix4(mesh.matrix);
+    box.union(bounds);
+  });
+  const size = box.getSize(new Vector3());
+  const [wide, deep] = [size.x, size.z].sort((p, q) => q - p);
+  return [wide ?? 0, deep ?? 0, size.y].map((m) => Math.round(m * 100)) as [number, number, number];
+}
+
+/** Tints the hovered and the selected object towards the accent colour; an
+ * emissive glow would not show on white porcelain or paint. */
+function paint(items: ItemNode[], hovered: string | null, selected: string | null) {
+  const accent = new Color(ACCENT);
+  for (const { node, materials } of items) {
+    const level = node.name === selected ? 0.55 : node.name === hovered ? 0.3 : 0;
+    for (const material of materials) {
+      const base = (material.userData.base as Color | undefined) ?? material.color.clone();
+      material.userData.base = base;
+      material.color.copy(base).lerp(accent, level);
+    }
+  }
+}
+
+/** The item a pointer event hit, skipping walls cut away above the hit point. */
+function hitItem(event: ThreeEvent<PointerEvent | MouseEvent>, byNode: Map<Object3D, ItemNode>) {
+  for (let n: Object3D | null = event.object; n; n = n.parent) {
+    const cut = n.userData.cut as Plane | undefined;
+    if (cut && event.point.y > cut.constant + 0.01) return { hidden: true as const };
+  }
+  for (let n: Object3D | null = event.object; n; n = n.parent) {
+    const found = byNode.get(n);
+    if (found) return { item: found };
+  }
+  return { wall: wallLine(event.object) };
+}
+
 /**
- * The Blender model, shown as a picture only; clicks are handled by the planes.
- * Walls on the camera's side of the room in view are cut down, as in a
- * dollhouse, and rise again as the camera moves round.
+ * The Blender model. Every piece of furniture, fixture, door and window is an
+ * object tagged with its item, so a click opens what it is and where to buy
+ * it; a click on a room's wall opens its walls. Walls on the camera's side of
+ * the room in view are cut down, as in a dollhouse, and rise again as the
+ * camera moves round.
  */
-function Model({ focus, overview }: { focus: [number, number]; overview: boolean }) {
+function Model({
+  room,
+  focus,
+  selected,
+  onRoom,
+  onSurface,
+  onItem,
+}: {
+  room: RoomId | null;
+  focus: [number, number];
+  selected: string | null;
+  onRoom: (room: RoomId) => void;
+  onSurface: (surface: SurfaceId) => void;
+  onItem: (selection: Selection) => void;
+}) {
   const { scene } = useGLTF(houseUrl);
-  const { model, walls } = useMemo(() => {
+  const [hovered, setHovered] = useState<string | null>(null);
+  const { model, walls, items } = useMemo(() => {
     const clone = scene.clone(true);
     const pieces: WallPiece[] = [];
+    const tagged = (n: Object3D | null): boolean =>
+      !!n && (typeof n.userData.item === "string" || tagged(n.parent));
     clone.traverse((node) => {
       const mesh = node as Mesh;
       if (!mesh.isMesh) return;
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       const line = wallLine(mesh);
-      if (!line) return;
-      const plane = new Plane(new Vector3(0, -1, 0), FULL_HEIGHT);
+      if (!line && !tagged(mesh)) return;
+      const plane = line ? new Plane(new Vector3(0, -1, 0), FULL_HEIGHT) : null;
+      // each object gets its own materials so it can be cut or tinted alone
       const own = (m: Material) => {
         const copy = m.clone();
-        copy.clippingPlanes = [plane];
-        copy.clipShadows = true;
-        copy.side = DoubleSide;
+        if (plane) {
+          copy.clippingPlanes = [plane];
+          copy.clipShadows = true;
+          copy.side = DoubleSide;
+        }
         return copy;
       };
       mesh.material = Array.isArray(mesh.material) ? mesh.material.map(own) : own(mesh.material);
-      pieces.push({ ...line, plane });
+      if (line && plane) {
+        mesh.userData.cut = plane;
+        pieces.push({ ...line, plane });
+      }
     });
-    return { model: clone, walls: pieces };
+    const found: ItemNode[] = [];
+    clone.traverse((node) => {
+      if (typeof node.userData.item !== "string") return;
+      const materials: MeshStandardMaterial[] = [];
+      node.traverse((n) => {
+        const mesh = n as Mesh;
+        if (mesh.isMesh) materials.push(...([mesh.material].flat() as MeshStandardMaterial[]));
+      });
+      found.push({ node, item: node.userData.item, rooms: itemRooms(node.userData), materials });
+    });
+    return { model: clone, walls: pieces, items: found };
   }, [scene]);
+  const byNode = useMemo(() => new Map(items.map((i) => [i.node, i])), [items]);
 
-  useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, overview, delta));
+  useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, !room, delta));
+  useEffect(() => paint(items, hovered, selected), [items, hovered, selected]);
+  useEffect(() => () => cursor(false), []);
 
-  return <primitive object={model} />;
+  const roomWall = (line: ReturnType<typeof wallLine>, point: Vector3): boolean => {
+    if (!room || !line) return false;
+    const rect = findRoom(room).rect;
+    return (["north", "south", "west", "east"] as const).some((side) => {
+      const s = sideLine(rect, side);
+      const along = s.orient === "h" ? point.x : point.z;
+      return (
+        s.orient === line.orient &&
+        Math.abs(s.coord - line.coord) < 1e-3 &&
+        along >= s.from &&
+        along <= s.to
+      );
+    });
+  };
+
+  return (
+    <primitive
+      object={model}
+      onPointerMove={(e: ThreeEvent<PointerEvent>) => {
+        const hit = hitItem(e, byNode);
+        if ("hidden" in hit) return;
+        e.stopPropagation();
+        const name = "item" in hit && hit.item ? hit.item.node.name : null;
+        if (name !== hovered) setHovered(name);
+        cursor(!!name || roomWall(hit.wall ?? null, e.point));
+      }}
+      onPointerOut={() => {
+        setHovered(null);
+        cursor(false);
+      }}
+      onClick={(e: ThreeEvent<MouseEvent>) => {
+        const hit = hitItem(e, byNode);
+        if ("hidden" in hit) return;
+        if ("item" in hit && hit.item) {
+          e.stopPropagation();
+          const { node, item, rooms } = hit.item;
+          const here = room && rooms.includes(room) ? room : null;
+          const target = here ?? rooms[0];
+          if (!target) return;
+          if (here) onItem({ item, object: node.name, room: here, size: localSize(node) });
+          else onRoom(target);
+        } else if (roomWall(hit.wall ?? null, e.point)) {
+          e.stopPropagation();
+          onSurface("walls");
+        }
+      }}
+    />
+  );
 }
 
 function Environment() {
@@ -239,7 +397,12 @@ function Overview({ onRoom }: { onRoom: (room: RoomId) => void }) {
     <group>
       {ROOMS.map((room) => (
         <group key={room.id}>
-          <Clickable rect={room.rect} y={0.02} active={false} onSelect={() => onRoom(room.id)} />
+          <Clickable
+            rect={room.rect}
+            y={FLOOR_HIT}
+            active={false}
+            onSelect={() => onRoom(room.id)}
+          />
           <RoomLabel room={room} onSelect={() => onRoom(room.id)} />
         </group>
       ))}
@@ -260,7 +423,7 @@ function RoomView({
     <group>
       <Clickable
         rect={room.rect}
-        y={0.02}
+        y={FLOOR_HIT}
         active={surface === "floor"}
         onSelect={() => onSurface("floor")}
       />
@@ -302,7 +465,14 @@ function Camera({ room }: { room: RoomId | null }) {
   );
 }
 
-export default function HouseScene({ room, surface, onRoom, onSurface }: HouseSceneProps) {
+export default function HouseScene({
+  room,
+  surface,
+  selected,
+  onRoom,
+  onSurface,
+  onItem,
+}: HouseSceneProps) {
   const [cx, cz] = centre(FOOTPRINT);
   const labels = useRef<HTMLDivElement>(null);
   return (
@@ -324,8 +494,12 @@ export default function HouseScene({ room, surface, onRoom, onSurface }: HouseSc
           <Camera room={room} />
           <group>
             <Model
+              room={room}
               focus={room ? centre(findRoom(room).rect) : centre(FOOTPRINT)}
-              overview={!room}
+              selected={selected}
+              onRoom={onRoom}
+              onSurface={onSurface}
+              onItem={onItem}
             />
             {room ? (
               <RoomView room={findRoom(room)} surface={surface} onSurface={onSurface} />

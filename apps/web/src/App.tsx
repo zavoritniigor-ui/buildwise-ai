@@ -5,29 +5,58 @@ import { type RoomId, type SurfaceId, findRoom } from "./house/model";
 import PlanView from "./house/PlanView";
 import { supportsWebGL } from "./house/webgl";
 
+import { ItemSheet, type Selection } from "./ui/ItemSheet";
 import { SurfaceSheet } from "./ui/SurfaceSheet";
+import { findItem } from "./knowledge";
 
 const HouseScene = lazy(() => import("./house/HouseScene"));
 const has3D = supportsWebGL();
 
 export function App() {
-  const { t, language, setLanguage } = useI18n();
+  const { t, d, language, setLanguage } = useI18n();
   const [room, setRoom] = useState<RoomId | null>(null);
   const [surface, setSurface] = useState<SurfaceId | null>(null);
+  const [selection, setSelection] = useState<Selection | null>(null);
 
   const selectRoom = (next: RoomId | null) => {
     setRoom(next);
     setSurface(null);
+    setSelection(null);
   };
+  const selectSurface = (next: SurfaceId | null) => {
+    setSurface(next);
+    setSelection(null);
+  };
+  const selectItem = (next: Selection) => {
+    setRoom(next.room);
+    setSurface(null);
+    setSelection(next);
+  };
+  const itemName = selection && findItem(selection.item)?.name;
+  const leaf = surface ? t.surfaces[surface] : itemName ? d(itemName) : null;
 
   return (
     <div className="app">
       <Suspense fallback={<div className="scene-loading" aria-hidden="true" />}>
         <div className="scene">
           {has3D ? (
-            <HouseScene room={room} surface={surface} onRoom={selectRoom} onSurface={setSurface} />
+            <HouseScene
+              room={room}
+              surface={surface}
+              selected={selection?.object ?? null}
+              onRoom={selectRoom}
+              onSurface={selectSurface}
+              onItem={selectItem}
+            />
           ) : (
-            <PlanView room={room} surface={surface} onRoom={selectRoom} onSurface={setSurface} />
+            <PlanView
+              room={room}
+              surface={surface}
+              selected={null}
+              onRoom={selectRoom}
+              onSurface={selectSurface}
+              onItem={selectItem}
+            />
           )}
         </div>
       </Suspense>
@@ -62,31 +91,31 @@ export function App() {
             <span aria-hidden="true">›</span>
             <button
               type="button"
-              onClick={() => setSurface(null)}
-              aria-current={surface ? undefined : "page"}
+              onClick={() => selectSurface(null)}
+              aria-current={leaf ? undefined : "page"}
             >
               {t.rooms[room]}
             </button>
           </>
         )}
-        {room && surface && (
+        {room && leaf && (
           <>
             <span aria-hidden="true">›</span>
-            <span aria-current="page">{t.surfaces[surface]}</span>
+            <span aria-current="page">{leaf}</span>
           </>
         )}
       </nav>
 
-      {!surface && (
+      {!leaf && (
         <p className="hint" role="status">
           {room ? t.chooseSurface : t.chooseRoom}
         </p>
       )}
 
-      {room && !surface && (
+      {room && !leaf && (
         <div className="surface-picker" role="group" aria-label={t.chooseSurface}>
           {findRoom(room).surfaces.map((s) => (
-            <button key={s} type="button" onClick={() => setSurface(s)}>
+            <button key={s} type="button" onClick={() => selectSurface(s)}>
               {t.surfaces[s]}
             </button>
           ))}
@@ -94,8 +123,10 @@ export function App() {
       )}
 
       {room && surface && (
-        <SurfaceSheet room={room} surface={surface} onClose={() => setSurface(null)} />
+        <SurfaceSheet room={room} surface={surface} onClose={() => selectSurface(null)} />
       )}
+
+      {selection && <ItemSheet selection={selection} onClose={() => setSelection(null)} />}
     </div>
   );
 }

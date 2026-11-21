@@ -1,4 +1,7 @@
 import { expect, test } from "vitest";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { KNOWLEDGE } from "../knowledge";
 import furniture from "./furniture.json";
 import {
   FOOTPRINT,
@@ -75,8 +78,9 @@ test("every piece of furniture stands inside its room", () => {
   const inset = WALL_THICKNESS / 2 - 1e-6;
   for (const place of furniture.placements) {
     const { rect } = findRoom(place.room as Parameters<typeof findRoom>[0]);
-    const parts = furniture.pieces[place.piece as keyof typeof furniture.pieces];
-    expect(parts, place.piece).toBeDefined();
+    const piece = furniture.pieces[place.piece as keyof typeof furniture.pieces];
+    expect(piece, place.piece).toBeDefined();
+    const parts = piece.parts;
     expect(place.rotate % 90, place.piece).toBe(0);
     const turn = (place.rotate / 90) % 2 === 1;
     const cos = Math.round(Math.cos((place.rotate * Math.PI) / 180));
@@ -95,4 +99,26 @@ test("every piece of furniture stands inside its room", () => {
       expect(z + hd, where).toBeLessThanOrEqual(rect.z + rect.depth - inset);
     }
   }
+});
+
+test("every object in the 3D model is an item of the knowledge base", () => {
+  const glb = readFileSync(join(import.meta.dirname, "house.glb"));
+  const length = glb.readUInt32LE(12);
+  const gltf = JSON.parse(glb.subarray(20, 20 + length).toString("utf8")) as {
+    nodes: { name: string; extras?: { item?: string; room?: string; opening?: string } }[];
+  };
+  const known = new Set(KNOWLEDGE.items.map((i) => i.id));
+  const tagged = gltf.nodes.filter((n) => n.extras?.item);
+  expect(tagged.length).toBeGreaterThan(50);
+  for (const node of gltf.nodes) {
+    // only floors, the shower zone and plain walls are surfaces rather than items
+    if (/^(floor|shower)__|^wall__[hv]_\d+__\d+$/.test(node.name)) continue;
+    expect(node.extras?.item, node.name).toBeDefined();
+    expect(known.has(node.extras?.item ?? ""), node.name).toBe(true);
+    const where = node.extras?.room ?? node.extras?.opening;
+    expect(where, node.name).toBeDefined();
+  }
+  // every item is used somewhere in the house
+  const used = new Set(tagged.map((n) => n.extras?.item));
+  expect([...known].filter((id) => !used.has(id))).toEqual([]);
 });

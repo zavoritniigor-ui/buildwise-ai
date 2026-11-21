@@ -328,6 +328,8 @@ def snapshot(data_dir: Path) -> Json:
             if bid not in known_buildups:
                 raise ValueError(f"surface {room}.{surface} uses unknown buildup {bid!r}")
 
+    items = schema.load_items(data_dir)
+
     return {
         "documents": documents,
         "conditions": dict(sorted(conditions.items())),
@@ -380,6 +382,7 @@ def snapshot(data_dir: Path) -> Json:
             room: dict(sorted(surfaces.items()))
             for room, surfaces in sorted(buildups.surfaces.items())
         },
+        "items": [item.model_dump() for item in items.items],
     }
 
 
@@ -420,6 +423,9 @@ def source_texts(snap: dict[str, Json]) -> set[str]:
             layer_d = _dict(layer)
             add(layer_d["label"])
             add(layer_d.get("material"))
+    for thing in _list(snap["items"]):
+        add(_dict(thing)["name"])
+        add(_dict(thing)["summary"])
     for scenario in _list(snap["scenarios"]):
         add(_dict(scenario)["title"])
         for case in _list(_dict(scenario)["cases"]):

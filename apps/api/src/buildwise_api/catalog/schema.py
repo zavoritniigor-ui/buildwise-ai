@@ -265,3 +265,43 @@ def load_catalog_files(data_dir: Path) -> dict[Path, CatalogFile]:
         path: CatalogFile.model_validate(read_yaml(path))
         for path in sorted((data_dir / "catalog").glob("*.yaml"))
     }
+
+
+ItemCategory = Literal[
+    "furniture",
+    "cabinetry",
+    "appliance",
+    "plumbing",
+    "lighting",
+    "door",
+    "window",
+    "hardware",
+    "textile",
+    "decor",
+]
+
+
+class Item(_Strict):
+    """Something in the example house a person can click and go and buy."""
+
+    id: str = Field(pattern=r"^[a-z][a-z_]*$")
+    name: str
+    category: ItemCategory
+    summary: str
+    search: str = Field(min_length=2)
+
+
+class ItemFile(_Strict):
+    items: list[Item] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _unique_ids(self) -> Self:
+        ids = [item.id for item in self.items]
+        duplicates = sorted({i for i in ids if ids.count(i) > 1})
+        if duplicates:
+            raise ValueError(f"duplicate item ids: {duplicates}")
+        return self
+
+
+def load_items(data_dir: Path) -> ItemFile:
+    return ItemFile.model_validate(read_yaml(data_dir / "items.yaml"))
