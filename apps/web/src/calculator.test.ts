@@ -69,3 +69,30 @@ test("bathroom plumbing scales pipe with the perimeter, keeps the fittings", () 
   expect(big.closet_flange).toBe(1);
   expect(plumbing("dry", dry)).toEqual([]);
 });
+
+test("picking another product swaps its rate and its sale unit", () => {
+  const painted = { walls: "painted-moisture-wall" } as const;
+  const aura = surfaceMaterials("bathroom", bath, painted);
+  const sico = surfaceMaterials("bathroom", bath, painted, {
+    "bathroom-paint": "sico-evolution-867",
+  });
+  // walls 23.42 m² + ceiling 7.5 m²
+  expect(line(aura, "Benjamin Moore Aura Bath and Spa")?.need.packages).toBe(2);
+  expect(line(sico, "Benjamin Moore Aura Bath and Spa")).toBeUndefined();
+  // 0.17 L/m² x 30.92 m² = 5.26 L, two cans of 3.78 L
+  const evolution = line(sico, "Sico Evolution semi gloss");
+  expect(evolution?.name).toBe("Sico Evolution Semi-Gloss (867)");
+  expect(evolution?.need.total).toBe(5.3);
+  expect(evolution?.need.packages).toBe(2);
+});
+
+test("a liquid membrane can be any of three products", () => {
+  const wall = { walls: "tiled-wall-cement-board" } as const;
+  const hydroBan = surfaceMaterials("bathroom", bath, wall, {
+    "liquid-waterproofing": "laticrete-hydro-ban",
+  });
+  // 0.83 L/m² + 10 % on 23.42 m² of wall = 21.4 L, six 3.8 L pails
+  const membrane = line(hydroBan, "Laticrete Hydro Ban");
+  expect(membrane?.need.total).toBe(21.4);
+  expect(membrane?.need.packages).toBe(6);
+});

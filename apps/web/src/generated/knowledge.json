@@ -40,10 +40,35 @@
       "url": "https://www.custombuildingproducts.com/wp-content/uploads/RedGard_Family_SellSheet_SS178.pdf",
       "version": "SS178 8/26R"
     },
+    "hydro-ban-ds": {
+      "title": "HYDRO BAN Data Sheet (DS-663)",
+      "url": "https://cdnmdm.laticrete.com/Datasheet/NA/40/Datasheet_NA_en_40.pdf",
+      "version": "DS-663-1026"
+    },
     "npc-2020": {
       "title": "National Plumbing Code of Canada 2020",
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
       "version": "2020, 1st printing"
+    },
+    "sico-expert-843-tds": {
+      "title": "Sico Expert 843-XX1N Interior Self-Sealer Latex Professional Paint, Eggshell Pro, Technical Data Sheet",
+      "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_843XX1N_CAEN.pdf",
+      "version": "CAEN"
+    },
+    "sico-endurance-746-tds": {
+      "title": "Sico Endurance 746-50X Interior 100% Acrylic Latex Paint, Pearl, Technical Data Sheet",
+      "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_7465XX_CAEN.pdf",
+      "version": "CAEN"
+    },
+    "sico-virtuo-443-tds": {
+      "title": "Sico Virtuo 443-50X Interior 100% Acrylic Paint and Primer, Eggshell, Technical Data Sheet",
+      "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_44350X_CAEN.pdf",
+      "version": "CAEN"
+    },
+    "sico-evolution-867-tds": {
+      "title": "Sico Evolution 867-5XX Interior Latex Paint, Semi-Gloss, Technical Data Sheet",
+      "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_8675XX_CAEN.pdf",
+      "version": "CAEN"
     },
     "qc-plumbing-2020": {
       "title": "Quebec Construction Code, Chapter III Plumbing, and National Plumbing Code of Canada 2020 (amended)",
@@ -4843,7 +4868,8 @@
               "size": 3.79,
               "kind": "can"
             }
-          }
+          },
+          "slot": "interior-paint"
         }
       ]
     },
@@ -4962,7 +4988,8 @@
               "size": 3.79,
               "kind": "can"
             }
-          }
+          },
+          "slot": "interior-paint"
         }
       ]
     },
@@ -5148,7 +5175,8 @@
               "size": 3.78,
               "kind": "pail"
             }
-          }
+          },
+          "slot": "liquid-waterproofing"
         },
         {
           "role": "mortar",
@@ -5291,7 +5319,8 @@
               "size": 3.78,
               "kind": "pail"
             }
-          }
+          },
+          "slot": "liquid-waterproofing"
         },
         {
           "role": "mortar",
@@ -5449,7 +5478,8 @@
               "size": 3.79,
               "kind": "can"
             }
-          }
+          },
+          "slot": "bathroom-paint"
         }
       ]
     },
@@ -5568,7 +5598,8 @@
               "size": 3.79,
               "kind": "can"
             }
-          }
+          },
+          "slot": "bathroom-paint"
         }
       ]
     }
@@ -6106,6 +6137,217 @@
       "search": "NMD90 14/2"
     }
   ],
+  "slots": {
+    "interior-paint": {
+      "name": "Interior paint"
+    },
+    "bathroom-paint": {
+      "name": "Bathroom paint"
+    },
+    "liquid-waterproofing": {
+      "name": "Liquid waterproofing membrane"
+    }
+  },
+  "products": [
+    {
+      "id": "bm-regal-select",
+      "slot": "interior-paint",
+      "brand": "Benjamin Moore",
+      "name": "Regal Select Eggshell",
+      "quantity": {
+        "per": "area",
+        "amount": 0.21,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Benjamin Moore Regal Select",
+        "source": {
+          "document": "regal-select-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.79,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "sico-expert-843",
+      "slot": "interior-paint",
+      "brand": "Sico",
+      "name": "Expert Eggshell Pro (843)",
+      "quantity": {
+        "per": "area",
+        "amount": 0.21,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Sico Expert",
+        "source": {
+          "document": "sico-expert-843-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "sico-endurance-746",
+      "slot": "interior-paint",
+      "brand": "Sico",
+      "name": "Endurance Pearl (746)",
+      "quantity": {
+        "per": "area",
+        "amount": 0.21,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Sico Endurance",
+        "source": {
+          "document": "sico-endurance-746-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "sico-virtuo-443",
+      "slot": "interior-paint",
+      "brand": "Sico",
+      "name": "Virtuo Eggshell (443)",
+      "quantity": {
+        "per": "area",
+        "amount": 0.21,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Sico Virtuo",
+        "source": {
+          "document": "sico-virtuo-443-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "bm-aura-bath-spa",
+      "slot": "bathroom-paint",
+      "brand": "Benjamin Moore",
+      "name": "Aura Bath & Spa Matte",
+      "quantity": {
+        "per": "area",
+        "amount": 0.23,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Benjamin Moore Aura Bath and Spa",
+        "source": {
+          "document": "aura-bath-spa-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.79,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "sico-evolution-867",
+      "slot": "bathroom-paint",
+      "brand": "Sico",
+      "name": "Evolution Semi-Gloss (867)",
+      "quantity": {
+        "per": "area",
+        "amount": 0.17,
+        "unit": "L",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Sico Evolution semi gloss",
+        "source": {
+          "document": "sico-evolution-867-tds",
+          "page": 1
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "can"
+        }
+      }
+    },
+    {
+      "id": "custom-redgard",
+      "slot": "liquid-waterproofing",
+      "brand": "Custom Building Products",
+      "name": "RedGard",
+      "quantity": {
+        "per": "area",
+        "amount": 0.74,
+        "unit": "L",
+        "waste": 0.1,
+        "basis": "manufacturer",
+        "search": "RedGard waterproofing membrane",
+        "source": {
+          "document": "redgard-sell-sheet",
+          "page": 2
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "pail"
+        }
+      }
+    },
+    {
+      "id": "custom-redgard-speedcoat",
+      "slot": "liquid-waterproofing",
+      "brand": "Custom Building Products",
+      "name": "RedGard SpeedCoat",
+      "quantity": {
+        "per": "area",
+        "amount": 0.19,
+        "unit": "L",
+        "waste": 0.1,
+        "basis": "manufacturer",
+        "search": "RedGard SpeedCoat",
+        "source": {
+          "document": "redgard-sell-sheet",
+          "page": 2
+        },
+        "package": {
+          "size": 3.78,
+          "kind": "pail"
+        }
+      }
+    },
+    {
+      "id": "laticrete-hydro-ban",
+      "slot": "liquid-waterproofing",
+      "brand": "LATICRETE",
+      "name": "HYDRO BAN",
+      "quantity": {
+        "per": "area",
+        "amount": 0.83,
+        "unit": "L",
+        "waste": 0.1,
+        "basis": "manufacturer",
+        "search": "Laticrete Hydro Ban",
+        "source": {
+          "document": "hydro-ban-ds",
+          "page": 2
+        },
+        "package": {
+          "size": 3.8,
+          "kind": "pail"
+        }
+      }
+    }
+  ],
   "translations": {
     "uk": {
       "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.": "Мідний NMD90 14/2 підходить для ліній освітлення й розеток на 15 А; для більших навантажень потрібен 12/2 на автоматі 20 А.",
@@ -6162,6 +6404,7 @@
       "Bathroom exhaust fan": "Витяжний вентилятор для ванної",
       "Bathroom faucet": "Змішувач для умивальника",
       "Bathroom mirror": "Дзеркало для ванної",
+      "Bathroom paint": "Фарба для ванної",
       "Bathroom paint, two coats (self-priming)": "Фарба для ванних, два шари (без окремого ґрунту)",
       "Bathroom vanity": "Тумба для ванної",
       "Bathtub surround": "Стіни навколо ванни",
@@ -6274,6 +6517,7 @@
       "How the waste pipe reaches the drain": "Як каналізаційна труба підходить до трапа",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "З вбудованою гідроізоляцією KERDI; для пандусів до душових без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутрішня суха чи мокра підлога. DITRA не замінює деформаційних швів; де потрібна водонепроникна підлога, стики та примикання підлоги до стін закривають KERDI-BAND.",
+      "Interior paint": "Інтер'єрна фарба",
       "Interior paint and primer, two coats": "Інтер'єрна фарба з ґрунтом, два шари",
       "Interior wet-area floor": "Підлога у вологому приміщенні",
       "Interior wet-area wall": "Стіна у вологому приміщенні",
@@ -6296,6 +6540,7 @@
       "Lightweight all-purpose ready-mixed joint compound": "Легка готова універсальна шпаклівка для швів",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Лінійний душовий трап",
+      "Liquid waterproofing membrane": "Рідка гідроізоляційна мембрана",
       "Liquid waterproofing membrane, rolled on": "Рідка гідроізоляційна мембрана, наноситься валиком",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитова плита (лише підлоги) та плити, піддони й ніші Schluter теж дозволені з умовами; їх поки не внесено. Деяким основам може знадобитися ґрунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонні блоки, цегла)",
@@ -6585,6 +6830,7 @@
       "Bathroom exhaust fan": "Вытяжной вентилятор для ванной",
       "Bathroom faucet": "Смеситель для раковины",
       "Bathroom mirror": "Зеркало для ванной",
+      "Bathroom paint": "Краска для ванной",
       "Bathroom paint, two coats (self-priming)": "Краска для ванных, два слоя (без отдельной грунтовки)",
       "Bathroom vanity": "Тумба для ванной",
       "Bathtub surround": "Стены вокруг ванны",
@@ -6697,6 +6943,7 @@
       "How the waste pipe reaches the drain": "Как канализационная труба подходит к трапу",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Со встроенной гидроизоляцией KERDI; для пандусов к душевым без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутренний сухой или мокрый пол. DITRA не заменяет деформационных швов; где нужен водонепроницаемый пол, стыки и примыкания пола к стенам закрывают KERDI-BAND.",
+      "Interior paint": "Интерьерная краска",
       "Interior paint and primer, two coats": "Интерьерная краска с грунтом, два слоя",
       "Interior wet-area floor": "Пол во влажном помещении",
       "Interior wet-area wall": "Стена во влажном помещении",
@@ -6719,6 +6966,7 @@
       "Lightweight all-purpose ready-mixed joint compound": "Лёгкая готовая универсальная шпаклёвка для швов",
       "Line-voltage thermostat": "Термостат для конвектора",
       "Linear shower drain": "Линейный душевой трап",
+      "Liquid waterproofing membrane": "Жидкая гидроизоляционная мембрана",
       "Liquid waterproofing membrane, rolled on": "Жидкая гидроизоляционная мембрана, наносится валиком",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитовая плита (только полы) и плиты, поддоны и ниши Schluter тоже допускаются с условиями; их пока не внесли. Некоторым основаниям может понадобиться грунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонные блоки, кирпич)",
@@ -7008,6 +7256,7 @@
       "Bathroom exhaust fan": "Ventilateur de salle de bain",
       "Bathroom faucet": "Robinet de lavabo",
       "Bathroom mirror": "Miroir de salle de bain",
+      "Bathroom paint": "Peinture pour salle de bain",
       "Bathroom paint, two coats (self-priming)": "Peinture pour salle de bain, deux couches (apprêt intégré)",
       "Bathroom vanity": "Meuble-lavabo",
       "Bathtub surround": "Pourtour de baignoire",
@@ -7120,6 +7369,7 @@
       "How the waste pipe reaches the drain": "Arrivée du tuyau d'évacuation au drain",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Imperméabilisation KERDI intégrée; sert à construire des rampes d'accès aux douches sans seuil.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Plancher intérieur sec ou humide. DITRA ne remplace pas les joints de mouvement; si le plancher doit être étanche, les joints et les jonctions plancher/mur reçoivent KERDI-BAND.",
+      "Interior paint": "Peinture d'intérieur",
       "Interior paint and primer, two coats": "Peinture d'intérieur et apprêt, deux couches",
       "Interior wet-area floor": "Plancher intérieur en zone humide",
       "Interior wet-area wall": "Mur intérieur en zone humide",
@@ -7142,6 +7392,7 @@
       "Lightweight all-purpose ready-mixed joint compound": "Composé à joints tout usage léger prémélangé",
       "Line-voltage thermostat": "Thermostat électronique",
       "Linear shower drain": "Drain de douche linéaire",
+      "Liquid waterproofing membrane": "Membrane d'étanchéité liquide",
       "Liquid waterproofing membrane, rolled on": "Membrane d'étanchéité liquide, appliquée au rouleau",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Le panneau de magnésie (planchers seulement) ainsi que les panneaux, receveurs et niches Schluter sont aussi admis sous conditions; ils seront ajoutés plus tard. Certains supports peuvent exiger un apprêt.",
       "Masonry (cement block, brick)": "Maçonnerie (bloc de béton, brique)",

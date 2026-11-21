@@ -127,6 +127,17 @@ export interface Layer {
   material?: string;
   source?: SourceRef;
   quantity?: Quantity;
+  /** a product slot: the person may swap this layer's product */
+  slot?: string;
+}
+
+/** A product sold in Canada that can fill a slot, with its own cited rate. */
+export interface Product {
+  id: string;
+  slot: string;
+  brand: string;
+  name: string;
+  quantity: Quantity;
 }
 
 export interface Buildup {
@@ -175,6 +186,8 @@ export interface Knowledge {
   /** room id -> surface -> build-ups offered as technologies; the first is the default */
   surfaceBuildups: Record<string, Record<string, string[]>>;
   items: Item[];
+  slots: Record<string, { name: string }>;
+  products: Product[];
   /** English text to its translation, per language. */
   translations: Record<string, Record<string, string>>;
 }
@@ -213,4 +226,39 @@ export function buildupForSurface(
 /** An item of the house by id, or undefined when the knowledge base lacks it. */
 export function findItem(id: string, knowledge: Knowledge = KNOWLEDGE): Item | undefined {
   return knowledge.items.find((item) => item.id === id);
+}
+
+/** The products that can fill a slot; the first is the default. */
+export function productsForSlot(slot: string, knowledge: Knowledge = KNOWLEDGE): Product[] {
+  return knowledge.products.filter((p) => p.slot === slot);
+}
+
+/** The chosen product per slot; a slot left out keeps its default. */
+export type ProductPicks = Readonly<Record<string, string>>;
+
+/** The build-up with each slot layer filled by the picked product. */
+export function applyProducts(
+  buildup: Buildup,
+  picks: ProductPicks = {},
+  knowledge: Knowledge = KNOWLEDGE,
+): Buildup {
+  return {
+    ...buildup,
+    layers: buildup.layers.map((layer) => {
+      const id = layer.slot ? picks[layer.slot] : undefined;
+      const product = id ? knowledge.products.find((p) => p.id === id) : undefined;
+      if (!product || product.slot !== layer.slot) return layer;
+      return {
+        ...layer,
+        material: `${product.brand} ${product.name}`,
+        source: product.quantity.source,
+        quantity: product.quantity,
+      };
+    }),
+  };
+}
+
+/** The slots the layers of these build-ups offer, in order. */
+export function slotsOf(buildups: readonly Buildup[]): string[] {
+  return [...new Set(buildups.flatMap((b) => b.layers.flatMap((l) => (l.slot ? [l.slot] : []))))];
 }

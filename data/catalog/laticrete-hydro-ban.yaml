@@ -1,0 +1,21 @@
+# LATICRETE HYDRO BAN liquid waterproofing membrane, from the manufacturer's
+# own North American data sheet (DS-663). Cited by page of the PDF.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: LATICRETE International
+  brand: LATICRETE
+  website: https://laticrete.com
+
+documents:
+  - id: hydro-ban-ds
+    type: tds
+    title: HYDRO BAN Data Sheet (DS-663)
+    url: https://cdnmdm.laticrete.com/Datasheet/NA/40/Datasheet_NA_en_40.pdf
+    version: DS-663-1026
+    pages: 6
+    sha256: cdefc2d199014adb1eb54917ebba434beb9bd4a3571829d6551ffe91bebd0df2
+    retrieved_on: 2026-11-21
+
+categories: []

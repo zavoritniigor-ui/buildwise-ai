@@ -3,7 +3,7 @@ import type { RoomId } from "../house/model";
 import { inventory, surfacePurchases } from "../inventory";
 import { RUNS, checkPlumbing } from "../plumbing";
 import { StoreLinks } from "../StoreLinks";
-import { KNOWLEDGE, citationUrl } from "../knowledge";
+import { KNOWLEDGE, type ProductPicks, citationUrl } from "../knowledge";
 
 /** Everything a room, or the whole house, needs, counted from the model, with
  * the retailers' own search for each line. */
@@ -12,6 +12,7 @@ export function InventorySheet({
   title,
   kicker,
   choices,
+  picks,
   onClose,
 }: {
   rooms: readonly RoomId[];
@@ -19,11 +20,12 @@ export function InventorySheet({
   kicker: string;
   /** chosen build-up per "room.surface"; the default where none is chosen */
   choices: Readonly<Record<string, string>>;
+  picks: ProductPicks;
   onClose: () => void;
 }) {
   const { t, d, language } = useI18n();
   const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
-  const materials = surfacePurchases(rooms, choices);
+  const materials = surfacePurchases(rooms, choices, picks);
   const breaches = checkPlumbing();
   return (
     <aside className="sheet" aria-labelledby="sheet-title">

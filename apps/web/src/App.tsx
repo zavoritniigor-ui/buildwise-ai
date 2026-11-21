@@ -22,6 +22,9 @@ export function App() {
   const [listing, setListing] = useState(false);
   const [xray, setXray] = useState(false);
   const [calculating, setCalculating] = useState(false);
+  /** the product picked per slot, shared by every surface and list */
+  const [picks, setPicks] = useState<Record<string, string>>({});
+  const pick = (slot: string, product: string) => setPicks((p) => ({ ...p, [slot]: product }));
   /** the technology picked per "room.surface" */
   const [choices, setChoices] = useState<Record<string, string>>({});
 
@@ -168,6 +171,7 @@ export function App() {
           title={room ? t.roomList : t.houseList}
           kicker={room ? t.rooms[room] : t.house}
           choices={choices}
+          picks={picks}
           onClose={() => setListing(false)}
         />
       )}
@@ -178,6 +182,8 @@ export function App() {
           surface={surface}
           chosen={choices[`${room}.${surface}`]}
           onChoose={(id) => setChoices((c) => ({ ...c, [`${room}.${surface}`]: id }))}
+          picks={picks}
+          onPick={pick}
           onClose={() => selectSurface(null)}
         />
       )}
@@ -186,7 +192,9 @@ export function App() {
         <ItemSheet selection={selection} onClose={() => setSelection(null)} />
       )}
 
-      {calculating && <CalculatorSheet onClose={() => setCalculating(false)} />}
+      {calculating && (
+        <CalculatorSheet picks={picks} onPick={pick} onClose={() => setCalculating(false)} />
+      )}
     </div>
   );
 }

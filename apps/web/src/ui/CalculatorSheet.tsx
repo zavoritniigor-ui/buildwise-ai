@@ -6,20 +6,30 @@ import {
   type RoomType,
   ROOM_TYPES,
   areas,
+  chosenBuildups,
   electrical,
   options,
   plumbing,
   surfaceMaterials,
 } from "../calculator";
 import { useI18n } from "../i18n";
-import { findItem } from "../knowledge";
+import { type ProductPicks, findItem } from "../knowledge";
+import { ProductPicker } from "./ProductPicker";
 import type { PurchaseLine } from "../quantities";
 import { StoreLinks } from "../StoreLinks";
 
 const SURFACES: readonly CalcSurface[] = ["floor", "walls", "ceiling"];
 
 /** Size a room by hand and see what it needs, without the 3D house. */
-export function CalculatorSheet({ onClose }: { onClose: () => void }) {
+export function CalculatorSheet({
+  picks,
+  onPick,
+  onClose,
+}: {
+  picks: ProductPicks;
+  onPick: (slot: string, product: string) => void;
+  onClose: () => void;
+}) {
   const { t, d, language } = useI18n();
   const [type, setType] = useState<RoomType>("bathroom");
   const [size, setSize] = useState<RoomSize>({
@@ -111,8 +121,10 @@ export function CalculatorSheet({ onClose }: { onClose: () => void }) {
         );
       })}
 
+      <ProductPicker buildups={chosenBuildups(type, chosen)} picks={picks} onPick={onPick} />
+
       <h2 className="list-section">{t.surfaceMaterials}</h2>
-      <Materials lines={surfaceMaterials(type, size, chosen)} />
+      <Materials lines={surfaceMaterials(type, size, chosen, picks)} />
 
       <h2 className="list-section">{t.trimTitle}</h2>
       <Estimates rows={[{ item: "baseboard", amount: a.baseboard }]} />

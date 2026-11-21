@@ -1,0 +1,152 @@
+# Products sold in Canada that can fill a layer of a build-up. A layer names a
+# slot; the person picks a product for that slot and the quantities follow the
+# product's own data sheet. The first product of a slot is the default and is
+# the one the build-up layer itself describes.
+#
+# Rates, from each manufacturer's data sheet (cited by page):
+# - Regal Select K549: 37.1 m² per 3.79 L, two coats on new drywall -> 0.21 L/m²
+# - Sico Expert 843, Endurance 746, Virtuo 443: 37 m² per 3.78 L per coat, two
+#   coats on new drywall -> 0.21 L/m²
+# - Aura Bath & Spa K532: 32.5 m² per 3.79 L, two coats -> 0.23 L/m²
+# - Sico Evolution 867 (for bathrooms and kitchens): 45 m² per 3.78 L per coat,
+#   two coats -> 0.17 L/m²
+# - RedGard: 5.1 m² per 3.78 L as a waterproof membrane -> 0.74 L/m²
+# - RedGard SpeedCoat: one coat over cement backer board, 20.4 m² per 3.78 L
+#   -> 0.19 L/m²
+# - HYDRO BAN: 4.6 m² per 3.8 L -> 0.83 L/m²
+
+slots:
+  interior-paint: { name: Interior paint }
+  bathroom-paint: { name: Bathroom paint }
+  liquid-waterproofing: { name: Liquid waterproofing membrane }
+
+products:
+  - id: bm-regal-select
+    slot: interior-paint
+    brand: Benjamin Moore
+    name: Regal Select Eggshell
+    quantity:
+      {
+        per: area,
+        amount: 0.21,
+        unit: L,
+        basis: manufacturer,
+        source: { document: regal-select-tds, page: 1 },
+        package: { size: 3.79, kind: can },
+        search: Benjamin Moore Regal Select,
+      }
+  - id: sico-expert-843
+    slot: interior-paint
+    brand: Sico
+    name: Expert Eggshell Pro (843)
+    quantity:
+      {
+        per: area,
+        amount: 0.21,
+        unit: L,
+        basis: manufacturer,
+        source: { document: sico-expert-843-tds, page: 1 },
+        package: { size: 3.78, kind: can },
+        search: Sico Expert,
+      }
+  - id: sico-endurance-746
+    slot: interior-paint
+    brand: Sico
+    name: Endurance Pearl (746)
+    quantity:
+      {
+        per: area,
+        amount: 0.21,
+        unit: L,
+        basis: manufacturer,
+        source: { document: sico-endurance-746-tds, page: 1 },
+        package: { size: 3.78, kind: can },
+        search: Sico Endurance,
+      }
+  - id: sico-virtuo-443
+    slot: interior-paint
+    brand: Sico
+    name: Virtuo Eggshell (443)
+    quantity:
+      {
+        per: area,
+        amount: 0.21,
+        unit: L,
+        basis: manufacturer,
+        source: { document: sico-virtuo-443-tds, page: 1 },
+        package: { size: 3.78, kind: can },
+        search: Sico Virtuo,
+      }
+  - id: bm-aura-bath-spa
+    slot: bathroom-paint
+    brand: Benjamin Moore
+    name: Aura Bath & Spa Matte
+    quantity:
+      {
+        per: area,
+        amount: 0.23,
+        unit: L,
+        basis: manufacturer,
+        source: { document: aura-bath-spa-tds, page: 1 },
+        package: { size: 3.79, kind: can },
+        search: Benjamin Moore Aura Bath and Spa,
+      }
+  - id: sico-evolution-867
+    slot: bathroom-paint
+    brand: Sico
+    name: Evolution Semi-Gloss (867)
+    quantity:
+      {
+        per: area,
+        amount: 0.17,
+        unit: L,
+        basis: manufacturer,
+        source: { document: sico-evolution-867-tds, page: 1 },
+        package: { size: 3.78, kind: can },
+        search: Sico Evolution semi gloss,
+      }
+  - id: custom-redgard
+    slot: liquid-waterproofing
+    brand: Custom Building Products
+    name: RedGard
+    quantity:
+      {
+        per: area,
+        amount: 0.74,
+        unit: L,
+        waste: 0.1,
+        basis: manufacturer,
+        source: { document: redgard-sell-sheet, page: 2 },
+        package: { size: 3.78, kind: pail },
+        search: RedGard waterproofing membrane,
+      }
+  - id: custom-redgard-speedcoat
+    slot: liquid-waterproofing
+    brand: Custom Building Products
+    name: RedGard SpeedCoat
+    quantity:
+      {
+        per: area,
+        amount: 0.19,
+        unit: L,
+        waste: 0.1,
+        basis: manufacturer,
+        source: { document: redgard-sell-sheet, page: 2 },
+        package: { size: 3.78, kind: pail },
+        search: RedGard SpeedCoat,
+      }
+  - id: laticrete-hydro-ban
+    slot: liquid-waterproofing
+    brand: LATICRETE
+    name: HYDRO BAN
+    quantity:
+      {
+        per: area,
+        amount: 0.83,
+        unit: L,
+        waste: 0.1,
+        basis: manufacturer,
+        source: { document: hydro-ban-ds, page: 2 },
+        package: { size: 3.8, kind: pail },
+        search: Laticrete Hydro Ban,
+      }
