@@ -565,3 +565,17 @@ select:focus-visible {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+.plan-window {
+  fill: #f7fbfc;
+  stroke: #6f8d99;
+  stroke-width: 0.025;
+  pointer-events: none;
+}
+
+.plan-door {
+  fill: none;
+  stroke: #8a8174;
+  stroke-width: 0.025;
+  pointer-events: none;
+}

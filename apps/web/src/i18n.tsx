@@ -66,7 +66,7 @@ const en = {
   findIn: (name: string) => `Find ${name} in stores`,
   page: (n: number) => `p. ${n}`,
   area: (m2: string) => `${m2} m²`,
-  wallsNote: "Wall area without door and window openings.",
+  wallsNote: "Wall area from floor to ceiling, less the doors, windows and passages.",
   nextStep: "Layers and materials per square metre will appear here in the next step.",
   dataNote: "Manufacturer facts are still awaiting review by a person.",
 };
@@ -121,7 +121,7 @@ const uk: Messages = {
   findIn: (name) => `Знайти ${name} у магазинах`,
   page: (n) => `с. ${n}`,
   area: (m2) => `${m2} м²`,
-  wallsNote: "Площа стін без вирахування дверей і вікон.",
+  wallsNote: "Площа стін від підлоги до стелі за вирахуванням дверей, вікон і прорізів.",
   nextStep: "Наступним кроком тут з'являться шари та матеріали на 1 м².",
   dataNote: "Дані виробників ще чекають перевірки людиною.",
 };
@@ -178,7 +178,7 @@ const ru: Messages = {
   findIn: (name) => `Найти ${name} в магазинах`,
   page: (n) => `с. ${n}`,
   area: (m2) => `${m2} м²`,
-  wallsNote: "Площадь стен без вычета дверей и окон.",
+  wallsNote: "Площадь стен от пола до потолка за вычетом дверей, окон и проёмов.",
   nextStep: "Следующим шагом здесь появятся слои и материалы на 1 м².",
   dataNote: "Данные производителей ещё ждут проверки человеком.",
 };
@@ -235,7 +235,7 @@ const fr: Messages = {
   findIn: (name) => `Trouver ${name} en magasin`,
   page: (n) => `p. ${n}`,
   area: (m2) => `${m2} m²`,
-  wallsNote: "Surface des murs sans déduire les portes et fenêtres.",
+  wallsNote: "Surface des murs du plancher au plafond, moins les portes, fenêtres et passages.",
   nextStep: "Les couches et les matériaux au mètre carré s'afficheront ici à la prochaine étape.",
   dataNote: "Les données des fabricants attendent encore une vérification humaine.",
 };

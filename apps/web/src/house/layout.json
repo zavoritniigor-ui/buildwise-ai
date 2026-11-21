@@ -46,7 +46,128 @@
       "depth": 2.5,
       "color": "#d6e5ec",
       "surfaces": ["floor", "shower", "walls"],
-      "shower": { "x": 8.1, "z": 4.5, "width": 0.9, "depth": 1.2 }
+      "shower": {
+        "x": 8.1,
+        "z": 4.5,
+        "width": 0.9,
+        "depth": 1.2
+      }
+    }
+  ],
+  "openings": [
+    {
+      "kind": "door",
+      "height": 2.03,
+      "id": "entry",
+      "room": "hallway",
+      "side": "south",
+      "centre": 5.0,
+      "width": 0.91,
+      "style": "entry",
+      "swing": "hallway",
+      "hinge": "start"
+    },
+    {
+      "kind": "door",
+      "height": 2.03,
+      "id": "living_door",
+      "room": "hallway",
+      "side": "north",
+      "centre": 4.6,
+      "width": 0.76,
+      "swing": "living",
+      "hinge": "end"
+    },
+    {
+      "kind": "door",
+      "height": 2.03,
+      "id": "bedroom_door",
+      "room": "hallway",
+      "side": "west",
+      "centre": 5.2,
+      "width": 0.76,
+      "swing": "bedroom",
+      "hinge": "start"
+    },
+    {
+      "kind": "door",
+      "height": 2.03,
+      "id": "bathroom_door",
+      "room": "hallway",
+      "side": "east",
+      "centre": 6.4,
+      "width": 0.76,
+      "swing": "bathroom",
+      "hinge": "end"
+    },
+    {
+      "id": "kitchen_opening",
+      "kind": "opening",
+      "room": "kitchen",
+      "side": "west",
+      "centre": 2.6,
+      "width": 1.5,
+      "height": 2.1
+    },
+    {
+      "kind": "window",
+      "id": "living_picture",
+      "room": "living",
+      "side": "west",
+      "centre": 2.25,
+      "width": 1.8,
+      "sill": 0.5,
+      "height": 1.6
+    },
+    {
+      "kind": "window",
+      "id": "living_north",
+      "room": "living",
+      "side": "north",
+      "centre": 4.5,
+      "width": 1.2,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "kind": "window",
+      "id": "kitchen_sink",
+      "room": "kitchen",
+      "side": "north",
+      "centre": 7.25,
+      "width": 1.2,
+      "sill": 1.05,
+      "height": 1.0
+    },
+    {
+      "kind": "window",
+      "id": "kitchen_east",
+      "room": "kitchen",
+      "side": "east",
+      "centre": 3.6,
+      "width": 0.9,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "kind": "window",
+      "id": "bedroom_south",
+      "room": "bedroom",
+      "side": "south",
+      "centre": 2.2,
+      "width": 1.2,
+      "sill": 0.9,
+      "height": 1.2
+    },
+    {
+      "kind": "window",
+      "id": "bathroom_south",
+      "room": "bathroom",
+      "side": "south",
+      "centre": 7.3,
+      "width": 0.8,
+      "sill": 1.4,
+      "height": 0.6
     }
   ]
 }
