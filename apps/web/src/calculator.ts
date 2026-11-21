@@ -7,7 +7,7 @@
  * and windows 1.2 x 1.2 m. The electrical and plumbing parts are estimates and
  * are flagged as such in the app.
  */
-import { type Buildup, KNOWLEDGE } from "./knowledge";
+import { type Buildup, KNOWLEDGE, type ProductPicks, applyProducts } from "./knowledge";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 import { plumbingAmounts } from "./plumbing";
 
@@ -81,12 +81,15 @@ export function surfaceMaterials(
   type: RoomType,
   size: RoomSize,
   chosen: Partial<Record<CalcSurface, string>> = {},
+  picks: ProductPicks = {},
 ): PurchaseLine[] {
   const a = areas(size);
   const lists = (["floor", "walls", "ceiling"] as const).map((surface) => {
     const offered = options(type, surface);
     const pick = offered.find((b) => b.id === chosen[surface]) ?? offered[0];
-    return pick ? purchaseList(pick, { area: a[surface], perimeter: a.perimeter }) : [];
+    return pick
+      ? purchaseList(applyProducts(pick, picks), { area: a[surface], perimeter: a.perimeter })
+      : [];
   });
   return mergePurchases(lists);
 }
@@ -143,4 +146,16 @@ export function plumbing(type: RoomType, size: RoomSize): Estimate[] {
         ? Math.ceil(amount * ratio)
         : amount,
   }));
+}
+
+/** The build-ups the room uses with the current technology choices. */
+export function chosenBuildups(
+  type: RoomType,
+  chosen: Partial<Record<CalcSurface, string>> = {},
+): Buildup[] {
+  return (["floor", "walls", "ceiling"] as const).flatMap((surface) => {
+    const offered = options(type, surface);
+    const pick = offered.find((b) => b.id === chosen[surface]) ?? offered[0];
+    return pick ? [pick] : [];
+  });
 }

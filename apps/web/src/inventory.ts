@@ -15,7 +15,15 @@ import {
   surfaceArea,
   surfacePerimeter,
 } from "./house/model";
-import { type Item, type ItemCategory, KNOWLEDGE, buildupForSurface, findItem } from "./knowledge";
+import {
+  type Item,
+  type ItemCategory,
+  KNOWLEDGE,
+  type ProductPicks,
+  applyProducts,
+  buildupForSurface,
+  findItem,
+} from "./knowledge";
 import { plumbingAmounts } from "./plumbing";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 
@@ -105,13 +113,15 @@ export function inventory(rooms: readonly RoomId[]): InventoryLine[] {
 export function surfacePurchases(
   rooms: readonly RoomId[],
   choices: Readonly<Record<string, string>> = {},
+  picks: ProductPicks = {},
 ): PurchaseLine[] {
   const lists: PurchaseLine[][] = [];
   for (const id of rooms) {
     const room = findRoom(id);
     for (const surface of room.surfaces) {
-      const buildup = buildupForSurface(id, surface, choices[`${id}.${surface}`]);
-      if (!buildup) continue;
+      const base = buildupForSurface(id, surface, choices[`${id}.${surface}`]);
+      if (!base) continue;
+      const buildup = applyProducts(base, picks);
       lists.push(
         purchaseList(buildup, {
           area: surfaceArea(room, surface),

@@ -233,6 +233,8 @@ class Layer(_Strict):
     material: str | None = None
     source: SourceRef | None = None
     quantity: Quantity | None = None
+    slot: str | None = None
+    """A product slot (products.yaml): the person may swap this layer's product."""
 
 
 class Buildup(_Strict):
@@ -316,3 +318,45 @@ class ItemFile(_Strict):
 
 def load_items(data_dir: Path) -> ItemFile:
     return ItemFile.model_validate(read_yaml(data_dir / "items.yaml"))
+
+
+class Slot(_Strict):
+    name: str
+
+
+class Product(_Strict):
+    """A product sold in Canada that can fill a slot, with its own rate."""
+
+    id: str = Field(pattern=r"^[a-z][a-z0-9-]*$")
+    slot: str
+    brand: str
+    name: str
+    quantity: Quantity
+
+    @model_validator(mode="after")
+    def _rate_is_cited(self) -> Self:
+        if self.quantity.basis != "manufacturer" or self.quantity.source is None:
+            raise ValueError(f"product {self.id!r} needs a cited manufacturer rate")
+        return self
+
+
+class ProductFile(_Strict):
+    slots: dict[str, Slot]
+    products: list[Product] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _consistent(self) -> Self:
+        ids = [p.id for p in self.products]
+        if len(ids) != len(set(ids)):
+            raise ValueError("duplicate product ids")
+        for product in self.products:
+            if product.slot not in self.slots:
+                raise ValueError(f"product {product.id!r} uses unknown slot {product.slot!r}")
+        for slot in self.slots:
+            if not any(p.slot == slot for p in self.products):
+                raise ValueError(f"slot {slot!r} has no product")
+        return self
+
+
+def load_products(data_dir: Path) -> ProductFile:
+    return ProductFile.model_validate(read_yaml(data_dir / "products.yaml"))

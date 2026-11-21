@@ -1,0 +1,45 @@
+# Sico interior paints (PPG Architectural Coatings Canada), from the
+# manufacturer's own technical data sheets. Cited by page of the PDF.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: PPG Architectural Coatings Canada
+  brand: Sico
+  website: https://www.sico.ca
+
+documents:
+  - id: sico-expert-843-tds
+    type: tds
+    title: "Sico Expert 843-XX1N Interior Self-Sealer Latex Professional Paint, Eggshell Pro, Technical Data Sheet"
+    url: https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_843XX1N_CAEN.pdf
+    version: CAEN
+    pages: 3
+    sha256: a54f6afc47feaf4f5edf1ab8be81de71350467f58212c2a4780aa092f4f84f3e
+    retrieved_on: 2026-11-21
+  - id: sico-endurance-746-tds
+    type: tds
+    title: "Sico Endurance 746-50X Interior 100% Acrylic Latex Paint, Pearl, Technical Data Sheet"
+    url: https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_7465XX_CAEN.pdf
+    version: CAEN
+    pages: 2
+    sha256: 5d1b23de22534f69e244ac5f53d02a8a2c379fa95d9e8c12659dc2af00b28bf0
+    retrieved_on: 2026-11-21
+  - id: sico-virtuo-443-tds
+    type: tds
+    title: "Sico Virtuo 443-50X Interior 100% Acrylic Paint and Primer, Eggshell, Technical Data Sheet"
+    url: https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_44350X_CAEN.pdf
+    version: CAEN
+    pages: 2
+    sha256: 74cd311e7aa505e65b175b23bf0cba781ba7687cc09ed36c06350d69ca077b22
+    retrieved_on: 2026-11-21
+  - id: sico-evolution-867-tds
+    type: tds
+    title: "Sico Evolution 867-5XX Interior Latex Paint, Semi-Gloss, Technical Data Sheet"
+    url: https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_8675XX_CAEN.pdf
+    version: CAEN
+    pages: 2
+    sha256: 7ea22c431e3b65bd4348fae692a64e17993d2d970c7b59035993278e57ec6efd
+    retrieved_on: 2026-11-21
+
+categories: []

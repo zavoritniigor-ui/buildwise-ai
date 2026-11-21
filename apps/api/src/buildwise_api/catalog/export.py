@@ -195,6 +195,8 @@ def _layer(layer: schema.Layer) -> Json:
         out["source"] = _source(layer.source)
     if layer.quantity is not None:
         out["quantity"] = _quantity(layer.quantity)
+    if layer.slot is not None:
+        out["slot"] = layer.slot
     return out
 
 
@@ -330,6 +332,23 @@ def snapshot(data_dir: Path) -> Json:
                     raise ValueError(f"surface {room}.{surface} uses unknown buildup {bid!r}")
 
     items = schema.load_items(data_dir)
+    products = schema.load_products(data_dir)
+    for product in products.products:
+        source = product.quantity.source
+        if source is not None and source.document not in documents:
+            raise ValueError(f"product {product.id!r} cites unknown document {source.document!r}")
+    for buildup in buildups.buildups:
+        for layer in buildup.layers:
+            if layer.slot is None:
+                continue
+            if layer.slot not in products.slots:
+                raise ValueError(f"buildup {buildup.id!r} uses unknown slot {layer.slot!r}")
+            default = next(p for p in products.products if p.slot == layer.slot)
+            if layer.quantity is None or layer.quantity.search != default.quantity.search:
+                raise ValueError(
+                    f"buildup {buildup.id!r}: the {layer.slot!r} layer must describe the slot's "
+                    f"first product, {default.id!r}"
+                )
 
     return {
         "documents": documents,
@@ -384,6 +403,17 @@ def snapshot(data_dir: Path) -> Json:
             for room, surfaces in sorted(buildups.surfaces.items())
         },
         "items": [item.model_dump() for item in items.items],
+        "slots": {slot: {"name": s.name} for slot, s in products.slots.items()},
+        "products": [
+            {
+                "id": p.id,
+                "slot": p.slot,
+                "brand": p.brand,
+                "name": p.name,
+                "quantity": _quantity(p.quantity),
+            }
+            for p in products.products
+        ],
     }
 
 
@@ -424,6 +454,8 @@ def source_texts(snap: dict[str, Json]) -> set[str]:
             layer_d = _dict(layer)
             add(layer_d["label"])
             add(layer_d.get("material"))
+    for slot in _dicts(snap["slots"]):
+        add(slot["name"])
     for thing in _list(snap["items"]):
         add(_dict(thing)["name"])
         add(_dict(thing)["summary"])

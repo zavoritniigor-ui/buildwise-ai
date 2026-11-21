@@ -201,3 +201,21 @@ test("a surface offers technologies, and the room list follows the choice", asyn
   // walls 26.58 m² and ceiling 7.5 m² of paint at 0.23 L/m²: 3 cans of 3.79 L
   expect(screen.getByText(/7.9 L · 3 × can of 3.79 L/)).toBeDefined();
 });
+
+test("the calculator offers products for each slot and follows the pick", async () => {
+  renderApp();
+  fireEvent.click(screen.getByRole("button", { name: "Room calculator" }));
+  fireEvent.click(
+    within(screen.getByRole("group", { name: "Walls · Technology" })).getByRole("radio", {
+      name: "Moisture-resistant painted wall",
+    }),
+  );
+  const paint = screen.getByRole("combobox", { name: "Bathroom paint" });
+  fireEvent.change(paint, { target: { value: "sico-evolution-867" } });
+  expect(screen.getAllByText("Sico Evolution Semi-Gloss (867)").length).toBeGreaterThan(0);
+  expect(
+    within(screen.getByRole("list", { name: "Find Sico Evolution Semi-Gloss (867) in stores" }))
+      .getByRole("link", { name: "RONA" })
+      .getAttribute("href"),
+  ).toBe("https://www.rona.ca/en/search?q=Sico%20Evolution%20semi%20gloss");
+});

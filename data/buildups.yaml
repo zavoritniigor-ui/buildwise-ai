@@ -18,6 +18,8 @@
 #   package: optional sale unit, e.g. a 22.68 kg bag or a 3.78 L pail, to count
 #           packages (kind: bag | roll | box | pail | can)
 #   search: the query opened in the retailers' own search
+# slot: optional; names a product slot in products.yaml, so the person can
+#   swap the layer's product (and its rate) for another sold in Canada
 #
 # Mortar rates come from the DITRA handbook, page 19: one 50 lb (22.68 kg) bag
 # bonds 150 ft² (10.7 m²) of DITRA, and sets 40-50 ft² (3.7-4.6 m²) of tile on
@@ -380,6 +382,7 @@ buildups:
             size: 3.79
             kind: can
           search: Benjamin Moore Regal Select
+        slot: interior-paint
   - id: painted-ceiling
     title: Painted ceiling
     summary: A dry-room ceiling of gypsum board on joists or strapping, taped, finished and painted.
@@ -464,6 +467,7 @@ buildups:
             size: 3.79
             kind: can
           search: Benjamin Moore Regal Select
+        slot: interior-paint
   - id: tiled-wet-wall
     title: Waterproof tiled wall
     summary: A shower or wet-area wall waterproofed behind the tile.
@@ -598,6 +602,7 @@ buildups:
             size: 3.78
             kind: pail
           search: RedGard waterproofing membrane
+        slot: liquid-waterproofing
       - role: mortar
         label: Modified thin-set mortar
         quantity:
@@ -700,6 +705,7 @@ buildups:
             size: 3.78
             kind: pail
           search: RedGard waterproofing membrane
+        slot: liquid-waterproofing
       - role: mortar
         label: Modified thin-set mortar
         quantity:
@@ -811,6 +817,7 @@ buildups:
             size: 3.79
             kind: can
           search: Benjamin Moore Aura Bath and Spa
+        slot: bathroom-paint
   - id: painted-moisture-ceiling
     title: Moisture-resistant painted ceiling
     summary:
@@ -895,6 +902,7 @@ buildups:
             size: 3.79
             kind: can
           search: Benjamin Moore Aura Bath and Spa
+        slot: bathroom-paint
 surfaces:
   living:
     floor:

@@ -7,7 +7,13 @@ import {
   surfaceArea,
   surfacePerimeter,
 } from "../house/model";
-import { buildupForSurface, buildupsForSurface } from "../knowledge";
+import {
+  type ProductPicks,
+  applyProducts,
+  buildupForSurface,
+  buildupsForSurface,
+} from "../knowledge";
+import { ProductPicker } from "./ProductPicker";
 import { BuildupView } from "./Buildup";
 import { PurchaseList } from "./PurchaseList";
 
@@ -18,6 +24,8 @@ export function SurfaceSheet({
   surface,
   chosen,
   onChoose,
+  picks,
+  onPick,
   onClose,
 }: {
   room: RoomId;
@@ -25,12 +33,15 @@ export function SurfaceSheet({
   /** the build-up the person picked for this surface, if any */
   chosen?: string;
   onChoose: (buildup: string) => void;
+  picks: ProductPicks;
+  onPick: (slot: string, product: string) => void;
   onClose: () => void;
 }) {
   const { t, d, language } = useI18n();
   const [shopping, setShopping] = useState(false);
   const options = buildupsForSurface(room, surface);
-  const buildup = buildupForSurface(room, surface, chosen);
+  const base = buildupForSurface(room, surface, chosen);
+  const buildup = base && applyProducts(base, picks);
   const place = findRoom(room);
   const measure = {
     area: surfaceArea(place, surface),
@@ -78,6 +89,7 @@ export function SurfaceSheet({
           >
             {shopping ? t.hidePurchase : t.collect}
           </button>
+          <ProductPicker buildups={[buildup]} picks={picks} onPick={onPick} />
           {shopping && <PurchaseList buildup={buildup} measure={measure} />}
           <BuildupView buildup={buildup} measure={measure} />
         </>
