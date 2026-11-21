@@ -1,7 +1,7 @@
 import { useI18n } from "../i18n";
 import type { RoomId } from "../house/model";
 import { inventory, surfacePurchases } from "../inventory";
-import { RUNS } from "../plumbing";
+import { RUNS, checkPlumbing } from "../plumbing";
 import { StoreLinks } from "../StoreLinks";
 import { KNOWLEDGE, citationUrl } from "../knowledge";
 
@@ -24,6 +24,7 @@ export function InventorySheet({
   const { t, d, language } = useI18n();
   const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
   const materials = surfacePurchases(rooms, choices);
+  const breaches = checkPlumbing();
   return (
     <aside className="sheet" aria-labelledby="sheet-title">
       <header>
@@ -86,23 +87,28 @@ export function InventorySheet({
         })}
       </ul>
       {RUNS.some((r) => rooms.includes(r.room as RoomId)) && (
-        <p className="muted small">
-          {t.plumbingNote} {KNOWLEDGE.documents["npc-2020"]?.title}:{" "}
-          {[96, 107, 108].map((page, i) => (
-            <span key={page}>
-              {i > 0 && ", "}
-              <a
-                className="citation"
-                href={citationUrl({ document: "npc-2020", page })}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t.page(page)}
-              </a>
-            </span>
-          ))}
-          .
-        </p>
+        <>
+          <p className={breaches.length ? "code-status code-breach" : "code-status code-ok"}>
+            {breaches.length ? t.codeBreaches(breaches.length) : t.codeOk}
+          </p>
+          <p className="muted small">
+            {t.plumbingNote} {KNOWLEDGE.documents["qc-plumbing-2020"]?.title}:{" "}
+            {[112, 124, 125, 131, 134, 135, 137].map((page, i) => (
+              <span key={page}>
+                {i > 0 && ", "}
+                <a
+                  className="citation"
+                  href={citationUrl({ document: "qc-plumbing-2020", page })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.page(page)}
+                </a>
+              </span>
+            ))}
+            .
+          </p>
+        </>
       )}
       <p className="muted small">{t.inventoryNote}</p>
     </aside>

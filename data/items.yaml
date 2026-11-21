@@ -306,3 +306,8 @@ items:
     category: plumbing
     summary: "Match the boot to the vent pipe size and the roof slope."
     search: "plumbing vent flashing"
+  - id: riser_clamp
+    name: "Riser clamp"
+    category: plumbing
+    summary: "A vertical stack rests on a clamp at its base, and again at least every 7.5 m."
+    search: "riser clamp 3 inch"
