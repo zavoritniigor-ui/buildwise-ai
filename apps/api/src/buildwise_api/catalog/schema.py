@@ -268,16 +268,16 @@ def load_catalog_files(data_dir: Path) -> dict[Path, CatalogFile]:
 
 
 ItemCategory = Literal[
-    "furniture",
     "cabinetry",
-    "appliance",
     "plumbing",
+    "electrical",
     "lighting",
+    "heating",
+    "ventilation",
     "door",
     "window",
     "hardware",
-    "textile",
-    "decor",
+    "trim",
 ]
 
 
@@ -287,6 +287,8 @@ class Item(_Strict):
     id: str = Field(pattern=r"^[a-z][a-z_]*$")
     name: str
     category: ItemCategory
+    measure: Literal["each", "length"] = "each"
+    """each: counted in pieces; length: bought by the metre, such as baseboard."""
     summary: str
     search: str = Field(min_length=2)
 

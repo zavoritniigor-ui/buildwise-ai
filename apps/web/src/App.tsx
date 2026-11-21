@@ -1,10 +1,11 @@
 import { Suspense, lazy, useState } from "react";
 import { LANGUAGES, type Language, useI18n } from "./i18n";
-import { type RoomId, type SurfaceId, findRoom } from "./house/model";
+import { ROOMS, type RoomId, type SurfaceId, findRoom } from "./house/model";
 
 import PlanView from "./house/PlanView";
 import { supportsWebGL } from "./house/webgl";
 
+import { InventorySheet } from "./ui/InventorySheet";
 import { ItemSheet, type Selection } from "./ui/ItemSheet";
 import { SurfaceSheet } from "./ui/SurfaceSheet";
 import { findItem } from "./knowledge";
@@ -17,20 +18,24 @@ export function App() {
   const [room, setRoom] = useState<RoomId | null>(null);
   const [surface, setSurface] = useState<SurfaceId | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
+  const [listing, setListing] = useState(false);
 
   const selectRoom = (next: RoomId | null) => {
     setRoom(next);
     setSurface(null);
     setSelection(null);
+    setListing(false);
   };
   const selectSurface = (next: SurfaceId | null) => {
     setSurface(next);
     setSelection(null);
+    setListing(false);
   };
   const selectItem = (next: Selection) => {
     setRoom(next.room);
     setSurface(null);
     setSelection(next);
+    setListing(false);
   };
   const itemName = selection && findItem(selection.item)?.name;
   const leaf = surface ? t.surfaces[surface] : itemName ? d(itemName) : null;
@@ -112,14 +117,32 @@ export function App() {
         </p>
       )}
 
-      {room && !leaf && (
-        <div className="surface-picker" role="group" aria-label={t.chooseSurface}>
-          {findRoom(room).surfaces.map((s) => (
-            <button key={s} type="button" onClick={() => selectSurface(s)}>
-              {t.surfaces[s]}
-            </button>
-          ))}
+      {!leaf && (
+        <div className="surface-picker" role="group" aria-label={room ? t.chooseSurface : t.house}>
+          {room &&
+            findRoom(room).surfaces.map((s) => (
+              <button key={s} type="button" onClick={() => selectSurface(s)}>
+                {t.surfaces[s]}
+              </button>
+            ))}
+          <button
+            type="button"
+            className="list-button"
+            aria-expanded={listing}
+            onClick={() => setListing((open) => !open)}
+          >
+            {room ? t.roomList : t.houseList}
+          </button>
         </div>
+      )}
+
+      {listing && !leaf && (
+        <InventorySheet
+          rooms={room ? [room] : ROOMS.map((r) => r.id)}
+          title={room ? t.roomList : t.houseList}
+          kicker={room ? t.rooms[room] : t.house}
+          onClose={() => setListing(false)}
+        />
       )}
 
       {room && surface && (

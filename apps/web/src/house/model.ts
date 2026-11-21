@@ -161,3 +161,56 @@ export function surfacePerimeter(room: Room, surface: SurfaceId): number {
   const r = surface === "shower" && room.shower ? room.shower : room.rect;
   return Math.round(2 * (r.width + r.depth) * 100) / 100;
 }
+
+/** A baseboard run along a room's inner wall face, as [from, to] along a side. */
+export interface Run {
+  side: Side;
+  from: number;
+  to: number;
+}
+
+/**
+ * Baseboard runs along a room's inner wall faces, skipping door and passage
+ * openings and the walls of a shower. Mirrors baseboard_runs() in
+ * tools/house-model/build_house.py, which builds them in 3D.
+ */
+export function baseboardRuns(room: Room): Run[] {
+  const t = WALL_THICKNESS;
+  const runs: Run[] = [];
+  for (const side of SIDES) {
+    const line = sideLine(room.rect, side);
+    const gaps: [number, number][] = OPENINGS.filter((o) => o.kind !== "window")
+      .map(openingLine)
+      .filter((o) => o.orient === line.orient && close(o.coord, line.coord))
+      .map((o) => [o.from, o.to]);
+    const shower = room.shower;
+    if (shower) {
+      const s = { ...shower };
+      const touches = {
+        north: close(s.z, room.rect.z),
+        south: close(s.z + s.depth, room.rect.z + room.rect.depth),
+        west: close(s.x, room.rect.x),
+        east: close(s.x + s.width, room.rect.x + room.rect.width),
+      }[side];
+      if (touches) gaps.push(line.orient === "h" ? [s.x, s.x + s.width] : [s.z, s.z + s.depth]);
+    }
+    let cursor = line.from + t / 2;
+    const end = line.to - t / 2;
+    for (const [g0, g1] of gaps.sort((a, b) => a[0] - b[0])) {
+      if (g0 > cursor) runs.push({ side, from: cursor, to: Math.min(g0, end) });
+      cursor = Math.max(cursor, g1);
+    }
+    if (end > cursor) runs.push({ side, from: cursor, to: end });
+  }
+  return runs;
+}
+
+/** The items (data/items.yaml) an opening is bought as. Mirrors
+ * opening_items() in tools/house-model/build_house.py. */
+export function openingItems(opening: Opening): string[] {
+  if (opening.kind === "window") return ["window", "window_sill"];
+  if (opening.kind === "opening") return ["door_casing"];
+  return opening.style === "entry"
+    ? ["entry_door", "entry_handleset"]
+    : ["interior_door", "door_lever"];
+}

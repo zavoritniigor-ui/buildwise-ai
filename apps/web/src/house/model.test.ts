@@ -2,13 +2,15 @@ import { expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { KNOWLEDGE } from "../knowledge";
-import furniture from "./furniture.json";
+import fixtures from "./fixtures.json";
 import {
   FOOTPRINT,
   OPENINGS,
   ROOMS,
   WALL_THICKNESS,
   area,
+  baseboardRuns,
+  openingItems,
   findRoom,
   openingLine,
   roomOpenings,
@@ -74,11 +76,11 @@ test("every door opens into a room on its own wall", () => {
   }
 });
 
-test("every piece of furniture stands inside its room", () => {
+test("every fixture stands inside its room", () => {
   const inset = WALL_THICKNESS / 2 - 1e-6;
-  for (const place of furniture.placements) {
+  for (const place of fixtures.placements) {
     const { rect } = findRoom(place.room as Parameters<typeof findRoom>[0]);
-    const piece = furniture.pieces[place.piece as keyof typeof furniture.pieces];
+    const piece = fixtures.pieces[place.piece as keyof typeof fixtures.pieces];
     expect(piece, place.piece).toBeDefined();
     const parts = piece.parts;
     expect(place.rotate % 90, place.piece).toBe(0);
@@ -121,4 +123,31 @@ test("every object in the 3D model is an item of the knowledge base", () => {
   // every item is used somewhere in the house
   const used = new Set(tagged.map((n) => n.extras?.item));
   expect([...known].filter((id) => !used.has(id))).toEqual([]);
+});
+
+test("the house has no loose furniture, only what the builder installs", () => {
+  const categories = new Set(KNOWLEDGE.items.map((i) => i.category));
+  for (const loose of ["furniture", "textile", "decor", "appliance"]) {
+    expect(categories.has(loose as never)).toBe(false);
+  }
+});
+
+test("each opening in the model is built as the items the app counts", () => {
+  const glb = readFileSync(join(import.meta.dirname, "house.glb"));
+  const gltf = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf8")) as {
+    nodes: { extras?: { item?: string; opening?: string } }[];
+  };
+  for (const opening of OPENINGS) {
+    const built = new Set(
+      gltf.nodes.filter((n) => n.extras?.opening === opening.id).map((n) => n.extras?.item),
+    );
+    expect([...built].sort(), opening.id).toEqual([...new Set(openingItems(opening))].sort());
+  }
+});
+
+test("bathroom baseboard skips the door and the shower walls", () => {
+  const runs = baseboardRuns(findRoom("bathroom"));
+  const length = runs.reduce((sum, r) => sum + (r.to - r.from), 0);
+  // north 2.04 (to the shower) + south 2.88 + west 1.62 (around the door) + east 1.24
+  expect(Math.round(length * 100) / 100).toBe(7.78);
 });

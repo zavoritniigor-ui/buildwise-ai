@@ -49,7 +49,7 @@ test("choosing the bathroom offers its floor, shower and walls", async () => {
   const names = within(picker)
     .getAllByRole("button")
     .map((b) => b.textContent);
-  expect(names).toEqual(["Floor", "Shower", "Walls"]);
+  expect(names).toEqual(["Floor", "Shower", "Walls", "Room shopping list"]);
 });
 
 test("the bathroom floor shows its area without the shower", async () => {
@@ -153,4 +153,23 @@ test("the item card speaks the person's language", async () => {
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Унітаз");
   expect(screen.getByText("Ванна кімната · Сантехніка")).toBeDefined();
   expect(screen.getByText(/виміряйте відстань від готової стіни/)).toBeDefined();
+});
+
+test("the room shopping list counts what the bathroom needs, with store links", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Room shopping list" }));
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Room shopping list");
+  expect(screen.getByText("7.78 m")).toBeDefined();
+  const fan = screen.getByRole("list", { name: "Find Bathroom exhaust fan in stores" });
+  expect(within(fan).getByRole("link", { name: "RONA" }).getAttribute("href")).toBe(
+    "https://www.rona.ca/en/search?q=bathroom%20exhaust%20fan",
+  );
+});
+
+test("the house shopping list is offered before a room is chosen, in Ukrainian", async () => {
+  renderApp("uk");
+  fireEvent.click(screen.getByRole("button", { name: "Список закупів будинку" }));
+  expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Список закупів будинку");
+  expect(screen.getByText("Датчик диму та CO")).toBeDefined();
 });
