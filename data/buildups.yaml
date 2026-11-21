@@ -15,12 +15,25 @@
 #   basis:  manufacturer (rate from a cited document) | geometry (the surface
 #           itself) | estimate (common practice, to be replaced by
 #           manufacturer data)
-#   package: optional sale unit, e.g. a 22.68 kg bag, to count packages
+#   package: optional sale unit, e.g. a 22.68 kg bag or a 3.78 L pail, to count
+#           packages (kind: bag | roll | box | pail | can)
 #   search: the query opened in the retailers' own search
 #
 # Mortar rates come from the DITRA handbook, page 19: one 50 lb (22.68 kg) bag
 # bonds 150 ft² (10.7 m²) of DITRA, and sets 40-50 ft² (3.7-4.6 m²) of tile on
 # DITRA; the conservative end (3.7 m²) is used.
+#
+# RedGard, sell sheet page 2: one 1 gal (3.78 L) pail covers 55 ft² (5.1 m²)
+# as a waterproof membrane, so 3.78 / 5.1 = 0.74 L per m².
+# Aura Bath & Spa, TDS page 1: 3.79 L covers 32.5-37.2 m² per coat and bare
+# substrates need two coats; the conservative end gives 2 x 3.79 / 32.5 =
+# 0.23 L per m².
+# CGC handbook chapter 3, page 3: finishing 100 m² of gypsum panels takes
+# 113 m of joint tape and 63 kg of all-purpose ready-mixed compound, and
+# single-layer walls on 400 mm framing take about 1,000 screws; that is 1.13 m,
+# 0.63 kg and 10 screws per m². Ceilings need screws every 300 mm (page 11),
+# so their count is an estimate. Durock screws are spaced 200 mm on walls and
+# floors (chapter 4, page 3); the handbook gives no count, so it is an estimate.
 
 buildups:
   - id: dry-floor-wood
@@ -82,6 +95,7 @@ buildups:
           }
       - role: mortar
         label: Modified thin-set mortar under the membrane
+        material: Modified thin-set mortar
         quantity:
           {
             per: area,
@@ -144,6 +158,7 @@ buildups:
           }
       - role: mortar
         label: Modified thin-set mortar under the membrane
+        material: Modified thin-set mortar
         quantity:
           {
             per: area,
@@ -286,6 +301,7 @@ buildups:
         quantity: { per: area, amount: 0.9, unit: m, basis: estimate, search: Schluter KERDI-BAND }
       - role: mortar
         label: Thin-set mortar
+        material: Unmodified thin-set mortar
         quantity:
           {
             per: area,
@@ -303,10 +319,322 @@ buildups:
         label: Grout
         quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
 
-# Which build-up each surface of the demo house proposes.
+  - id: wet-floor-cement-board
+    title: Cement board floor with liquid waterproofing
+    summary: A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.
+    layers:
+      - { role: structure, label: Floor joists }
+      - role: substrate
+        label: Plywood subfloor, 16 mm tongue-and-groove
+        material: Plywood
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: plywood subfloor 5/8 tongue and groove,
+          }
+      - role: mortar
+        label: Modified thin-set mortar bed under the cement board
+        material: Modified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 3,
+            unit: kg,
+            basis: estimate,
+            package: { size: 22.68, kind: bag },
+            search: modified thinset mortar,
+          }
+      - role: underlayment
+        label: Cement board underlayment, 8 mm
+        material: CGC Durock
+        source: { document: cgc-handbook-ch04, page: 2 }
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: Durock cement board underlayment,
+          }
+      - role: underlayment
+        label: Cement board screws, 200 mm apart on floors
+        material: CGC Durock wood screws
+        source: { document: cgc-handbook-ch04, page: 3 }
+        quantity:
+          {
+            per: area,
+            amount: 25,
+            unit: pcs,
+            basis: estimate,
+            source: { document: cgc-handbook-ch04, page: 3 },
+            search: Durock cement board screws,
+          }
+      - role: membrane
+        label: Liquid waterproofing membrane, rolled on
+        material: Custom RedGard
+        source: { document: redgard-sell-sheet, page: 2 }
+        quantity:
+          {
+            per: area,
+            amount: 0.74,
+            unit: L,
+            waste: 0.1,
+            basis: manufacturer,
+            source: { document: redgard-sell-sheet, page: 2 },
+            package: { size: 3.78, kind: pail },
+            search: RedGard waterproofing membrane,
+          }
+      - role: mortar
+        label: Modified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 5,
+            unit: kg,
+            basis: estimate,
+            package: { size: 22.68, kind: bag },
+            search: modified thinset mortar,
+          }
+      - role: covering
+        label: Porcelain tile
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: porcelain floor tile,
+          }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
+
+  - id: tiled-wall-cement-board
+    title: Cement board wall with liquid waterproofing
+    summary: A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.
+    layers:
+      - { role: structure, label: "Wood or metal studs, 400 mm apart" }
+      - role: substrate
+        label: Cement board, 12.7 mm
+        material: CGC Durock
+        source: { document: cgc-handbook-ch04, page: 2 }
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: Durock cement board 1/2,
+          }
+      - role: substrate
+        label: Cement board screws, 200 mm apart on walls
+        material: CGC Durock wood screws
+        source: { document: cgc-handbook-ch04, page: 3 }
+        quantity:
+          {
+            per: area,
+            amount: 15,
+            unit: pcs,
+            basis: estimate,
+            source: { document: cgc-handbook-ch04, page: 3 },
+            search: Durock cement board screws,
+          }
+      - role: substrate
+        label: Alkali-resistant joint tape, 50 mm
+        material: CGC Durock interior tape
+        source: { document: cgc-handbook-ch04, page: 5 }
+        quantity:
+          {
+            per: area,
+            amount: 1.13,
+            unit: m,
+            basis: estimate,
+            source: { document: cgc-handbook-ch04, page: 5 },
+            search: Durock alkali resistant tape,
+          }
+      - role: membrane
+        label: Liquid waterproofing membrane, rolled on
+        material: Custom RedGard
+        source: { document: redgard-sell-sheet, page: 2 }
+        quantity:
+          {
+            per: area,
+            amount: 0.74,
+            unit: L,
+            waste: 0.1,
+            basis: manufacturer,
+            source: { document: redgard-sell-sheet, page: 2 },
+            package: { size: 3.78, kind: pail },
+            search: RedGard waterproofing membrane,
+          }
+      - role: mortar
+        label: Modified thin-set mortar
+        quantity:
+          {
+            per: area,
+            amount: 5,
+            unit: kg,
+            basis: estimate,
+            package: { size: 22.68, kind: bag },
+            search: modified thinset mortar,
+          }
+      - role: covering
+        label: Ceramic tile
+        quantity:
+          { per: area, amount: 1, unit: m2, waste: 0.1, basis: geometry, search: ceramic wall tile }
+      - role: grout
+        label: Grout
+        quantity: { per: area, amount: 0.5, unit: kg, basis: estimate, search: sanded grout }
+
+  - id: painted-moisture-wall
+    title: Moisture-resistant painted wall
+    summary: For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.
+    layers:
+      - { role: structure, label: "Wood or metal studs, 400 mm apart" }
+      - role: substrate
+        label: Moisture- and mould-resistant gypsum board, 12.7 mm
+        material: CGC Sheetrock UltraLight Mold Tough
+        source: { document: mold-tough-ultralight, page: 1 }
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: Sheetrock Mold Tough 1/2,
+          }
+      - role: substrate
+        label: Drywall screws, Type W
+        quantity:
+          {
+            per: area,
+            amount: 10,
+            unit: pcs,
+            basis: manufacturer,
+            source: { document: cgc-handbook-ch03, page: 3 },
+            search: drywall screws 1 1/4,
+          }
+      - role: finish
+        label: Paper joint tape
+        quantity:
+          {
+            per: area,
+            amount: 1.13,
+            unit: m,
+            basis: manufacturer,
+            source: { document: cgc-handbook-ch03, page: 3 },
+            search: drywall joint tape,
+          }
+      - role: finish
+        label: All-purpose ready-mixed joint compound
+        quantity:
+          {
+            per: area,
+            amount: 0.63,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: cgc-handbook-ch03, page: 3 },
+            search: all purpose joint compound,
+          }
+      - role: finish
+        label: Bathroom paint, two coats (self-priming)
+        material: Benjamin Moore Aura Bath & Spa
+        source: { document: aura-bath-spa-tds, page: 1 }
+        quantity:
+          {
+            per: area,
+            amount: 0.23,
+            unit: L,
+            basis: manufacturer,
+            source: { document: aura-bath-spa-tds, page: 1 },
+            package: { size: 3.79, kind: can },
+            search: Benjamin Moore Aura Bath and Spa,
+          }
+
+  - id: painted-moisture-ceiling
+    title: Moisture-resistant painted ceiling
+    summary: A bathroom ceiling of moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.
+    layers:
+      - { role: structure, label: Ceiling joists or strapping }
+      - role: substrate
+        label: Moisture- and mould-resistant gypsum board, 12.7 mm
+        material: CGC Sheetrock UltraLight Mold Tough
+        source: { document: mold-tough-ultralight, page: 1 }
+        quantity:
+          {
+            per: area,
+            amount: 1,
+            unit: m2,
+            waste: 0.1,
+            basis: geometry,
+            search: Sheetrock Mold Tough 1/2,
+          }
+      - role: substrate
+        label: Drywall screws, Type W, 300 mm apart on ceilings
+        material: Drywall screws, Type W
+        quantity:
+          {
+            per: area,
+            amount: 12,
+            unit: pcs,
+            basis: estimate,
+            source: { document: cgc-handbook-ch03, page: 11 },
+            search: drywall screws 1 1/4,
+          }
+      - role: finish
+        label: Paper joint tape
+        quantity:
+          {
+            per: area,
+            amount: 1.13,
+            unit: m,
+            basis: manufacturer,
+            source: { document: cgc-handbook-ch03, page: 3 },
+            search: drywall joint tape,
+          }
+      - role: finish
+        label: All-purpose ready-mixed joint compound
+        quantity:
+          {
+            per: area,
+            amount: 0.63,
+            unit: kg,
+            basis: manufacturer,
+            source: { document: cgc-handbook-ch03, page: 3 },
+            search: all purpose joint compound,
+          }
+      - role: finish
+        label: Bathroom paint, two coats (self-priming)
+        material: Benjamin Moore Aura Bath & Spa
+        source: { document: aura-bath-spa-tds, page: 1 }
+        quantity:
+          {
+            per: area,
+            amount: 0.23,
+            unit: L,
+            basis: manufacturer,
+            source: { document: aura-bath-spa-tds, page: 1 },
+            package: { size: 3.79, kind: can },
+            search: Benjamin Moore Aura Bath and Spa,
+          }
+
+# The build-ups each surface of the demo house offers, as technologies to
+# choose from; the first is proposed by default.
 surfaces:
-  living: { floor: dry-floor-wood, walls: painted-wall }
-  kitchen: { floor: tiled-floor-wood, walls: painted-wall }
-  bedroom: { floor: dry-floor-wood, walls: painted-wall }
-  hallway: { floor: dry-floor-wood, walls: painted-wall }
-  bathroom: { floor: wet-floor-wood, walls: tiled-wet-wall, shower: curbless-shower-floor }
+  living: { floor: [dry-floor-wood], walls: [painted-wall] }
+  kitchen: { floor: [tiled-floor-wood], walls: [painted-wall] }
+  bedroom: { floor: [dry-floor-wood], walls: [painted-wall] }
+  hallway: { floor: [dry-floor-wood], walls: [painted-wall] }
+  bathroom:
+    floor: [wet-floor-wood, wet-floor-cement-board]
+    walls: [tiled-wet-wall, tiled-wall-cement-board, painted-moisture-wall]
+    shower: [curbless-shower-floor]
+    ceiling: [painted-moisture-ceiling]

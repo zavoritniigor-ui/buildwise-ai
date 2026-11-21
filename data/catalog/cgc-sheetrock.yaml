@@ -1,0 +1,29 @@
+# CGC Sheetrock gypsum panels and joint treatment, from CGC's own documents
+# (Canada). Cited by page of the PDF.
+#
+# Status: documents only; the build-ups in buildups.yaml cite these pages.
+
+manufacturer:
+  name: CGC Inc.
+  brand: Sheetrock
+  website: https://www.cgcinc.com
+
+documents:
+  - id: cgc-handbook-ch03
+    type: installation_manual
+    title: CGC Gypsum Construction Handbook, Chapter 3 Cladding
+    url: https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch03-cladding-can-en.pdf
+    version: Canadian edition (PDF created 2005-03-01)
+    pages: 48
+    sha256: 1cb9d6f8699ea41cc71aa792cb0f273705dcc9f8b31b62275bee6efde0cce0c5
+    retrieved_on: 2026-11-20
+  - id: mold-tough-ultralight
+    type: tds
+    title: CGC Sheetrock Brand UltraLight Panels Mold Tough, Submittal Sheet
+    url: https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/sheetrock-brand-ultralight-panels-mold-tough-data-sheet-en-can.pdf
+    version: EWB2660-CAN-ENG rev. 5-20
+    pages: 3
+    sha256: 4439ff129ed59e451b2aaef5570992f482986935221f8f19a3d3f5723bca8f0f
+    retrieved_on: 2026-11-20
+
+categories: []

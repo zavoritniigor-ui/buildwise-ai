@@ -12,8 +12,11 @@ import {
   findRoom,
   openingItems,
   roomOpenings,
+  surfaceArea,
+  surfacePerimeter,
 } from "./house/model";
-import { type Item, type ItemCategory, KNOWLEDGE, findItem } from "./knowledge";
+import { type Item, type ItemCategory, KNOWLEDGE, buildupForSurface, findItem } from "./knowledge";
+import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 
 export interface InventoryLine {
   item: Item;
@@ -90,4 +93,29 @@ export function inventory(rooms: readonly RoomId[]): InventoryLine[] {
         CATEGORY_ORDER.indexOf(a.item.category) - CATEGORY_ORDER.indexOf(b.item.category) ||
         a.item.name.localeCompare(b.item.name),
     );
+}
+
+/**
+ * The materials for every surface of the rooms, each with the build-up the
+ * person chose for it (or the default), added up across surfaces.
+ */
+export function surfacePurchases(
+  rooms: readonly RoomId[],
+  choices: Readonly<Record<string, string>> = {},
+): PurchaseLine[] {
+  const lists: PurchaseLine[][] = [];
+  for (const id of rooms) {
+    const room = findRoom(id);
+    for (const surface of room.surfaces) {
+      const buildup = buildupForSurface(id, surface, choices[`${id}.${surface}`]);
+      if (!buildup) continue;
+      lists.push(
+        purchaseList(buildup, {
+          area: surfaceArea(room, surface),
+          perimeter: surfacePerimeter(room, surface),
+        }),
+      );
+    }
+  }
+  return mergePurchases(lists);
 }

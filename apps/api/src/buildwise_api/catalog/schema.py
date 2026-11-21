@@ -205,7 +205,7 @@ BuildupRole = Literal[
 
 class Package(_Strict):
     size: Decimal = Field(gt=0)
-    kind: Literal["bag", "roll", "box"]
+    kind: Literal["bag", "roll", "box", "pail", "can"]
 
 
 class Quantity(_Strict):
@@ -244,7 +244,16 @@ class Buildup(_Strict):
 
 class BuildupFile(_Strict):
     buildups: list[Buildup] = Field(min_length=1)
-    surfaces: dict[str, dict[str, str]]
+    surfaces: dict[str, dict[str, list[str]]]
+    """room -> surface -> build-ups offered as technologies; the first is the default."""
+
+    @model_validator(mode="after")
+    def _every_surface_offers_one(self) -> Self:
+        for room, surfaces in self.surfaces.items():
+            for surface, options in surfaces.items():
+                if not options or len(set(options)) != len(options):
+                    raise ValueError(f"{room}.{surface} needs distinct build-ups")
+        return self
 
 
 def load_buildups(data_dir: Path) -> BuildupFile:

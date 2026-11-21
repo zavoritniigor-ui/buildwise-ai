@@ -1,11 +1,12 @@
 """Surface build-ups and their per-surface quantities (data/buildups.yaml)."""
 
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
 
-from buildwise_api.catalog.schema import Quantity, load_buildups
+from buildwise_api.catalog.schema import BuildupFile, Quantity, load_buildups
 
 DATA_DIR = Path(__file__).resolve().parents[3] / "data"
 
@@ -21,9 +22,10 @@ def test_every_surface_of_the_demo_house_has_a_build_up() -> None:
     buildups = load_buildups(DATA_DIR)
     assert set(buildups.surfaces) == {"living", "kitchen", "bedroom", "hallway", "bathroom"}
     assert buildups.surfaces["bathroom"] == {
-        "floor": "wet-floor-wood",
-        "walls": "tiled-wet-wall",
-        "shower": "curbless-shower-floor",
+        "floor": ["wet-floor-wood", "wet-floor-cement-board"],
+        "walls": ["tiled-wet-wall", "tiled-wall-cement-board", "painted-moisture-wall"],
+        "shower": ["curbless-shower-floor"],
+        "ceiling": ["painted-moisture-ceiling"],
     }
 
 
@@ -42,3 +44,47 @@ def test_ditra_mortar_rates_come_from_the_handbook() -> None:
     ]
     for q in rates:
         assert q.package is not None and float(q.package.size) == 22.68
+
+
+def _rate(buildup_id: str, search: str) -> Quantity:
+    buildup = next(b for b in load_buildups(DATA_DIR).buildups if b.id == buildup_id)
+    found = [layer.quantity for layer in buildup.layers if layer.quantity]
+    return next(q for q in found if q.search == search)
+
+
+def test_liquid_membrane_and_paint_rates_come_from_their_data_sheets() -> None:
+    redgard = _rate("tiled-wall-cement-board", "RedGard waterproofing membrane")
+    assert redgard.basis == "manufacturer"
+    assert redgard.source is not None and redgard.source.document == "redgard-sell-sheet"
+    # 3.78 L covers 5.1 m2 as a waterproof membrane
+    assert redgard.amount == Decimal("0.74")
+    assert redgard.package is not None and redgard.package.size == Decimal("3.78")
+    paint = _rate("painted-moisture-ceiling", "Benjamin Moore Aura Bath and Spa")
+    # two coats at 32.5 m2 per 3.79 L
+    assert paint.amount == Decimal("0.23")
+    assert paint.source is not None and paint.source.page == 1
+
+
+def test_gypsum_finishing_rates_come_from_the_cgc_handbook() -> None:
+    for search, amount in (("drywall joint tape", "1.13"), ("all purpose joint compound", "0.63")):
+        rate = _rate("painted-moisture-wall", search)
+        assert rate.amount == Decimal(amount)
+        assert rate.source is not None
+        assert (rate.source.document, rate.source.page) == ("cgc-handbook-ch03", 3)
+
+
+def test_a_surface_must_offer_distinct_build_ups() -> None:
+    with pytest.raises(ValidationError, match="distinct"):
+        BuildupFile.model_validate(
+            {
+                "buildups": [
+                    {
+                        "id": "a",
+                        "title": "A",
+                        "summary": "s",
+                        "layers": [{"role": "structure", "label": "Joists"}],
+                    }
+                ],
+                "surfaces": {"bathroom": {"floor": ["a", "a"]}},
+            }
+        )

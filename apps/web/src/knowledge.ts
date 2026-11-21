@@ -116,7 +116,7 @@ export interface Quantity {
   /** manufacturer: cited rate; geometry: the surface itself; estimate: common practice */
   basis: "manufacturer" | "geometry" | "estimate";
   source?: SourceRef;
-  package?: { size: number; kind: "bag" | "roll" | "box" };
+  package?: { size: number; kind: "bag" | "roll" | "box" | "pail" | "can" };
   /** the query opened in the retailers' own search */
   search: string;
 }
@@ -172,8 +172,8 @@ export interface Knowledge {
   attribute_labels: Record<string, string>;
   value_labels: Record<string, string>;
   buildups: Buildup[];
-  /** room id -> surface -> buildup id */
-  surfaceBuildups: Record<string, Record<string, string>>;
+  /** room id -> surface -> build-ups offered as technologies; the first is the default */
+  surfaceBuildups: Record<string, Record<string, string[]>>;
   items: Item[];
   /** English text to its translation, per language. */
   translations: Record<string, Record<string, string>>;
@@ -188,14 +188,26 @@ export function citationUrl(source: SourceRef, knowledge: Knowledge = KNOWLEDGE)
   return `${document.url}#page=${source.page}`;
 }
 
-/** The build-up ("sandwich") proposed for a surface of the demo house. */
-export function buildupForSurface(
+/** The build-ups ("sandwiches") a surface of the demo house offers, as
+ * technologies to choose from; the first is the default. */
+export function buildupsForSurface(
   room: string,
   surface: string,
   knowledge: Knowledge = KNOWLEDGE,
+): Buildup[] {
+  const ids = knowledge.surfaceBuildups[room]?.[surface] ?? [];
+  return ids.flatMap((id) => knowledge.buildups.filter((b) => b.id === id));
+}
+
+/** The build-up proposed for a surface: the chosen one, else the default. */
+export function buildupForSurface(
+  room: string,
+  surface: string,
+  chosen?: string,
+  knowledge: Knowledge = KNOWLEDGE,
 ): Buildup | undefined {
-  const id = knowledge.surfaceBuildups[room]?.[surface];
-  return id ? knowledge.buildups.find((b) => b.id === id) : undefined;
+  const options = buildupsForSurface(room, surface, knowledge);
+  return options.find((b) => b.id === chosen) ?? options[0];
 }
 
 /** An item of the house by id, or undefined when the knowledge base lacks it. */

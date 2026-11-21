@@ -13,6 +13,8 @@ export interface Measure {
 }
 
 export interface Need {
+  /** before rounding, so needs of several surfaces can be added up */
+  raw: number;
   total: number;
   /** whole packages to buy, when the material is sold in packages */
   packages?: number;
@@ -26,12 +28,15 @@ const round = (value: number, digits: number) => {
 export function need(quantity: Quantity, measure: Measure): Need {
   const base =
     quantity.per === "area" ? measure.area : quantity.per === "perimeter" ? measure.perimeter : 1;
-  const raw = quantity.amount * base * (1 + quantity.waste);
+  return fromRaw(quantity, quantity.amount * base * (1 + quantity.waste));
+}
+
+function fromRaw(quantity: Quantity, raw: number): Need {
   const total =
     quantity.unit === "pcs" ? Math.ceil(raw - 1e-9) : round(raw, quantity.unit === "m2" ? 2 : 1);
   return quantity.package
-    ? { total, packages: Math.ceil(raw / quantity.package.size - 1e-9) }
-    : { total };
+    ? { raw, total, packages: Math.ceil(raw / quantity.package.size - 1e-9) }
+    : { raw, total };
 }
 
 export interface PurchaseLine {
@@ -61,6 +66,25 @@ export function purchaseList(buildup: Buildup, measure: Measure): PurchaseLine[]
         need: need(layer.quantity, measure),
       });
     }
+  }
+  return [...lines.values()];
+}
+
+/**
+ * Adds up the shopping lists of several surfaces: the same product (same
+ * search and unit) becomes one line, its packages counted on the summed need.
+ */
+export function mergePurchases(lists: readonly PurchaseLine[][]): PurchaseLine[] {
+  const lines = new Map<string, PurchaseLine>();
+  for (const line of lists.flat()) {
+    const key = `${line.quantity.search}|${line.quantity.unit}`;
+    const current = lines.get(key);
+    if (!current) {
+      lines.set(key, line);
+      continue;
+    }
+    const raw = current.need.raw + line.need.raw;
+    lines.set(key, { ...current, need: fromRaw(current.quantity, raw) });
   }
   return [...lines.values()];
 }
