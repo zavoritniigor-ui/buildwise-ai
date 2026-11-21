@@ -1,0 +1,21 @@
+# CGC Durock cement board, from CGC's own Gypsum Construction Handbook
+# (Canada), chapter 4. Cited by page of the PDF.
+#
+# Status: documents only; the build-ups in buildups.yaml cite these pages.
+
+manufacturer:
+  name: CGC Inc.
+  brand: Durock
+  website: https://www.cgcinc.com
+
+documents:
+  - id: cgc-handbook-ch04
+    type: installation_manual
+    title: CGC Gypsum Construction Handbook, Chapter 4 Cement Board Construction
+    url: https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch04-cement-board-construction-can-en.pdf
+    version: Canadian edition (PDF created 2005-02-07)
+    pages: 16
+    sha256: 9b5ea00342cd13a7e4f59dd322b85c34b3d3db0e5cacbdaa6889f51c30e9970c
+    retrieved_on: 2026-11-20
+
+categories: []

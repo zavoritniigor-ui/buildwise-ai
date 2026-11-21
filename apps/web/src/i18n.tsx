@@ -33,7 +33,7 @@ const en = {
     hallway: "Hallway",
     bathroom: "Bathroom",
   },
-  surfaces: { floor: "Floor", walls: "Walls", shower: "Shower" },
+  surfaces: { floor: "Floor", walls: "Walls", shower: "Shower", ceiling: "Ceiling" },
   roles: {
     structure: "Structure",
     substrate: "Base layer",
@@ -54,7 +54,7 @@ const en = {
   perEach: "per surface",
   forArea: (area: string) => `for ${area} m²`,
   forLength: (length: string) => `for ${length} m of joint`,
-  packageKind: { bag: "bag", roll: "roll", box: "box" },
+  packageKind: { bag: "bag", roll: "roll", box: "box", pail: "pail", can: "can" },
   packages: (n: number, kind: string, size: string) => `${n} × ${kind} of ${size}`,
   waste: (percent: string) => `includes ${percent}% for cuts`,
   basis: { manufacturer: "manufacturer data", geometry: "from the surface", estimate: "estimate" },
@@ -79,6 +79,9 @@ const en = {
     hardware: "Hardware and accessories",
     trim: "Trim",
   },
+  technology: "Technology",
+  surfaceMaterials: "Materials for the surfaces",
+  fixturesTitle: "Fixtures, devices, doors and windows",
   houseList: "House shopping list",
   roomList: "Room shopping list",
   inventoryNote:
@@ -110,7 +113,7 @@ const uk: Messages = {
     hallway: "Коридор",
     bathroom: "Ванна кімната",
   },
-  surfaces: { floor: "Підлога", walls: "Стіни", shower: "Душова" },
+  surfaces: { floor: "Підлога", walls: "Стіни", shower: "Душова", ceiling: "Стеля" },
   roles: {
     structure: "Основа",
     substrate: "Базовий шар",
@@ -131,7 +134,7 @@ const uk: Messages = {
   perEach: "на поверхню",
   forArea: (area) => `на ${area} м²`,
   forLength: (length) => `на ${length} м стику`,
-  packageKind: { bag: "мішок", roll: "рулон", box: "коробка" },
+  packageKind: { bag: "мішок", roll: "рулон", box: "коробка", pail: "відро", can: "банка" },
   packages: (n, kind, size) => `${n} × ${kind} ${size}`,
   waste: (percent) => `з запасом ${percent}% на підрізку`,
   basis: { manufacturer: "дані виробника", geometry: "з площі поверхні", estimate: "оцінка" },
@@ -156,6 +159,9 @@ const uk: Messages = {
     hardware: "Фурнітура й аксесуари",
     trim: "Оздоблювальні елементи",
   },
+  technology: "Технологія",
+  surfaceMaterials: "Матеріали для поверхонь",
+  fixturesTitle: "Прилади, пристрої, двері й вікна",
   houseList: "Список закупів будинку",
   roomList: "Список закупів кімнати",
   inventoryNote:
@@ -185,7 +191,7 @@ const ru: Messages = {
     hallway: "Коридор",
     bathroom: "Ванная",
   },
-  surfaces: { floor: "Пол", walls: "Стены", shower: "Душевая" },
+  surfaces: { floor: "Пол", walls: "Стены", shower: "Душевая", ceiling: "Потолок" },
   roles: {
     structure: "Основа",
     substrate: "Базовый слой",
@@ -206,7 +212,7 @@ const ru: Messages = {
   perEach: "на поверхность",
   forArea: (area) => `на ${area} м²`,
   forLength: (length) => `на ${length} м стыка`,
-  packageKind: { bag: "мешок", roll: "рулон", box: "коробка" },
+  packageKind: { bag: "мешок", roll: "рулон", box: "коробка", pail: "ведро", can: "банка" },
   packages: (n, kind, size) => `${n} × ${kind} ${size}`,
   waste: (percent) => `с запасом ${percent}% на подрезку`,
   basis: {
@@ -235,6 +241,9 @@ const ru: Messages = {
     hardware: "Фурнитура и аксессуары",
     trim: "Отделочные элементы",
   },
+  technology: "Технология",
+  surfaceMaterials: "Материалы для поверхностей",
+  fixturesTitle: "Приборы, устройства, двери и окна",
   houseList: "Список покупок для дома",
   roomList: "Список покупок для комнаты",
   inventoryNote:
@@ -264,7 +273,7 @@ const fr: Messages = {
     hallway: "Couloir",
     bathroom: "Salle de bain",
   },
-  surfaces: { floor: "Plancher", walls: "Murs", shower: "Douche" },
+  surfaces: { floor: "Plancher", walls: "Murs", shower: "Douche", ceiling: "Plafond" },
   roles: {
     structure: "Structure",
     substrate: "Couche de base",
@@ -285,7 +294,7 @@ const fr: Messages = {
   perEach: "par surface",
   forArea: (area) => `pour ${area} m²`,
   forLength: (length) => `pour ${length} m de joint`,
-  packageKind: { bag: "sac", roll: "rouleau", box: "boîte" },
+  packageKind: { bag: "sac", roll: "rouleau", box: "boîte", pail: "seau", can: "gallon" },
   packages: (n, kind, size) => `${n} × ${kind} de ${size}`,
   waste: (percent) => `inclut ${percent} % pour les coupes`,
   basis: {
@@ -314,6 +323,9 @@ const fr: Messages = {
     hardware: "Quincaillerie et accessoires",
     trim: "Moulures",
   },
+  technology: "Technique",
+  surfaceMaterials: "Matériaux des surfaces",
+  fixturesTitle: "Appareils, dispositifs, portes et fenêtres",
   houseList: "Liste d'achats de la maison",
   roomList: "Liste d'achats de la pièce",
   inventoryNote:

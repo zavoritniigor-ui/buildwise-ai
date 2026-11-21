@@ -7,7 +7,7 @@ import {
   surfaceArea,
   surfacePerimeter,
 } from "../house/model";
-import { buildupForSurface } from "../knowledge";
+import { buildupForSurface, buildupsForSurface } from "../knowledge";
 import { BuildupView } from "./Buildup";
 import { PurchaseList } from "./PurchaseList";
 
@@ -16,15 +16,21 @@ import { PurchaseList } from "./PurchaseList";
 export function SurfaceSheet({
   room,
   surface,
+  chosen,
+  onChoose,
   onClose,
 }: {
   room: RoomId;
   surface: SurfaceId;
+  /** the build-up the person picked for this surface, if any */
+  chosen?: string;
+  onChoose: (buildup: string) => void;
   onClose: () => void;
 }) {
-  const { t, language } = useI18n();
+  const { t, d, language } = useI18n();
   const [shopping, setShopping] = useState(false);
-  const buildup = buildupForSurface(room, surface);
+  const options = buildupsForSurface(room, surface);
+  const buildup = buildupForSurface(room, surface, chosen);
   const place = findRoom(room);
   const measure = {
     area: surfaceArea(place, surface),
@@ -45,6 +51,23 @@ export function SurfaceSheet({
         {t.area(measure.area.toLocaleString(language, { maximumFractionDigits: 2 }))}
       </p>
       {surface === "walls" && <p className="muted small">{t.wallsNote}</p>}
+      {options.length > 1 && buildup && (
+        <fieldset className="technology">
+          <legend>{t.technology}</legend>
+          {options.map((option) => (
+            <label key={option.id}>
+              <input
+                type="radio"
+                name="technology"
+                value={option.id}
+                checked={option.id === buildup.id}
+                onChange={() => onChoose(option.id)}
+              />
+              <span>{d(option.title)}</span>
+            </label>
+          ))}
+        </fieldset>
+      )}
       {buildup ? (
         <>
           <button

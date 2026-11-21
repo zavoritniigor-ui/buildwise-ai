@@ -49,7 +49,7 @@ test("choosing the bathroom offers its floor, shower and walls", async () => {
   const names = within(picker)
     .getAllByRole("button")
     .map((b) => b.textContent);
-  expect(names).toEqual(["Floor", "Shower", "Walls", "Room shopping list"]);
+  expect(names).toEqual(["Floor", "Shower", "Walls", "Ceiling", "Room shopping list"]);
 });
 
 test("the bathroom floor shows its area without the shower", async () => {
@@ -172,4 +172,25 @@ test("the house shopping list is offered before a room is chosen, in Ukrainian",
   fireEvent.click(screen.getByRole("button", { name: "Список закупів будинку" }));
   expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Список закупів будинку");
   expect(screen.getByText("Датчик диму та CO")).toBeDefined();
+});
+
+test("a surface offers technologies, and the room list follows the choice", async () => {
+  renderApp();
+  fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Walls" }));
+  const technology = screen.getByRole("group", { name: "Technology" });
+  expect(within(technology).getAllByRole("radio")).toHaveLength(3);
+  fireEvent.click(
+    within(technology).getByRole("radio", { name: "Moisture-resistant painted wall" }),
+  );
+  expect(screen.getAllByText("Benjamin Moore Aura Bath & Spa").length).toBeGreaterThan(0);
+
+  fireEvent.click(screen.getByRole("button", { name: "Bathroom" }));
+  fireEvent.click(screen.getByRole("button", { name: "Room shopping list" }));
+  const materials = screen.getByRole("list", {
+    name: "Find Benjamin Moore Aura Bath & Spa in stores",
+  });
+  expect(materials).toBeDefined();
+  // walls 26.58 m² and ceiling 7.5 m² of paint at 0.23 L/m²: 3 cans of 3.79 L
+  expect(screen.getByText(/7.9 L · 3 × can of 3.79 L/)).toBeDefined();
 });

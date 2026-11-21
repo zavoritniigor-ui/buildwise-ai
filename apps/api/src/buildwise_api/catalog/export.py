@@ -324,9 +324,10 @@ def snapshot(data_dir: Path) -> Json:
                         f"buildup {buildup.id!r} cites unknown document {ref.document!r}"
                     )
     for room, surfaces in buildups.surfaces.items():
-        for surface, bid in surfaces.items():
-            if bid not in known_buildups:
-                raise ValueError(f"surface {room}.{surface} uses unknown buildup {bid!r}")
+        for surface, offered in surfaces.items():
+            for bid in offered:
+                if bid not in known_buildups:
+                    raise ValueError(f"surface {room}.{surface} uses unknown buildup {bid!r}")
 
     items = schema.load_items(data_dir)
 
@@ -379,7 +380,7 @@ def snapshot(data_dir: Path) -> Json:
         "scenarios": scenarios,
         "buildups": [_buildup(b) for b in buildups.buildups],
         "surfaceBuildups": {
-            room: dict(sorted(surfaces.items()))
+            room: {surface: list(offered) for surface, offered in sorted(surfaces.items())}
             for room, surfaces in sorted(buildups.surfaces.items())
         },
         "items": [item.model_dump() for item in items.items],
