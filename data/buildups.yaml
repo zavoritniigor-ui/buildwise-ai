@@ -36,10 +36,13 @@
 # page 10), and
 # single-layer walls on 400 mm framing take about 1,000 screws; that is 1.13 m,
 # 0.36 L and 10 screws per m². Gypsum panels are 1220 x 2440 mm (handbook
-# chapter 1, page 9), 2.97 m² a sheet; Durock boards 915 x 1524 mm, 1.39 m².
+# chapter 1, page 9), 2.97 m² a sheet; Durock boards 915 x 1524 mm, 1.39 m²;
+# Durock underlayment 1220 x 1220 mm, 1.49 m² (chapter 4, page 2).
 # Regal Select, TDS page 1: 37.1 m² per 3.79 L, new drywall takes two coats,
 # so 2 x 3.79 / 37.1 = 0.21 L per m². Ceilings need screws every 300 mm (page 11),
-# so their count is an estimate. Durock screws are spaced 200 mm on walls and
+# so their count is an estimate.
+# Polyblend Plus sanded grout, TDS page 9: a 25 lb (11.34 kg) bag grouts
+# 32.3 m² of 12 x 12 in tile with 1/8 in joints -> 0.36 kg per m². Durock screws are spaced 200 mm on walls and
 # floors (chapter 4, page 3); the handbook gives no count, so it is an estimate.
 
 buildups:
@@ -145,13 +148,20 @@ buildups:
           basis: geometry
           search: porcelain floor tile
       - role: grout
-        label: Grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
         quantity:
           per: area
-          amount: 0.5
+          amount: 0.36
           unit: kg
-          basis: estimate
-          search: sanded grout
+          basis: manufacturer
+          source: &id001
+            document: polyblend-plus-tds
+            page: 9
+          package: &id002
+            size: 11.34
+            kind: bag
+          search: Polyblend Plus sanded grout
+        material: Custom Polyblend Plus Sanded Grout
   - id: wet-floor-wood
     title: Waterproof bathroom floor on wood
     summary: A tiled, waterproofed floor for a bathroom over a wood subfloor.
@@ -233,13 +243,16 @@ buildups:
           basis: geometry
           search: porcelain floor tile
       - role: grout
-        label: Grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
         quantity:
           per: area
-          amount: 0.5
+          amount: 0.36
           unit: kg
-          basis: estimate
-          search: sanded grout
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Polyblend Plus Sanded Grout
   - id: curbless-shower-floor
     title: Curbless shower floor
     summary: A sloped tray drained to a point drain, waterproofed and tiled.
@@ -319,7 +332,7 @@ buildups:
           source:
             document: cgc-handbook-ch01
             page: 9
-          package: &id001
+          package: &id005
             size: 2.97
             kind: sheet
           search: Sheetrock drywall 1/2 4x8
@@ -366,7 +379,7 @@ buildups:
           search: Sheetrock all purpose lite joint compound
       - role: finish
         label: Interior paint and primer, two coats
-        material: Benjamin Moore Regal Select
+        material: Benjamin Moore Regal Select Eggshell
         source:
           document: regal-select-tds
           page: 1
@@ -451,7 +464,7 @@ buildups:
           search: Sheetrock all purpose lite joint compound
       - role: finish
         label: Interior paint and primer, two coats
-        material: Benjamin Moore Regal Select
+        material: Benjamin Moore Regal Select Eggshell
         source:
           document: regal-select-tds
           page: 1
@@ -518,13 +531,16 @@ buildups:
           basis: geometry
           search: ceramic wall tile
       - role: grout
-        label: Grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
         quantity:
           per: area
-          amount: 0.5
+          amount: 0.36
           unit: kg
-          basis: estimate
-          search: sanded grout
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Polyblend Plus Sanded Grout
   - id: wet-floor-cement-board
     title: Cement board floor with liquid waterproofing
     summary:
@@ -544,20 +560,24 @@ buildups:
           basis: geometry
           search: plywood subfloor 5/8 tongue and groove
       - role: mortar
-        label: Modified thin-set mortar bed under the cement board
-        material: Modified thin-set mortar
+        label: Modified thin-set mortar bed under the cement board, 1/4 in square-notch trowel
+        material: Custom Building Products VersaBond Professional Thin-Set Mortar
         quantity:
           per: area
-          amount: 3
+          amount: 2.88
           unit: kg
-          basis: estimate
-          package:
+          basis: manufacturer
+          source: &id003
+            document: versabond-family
+            page: 3
+          package: &id004
             size: 22.68
             kind: bag
-          search: modified thinset mortar
+          search: VersaBond thinset mortar
+        slot: tile-mortar
       - role: underlayment
         label: Cement board underlayment, 8 mm
-        material: CGC Durock
+        material: CGC Durock underlayment, 8 mm
         source:
           document: cgc-handbook-ch04
           page: 2
@@ -568,6 +588,9 @@ buildups:
           waste: 0.1
           basis: geometry
           search: Durock cement board underlayment
+          package:
+            size: 1.49
+            kind: sheet
       - role: underlayment
         label: Cement board screws, 200 mm apart on floors
         material: CGC Durock wood screws
@@ -585,7 +608,7 @@ buildups:
           search: Durock cement board screws
       - role: membrane
         label: Liquid waterproofing membrane, rolled on
-        material: Custom RedGard
+        material: Custom Building Products RedGard
         source:
           document: redgard-sell-sheet
           page: 2
@@ -604,16 +627,17 @@ buildups:
           search: RedGard waterproofing membrane
         slot: liquid-waterproofing
       - role: mortar
-        label: Modified thin-set mortar
+        label: Modified thin-set mortar, 1/4 in square-notch trowel
         quantity:
           per: area
-          amount: 5
+          amount: 2.88
           unit: kg
-          basis: estimate
-          package:
-            size: 22.68
-            kind: bag
-          search: modified thinset mortar
+          basis: manufacturer
+          source: *id003
+          package: *id004
+          search: VersaBond thinset mortar
+        material: Custom Building Products VersaBond Professional Thin-Set Mortar
+        slot: tile-mortar
       - role: covering
         label: Porcelain tile
         quantity:
@@ -624,13 +648,16 @@ buildups:
           basis: geometry
           search: porcelain floor tile
       - role: grout
-        label: Grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
         quantity:
           per: area
-          amount: 0.5
+          amount: 0.36
           unit: kg
-          basis: estimate
-          search: sanded grout
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Polyblend Plus Sanded Grout
   - id: tiled-wall-cement-board
     title: Cement board wall with liquid waterproofing
     summary: A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.
@@ -639,7 +666,7 @@ buildups:
         label: Wood or metal studs, 400 mm apart
       - role: substrate
         label: Cement board, 12.7 mm
-        material: CGC Durock
+        material: CGC Durock cement board, 12.7 mm
         source:
           document: cgc-handbook-ch04
           page: 2
@@ -688,7 +715,7 @@ buildups:
           search: Durock alkali resistant tape
       - role: membrane
         label: Liquid waterproofing membrane, rolled on
-        material: Custom RedGard
+        material: Custom Building Products RedGard
         source:
           document: redgard-sell-sheet
           page: 2
@@ -707,16 +734,17 @@ buildups:
           search: RedGard waterproofing membrane
         slot: liquid-waterproofing
       - role: mortar
-        label: Modified thin-set mortar
+        label: Modified thin-set mortar, 1/4 in square-notch trowel
         quantity:
           per: area
-          amount: 5
+          amount: 2.88
           unit: kg
-          basis: estimate
-          package:
-            size: 22.68
-            kind: bag
-          search: modified thinset mortar
+          basis: manufacturer
+          source: *id003
+          package: *id004
+          search: VersaBond thinset mortar
+        material: Custom Building Products VersaBond Professional Thin-Set Mortar
+        slot: tile-mortar
       - role: covering
         label: Ceramic tile
         quantity:
@@ -727,13 +755,16 @@ buildups:
           basis: geometry
           search: ceramic wall tile
       - role: grout
-        label: Grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
         quantity:
           per: area
-          amount: 0.5
+          amount: 0.36
           unit: kg
-          basis: estimate
-          search: sanded grout
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Polyblend Plus Sanded Grout
   - id: painted-moisture-wall
     title: Moisture-resistant painted wall
     summary:
@@ -755,7 +786,7 @@ buildups:
           waste: 0.1
           basis: geometry
           search: Sheetrock Mold Tough 1/2
-          package: *id001
+          package: *id005
           source:
             document: cgc-handbook-ch01
             page: 9
@@ -801,7 +832,7 @@ buildups:
         material: CGC Sheetrock All Purpose Lite
       - role: finish
         label: Bathroom paint, two coats (self-priming)
-        material: Benjamin Moore Aura Bath & Spa
+        material: Benjamin Moore Aura Bath & Spa Matte
         source:
           document: aura-bath-spa-tds
           page: 1
@@ -839,7 +870,7 @@ buildups:
           waste: 0.1
           basis: geometry
           search: Sheetrock Mold Tough 1/2
-          package: *id001
+          package: *id005
           source:
             document: cgc-handbook-ch01
             page: 9
@@ -886,7 +917,7 @@ buildups:
         material: CGC Sheetrock All Purpose Lite
       - role: finish
         label: Bathroom paint, two coats (self-priming)
-        material: Benjamin Moore Aura Bath & Spa
+        material: Benjamin Moore Aura Bath & Spa Matte
         source:
           document: aura-bath-spa-tds
           page: 1

@@ -36,7 +36,10 @@ def test_ditra_mortar_rates_come_from_the_handbook() -> None:
     rates = [
         layer.quantity
         for layer in wet.layers
-        if layer.quantity is not None and layer.quantity.basis == "manufacturer"
+        if layer.quantity is not None
+        and layer.quantity.basis == "manufacturer"
+        and layer.quantity.source is not None
+        and layer.quantity.source.document == "ditra-handbook"
     ]
     assert [(float(q.amount), q.source.page if q.source else None) for q in rates] == [
         (2.12, 19),
@@ -108,3 +111,23 @@ def test_a_surface_must_offer_distinct_build_ups() -> None:
                 "surfaces": {"bathroom": {"floor": ["a", "a"]}},
             }
         )
+
+
+def test_grout_and_mortar_rates_follow_their_data_sheets() -> None:
+    grout = _rate("wet-floor-wood", "Polyblend Plus sanded grout")
+    # 11.34 kg bag grouts 32.3 m2 of 12 x 12 in tile with 1/8 in joints
+    assert grout.amount == Decimal("0.36")
+    assert grout.source is not None and grout.source.page == 9
+    mortar = _rate("tiled-wall-cement-board", "VersaBond thinset mortar")
+    # 22.68 kg bag covers 7.9 m2 with a 1/4 in square-notch trowel
+    assert mortar.amount == Decimal("2.88")
+    assert mortar.basis == "manufacturer"
+
+
+def test_no_tile_build_up_estimates_its_grout_any_more() -> None:
+    for buildup in load_buildups(DATA_DIR).buildups:
+        if buildup.id == "curbless-shower-floor":
+            continue
+        for layer in buildup.layers:
+            if layer.role == "grout" and layer.quantity is not None:
+                assert layer.quantity.basis == "manufacturer", buildup.id

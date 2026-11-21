@@ -1,5 +1,5 @@
-# Custom Building Products RedGard liquid waterproofing membrane, from the
-# manufacturer's own RedGard family sell sheet. Cited by page of the PDF.
+# Custom Building Products: RedGard waterproofing, VersaBond mortars and
+# Polyblend Plus grout, from the manufacturer's own sell sheets and data sheets. Cited by page of the PDF.
 #
 # Status: documents only; the build-ups in buildups.yaml cite these pages.
 
@@ -17,5 +17,22 @@ documents:
     pages: 2
     sha256: de8b4a5ecdfed0b79b42b6077c327957d46df9dcce8e0405a98d30850d73091d
     retrieved_on: 2026-11-20
+
+  - id: versabond-family
+    type: tds
+    title: VersaBond Family Sell Sheet (SS215)
+    url: https://www.custombuildingproducts.com/wp-content/uploads/VersaBond_Family_SS215_9-26_WEB.pdf
+    version: SS215 9-26
+    pages: 4
+    sha256: 232d4d69e8fddb91a977b25281469dfb5c420e3ec1a4839d11091f9e5b5725d8
+    retrieved_on: 2026-11-21
+  - id: polyblend-plus-tds
+    type: tds
+    title: Polyblend Plus Grout Technical Data Sheet (TDS-360)
+    url: https://www.custombuildingproducts.com/wp-content/uploads/Polyblend-Plus-TDS-8-14-26.pdf
+    version: 8-14-26
+    pages: 9
+    sha256: 2aa653ec5ce41eb784c0de77d2b9b688a3225a7c6bd92ca76f0a605e8391be82
+    retrieved_on: 2026-11-21
 
 categories: []
