@@ -90,6 +90,31 @@
       "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002103_mapelastic-aquadefense_en-ca_5219c29f3732460f9479016f3a4a9a4d.pdf",
       "version": "2025-10-08"
     },
+    "mapei-keraflex-super-tds": {
+      "title": "Keraflex Super Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000041_keraflex-super_en-ca_334991bde5b7437788a1f2ca813092a6.pdf",
+      "version": "2026-09-21"
+    },
+    "mapei-mapeguard-um-tds": {
+      "title": "Mapeguard UM Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000126_mapeguard-um_en-ca_dc1b81b63d7a40929fad3e558e656158.pdf",
+      "version": "2026-01-12"
+    },
+    "mapei-mortar-filling-faq": {
+      "title": "FAQ Sheet: Calculation for the mortar filling on uncoupling/heating membranes (MKT 21-1321)",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/line-technical-documentation-documents/21-1321_calculation_for_the_mortar_filling-ca-en_lr.pdf",
+      "version": "2021-03-15"
+    },
+    "mapei-mapeguard-wp-st-tds": {
+      "title": "Mapeguard WP ST Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000131_mapeguard-wp-st_en-ca_ce961be261e84337a9544f4fa8b1d12c.pdf",
+      "version": "2025-10-23"
+    },
+    "mapei-mapeguard-wp-200-tds": {
+      "title": "Mapeguard WP 200 Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002199_mapeguard-wp-200_en-ca_17416d6edb854ea085f03f5e403d3a22.pdf",
+      "version": "2026-02-05"
+    },
     "npc-2020": {
       "title": "National Plumbing Code of Canada 2020",
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
@@ -4734,6 +4759,203 @@
       ]
     },
     {
+      "id": "wet-floor-mapeguard",
+      "title": "Waterproof bathroom floor on wood, MAPEI Mapeguard UM",
+      "summary": "A tiled floor over a wood subfloor on an uncoupling membrane made waterproof by taping its seams and the floor-wall joints.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer"
+        },
+        {
+          "role": "substrate",
+          "label": "Plywood subfloor, 19 mm tongue-and-groove",
+          "material": "Plywood",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "plywood subfloor 3/4 tongue and groove"
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar under the membrane",
+          "material": "MAPEI Keraflex Super",
+          "quantity": {
+            "per": "area",
+            "amount": 2.15,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Mapei Keraflex Super",
+            "source": {
+              "document": "mapei-keraflex-super-tds",
+              "page": 7
+            },
+            "package": {
+              "size": 20,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Uncoupling and waterproofing membrane, 1 m wide rolls laid edge to edge",
+          "material": "MAPEI Mapeguard UM",
+          "source": {
+            "document": "mapei-mapeguard-um-tds",
+            "page": 1
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Mapei Mapeguard UM",
+            "source": {
+              "document": "mapei-mapeguard-um-tds",
+              "page": 8
+            },
+            "package": {
+              "size": 5,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Sealing tape over every seam (rolls are 1 m wide)",
+          "material": "MAPEI Mapeguard WP ST",
+          "source": {
+            "document": "mapei-mapeguard-um-tds",
+            "page": 5
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Mapei Mapeguard WP ST",
+            "source": {
+              "document": "mapei-mapeguard-wp-st-tds",
+              "page": 3
+            },
+            "package": {
+              "size": 10,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Sealing tape folded up the walls at the floor joints",
+          "material": "MAPEI Mapeguard WP ST",
+          "source": {
+            "document": "mapei-mapeguard-um-tds",
+            "page": 5
+          },
+          "quantity": {
+            "per": "perimeter",
+            "amount": 1,
+            "unit": "m",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Mapei Mapeguard WP ST",
+            "source": {
+              "document": "mapei-mapeguard-wp-st-tds",
+              "page": 3
+            },
+            "package": {
+              "size": 10,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar filling the membrane's cavities",
+          "material": "MAPEI Keraflex Super",
+          "quantity": {
+            "per": "area",
+            "amount": 1.72,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Mapei Keraflex Super",
+            "source": {
+              "document": "mapei-mortar-filling-faq",
+              "page": 1
+            },
+            "package": {
+              "size": 20,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar, 1/4 in square-notch trowel",
+          "material": "Custom Building Products VersaBond Professional Thin-Set Mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 2.88,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "VersaBond thinset mortar",
+            "source": {
+              "document": "versabond-family",
+              "page": 3
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          },
+          "slot": "tile-mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Porcelain tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "porcelain floor tile"
+          }
+        },
+        {
+          "role": "grout",
+          "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.36,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Polyblend Plus sanded grout",
+            "source": {
+              "document": "polyblend-plus-tds",
+              "page": 9
+            },
+            "package": {
+              "size": 11.34,
+              "kind": "bag"
+            }
+          },
+          "slot": "tile-grout"
+        }
+      ]
+    },
+    {
       "id": "curbless-shower-floor",
       "title": "Curbless shower floor",
       "summary": "A sloped tray drained to a point drain, waterproofed and tiled.",
@@ -5481,6 +5703,186 @@
       ]
     },
     {
+      "id": "tiled-wall-mapeguard",
+      "title": "Cement board wall with MAPEI Mapeguard WP 200 sheet membrane",
+      "summary": "A tiled shower or wet-area wall of cement board covered with a bonded sheet waterproofing membrane.",
+      "layers": [
+        {
+          "role": "structure",
+          "label": "Wood or metal studs, 400 mm apart"
+        },
+        {
+          "role": "substrate",
+          "label": "Cement board, 12.7 mm",
+          "material": "CGC Durock cement board, 12.7 mm",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 2
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Durock cement board 1/2",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 2
+            },
+            "package": {
+              "size": 1.39,
+              "kind": "sheet"
+            }
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Cement board screws, 200 mm apart on walls",
+          "material": "CGC Durock wood screws",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 3
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 15,
+            "unit": "pcs",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Durock cement board screws",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 3
+            }
+          }
+        },
+        {
+          "role": "substrate",
+          "label": "Alkali-resistant joint tape, 50 mm",
+          "material": "CGC Durock interior tape",
+          "source": {
+            "document": "cgc-handbook-ch04",
+            "page": 5
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1.13,
+            "unit": "m",
+            "waste": 0,
+            "basis": "estimate",
+            "search": "Durock alkali resistant tape",
+            "source": {
+              "document": "cgc-handbook-ch04",
+              "page": 5
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar under the membrane",
+          "material": "MAPEI Keraflex Super",
+          "quantity": {
+            "per": "area",
+            "amount": 2.15,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Mapei Keraflex Super",
+            "source": {
+              "document": "mapei-keraflex-super-tds",
+              "page": 7
+            },
+            "package": {
+              "size": 20,
+              "kind": "bag"
+            }
+          }
+        },
+        {
+          "role": "membrane",
+          "label": "Sheet waterproofing membrane, seams and corners overlapped by 2 in (5 cm)",
+          "material": "MAPEI Mapeguard WP 200",
+          "source": {
+            "document": "mapei-mapeguard-wp-200-tds",
+            "page": 5
+          },
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "Mapei Mapeguard WP 200",
+            "source": {
+              "document": "mapei-mapeguard-wp-200-tds",
+              "page": 8
+            },
+            "package": {
+              "size": 5,
+              "kind": "roll"
+            }
+          }
+        },
+        {
+          "role": "mortar",
+          "label": "Modified thin-set mortar, 1/4 in square-notch trowel",
+          "material": "Custom Building Products VersaBond Professional Thin-Set Mortar",
+          "quantity": {
+            "per": "area",
+            "amount": 2.88,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "VersaBond thinset mortar",
+            "source": {
+              "document": "versabond-family",
+              "page": 3
+            },
+            "package": {
+              "size": 22.68,
+              "kind": "bag"
+            }
+          },
+          "slot": "tile-mortar"
+        },
+        {
+          "role": "covering",
+          "label": "Ceramic tile",
+          "quantity": {
+            "per": "area",
+            "amount": 1,
+            "unit": "m2",
+            "waste": 0.1,
+            "basis": "geometry",
+            "search": "ceramic wall tile"
+          }
+        },
+        {
+          "role": "grout",
+          "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
+          "quantity": {
+            "per": "area",
+            "amount": 0.36,
+            "unit": "kg",
+            "waste": 0,
+            "basis": "manufacturer",
+            "search": "Polyblend Plus sanded grout",
+            "source": {
+              "document": "polyblend-plus-tds",
+              "page": 9
+            },
+            "package": {
+              "size": 11.34,
+              "kind": "bag"
+            }
+          },
+          "slot": "tile-grout"
+        }
+      ]
+    },
+    {
       "id": "painted-moisture-wall",
       "title": "Moisture-resistant painted wall",
       "summary": "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.",
@@ -5727,7 +6129,8 @@
       ],
       "floor": [
         "wet-floor-wood",
-        "wet-floor-cement-board"
+        "wet-floor-cement-board",
+        "wet-floor-mapeguard"
       ],
       "shower": [
         "curbless-shower-floor"
@@ -5735,6 +6138,7 @@
       "walls": [
         "tiled-wet-wall",
         "tiled-wall-cement-board",
+        "tiled-wall-mapeguard",
         "painted-moisture-wall"
       ]
     },
@@ -6712,6 +7116,8 @@
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Піддон з ухилом до точкового трапа, гідроізольований і облицьований плиткою.",
       "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Звичайна стіна сухої кімнати: гіпсокартон на стійках, зі стрічкою на швах, шпаклюванням і фарбою.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиткова підлога ванної на дерев'яній основі, на цементній плиті, покритій рідкою гідроізоляцією.",
+      "A tiled floor over a wood subfloor on an uncoupling membrane made waterproof by taping its seams and the floor-wall joints.": "Плитка на дерев'яній основі по розподільній мембрані, яка стає гідроізоляцією, коли її шви та стики підлоги зі стінами проклеєно стрічкою.",
+      "A tiled shower or wet-area wall of cement board covered with a bonded sheet waterproofing membrane.": "Стіна душу чи мокрої зони з цементної плити, вкрита приклеєною листовою гідроізоляційною мембраною, під плитку.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицьована плиткою стіна душової чи вологої зони з цементної плити, покритої рідкою гідроізоляцією.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицьована плиткою гідроізольована підлога ванної на дерев'яній основі.",
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальний стояк спирається на хомут біля основи і далі щонайменше через кожні 7,5 м.",
@@ -6783,6 +7189,7 @@
       "Cement board screws, 200 mm apart on floors": "Шурупи для цементної плити, крок 200 мм на підлозі",
       "Cement board screws, 200 mm apart on walls": "Шурупи для цементної плити, крок 200 мм на стінах",
       "Cement board underlayment, 8 mm": "Цементна плита-підкладка, 8 мм",
+      "Cement board wall with MAPEI Mapeguard WP 200 sheet membrane": "Стіна з цементної плити з листовою мембраною MAPEI Mapeguard WP 200",
       "Cement board wall with liquid waterproofing": "Стіна з цементної плити з рідкою гідроізоляцією",
       "Cement board, 12.7 mm": "Цементна плита, 12,7 мм",
       "Cement leveler, mortar bed or render coat, cured": "Цементна вирівнювальна суміш, стяжка або штукатурка, що набрали міцність",
@@ -6841,6 +7248,7 @@
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Ділянки підлоги, на які потрапляє вода, потребують KERDI або мембрани з родини DITRA.",
       "Floor framing": "Несучі елементи підлоги",
       "Floor joists": "Лаги перекриття",
+      "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Лаги підлоги з кроком до 49 см (19,2 дюйма) під одним шаром фанери 19 мм (3/4 дюйма)",
       "Floor waterproofing": "Гідроізоляція підлоги",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стін ванної поза душовою: вологостійкий і стійкий до плісняви гіпсокартон, зі стрічкою на швах, шпаклюванням і фарбою для ванних.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для підлог, де вертикальне підключення незручне, наприклад дерев'яна підлога, у якій не можна перенести отвір.",
@@ -6887,6 +7295,10 @@
       "Linear shower drain": "Лінійний душовий трап",
       "Liquid waterproofing membrane": "Рідка гідроізоляційна мембрана",
       "Liquid waterproofing membrane, rolled on": "Рідка гідроізоляційна мембрана, наноситься валиком",
+      "MAPEI Keraflex Super": "MAPEI Keraflex Super",
+      "MAPEI Mapeguard UM": "MAPEI Mapeguard UM",
+      "MAPEI Mapeguard WP 200": "MAPEI Mapeguard WP 200",
+      "MAPEI Mapeguard WP ST": "MAPEI Mapeguard WP ST",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитова плита (лише підлоги) та плити, піддони й ніші Schluter теж дозволені з умовами; їх поки не внесено. Деяким основам може знадобитися ґрунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонні блоки, цегла)",
       "Match the boot to the vent pipe size and the roof slope.": "Підберіть під діаметр вентиляційної труби й ухил даху.",
@@ -6915,6 +7327,7 @@
       "Minimum working temperature": "Найнижча температура монтажу",
       "Modified thin-set mortar": "Модифікований клейовий розчин",
       "Modified thin-set mortar bed under the cement board, 1/4 in square-notch trowel": "Шар модифікованого клейового розчину під цементною плитою, шпатель із квадратним зубом 6 мм",
+      "Modified thin-set mortar filling the membrane's cavities": "Модифікований клейовий розчин, що заповнює комірки мембрани",
       "Modified thin-set mortar under the membrane": "Модифікований клейовий розчин під мембраною",
       "Modified thin-set mortar, 1/4 in square-notch trowel": "Модифікований клейовий розчин, шпатель із квадратним зубом 6 мм",
       "Moisture- and mould-resistant gypsum board, 12.7 mm": "Вологостійкий і стійкий до плісняви гіпсокартон, 12,7 мм",
@@ -6962,6 +7375,7 @@
       "Plywood": "Фанера",
       "Plywood subfloor": "Фанерна основа",
       "Plywood subfloor, 16 mm tongue-and-groove": "Фанерна основа, 16 мм, шпунт-паз",
+      "Plywood subfloor, 19 mm tongue-and-groove": "Чорнова підлога з фанери 19 мм, шпунт-паз",
       "Point drain with a bonded flange": "Точковий трап з фланцем під гідроізоляцію",
       "Porcelain mosaic tile": "Мозаїка з керамограніту",
       "Porcelain tile": "Керамограніт",
@@ -7008,10 +7422,13 @@
       "Screwed to blocking, it holds the stub-out firmly where the shut-off valve will go.": "Прикручене до бруска, воно надійно тримає вивід там, де стоятиме запірний вентиль.",
       "Screwed to wood or metal studs at 406 mm (16 in) on centre": "На шурупах до дерев'яних чи металевих стійок через 406 мм (16 дюймів) по осях",
       "Screwed to wood or metal studs at 610 mm (24 in) on centre": "На шурупах до дерев'яних чи металевих стійок через 610 мм (24 дюйми) по осях",
+      "Sealing tape folded up the walls at the floor joints": "Ущільнювальна стрічка, загнута на стіни в місцях стику з підлогою",
+      "Sealing tape over every seam (rolls are 1 m wide)": "Ущільнювальна стрічка на кожен шов (рулони шириною 1 м)",
       "Second layer (underlayment) thickness": "Товщина другого шару (підкладки)",
       "Set its top level with the finished floor, centred at the toilet's rough-in distance from the wall.": "Верх фланця на рівні чистої підлоги, центр — на монтажній відстані унітаза від стіни.",
       "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.": "Плитку клеять на SET, ALL-SET, FAST-SET або немодифікований клейовий розчин.",
       "Sets the tile on the membrane.": "Клеїть плитку на мембрану.",
+      "Sheet waterproofing membrane, seams and corners overlapped by 2 in (5 cm)": "Листова гідроізоляційна мембрана, шви й кути внапуск 5 см (2 дюйми)",
       "Sheet-applied waterproofing membrane": "Рулонна гідроізоляційна мембрана",
       "Shortest tile side": "Найкоротша сторона плитки",
       "Shower base": "Основа душової",
@@ -7088,6 +7505,7 @@
       "Toilet seal with closet bolts": "Ущільнення для унітаза з болтами",
       "Tongue-and-groove": "Шпунт-паз",
       "Towel bar": "Тримач для рушника",
+      "Uncoupling and waterproofing membrane, 1 m wide rolls laid edge to edge": "Розподільна й гідроізоляційна мембрана, рулони шириною 1 м укладені встик",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Розділювальна й гідроізоляційна мембрана; стики підлоги зі стінами закривають KERDI-BAND",
       "Uncoupling membrane": "Розділювальна мембрана",
       "Uncoupling membrane, bonded with modified thin-set": "Розділювальна мембрана, приклеєна модифікованим розчином",
@@ -7108,6 +7526,7 @@
       "Waste pipe size": "Діаметр каналізаційної труби",
       "Waste pipe sizes": "Діаметри каналізаційної труби",
       "Waterproof bathroom floor on wood": "Водонепроникна підлога ванної на дереві",
+      "Waterproof bathroom floor on wood, MAPEI Mapeguard UM": "Гідроізольована підлога ванної на дереві, MAPEI Mapeguard UM",
       "Waterproof building panel": "Водонепроникна будівельна плита",
       "Waterproof tiled wall": "Водонепроникна облицьована стіна",
       "Waterproofing band": "Гідроізоляційна стрічка",
@@ -7145,6 +7564,8 @@
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Поддон с уклоном к точечному трапу, гидроизолированный и облицованный плиткой.",
       "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Обычная стена сухой комнаты: гипсокартон на стойках, с лентой на швах, шпаклёвкой и краской.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиточный пол ванной на деревянном основании, на цементной плите, покрытой жидкой гидроизоляцией.",
+      "A tiled floor over a wood subfloor on an uncoupling membrane made waterproof by taping its seams and the floor-wall joints.": "Плитка на деревянном основании по разделительной мембране, которая становится гидроизоляцией, когда её швы и стыки пола со стенами проклеены лентой.",
+      "A tiled shower or wet-area wall of cement board covered with a bonded sheet waterproofing membrane.": "Стена душа или мокрой зоны из цементной плиты, покрытая приклеенной листовой гидроизоляционной мембраной, под плитку.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицованная плиткой стена душевой или влажной зоны из цементной плиты, покрытой жидкой гидроизоляцией.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицованный плиткой гидроизолированный пол ванной на деревянном основании.",
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальный стояк опирается на хомут у основания и далее не реже чем через каждые 7,5 м.",
@@ -7216,6 +7637,7 @@
       "Cement board screws, 200 mm apart on floors": "Шурупы для цементной плиты, шаг 200 мм на полу",
       "Cement board screws, 200 mm apart on walls": "Шурупы для цементной плиты, шаг 200 мм на стенах",
       "Cement board underlayment, 8 mm": "Цементная плита-подложка, 8 мм",
+      "Cement board wall with MAPEI Mapeguard WP 200 sheet membrane": "Стена из цементной плиты с листовой мембраной MAPEI Mapeguard WP 200",
       "Cement board wall with liquid waterproofing": "Стена из цементной плиты с жидкой гидроизоляцией",
       "Cement board, 12.7 mm": "Цементная плита, 12,7 мм",
       "Cement leveler, mortar bed or render coat, cured": "Цементная выравнивающая смесь, стяжка или штукатурка, набравшие прочность",
@@ -7274,6 +7696,7 @@
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Участки пола, на которые попадает вода, требуют KERDI или мембраны семейства DITRA.",
       "Floor framing": "Несущие элементы пола",
       "Floor joists": "Лаги перекрытия",
+      "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Лаги пола с шагом до 49 см (19,2 дюйма) под одним слоем фанеры 19 мм (3/4 дюйма)",
       "Floor waterproofing": "Гидроизоляция пола",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стен ванной вне душевой: влагостойкий и устойчивый к плесени гипсокартон, с лентой на швах, шпаклёвкой и краской для ванных.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для полов, где вертикальное подключение неудобно, например деревянный пол, в котором нельзя перенести отверстие.",
@@ -7320,6 +7743,10 @@
       "Linear shower drain": "Линейный душевой трап",
       "Liquid waterproofing membrane": "Жидкая гидроизоляционная мембрана",
       "Liquid waterproofing membrane, rolled on": "Жидкая гидроизоляционная мембрана, наносится валиком",
+      "MAPEI Keraflex Super": "MAPEI Keraflex Super",
+      "MAPEI Mapeguard UM": "MAPEI Mapeguard UM",
+      "MAPEI Mapeguard WP 200": "MAPEI Mapeguard WP 200",
+      "MAPEI Mapeguard WP ST": "MAPEI Mapeguard WP ST",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Магнезитовая плита (только полы) и плиты, поддоны и ниши Schluter тоже допускаются с условиями; их пока не внесли. Некоторым основаниям может понадобиться грунтовка.",
       "Masonry (cement block, brick)": "Кладка (бетонные блоки, кирпич)",
       "Match the boot to the vent pipe size and the roof slope.": "Подберите под диаметр вентиляционной трубы и уклон кровли.",
@@ -7348,6 +7775,7 @@
       "Minimum working temperature": "Наименьшая температура монтажа",
       "Modified thin-set mortar": "Модифицированный плиточный клей",
       "Modified thin-set mortar bed under the cement board, 1/4 in square-notch trowel": "Слой модифицированного клеевого раствора под цементной плитой, шпатель с квадратным зубом 6 мм",
+      "Modified thin-set mortar filling the membrane's cavities": "Модифицированный клеевой раствор, заполняющий ячейки мембраны",
       "Modified thin-set mortar under the membrane": "Модифицированный плиточный клей под мембраной",
       "Modified thin-set mortar, 1/4 in square-notch trowel": "Модифицированный клеевой раствор, шпатель с квадратным зубом 6 мм",
       "Moisture- and mould-resistant gypsum board, 12.7 mm": "Влагостойкий и устойчивый к плесени гипсокартон, 12,7 мм",
@@ -7395,6 +7823,7 @@
       "Plywood": "Фанера",
       "Plywood subfloor": "Фанерное основание",
       "Plywood subfloor, 16 mm tongue-and-groove": "Фанерное основание, 16 мм, шпунт-паз",
+      "Plywood subfloor, 19 mm tongue-and-groove": "Черновой пол из фанеры 19 мм, шпунт-паз",
       "Point drain with a bonded flange": "Точечный трап с фланцем под гидроизоляцию",
       "Porcelain mosaic tile": "Мозаика из керамогранита",
       "Porcelain tile": "Керамогранит",
@@ -7441,10 +7870,13 @@
       "Screwed to blocking, it holds the stub-out firmly where the shut-off valve will go.": "Прикрученное к бруску, оно надёжно держит вывод там, где будет запорный вентиль.",
       "Screwed to wood or metal studs at 406 mm (16 in) on centre": "На шурупах к деревянным или металлическим стойкам через 406 мм (16 дюймов) по осям",
       "Screwed to wood or metal studs at 610 mm (24 in) on centre": "На шурупах к деревянным или металлическим стойкам через 610 мм (24 дюйма) по осям",
+      "Sealing tape folded up the walls at the floor joints": "Уплотнительная лента, загнутая на стены в местах стыка с полом",
+      "Sealing tape over every seam (rolls are 1 m wide)": "Уплотнительная лента на каждый шов (рулоны шириной 1 м)",
       "Second layer (underlayment) thickness": "Толщина второго слоя (подложки)",
       "Set its top level with the finished floor, centred at the toilet's rough-in distance from the wall.": "Верх фланца на уровне чистого пола, центр — на монтажном расстоянии унитаза от стены.",
       "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.": "Плитку клеят на SET, ALL-SET, FAST-SET или немодифицированный плиточный клей.",
       "Sets the tile on the membrane.": "Клеит плитку на мембрану.",
+      "Sheet waterproofing membrane, seams and corners overlapped by 2 in (5 cm)": "Листовая гидроизоляционная мембрана, швы и углы внахлёст 5 см (2 дюйма)",
       "Sheet-applied waterproofing membrane": "Рулонная гидроизоляционная мембрана",
       "Shortest tile side": "Самая короткая сторона плитки",
       "Shower base": "Основание душевой",
@@ -7521,6 +7953,7 @@
       "Toilet seal with closet bolts": "Уплотнение для унитаза с болтами",
       "Tongue-and-groove": "Шпунт-паз",
       "Towel bar": "Держатель для полотенца",
+      "Uncoupling and waterproofing membrane, 1 m wide rolls laid edge to edge": "Разделительная и гидроизоляционная мембрана, рулоны шириной 1 м уложены встык",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Разделительная и гидроизоляционная мембрана; стыки пола со стенами закрывают KERDI-BAND",
       "Uncoupling membrane": "Разделительная мембрана",
       "Uncoupling membrane, bonded with modified thin-set": "Разделительная мембрана, приклеенная модифицированным клеем",
@@ -7541,6 +7974,7 @@
       "Waste pipe size": "Диаметр канализационной трубы",
       "Waste pipe sizes": "Диаметры канализационной трубы",
       "Waterproof bathroom floor on wood": "Водонепроницаемый пол ванной на дереве",
+      "Waterproof bathroom floor on wood, MAPEI Mapeguard UM": "Гидроизолированный пол ванной на дереве, MAPEI Mapeguard UM",
       "Waterproof building panel": "Водонепроницаемая строительная плита",
       "Waterproof tiled wall": "Водонепроницаемая облицованная стена",
       "Waterproofing band": "Гидроизоляционная лента",
@@ -7578,6 +8012,8 @@
       "A sloped tray drained to a point drain, waterproofed and tiled.": "Un receveur en pente vers un drain ponctuel, imperméabilisé et carrelé.",
       "A standard dry-room wall of gypsum board on studs, taped, finished and painted.": "Mur ordinaire de pièce sèche : panneaux de gypse sur montants, tirés à joints et peints.",
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Plancher de salle de bain carrelé sur un sous-plancher de bois, sur une sous-couche de panneau de ciment enduite d'une membrane d'étanchéité liquide.",
+      "A tiled floor over a wood subfloor on an uncoupling membrane made waterproof by taping its seams and the floor-wall joints.": "Carrelage sur support de bois posé sur une membrane de désolidarisation rendue étanche par le scellement de ses joints et des jonctions plancher-mur.",
+      "A tiled shower or wet-area wall of cement board covered with a bonded sheet waterproofing membrane.": "Mur de douche ou de zone humide en panneau de ciment recouvert d'une membrane d'étanchéité en feuille collée, sous carrelage.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Mur de douche ou de zone humide carrelé, en panneau de ciment enduit d'une membrane d'étanchéité liquide.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Un plancher de salle de bain carrelé et imperméabilisé sur sous-plancher de bois.",
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Une colonne verticale repose sur un collier à sa base, puis au moins aux 7,5 m.",
@@ -7649,6 +8085,7 @@
       "Cement board screws, 200 mm apart on floors": "Vis pour panneau de ciment, aux 200 mm au plancher",
       "Cement board screws, 200 mm apart on walls": "Vis pour panneau de ciment, aux 200 mm aux murs",
       "Cement board underlayment, 8 mm": "Sous-couche en panneau de ciment, 8 mm",
+      "Cement board wall with MAPEI Mapeguard WP 200 sheet membrane": "Mur en panneau de ciment avec membrane en feuille MAPEI Mapeguard WP 200",
       "Cement board wall with liquid waterproofing": "Mur en panneau de ciment avec étanchéité liquide",
       "Cement board, 12.7 mm": "Panneau de ciment, 12,7 mm",
       "Cement leveler, mortar bed or render coat, cured": "Ragréage, lit de mortier ou crépi à base de ciment, mûri",
@@ -7707,6 +8144,7 @@
       "Floor areas exposed to water need KERDI or a DITRA-family membrane.": "Les zones de plancher exposées à l'eau exigent KERDI ou une membrane de la famille DITRA.",
       "Floor framing": "Ossature du plancher",
       "Floor joists": "Solives de plancher",
+      "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Solives de plancher espacées d'au plus 49 cm (19,2 po) sous un seul contreplaqué de 19 mm (3/4 po)",
       "Floor waterproofing": "Imperméabilisation du plancher",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Pour les murs de salle de bain hors de la douche : panneaux de gypse résistants à l'humidité et à la moisissure, tirés à joints et peints avec une peinture pour salle de bain.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Pour les planchers où un raccord vertical est peu pratique, p. ex. un plancher de bois où l'on ne peut pas déplacer l'ouverture.",
@@ -7753,6 +8191,10 @@
       "Linear shower drain": "Drain de douche linéaire",
       "Liquid waterproofing membrane": "Membrane d'étanchéité liquide",
       "Liquid waterproofing membrane, rolled on": "Membrane d'étanchéité liquide, appliquée au rouleau",
+      "MAPEI Keraflex Super": "MAPEI Keraflex Super",
+      "MAPEI Mapeguard UM": "MAPEI Mapeguard UM",
+      "MAPEI Mapeguard WP 200": "MAPEI Mapeguard WP 200",
+      "MAPEI Mapeguard WP ST": "MAPEI Mapeguard WP ST",
       "Magnesium board (floors only) and Schluter boards, trays and niches are also listed with conditions; they are left out until modelled. Some substrates may need a primer.": "Le panneau de magnésie (planchers seulement) ainsi que les panneaux, receveurs et niches Schluter sont aussi admis sous conditions; ils seront ajoutés plus tard. Certains supports peuvent exiger un apprêt.",
       "Masonry (cement block, brick)": "Maçonnerie (bloc de béton, brique)",
       "Match the boot to the vent pipe size and the roof slope.": "Choisissez-le selon le diamètre de l'évent et la pente du toit.",
@@ -7781,6 +8223,7 @@
       "Minimum working temperature": "Température de pose minimale",
       "Modified thin-set mortar": "Mortier-colle modifié",
       "Modified thin-set mortar bed under the cement board, 1/4 in square-notch trowel": "Lit de mortier-colle modifié sous le panneau de ciment, truelle à encoches carrées de 1/4 po",
+      "Modified thin-set mortar filling the membrane's cavities": "Mortier-colle modifié remplissant les alvéoles de la membrane",
       "Modified thin-set mortar under the membrane": "Mortier-colle modifié sous la membrane",
       "Modified thin-set mortar, 1/4 in square-notch trowel": "Mortier-colle modifié, truelle à encoches carrées de 1/4 po",
       "Moisture- and mould-resistant gypsum board, 12.7 mm": "Panneau de gypse résistant à l'humidité et à la moisissure, 12,7 mm",
@@ -7828,6 +8271,7 @@
       "Plywood": "Contreplaqué",
       "Plywood subfloor": "Sous-plancher en contreplaqué",
       "Plywood subfloor, 16 mm tongue-and-groove": "Sous-plancher en contreplaqué, 16 mm, bouveté",
+      "Plywood subfloor, 19 mm tongue-and-groove": "Sous-plancher en contreplaqué de 19 mm, bouveté",
       "Point drain with a bonded flange": "Drain ponctuel avec bride d'adhérence",
       "Porcelain mosaic tile": "Mosaïque de porcelaine",
       "Porcelain tile": "Carreau de porcelaine",
@@ -7874,10 +8318,13 @@
       "Screwed to blocking, it holds the stub-out firmly where the shut-off valve will go.": "Vissé sur une fourrure, il tient fermement la sortie là où ira le robinet d'arrêt.",
       "Screwed to wood or metal studs at 406 mm (16 in) on centre": "Vissé sur montants de bois ou de métal à 406 mm (16 po) c/c",
       "Screwed to wood or metal studs at 610 mm (24 in) on centre": "Vissé sur montants de bois ou de métal à 610 mm (24 po) c/c",
+      "Sealing tape folded up the walls at the floor joints": "Bande d'étanchéité repliée sur les murs aux jonctions avec le plancher",
+      "Sealing tape over every seam (rolls are 1 m wide)": "Bande d'étanchéité sur chaque joint (rouleaux de 1 m de large)",
       "Second layer (underlayment) thickness": "Épaisseur de la deuxième couche (sous-couche)",
       "Set its top level with the finished floor, centred at the toilet's rough-in distance from the wall.": "Posez-la au niveau du plancher fini, centrée à la distance de raccordement de la toilette.",
       "Set tile with SET, ALL-SET, FAST-SET or unmodified thin-set.": "Poser les carreaux avec SET, ALL-SET, FAST-SET ou un mortier-colle non modifié.",
       "Sets the tile on the membrane.": "Pose les carreaux sur la membrane.",
+      "Sheet waterproofing membrane, seams and corners overlapped by 2 in (5 cm)": "Membrane d'étanchéité en feuille, joints et coins chevauchés de 5 cm (2 po)",
       "Sheet-applied waterproofing membrane": "Membrane d'imperméabilisation en feuille",
       "Shortest tile side": "Plus petit côté du carreau",
       "Shower base": "Base de douche",
@@ -7954,6 +8401,7 @@
       "Toilet seal with closet bolts": "Joint de toilette avec boulons",
       "Tongue-and-groove": "Bouveté",
       "Towel bar": "Porte-serviettes",
+      "Uncoupling and waterproofing membrane, 1 m wide rolls laid edge to edge": "Membrane de désolidarisation et d'étanchéité, rouleaux de 1 m de large posés bord à bord",
       "Uncoupling and waterproofing membrane; floor and wall joints sealed with KERDI-BAND": "Membrane de désolidarisation et d'imperméabilisation; jonctions plancher/mur scellées avec KERDI-BAND",
       "Uncoupling membrane": "Membrane de désolidarisation",
       "Uncoupling membrane, bonded with modified thin-set": "Membrane de désolidarisation, collée au mortier-colle modifié",
@@ -7974,6 +8422,7 @@
       "Waste pipe size": "Diamètre du tuyau d'évacuation",
       "Waste pipe sizes": "Diamètres de tuyau d'évacuation",
       "Waterproof bathroom floor on wood": "Plancher de salle de bain étanche sur bois",
+      "Waterproof bathroom floor on wood, MAPEI Mapeguard UM": "Plancher de salle de bain étanche sur bois, MAPEI Mapeguard UM",
       "Waterproof building panel": "Panneau de construction étanche",
       "Waterproof tiled wall": "Mur carrelé étanche",
       "Waterproofing band": "Bande d'imperméabilisation",

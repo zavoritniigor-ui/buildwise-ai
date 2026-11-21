@@ -41,6 +41,12 @@
 # Regal Select, TDS page 1: 37.1 m² per 3.79 L, new drywall takes two coats,
 # so 2 x 3.79 / 37.1 = 0.21 L per m². Ceilings need screws every 300 mm (page 11),
 # so their count is an estimate.
+# MAPEI Mapeguard: Keraflex Super bonds the membrane; its data sheet (page 7)
+# gives 9.29 m² per 20 kg bag at a 1/4 in square notch (2.15 kg/m², the trowel
+# the membrane sheets allow when a 1/4 x 3/16 in V-notch falls short), and
+# MAPEI's mortar-filling FAQ gives 11.6 m² per bag to fill Mapeguard UM's
+# cavities (1.72 kg/m²). Mapeguard UM and WP 200 come in 1 x 5 m rolls (5 m²),
+# WP ST sealing tape in 10 m rolls.
 # Polyblend Plus sanded grout, TDS page 9: a 25 lb (11.34 kg) bag grouts
 # 32.3 m² of 12 x 12 in tile with 1/8 in joints -> 0.36 kg per m². Durock screws are spaced 200 mm on walls and
 # floors (chapter 4, page 3); the handbook gives no count, so it is an estimate.
@@ -234,6 +240,146 @@ buildups:
             size: 22.68
             kind: bag
           search: unmodified thinset mortar
+      - role: covering
+        label: Porcelain tile
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          search: porcelain floor tile
+      - role: grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
+        quantity:
+          per: area
+          amount: 0.36
+          unit: kg
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
+  - id: wet-floor-mapeguard
+    title: Waterproof bathroom floor on wood, MAPEI Mapeguard UM
+    summary: A tiled floor over a wood subfloor on an uncoupling membrane made waterproof by taping its seams and the floor-wall joints.
+    layers:
+      - role: structure
+        label: Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer
+      - role: substrate
+        label: Plywood subfloor, 19 mm tongue-and-groove
+        material: Plywood
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          search: plywood subfloor 3/4 tongue and groove
+      - role: mortar
+        label: Modified thin-set mortar under the membrane
+        material: MAPEI Keraflex Super
+        quantity:
+          per: area
+          amount: 2.15
+          unit: kg
+          basis: manufacturer
+          source:
+            document: mapei-keraflex-super-tds
+            page: 7
+          package:
+            size: 20
+            kind: bag
+          search: Mapei Keraflex Super
+      - role: membrane
+        label: Uncoupling and waterproofing membrane, 1 m wide rolls laid edge to edge
+        material: MAPEI Mapeguard UM
+        source:
+          document: mapei-mapeguard-um-tds
+          page: 1
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          package:
+            size: 5
+            kind: roll
+          source:
+            document: mapei-mapeguard-um-tds
+            page: 8
+          search: Mapei Mapeguard UM
+      - role: membrane
+        label: Sealing tape over every seam (rolls are 1 m wide)
+        material: MAPEI Mapeguard WP ST
+        source:
+          document: mapei-mapeguard-um-tds
+          page: 5
+        quantity:
+          per: area
+          amount: 1
+          unit: m
+          waste: 0.1
+          basis: geometry
+          package:
+            size: 10
+            kind: roll
+          source:
+            document: mapei-mapeguard-wp-st-tds
+            page: 3
+          search: Mapei Mapeguard WP ST
+      - role: membrane
+        label: Sealing tape folded up the walls at the floor joints
+        material: MAPEI Mapeguard WP ST
+        source:
+          document: mapei-mapeguard-um-tds
+          page: 5
+        quantity:
+          per: perimeter
+          amount: 1
+          unit: m
+          waste: 0.1
+          basis: geometry
+          package:
+            size: 10
+            kind: roll
+          source:
+            document: mapei-mapeguard-wp-st-tds
+            page: 3
+          search: Mapei Mapeguard WP ST
+      - role: mortar
+        label: Modified thin-set mortar filling the membrane's cavities
+        material: MAPEI Keraflex Super
+        quantity:
+          per: area
+          amount: 1.72
+          unit: kg
+          basis: manufacturer
+          source:
+            document: mapei-mortar-filling-faq
+            page: 1
+          package:
+            size: 20
+            kind: bag
+          search: Mapei Keraflex Super
+      - role: mortar
+        label: Modified thin-set mortar, 1/4 in square-notch trowel
+        quantity:
+          per: area
+          amount: 2.88
+          unit: kg
+          basis: manufacturer
+          source:
+            document: versabond-family
+            page: 3
+          package:
+            size: 22.68
+            kind: bag
+          search: VersaBond thinset mortar
+        material: Custom Building Products VersaBond Professional Thin-Set Mortar
+        slot: tile-mortar
       - role: covering
         label: Porcelain tile
         quantity:
@@ -770,6 +916,128 @@ buildups:
           search: Polyblend Plus sanded grout
         material: Custom Building Products Polyblend Plus Sanded Grout
         slot: tile-grout
+  - id: tiled-wall-mapeguard
+    title: Cement board wall with MAPEI Mapeguard WP 200 sheet membrane
+    summary: A tiled shower or wet-area wall of cement board covered with a bonded sheet waterproofing membrane.
+    layers:
+      - role: structure
+        label: Wood or metal studs, 400 mm apart
+      - role: substrate
+        label: Cement board, 12.7 mm
+        material: CGC Durock cement board, 12.7 mm
+        source:
+          document: cgc-handbook-ch04
+          page: 2
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          search: Durock cement board 1/2
+          package:
+            size: 1.39
+            kind: sheet
+          source:
+            document: cgc-handbook-ch04
+            page: 2
+      - role: substrate
+        label: Cement board screws, 200 mm apart on walls
+        material: CGC Durock wood screws
+        source:
+          document: cgc-handbook-ch04
+          page: 3
+        quantity:
+          per: area
+          amount: 15
+          unit: pcs
+          basis: estimate
+          source:
+            document: cgc-handbook-ch04
+            page: 3
+          search: Durock cement board screws
+      - role: substrate
+        label: Alkali-resistant joint tape, 50 mm
+        material: CGC Durock interior tape
+        source:
+          document: cgc-handbook-ch04
+          page: 5
+        quantity:
+          per: area
+          amount: 1.13
+          unit: m
+          basis: estimate
+          source:
+            document: cgc-handbook-ch04
+            page: 5
+          search: Durock alkali resistant tape
+      - role: mortar
+        label: Modified thin-set mortar under the membrane
+        material: MAPEI Keraflex Super
+        quantity:
+          per: area
+          amount: 2.15
+          unit: kg
+          basis: manufacturer
+          source:
+            document: mapei-keraflex-super-tds
+            page: 7
+          package:
+            size: 20
+            kind: bag
+          search: Mapei Keraflex Super
+      - role: membrane
+        label: Sheet waterproofing membrane, seams and corners overlapped by 2 in (5 cm)
+        material: MAPEI Mapeguard WP 200
+        source:
+          document: mapei-mapeguard-wp-200-tds
+          page: 5
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          package:
+            size: 5
+            kind: roll
+          source:
+            document: mapei-mapeguard-wp-200-tds
+            page: 8
+          search: Mapei Mapeguard WP 200
+      - role: mortar
+        label: Modified thin-set mortar, 1/4 in square-notch trowel
+        quantity:
+          per: area
+          amount: 2.88
+          unit: kg
+          basis: manufacturer
+          source: *id003
+          package: *id004
+          search: VersaBond thinset mortar
+        material: Custom Building Products VersaBond Professional Thin-Set Mortar
+        slot: tile-mortar
+      - role: covering
+        label: Ceramic tile
+        quantity:
+          per: area
+          amount: 1
+          unit: m2
+          waste: 0.1
+          basis: geometry
+          search: ceramic wall tile
+      - role: grout
+        label: Sanded grout, for 12 x 12 in tile with 1/8 in joints
+        quantity:
+          per: area
+          amount: 0.36
+          unit: kg
+          basis: manufacturer
+          source: *id001
+          package: *id002
+          search: Polyblend Plus sanded grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: painted-moisture-wall
     title: Moisture-resistant painted wall
     summary:
@@ -964,9 +1232,11 @@ surfaces:
     floor:
       - wet-floor-wood
       - wet-floor-cement-board
+      - wet-floor-mapeguard
     walls:
       - tiled-wet-wall
       - tiled-wall-cement-board
+      - tiled-wall-mapeguard
       - painted-moisture-wall
     shower:
       - curbless-shower-floor

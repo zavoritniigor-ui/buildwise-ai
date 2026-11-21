@@ -186,7 +186,7 @@ test("a surface offers technologies, and the room list follows the choice", asyn
   fireEvent.click(await screen.findByRole("button", { name: "3D bathroom" }));
   fireEvent.click(screen.getByRole("button", { name: "Walls" }));
   const technology = screen.getByRole("group", { name: "Technology" });
-  expect(within(technology).getAllByRole("radio")).toHaveLength(3);
+  expect(within(technology).getAllByRole("radio")).toHaveLength(4);
   fireEvent.click(
     within(technology).getByRole("radio", { name: "Moisture-resistant painted wall" }),
   );

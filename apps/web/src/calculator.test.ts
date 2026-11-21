@@ -127,3 +127,15 @@ test("grout and MAPEI products follow their own data sheets", () => {
   // 0.68 L/m² + 10 % on 23.42 m² = 17.5 L, two 13.2 L pails
   expect(line(aqua, "Mapei Mapelastic AquaDefense")?.need.packages).toBe(2);
 });
+
+test("a MAPEI Mapeguard bathroom counts membrane rolls, sealing tape and Keraflex Super", () => {
+  const chosen = { floor: "wet-floor-mapeguard", walls: "tiled-wall-mapeguard" } as const;
+  const lines = surfaceMaterials("bathroom", bath, chosen);
+  // 7.5 m² floor + 23.42 m² walls of membrane + 10 %, in 5 m² rolls
+  expect(line(lines, "Mapei Mapeguard UM")?.need.packages).toBe(2);
+  expect(line(lines, "Mapei Mapeguard WP 200")?.need.packages).toBe(6);
+  // tape over the floor seams (1 m per m²) and round the walls (11 m) + 10 %
+  expect(line(lines, "Mapei Mapeguard WP ST")?.need.total).toBe(20.4);
+  // Keraflex Super: 2.15 under both membranes + 1.72 filling the floor membrane
+  expect(line(lines, "Mapei Keraflex Super")?.need.total).toBe(79.4);
+});

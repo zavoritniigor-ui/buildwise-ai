@@ -22,8 +22,13 @@ def test_every_surface_of_the_demo_house_has_a_build_up() -> None:
     buildups = load_buildups(DATA_DIR)
     assert set(buildups.surfaces) == {"living", "kitchen", "bedroom", "hallway", "bathroom"}
     assert buildups.surfaces["bathroom"] == {
-        "floor": ["wet-floor-wood", "wet-floor-cement-board"],
-        "walls": ["tiled-wet-wall", "tiled-wall-cement-board", "painted-moisture-wall"],
+        "floor": ["wet-floor-wood", "wet-floor-cement-board", "wet-floor-mapeguard"],
+        "walls": [
+            "tiled-wet-wall",
+            "tiled-wall-cement-board",
+            "tiled-wall-mapeguard",
+            "painted-moisture-wall",
+        ],
         "shower": ["curbless-shower-floor"],
         "ceiling": ["painted-moisture-ceiling"],
     }
