@@ -60,6 +60,36 @@
       "url": "https://cdnmdm.laticrete.com/ProductAssets/Product%20Documents/ds-296-la-en.pdf",
       "version": "DS-296-0120"
     },
+    "mapei-ultraflex-2-tds": {
+      "title": "Ultraflex 2 Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002823_ultraflex-2_en-ca_f2e2a1b6d4074ed6bce2021f67a86632.pdf",
+      "version": "2026-05-14"
+    },
+    "mapei-ultraflex-lft-tds": {
+      "title": "Ultraflex LFT Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002824_ultraflex-lft_en-ca_2e585d1821254269bb937bf3ed3dd0f8.pdf",
+      "version": "2026-09-21"
+    },
+    "mapei-keracolor-s-tds": {
+      "title": "Keracolor S Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000009_keracolor-s_en-ca_bc72638ec10240b29031a0ebe4d98cad.pdf",
+      "version": "2024-10-09"
+    },
+    "mapei-keracolor-u-tds": {
+      "title": "Keracolor U Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002813_keracolor-u_en-ca_d9aba2fd17ff4b34a67e10bf6e0bed6b.pdf",
+      "version": "2024-10-10"
+    },
+    "mapei-ultracolor-plus-fa-tds": {
+      "title": "Ultracolor Plus FA Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000144_ultracolor-plus-fa_en-ca_91dfe5ed951e4e9ebd6a79ecb51414be.pdf",
+      "version": "2026-09-21"
+    },
+    "mapei-aquadefense-tds": {
+      "title": "Mapelastic AquaDefense Technical Data Sheet",
+      "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002103_mapelastic-aquadefense_en-ca_5219c29f3732460f9479016f3a4a9a4d.pdf",
+      "version": "2025-10-08"
+    },
     "npc-2020": {
       "title": "National Plumbing Code of Canada 2020",
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
@@ -4549,7 +4579,7 @@
         {
           "role": "grout",
           "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
-          "material": "Custom Polyblend Plus Sanded Grout",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
           "quantity": {
             "per": "area",
             "amount": 0.36,
@@ -4565,7 +4595,8 @@
               "size": 11.34,
               "kind": "bag"
             }
-          }
+          },
+          "slot": "tile-grout"
         }
       ]
     },
@@ -4681,7 +4712,7 @@
         {
           "role": "grout",
           "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
-          "material": "Custom Polyblend Plus Sanded Grout",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
           "quantity": {
             "per": "area",
             "amount": 0.36,
@@ -4697,7 +4728,8 @@
               "size": 11.34,
               "kind": "bag"
             }
-          }
+          },
+          "slot": "tile-grout"
         }
       ]
     },
@@ -5097,7 +5129,7 @@
         {
           "role": "grout",
           "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
-          "material": "Custom Polyblend Plus Sanded Grout",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
           "quantity": {
             "per": "area",
             "amount": 0.36,
@@ -5113,7 +5145,8 @@
               "size": 11.34,
               "kind": "bag"
             }
-          }
+          },
+          "slot": "tile-grout"
         }
       ]
     },
@@ -5266,7 +5299,7 @@
         {
           "role": "grout",
           "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
-          "material": "Custom Polyblend Plus Sanded Grout",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
           "quantity": {
             "per": "area",
             "amount": 0.36,
@@ -5282,7 +5315,8 @@
               "size": 11.34,
               "kind": "bag"
             }
-          }
+          },
+          "slot": "tile-grout"
         }
       ]
     },
@@ -5425,7 +5459,7 @@
         {
           "role": "grout",
           "label": "Sanded grout, for 12 x 12 in tile with 1/8 in joints",
-          "material": "Custom Polyblend Plus Sanded Grout",
+          "material": "Custom Building Products Polyblend Plus Sanded Grout",
           "quantity": {
             "per": "area",
             "amount": 0.36,
@@ -5441,7 +5475,8 @@
               "size": 11.34,
               "kind": "bag"
             }
-          }
+          },
+          "slot": "tile-grout"
         }
       ]
     },
@@ -6230,6 +6265,9 @@
     },
     "tile-mortar": {
       "name": "Tile mortar"
+    },
+    "tile-grout": {
+      "name": "Tile grout"
     }
   },
   "products": [
@@ -6432,6 +6470,28 @@
       }
     },
     {
+      "id": "mapei-aquadefense",
+      "slot": "liquid-waterproofing",
+      "brand": "MAPEI",
+      "name": "Mapelastic AquaDefense",
+      "quantity": {
+        "per": "area",
+        "amount": 0.68,
+        "unit": "L",
+        "waste": 0.1,
+        "basis": "manufacturer",
+        "search": "Mapei Mapelastic AquaDefense",
+        "source": {
+          "document": "mapei-aquadefense-tds",
+          "page": 9
+        },
+        "package": {
+          "size": 13.2,
+          "kind": "pail"
+        }
+      }
+    },
+    {
       "id": "custom-versabond",
       "slot": "tile-mortar",
       "brand": "Custom Building Products",
@@ -6493,6 +6553,138 @@
         },
         "package": {
           "size": 22.7,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "mapei-ultraflex-2",
+      "slot": "tile-mortar",
+      "brand": "MAPEI",
+      "name": "Ultraflex 2",
+      "quantity": {
+        "per": "area",
+        "amount": 3.26,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Mapei Ultraflex 2",
+        "source": {
+          "document": "mapei-ultraflex-2-tds",
+          "page": 6
+        },
+        "package": {
+          "size": 22.7,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "mapei-ultraflex-lft",
+      "slot": "tile-mortar",
+      "brand": "MAPEI",
+      "name": "Ultraflex LFT",
+      "quantity": {
+        "per": "area",
+        "amount": 2.87,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Mapei Ultraflex LFT",
+        "source": {
+          "document": "mapei-ultraflex-lft-tds",
+          "page": 6
+        },
+        "package": {
+          "size": 22.7,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "custom-polyblend-plus",
+      "slot": "tile-grout",
+      "brand": "Custom Building Products",
+      "name": "Polyblend Plus Sanded Grout",
+      "quantity": {
+        "per": "area",
+        "amount": 0.36,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Polyblend Plus sanded grout",
+        "source": {
+          "document": "polyblend-plus-tds",
+          "page": 9
+        },
+        "package": {
+          "size": 11.34,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "mapei-keracolor-s",
+      "slot": "tile-grout",
+      "brand": "MAPEI",
+      "name": "Keracolor S",
+      "quantity": {
+        "per": "area",
+        "amount": 0.32,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Mapei Keracolor S sanded grout",
+        "source": {
+          "document": "mapei-keracolor-s-tds",
+          "page": 7
+        },
+        "package": {
+          "size": 11.3,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "mapei-ultracolor-plus-fa",
+      "slot": "tile-grout",
+      "brand": "MAPEI",
+      "name": "Ultracolor Plus FA",
+      "quantity": {
+        "per": "area",
+        "amount": 0.31,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Mapei Ultracolor Plus FA grout",
+        "source": {
+          "document": "mapei-ultracolor-plus-fa-tds",
+          "page": 8
+        },
+        "package": {
+          "size": 11.3,
+          "kind": "bag"
+        }
+      }
+    },
+    {
+      "id": "mapei-keracolor-u",
+      "slot": "tile-grout",
+      "brand": "MAPEI",
+      "name": "Keracolor U",
+      "quantity": {
+        "per": "area",
+        "amount": 0.23,
+        "unit": "kg",
+        "waste": 0,
+        "basis": "manufacturer",
+        "search": "Mapei Keracolor U unsanded grout",
+        "source": {
+          "document": "mapei-keracolor-u-tds",
+          "page": 7
+        },
+        "package": {
+          "size": 11.3,
           "kind": "bag"
         }
       }
@@ -6617,9 +6809,9 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душова без порога на дерев'яній чи бетонній основі (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душова без порога зі стінами з KERDI або KERDI-BOARD. Заглиблення підлоги не повинно послабити конструкцію; може знадобитися проєктувальник.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Душова без порога з підлогою, заглибленою між лагами з цільного пиломатеріалу, піддоном KERDI-SHOWER і гідроізоляцією KERDI чи з родини DITRA на підлозі. Заглиблення не повинно послабити конструкцію; може знадобитися проєктувальник.",
+      "Custom Building Products Polyblend Plus Sanded Grout": "Custom Building Products Polyblend Plus Sanded Grout",
       "Custom Building Products RedGard": "Custom Building Products RedGard",
       "Custom Building Products VersaBond Professional Thin-Set Mortar": "Custom Building Products VersaBond Professional Thin-Set Mortar",
-      "Custom Polyblend Plus Sanded Grout": "Custom Polyblend Plus Sanded Grout",
       "Dimensional lumber, not ripped down": "Цільний пиломатеріал, не розпиляний уздовж",
       "Door casing": "Лиштва",
       "Door lever": "Дверна ручка",
@@ -6878,6 +7070,7 @@
       "Thin-set mortar": "Клейовий розчин",
       "This detail is for ceramic or porcelain tile.": "Цей варіант — для керамічної плитки чи керамограніту.",
       "This detail is for natural stone.": "Цей варіант — для натурального каменю.",
+      "Tile grout": "Затирка для плитки",
       "Tile material": "Матеріал плитки",
       "Tile mortar": "Клейовий розчин для плитки",
       "Tile must be set on the panel with a mortar the manufacturer names.": "Плитку на плиту клеять лише на названий виробником розчин.",
@@ -7049,9 +7242,9 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Душевая без порога на деревянном или бетонном основании (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Душевая без порога со стенами из KERDI или KERDI-BOARD. Углубление пола не должно ослабить конструкцию; может понадобиться проектировщик.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Душевая без порога с полом, углублённым между лагами из цельного пиломатериала, поддоном KERDI-SHOWER и гидроизоляцией KERDI или из семейства DITRA на полу. Углубление не должно ослабить конструкцию; может понадобиться проектировщик.",
+      "Custom Building Products Polyblend Plus Sanded Grout": "Custom Building Products Polyblend Plus Sanded Grout",
       "Custom Building Products RedGard": "Custom Building Products RedGard",
       "Custom Building Products VersaBond Professional Thin-Set Mortar": "Custom Building Products VersaBond Professional Thin-Set Mortar",
-      "Custom Polyblend Plus Sanded Grout": "Custom Polyblend Plus Sanded Grout",
       "Dimensional lumber, not ripped down": "Цельный пиломатериал, не распиленный вдоль",
       "Door casing": "Наличник",
       "Door lever": "Дверная ручка",
@@ -7310,6 +7503,7 @@
       "Thin-set mortar": "Плиточный клей",
       "This detail is for ceramic or porcelain tile.": "Этот вариант — для керамической плитки или керамогранита.",
       "This detail is for natural stone.": "Этот вариант — для натурального камня.",
+      "Tile grout": "Затирка для плитки",
       "Tile material": "Материал плитки",
       "Tile mortar": "Клеевой раствор для плитки",
       "Tile must be set on the panel with a mortar the manufacturer names.": "Плитку на плиту клеят только на указанный производителем клей.",
@@ -7481,9 +7675,9 @@
       "Curbless shower over a wood or concrete subfloor (K-SHBF)": "Douche sans seuil sur sous-plancher de bois ou de béton (K-SHBF)",
       "Curbless shower with KERDI or KERDI-BOARD walls. Recessing the floor must preserve the structure and may need a design professional.": "Douche sans seuil avec murs en KERDI ou KERDI-BOARD. L'abaissement du plancher doit préserver la structure et peut exiger un professionnel de la conception.",
       "Curbless shower with the floor recessed between dimensional lumber joists, KERDI-SHOWER tray, and KERDI or DITRA-family waterproofing on the floor. Recessing must preserve the structure and may need a design professional.": "Douche sans seuil dont le plancher est abaissé entre des solives de bois de sciage, avec receveur KERDI-SHOWER et imperméabilisation KERDI ou de la famille DITRA au sol. L'abaissement doit préserver la structure et peut exiger un professionnel de la conception.",
+      "Custom Building Products Polyblend Plus Sanded Grout": "Custom Building Products Polyblend Plus Sanded Grout",
       "Custom Building Products RedGard": "Custom Building Products RedGard",
       "Custom Building Products VersaBond Professional Thin-Set Mortar": "Custom Building Products VersaBond Professional Thin-Set Mortar",
-      "Custom Polyblend Plus Sanded Grout": "Custom Polyblend Plus Sanded Grout",
       "Dimensional lumber, not ripped down": "Bois de sciage, non refendu",
       "Door casing": "Moulure de porte",
       "Door lever": "Poignée de porte",
@@ -7742,6 +7936,7 @@
       "Thin-set mortar": "Mortier-colle",
       "This detail is for ceramic or porcelain tile.": "Ce détail vise les carreaux de céramique ou de porcelaine.",
       "This detail is for natural stone.": "Ce détail vise la pierre naturelle.",
+      "Tile grout": "Coulis pour carreaux",
       "Tile material": "Matériau du carreau",
       "Tile mortar": "Mortier-colle pour carreaux",
       "Tile must be set on the panel with a mortar the manufacturer names.": "Les carreaux doivent être posés sur le panneau avec un mortier nommé par le fabricant.",

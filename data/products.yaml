@@ -16,13 +16,21 @@
 # - HYDRO BAN: 4.6 m² per 3.8 L -> 0.83 L/m²
 # - Tile mortars, 1/4 x 1/4 in (6 x 6 mm) square-notch trowel, the lower end
 #   of each range: VersaBond 7.9 m² and VersaBond HP 8.4 m² per 22.68 kg bag
-#   -> 2.88 and 2.70 kg/m²; 253 Gold 7.4 m² per 22.7 kg bag -> 3.07 kg/m²
+#   -> 2.88 and 2.70 kg/m²; 253 Gold 7.4 m² per 22.7 kg bag -> 3.07 kg/m²;
+#   MAPEI Ultraflex 2 6.97 m² and Ultraflex LFT 7.90 m² per 22.7 kg bag
+#   -> 3.26 and 2.87 kg/m²
+# - Mapelastic AquaDefense: 19.5 m² for two coats per 13.2 L pail -> 0.68 L/m²
+# - Grouts, 12 x 12 in (300 x 300 x 10 mm) tile with 1/8 in (3 mm) joints, per
+#   25 lb bag: Polyblend Plus 32.3 m² per 11.34 kg -> 0.36 kg/m²; MAPEI
+#   Keracolor S 35.6 m², Ultracolor Plus FA 36.0 m² and Keracolor U (unsanded,
+#   joints up to 1/8 in) 49.2 m² per 11.3 kg -> 0.32, 0.31 and 0.23 kg/m²
 
 slots:
   interior-paint: { name: Interior paint }
   bathroom-paint: { name: Bathroom paint }
   liquid-waterproofing: { name: Liquid waterproofing membrane }
   tile-mortar: { name: Tile mortar }
+  tile-grout: { name: Tile grout }
 
 products:
   - id: bm-regal-select
@@ -154,6 +162,21 @@ products:
         package: { size: 3.8, kind: pail },
         search: Laticrete Hydro Ban,
       }
+  - id: mapei-aquadefense
+    slot: liquid-waterproofing
+    brand: MAPEI
+    name: Mapelastic AquaDefense
+    quantity:
+      {
+        per: area,
+        amount: 0.68,
+        unit: L,
+        waste: 0.1,
+        basis: manufacturer,
+        source: { document: mapei-aquadefense-tds, page: 9 },
+        package: { size: 13.2, kind: pail },
+        search: Mapei Mapelastic AquaDefense,
+      }
   - id: custom-versabond
     slot: tile-mortar
     brand: Custom Building Products
@@ -195,4 +218,88 @@ products:
         source: { document: laticrete-253-gold-ds, page: 1 },
         package: { size: 22.7, kind: bag },
         search: Laticrete 253 Gold,
+      }
+  - id: mapei-ultraflex-2
+    slot: tile-mortar
+    brand: MAPEI
+    name: Ultraflex 2
+    quantity:
+      {
+        per: area,
+        amount: 3.26,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: mapei-ultraflex-2-tds, page: 6 },
+        package: { size: 22.7, kind: bag },
+        search: Mapei Ultraflex 2,
+      }
+  - id: mapei-ultraflex-lft
+    slot: tile-mortar
+    brand: MAPEI
+    name: Ultraflex LFT
+    quantity:
+      {
+        per: area,
+        amount: 2.87,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: mapei-ultraflex-lft-tds, page: 6 },
+        package: { size: 22.7, kind: bag },
+        search: Mapei Ultraflex LFT,
+      }
+  - id: custom-polyblend-plus
+    slot: tile-grout
+    brand: Custom Building Products
+    name: Polyblend Plus Sanded Grout
+    quantity:
+      {
+        per: area,
+        amount: 0.36,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: polyblend-plus-tds, page: 9 },
+        package: { size: 11.34, kind: bag },
+        search: Polyblend Plus sanded grout,
+      }
+  - id: mapei-keracolor-s
+    slot: tile-grout
+    brand: MAPEI
+    name: Keracolor S
+    quantity:
+      {
+        per: area,
+        amount: 0.32,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: mapei-keracolor-s-tds, page: 7 },
+        package: { size: 11.3, kind: bag },
+        search: Mapei Keracolor S sanded grout,
+      }
+  - id: mapei-ultracolor-plus-fa
+    slot: tile-grout
+    brand: MAPEI
+    name: Ultracolor Plus FA
+    quantity:
+      {
+        per: area,
+        amount: 0.31,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: mapei-ultracolor-plus-fa-tds, page: 8 },
+        package: { size: 11.3, kind: bag },
+        search: Mapei Ultracolor Plus FA grout,
+      }
+  - id: mapei-keracolor-u
+    slot: tile-grout
+    brand: MAPEI
+    name: Keracolor U
+    quantity:
+      {
+        per: area,
+        amount: 0.23,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: mapei-keracolor-u-tds, page: 7 },
+        package: { size: 11.3, kind: bag },
+        search: Mapei Keracolor U unsanded grout,
       }

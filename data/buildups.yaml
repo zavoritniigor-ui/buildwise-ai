@@ -161,7 +161,8 @@ buildups:
             size: 11.34
             kind: bag
           search: Polyblend Plus sanded grout
-        material: Custom Polyblend Plus Sanded Grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: wet-floor-wood
     title: Waterproof bathroom floor on wood
     summary: A tiled, waterproofed floor for a bathroom over a wood subfloor.
@@ -252,7 +253,8 @@ buildups:
           source: *id001
           package: *id002
           search: Polyblend Plus sanded grout
-        material: Custom Polyblend Plus Sanded Grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: curbless-shower-floor
     title: Curbless shower floor
     summary: A sloped tray drained to a point drain, waterproofed and tiled.
@@ -540,7 +542,8 @@ buildups:
           source: *id001
           package: *id002
           search: Polyblend Plus sanded grout
-        material: Custom Polyblend Plus Sanded Grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: wet-floor-cement-board
     title: Cement board floor with liquid waterproofing
     summary:
@@ -657,7 +660,8 @@ buildups:
           source: *id001
           package: *id002
           search: Polyblend Plus sanded grout
-        material: Custom Polyblend Plus Sanded Grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: tiled-wall-cement-board
     title: Cement board wall with liquid waterproofing
     summary: A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.
@@ -764,7 +768,8 @@ buildups:
           source: *id001
           package: *id002
           search: Polyblend Plus sanded grout
-        material: Custom Polyblend Plus Sanded Grout
+        material: Custom Building Products Polyblend Plus Sanded Grout
+        slot: tile-grout
   - id: painted-moisture-wall
     title: Moisture-resistant painted wall
     summary:

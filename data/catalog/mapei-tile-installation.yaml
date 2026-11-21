@@ -1,0 +1,66 @@
+# MAPEI tile mortars, grouts and waterproofing, from the manufacturer's own
+# Canadian (en-CA) technical data sheets on mapei.com/ca. Cited by page of the PDF.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: MAPEI Inc.
+  brand: MAPEI
+  website: https://www.mapei.com/ca/en-ca
+
+documents:
+  - id: mapei-ultraflex-2-tds
+    type: tds
+    title: Ultraflex 2 Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002823_ultraflex-2_en-ca_f2e2a1b6d4074ed6bce2021f67a86632.pdf
+    version: "2026-05-14"
+    pages: 7
+    sha256: fc86a0b1be020a5a84c67a6d1a24307b2149a054bc2d4cfc9cab076a025a5a42
+    retrieved_on: 2026-11-21
+
+  - id: mapei-ultraflex-lft-tds
+    type: tds
+    title: Ultraflex LFT Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002824_ultraflex-lft_en-ca_2e585d1821254269bb937bf3ed3dd0f8.pdf
+    version: "2026-09-21"
+    pages: 7
+    sha256: d3550ec2348eb8e1cfdf2ca7f8283f81ca81ef3ab4b610a568e3bcf3af02dd11
+    retrieved_on: 2026-11-21
+
+  - id: mapei-keracolor-s-tds
+    type: tds
+    title: Keracolor S Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000009_keracolor-s_en-ca_bc72638ec10240b29031a0ebe4d98cad.pdf
+    version: "2024-10-09"
+    pages: 9
+    sha256: 230a19235751ec4dfa89bfee78f81f7b4ebbb3ec6bc249226fd70bfbe1a5cd25
+    retrieved_on: 2026-11-21
+
+  - id: mapei-keracolor-u-tds
+    type: tds
+    title: Keracolor U Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002813_keracolor-u_en-ca_d9aba2fd17ff4b34a67e10bf6e0bed6b.pdf
+    version: "2024-10-10"
+    pages: 8
+    sha256: f5b517d6145d2159484998c91b4ec64f1aa9afe221a3ebfd90c851b4b9cbdd4a
+    retrieved_on: 2026-11-21
+
+  - id: mapei-ultracolor-plus-fa-tds
+    type: tds
+    title: Ultracolor Plus FA Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000144_ultracolor-plus-fa_en-ca_91dfe5ed951e4e9ebd6a79ecb51414be.pdf
+    version: "2026-09-21"
+    pages: 10
+    sha256: d47161235a24410b208681acbe0820f7a853b732106390373ab12c8592d50251
+    retrieved_on: 2026-11-21
+
+  - id: mapei-aquadefense-tds
+    type: tds
+    title: Mapelastic AquaDefense Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002103_mapelastic-aquadefense_en-ca_5219c29f3732460f9479016f3a4a9a4d.pdf
+    version: "2025-10-08"
+    pages: 11
+    sha256: 3c24afe7eba782becc28068146bf19f622b215a2a6a183f103dfb5bb3dffdcd5
+    retrieved_on: 2026-11-21
+
+categories: []
