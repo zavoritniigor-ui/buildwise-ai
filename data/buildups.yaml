@@ -95,6 +95,7 @@ buildups:
           }
       - role: mortar
         label: Modified thin-set mortar under the membrane
+        material: Modified thin-set mortar
         quantity:
           {
             per: area,
@@ -157,6 +158,7 @@ buildups:
           }
       - role: mortar
         label: Modified thin-set mortar under the membrane
+        material: Modified thin-set mortar
         quantity:
           {
             per: area,
@@ -299,6 +301,7 @@ buildups:
         quantity: { per: area, amount: 0.9, unit: m, basis: estimate, search: Schluter KERDI-BAND }
       - role: mortar
         label: Thin-set mortar
+        material: Unmodified thin-set mortar
         quantity:
           {
             per: area,
@@ -335,6 +338,7 @@ buildups:
           }
       - role: mortar
         label: Modified thin-set mortar bed under the cement board
+        material: Modified thin-set mortar
         quantity:
           {
             per: area,
@@ -575,6 +579,7 @@ buildups:
           }
       - role: substrate
         label: Drywall screws, Type W, 300 mm apart on ceilings
+        material: Drywall screws, Type W
         quantity:
           {
             per: area,
