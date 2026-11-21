@@ -63,4 +63,49 @@ documents:
     sha256: 3c24afe7eba782becc28068146bf19f622b215a2a6a183f103dfb5bb3dffdcd5
     retrieved_on: 2026-11-21
 
+  - id: mapei-keraflex-super-tds
+    type: tds
+    title: Keraflex Super Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000041_keraflex-super_en-ca_334991bde5b7437788a1f2ca813092a6.pdf
+    version: "2026-09-21"
+    pages: 8
+    sha256: 36d19f5eec1e3954ea9f2c3e0734e6ed4edfbcdafee292e72f3fc1b4dbec9821
+    retrieved_on: 2026-11-21
+
+  - id: mapei-mapeguard-um-tds
+    type: tds
+    title: Mapeguard UM Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000126_mapeguard-um_en-ca_dc1b81b63d7a40929fad3e558e656158.pdf
+    version: "2026-01-12"
+    pages: 9
+    sha256: 74cc8b8cb6356cb7696e39495409a7376f80db89366283176f706c287e5db835
+    retrieved_on: 2026-11-21
+
+  - id: mapei-mortar-filling-faq
+    type: installation_manual
+    title: "FAQ Sheet: Calculation for the mortar filling on uncoupling/heating membranes (MKT 21-1321)"
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/line-technical-documentation-documents/21-1321_calculation_for_the_mortar_filling-ca-en_lr.pdf
+    version: "2021-03-15"
+    pages: 1
+    sha256: 665f00302ae16767de9b7ca214a5915abc780510415f2c2e3a10fd1fdd97139d
+    retrieved_on: 2026-11-21
+
+  - id: mapei-mapeguard-wp-st-tds
+    type: tds
+    title: Mapeguard WP ST Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3000131_mapeguard-wp-st_en-ca_ce961be261e84337a9544f4fa8b1d12c.pdf
+    version: "2025-10-23"
+    pages: 4
+    sha256: 4164cd92c27cb19e721088582956bd6061d3ae798743c2af4d126c52c30bf9cb
+    retrieved_on: 2026-11-21
+
+  - id: mapei-mapeguard-wp-200-tds
+    type: tds
+    title: Mapeguard WP 200 Technical Data Sheet
+    url: https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002199_mapeguard-wp-200_en-ca_17416d6edb854ea085f03f5e403d3a22.pdf
+    version: "2026-02-05"
+    pages: 9
+    sha256: a55f167bc3ccfe2eed6a7a856d0892ebf2bfb2585e51f57a6ca4da7ce1423c46
+    retrieved_on: 2026-11-21
+
 categories: []

@@ -38,8 +38,13 @@ export const ROOM_TYPES: Record<RoomType, Record<CalcSurface, readonly string[]>
     ceiling: ["painted-ceiling"],
   },
   bathroom: {
-    floor: ["wet-floor-wood", "wet-floor-cement-board"],
-    walls: ["tiled-wet-wall", "tiled-wall-cement-board", "painted-moisture-wall"],
+    floor: ["wet-floor-wood", "wet-floor-cement-board", "wet-floor-mapeguard"],
+    walls: [
+      "tiled-wet-wall",
+      "tiled-wall-cement-board",
+      "tiled-wall-mapeguard",
+      "painted-moisture-wall",
+    ],
     ceiling: ["painted-moisture-ceiling"],
   },
 };
