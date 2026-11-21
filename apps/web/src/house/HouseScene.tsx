@@ -177,13 +177,22 @@ function localSize(node: Object3D): [number, number, number] {
   return [wide ?? 0, deep ?? 0, size.y].map((m) => Math.round(m * 100)) as [number, number, number];
 }
 
-/** Makes the floors translucent so pipes below them show. */
-function seeThrough(floors: Material[], on: boolean) {
+/** Makes the floors nearly clear and the pipes glow in their colours, so
+ * the runs under the floor read as clearly as those in the walls. */
+function seeThrough(floors: Material[], pipes: MeshStandardMaterial[], on: boolean) {
   for (const material of floors) {
     material.transparent = on;
-    material.opacity = on ? 0.3 : 1;
+    material.opacity = on ? 0.12 : 1;
     material.depthWrite = !on;
     material.needsUpdate = true;
+  }
+  const white = new Color("#ffffff");
+  for (const material of pipes) {
+    // lighten dark ABS toward white so it shows on a dark floor; keep the
+    // red and blue of the water lines saturated
+    const dark = material.color.getHSL({ h: 0, s: 0, l: 0 }).l < 0.25;
+    material.emissive.copy(material.color).lerp(white, dark ? 0.45 : 0);
+    material.emissiveIntensity = on ? 0.7 : 0;
   }
 }
 
@@ -241,10 +250,11 @@ function Model({
 }) {
   const { scene } = useGLTF(houseUrl);
   const [hovered, setHovered] = useState<string | null>(null);
-  const { model, walls, items, floors } = useMemo(() => {
+  const { model, walls, items, floors, pipes } = useMemo(() => {
     const clone = scene.clone(true);
     const pieces: WallPiece[] = [];
     const floorMaterials: Material[] = [];
+    const pipeMaterials: MeshStandardMaterial[] = [];
     const tagged = (n: Object3D | null): boolean =>
       !!n && (typeof n.userData.item === "string" || tagged(n.parent));
     clone.traverse((node) => {
@@ -275,6 +285,8 @@ function Model({
         return copy;
       };
       mesh.material = Array.isArray(mesh.material) ? mesh.material.map(own) : own(mesh.material);
+      if (mesh.parent && /__plumbing_/.test(`${mesh.name} ${mesh.parent.name}`))
+        pipeMaterials.push(...([mesh.material].flat() as MeshStandardMaterial[]));
       if (line && plane) {
         mesh.userData.cut = plane;
         pieces.push({ ...line, plane });
@@ -290,13 +302,19 @@ function Model({
       });
       found.push({ node, item: node.userData.item, rooms: itemRooms(node.userData), materials });
     });
-    return { model: clone, walls: pieces, items: found, floors: floorMaterials };
+    return {
+      model: clone,
+      walls: pieces,
+      items: found,
+      floors: floorMaterials,
+      pipes: pipeMaterials,
+    };
   }, [scene]);
   const byNode = useMemo(() => new Map(items.map((i) => [i.node, i])), [items]);
 
   useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, !room, xray, delta));
   useEffect(() => paint(items, hovered, selected), [items, hovered, selected]);
-  useEffect(() => seeThrough(floors, xray), [floors, xray]);
+  useEffect(() => seeThrough(floors, pipes, xray), [floors, pipes, xray]);
   useEffect(() => () => cursor(false), []);
 
   const roomWall = (line: ReturnType<typeof wallLine>, point: Vector3): boolean => {

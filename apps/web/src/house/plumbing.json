@@ -1,5 +1,5 @@
 {
-  "_comment": "Plumbing rough-in of the example house: water supply (PEX) and drain-waste-vent (ABS) runs as polylines of [x, y, z] points in metres (plan x east, z south, y up from the finished floor). Built in 3D by tools/house-model/build_house.py and counted by apps/web/src/plumbing.ts: pipe length per size, an elbow at every bend, a tee where a run ends or starts on another run, and supports at the spacing the National Plumbing Code sets for horizontal piping. Fittings at the fixtures are listed explicitly. Sizes follow NPC 2020 Table 2.4.9.3: lavatory 1-1/4 in minimum (1-1/2 in used), shower 2 in (9.5 to 20 L/min), water closet 3 in.",
+  "_comment": "Plumbing rough-in of the example house: water supply (PEX) and drain-waste-vent (ABS) runs as polylines of [x, y, z] points in metres (plan x east, z south, y up from the finished floor), drains listed in the direction of flow. Built in 3D by tools/house-model/build_house.py and counted and checked by apps/web/src/plumbing.ts against the Quebec Construction Code, Chapter III Plumbing (NPC 2020 with Quebec amendments): slopes of at least 1 in 50, trap arm length, fall and turns, water closet vent distance, wet venting load, minimum fixture outlet sizes, and supports at the code's spacing. fixtures name each trap: its nominal size, its hydraulic load in fixture units (Table 2.4.9.3) and the run vertices of the trap and of its vent connection.",
   "systems": {
     "cold": {
       "color": "#2f6fb5"
@@ -69,8 +69,8 @@
       "points": [
         [8.635, 0, 6.4],
         [8.635, -0.25, 6.4],
-        [8.635, -0.25, 6.0],
-        [9.0, -0.25, 6.0]
+        [8.635, -0.258, 6.0],
+        [9.0, -0.266, 6.0]
       ]
     },
     {
@@ -80,9 +80,9 @@
       "pipe": "abs_pipe_2",
       "points": [
         [8.86, 0, 5.12],
-        [8.86, -0.18, 5.12],
-        [8.86, -0.18, 6.0],
-        [9.0, -0.18, 6.0]
+        [8.86, -0.15, 5.12],
+        [8.86, -0.168, 6.0],
+        [9.0, -0.171, 6.0]
       ]
     },
     {
@@ -91,12 +91,12 @@
       "system": "drain",
       "pipe": "abs_pipe_1_1_2",
       "points": [
-        [6.75, 0.45, 4.6],
+        [6.75, 0.452, 4.6],
         [6.75, 0.45, 4.5],
-        [6.75, -0.12, 4.5],
-        [6.75, -0.12, 5.9],
-        [9.0, -0.12, 5.9],
-        [9.0, -0.12, 6.0]
+        [6.75, -0.18, 4.5],
+        [6.75, -0.209, 5.9],
+        [9.0, -0.255, 5.9],
+        [9.0, -0.258, 6.0]
       ]
     },
     {
@@ -107,8 +107,8 @@
       "points": [
         [6.75, 0.45, 4.5],
         [6.75, 2.75, 4.5],
-        [9.0, 2.75, 4.5],
-        [9.0, 2.75, 6.0]
+        [9.0, 2.795, 4.5],
+        [9.0, 2.825, 6.0]
       ]
     },
     {
@@ -199,6 +199,12 @@
   "fittings": [
     {
       "room": "bathroom",
+      "item": "riser_clamp",
+      "count": 1,
+      "note": "at the base of the stack"
+    },
+    {
+      "room": "bathroom",
       "item": "pex_stub_elbow",
       "count": 4,
       "note": "vanity hot and cold, toilet, shower head"
@@ -244,6 +250,40 @@
       "item": "roof_vent_flashing",
       "count": 1,
       "note": "where the stack leaves the roof"
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "vanity",
+      "kind": "lavatory",
+      "room": "bathroom",
+      "trapNps": 1.25,
+      "fixtureUnits": 1,
+      "run": "vanity_drain",
+      "trap": 0,
+      "vent": 1,
+      "floodRim": 0.87
+    },
+    {
+      "id": "shower",
+      "kind": "shower",
+      "room": "bathroom",
+      "trapNps": 2,
+      "fixtureUnits": 3,
+      "run": "shower_drain",
+      "trap": 1,
+      "vent": 3
+    },
+    {
+      "id": "toilet",
+      "kind": "water_closet",
+      "room": "bathroom",
+      "trapNps": 3,
+      "fixtureUnits": 4,
+      "run": "toilet_drain",
+      "trap": 0,
+      "vent": 3,
+      "siphonic": true
     }
   ]
 }

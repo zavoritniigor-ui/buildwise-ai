@@ -639,3 +639,21 @@ select:focus-visible {
   color: var(--muted);
   margin: 14px 0 6px;
 }
+
+.code-status {
+  margin: 12px 0 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.code-ok {
+  background: rgba(47, 125, 109, 0.14);
+  color: var(--accent);
+}
+
+.code-breach {
+  background: rgba(192, 57, 43, 0.14);
+  color: #c0392b;
+}

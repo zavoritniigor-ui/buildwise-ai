@@ -1,0 +1,24 @@
+# Quebec Construction Code, Chapter III Plumbing: the National Plumbing Code
+# of Canada 2020 incorporating Quebec amendments, published by the National
+# Research Council with the Régie du bâtiment du Québec. This is the code that
+# applies in Quebec. Cited by page of the PDF.
+#
+# The bathroom rough-in (apps/web/src/house/plumbing.json) is checked against
+# it by apps/web/src/plumbing.ts; a test fails on any breach.
+
+manufacturer:
+  name: Régie du bâtiment du Québec and National Research Council Canada
+  brand: RBQ
+  website: https://www.rbq.gouv.qc.ca
+
+documents:
+  - id: qc-plumbing-2020
+    type: building_code
+    title: Quebec Construction Code, Chapter III Plumbing, and National Plumbing Code of Canada 2020 (amended)
+    url: https://nrc-publications.canada.ca/eng/view/ft/?id=4931b15f-9344-43b6-a0f3-446b7b25c410&dp=3&dsl=en
+    version: Third printing, 2026-10-14
+    pages: 267
+    sha256: dba34ea3d4957cc936da5754b4eb14b4a9151f9d761b978fccece1bdd82d0eeb
+    retrieved_on: 2026-11-21
+
+categories: []

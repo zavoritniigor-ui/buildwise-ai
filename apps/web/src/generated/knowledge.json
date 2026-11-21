@@ -30,6 +30,11 @@
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
       "version": "2020, 1st printing"
     },
+    "qc-plumbing-2020": {
+      "title": "Quebec Construction Code, Chapter III Plumbing, and National Plumbing Code of Canada 2020 (amended)",
+      "url": "https://nrc-publications.canada.ca/eng/view/ft/?id=4931b15f-9344-43b6-a0f3-446b7b25c410&dp=3&dsl=en",
+      "version": "Third printing, 2026-10-14"
+    },
     "ditra-handbook": {
       "title": "Schluter-DITRA Installation Handbook",
       "url": "https://assets.schluter.com/asset/570120892212/document_943vbnqrgt3ol0fc95n9ofe057/ditra-installation-handbook.pdf",
@@ -5815,6 +5820,14 @@
       "measure": "each",
       "summary": "Match the boot to the vent pipe size and the roof slope.",
       "search": "plumbing vent flashing"
+    },
+    {
+      "id": "riser_clamp",
+      "name": "Riser clamp",
+      "category": "plumbing",
+      "measure": "each",
+      "summary": "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.",
+      "search": "riser clamp 3 inch"
     }
   ],
   "translations": {
@@ -5839,6 +5852,7 @@
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиткова підлога ванної на дерев'яній основі, на цементній плиті, покритій рідкою гідроізоляцією.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицьована плиткою стіна душової чи вологої зони з цементної плити, покритої рідкою гідроізоляцією.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицьована плиткою гідроізольована підлога ванної на дерев'яній основі.",
+      "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальний стояк спирається на хомут біля основи і далі щонайменше через кожні 7,5 м.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Унітаз відводиться трубою щонайменше 3 дюйми; горизонтальну трубу кріпіть щонайменше через 1,2 м.",
       "ABS cement": "Клей для ABS",
       "ABS elbow, 1-1/2 in": "Коліно ABS, 1½ дюйма",
@@ -6091,6 +6105,7 @@
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Рекомендовано, коли витрата води понад 9,5 л/хв (2,5 гал/хв), наприклад кілька лійок чи бічні форсунки (с. 6).",
       "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally.": "Червона для гарячої й синя для холодної води спрощують розведення; горизонтальну трубу кріпіть щонайменше через 0,8 м.",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Потрібна в мокрій зоні та зоні витирання; примикання підлоги до стін закривають KERDI-BAND.",
+      "Riser clamp": "Хомут для стояка",
       "Roof vent flashing": "Покрівельний прохідний елемент",
       "Schluter ALL-SET": "Schluter ALL-SET",
       "Schluter DITRA": "Schluter DITRA",
@@ -6250,6 +6265,7 @@
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Плиточный пол ванной на деревянном основании, на цементной плите, покрытой жидкой гидроизоляцией.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Облицованная плиткой стена душевой или влажной зоны из цементной плиты, покрытой жидкой гидроизоляцией.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Облицованный плиткой гидроизолированный пол ванной на деревянном основании.",
+      "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальный стояк опирается на хомут у основания и далее не реже чем через каждые 7,5 м.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Унитаз отводится трубой не менее 3 дюймов; горизонтальную трубу крепите не реже чем через 1,2 м.",
       "ABS cement": "Клей для ABS",
       "ABS elbow, 1-1/2 in": "Колено ABS, 1½ дюйма",
@@ -6502,6 +6518,7 @@
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Рекомендуется, когда расход воды больше 9,5 л/мин (2,5 гал/мин), например несколько леек или боковые форсунки (с. 6).",
       "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally.": "Красная для горячей и синяя для холодной воды упрощают разводку; горизонтальную трубу крепите не реже чем через 0,8 м.",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Нужна в мокрой зоне и зоне вытирания; примыкания пола к стенам закрывают KERDI-BAND.",
+      "Riser clamp": "Хомут для стояка",
       "Roof vent flashing": "Кровельный проходной элемент",
       "Schluter ALL-SET": "Schluter ALL-SET",
       "Schluter DITRA": "Schluter DITRA",
@@ -6661,6 +6678,7 @@
       "A tiled bathroom floor over a wood subfloor, on cement board underlayment painted with a liquid waterproofing membrane.": "Plancher de salle de bain carrelé sur un sous-plancher de bois, sur une sous-couche de panneau de ciment enduite d'une membrane d'étanchéité liquide.",
       "A tiled shower or wet-area wall of cement board painted with a liquid waterproofing membrane.": "Mur de douche ou de zone humide carrelé, en panneau de ciment enduit d'une membrane d'étanchéité liquide.",
       "A tiled, waterproofed floor for a bathroom over a wood subfloor.": "Un plancher de salle de bain carrelé et imperméabilisé sur sous-plancher de bois.",
+      "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Une colonne verticale repose sur un collier à sa base, puis au moins aux 7,5 m.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Une toilette se draine par un tuyau d'au moins 3 po; supportez les parcours horizontaux aux 1,2 m.",
       "ABS cement": "Colle ABS",
       "ABS elbow, 1-1/2 in": "Coude ABS, 1-1/2 po",
@@ -6913,6 +6931,7 @@
       "Recommended where flow exceeds 9.5 L/min (2.5 gpm), e.g. several shower heads or body sprays (page 6).": "Recommandé si le débit dépasse 9,5 L/min (2,5 gal/min), p. ex. plusieurs pommeaux ou jets de corps (p. 6).",
       "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally.": "Rouge pour l'eau chaude et bleu pour l'eau froide facilitent le repérage; supportez-le aux 0,8 m à l'horizontale.",
       "Required in the wet area and the drying area; floor/wall joints sealed with KERDI-BAND.": "Requise dans la zone mouillée et la zone de séchage; jonctions plancher/mur scellées avec KERDI-BAND.",
+      "Riser clamp": "Collier de colonne",
       "Roof vent flashing": "Solin d'évent de toiture",
       "Schluter ALL-SET": "Schluter ALL-SET",
       "Schluter DITRA": "Schluter DITRA",
