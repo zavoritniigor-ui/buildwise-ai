@@ -255,7 +255,15 @@ class Parts:
             face.material_index = slot
             face.smooth = shape != "box"
 
-    def object(self, name: str, location=(0.0, 0.0, 0.0), rotation_z: float = 0.0):
+    def object(
+        self,
+        name: str,
+        location=(0.0, 0.0, 0.0),
+        rotation_z: float = 0.0,
+        extras: dict[str, str] | None = None,
+    ):
+        """The collected parts as one object. extras become glTF extras, which
+        three.js reads as userData: the app finds the item a click hit there."""
         mesh = bpy.data.meshes.new(name)
         cube_uvs(self.bm)
         self.bm.to_mesh(mesh)
@@ -265,6 +273,8 @@ class Parts:
         obj = bpy.data.objects.new(name, mesh)
         obj.location = location
         obj.rotation_euler = (0.0, 0.0, rotation_z)
+        for key, value in (extras or {}).items():
+            obj[key] = value
         bpy.context.scene.collection.objects.link(obj)
         return obj
 
@@ -366,10 +376,30 @@ def build_walls(layout: dict, wall_mat, mats: dict) -> None:
             build_opening(line, o, rooms, t, mats)
 
 
+def opening_items(o: dict) -> dict[str, str]:
+    """The items (data/items.yaml) an opening is bought as, by part."""
+    if o["kind"] == "window":
+        return {"frame": "window", "sill": "window_sill"}
+    if o["kind"] == "opening":
+        return {"frame": "door_casing"}
+    if o.get("style") == "entry":
+        return {"frame": "entry_door", "leaf": "entry_door", "handle": "entry_handleset"}
+    return {"frame": "interior_door", "leaf": "interior_door", "handle": "door_lever"}
+
+
+def joinery_object(parts: Parts, line, o: dict, item: str, part: str, **placement) -> None:
+    parts.object(
+        f"{line_name(line)}__{o['id']}__{part}",
+        extras={"item": item, "opening": o["id"]},
+        **placement,
+    )
+
+
 def build_opening(line, o: dict, rooms: dict, t: float, mats: dict) -> None:
     a0, a1 = o["centre"] - o["width"] / 2, o["centre"] + o["width"] / 2
     sill = o.get("sill", 0.0)
     head = sill + o["height"]
+    items = opening_items(o)
     frame = Parts()
     trim = mats["frame_white"]
     if o["kind"] == "window":
@@ -384,17 +414,6 @@ def build_opening(line, o: dict, rooms: dict, t: float, mats: dict) -> None:
         line_box(
             frame,
             line,
-            a0 - 0.04,
-            a1 + 0.04,
-            sill - 0.025,
-            sill,
-            -t / 2 - 0.035,
-            t / 2 + 0.035,
-            trim,
-        )
-        line_box(
-            frame,
-            line,
             a0 + FRAME,
             a1 - FRAME,
             sill + FRAME,
@@ -403,19 +422,35 @@ def build_opening(line, o: dict, rooms: dict, t: float, mats: dict) -> None:
             0.005,
             mats["glass"],
         )
+        board = Parts()
+        line_box(
+            board,
+            line,
+            a0 - 0.04,
+            a1 + 0.04,
+            sill - 0.025,
+            sill,
+            -t / 2 - 0.035,
+            t / 2 + 0.035,
+            trim,
+        )
+        joinery_object(board, line, o, items["sill"], "sill")
     else:
         # door and open passage: two jambs and a head, wrapped around the wall
         n0, n1 = -t / 2 - 0.012, t / 2 + 0.012
         line_box(frame, line, a0, a0 + 0.03, 0, head, n0, n1, trim)
         line_box(frame, line, a1 - 0.03, a1, 0, head, n0, n1, trim)
         line_box(frame, line, a0, a1, head - 0.03, head, n0, n1, trim)
-    frame.object(f"{line_name(line)}__{o['id']}_frame")
+    joinery_object(frame, line, o, items["frame"], "frame")
     if o["kind"] == "door":
-        build_leaf(line, o, rooms, a0 + 0.03, a1 - 0.03, head - 0.03, mats)
+        build_leaf(line, o, rooms, a0 + 0.03, a1 - 0.03, head - 0.03, mats, items)
 
 
-def build_leaf(line, o: dict, rooms: dict, a0: float, a1: float, head: float, mats: dict) -> None:
-    """The door leaf, standing open into the room it swings into."""
+def build_leaf(
+    line, o: dict, rooms: dict, a0: float, a1: float, head: float, mats: dict, items: dict
+) -> None:
+    """The door leaf, standing open into the room it swings into, and its
+    handles as a separate object so they can be clicked on their own."""
     import math
 
     orient, coord = line
@@ -431,40 +466,45 @@ def build_leaf(line, o: dict, rooms: dict, a0: float, a1: float, head: float, ma
     hx, hz = (hinge_a, coord) if orient == "h" else (coord, hinge_a)
     length = abs(a1 - a0) - 0.005
     leaf_mat = mats["door_entry"] if o.get("style") == "entry" else mats["door_white"]
+    # plan direction (dx, dz) is Blender (dx, -dz); local x runs from the hinge
+    placement = {"location": to_blender(hx, hz, 0.0), "rotation_z": math.atan2(-dz, dx)}
 
-    parts = Parts()
-    # local frame: x along the leaf from the hinge, y across, z up
-    parts.add(
+    leaf = Parts()
+    leaf.add(
         "box",
         (length / 2, 0, 0.01 + (head - 0.02) / 2),
         (length, LEAF_THICKNESS, head - 0.02),
         leaf_mat,
         0.004,
     )
+    joinery_object(leaf, line, o, items["leaf"], "leaf", **placement)
+
+    handles = Parts()
     for side in (-1, 1):
-        parts.add("box", (length - 0.07, side * 0.035, 1.0), (0.12, 0.02, 0.02), mats["chrome"])
-        parts.add(
+        handles.add("box", (length - 0.07, side * 0.035, 1.0), (0.12, 0.02, 0.02), mats["chrome"])
+        handles.add(
             "cylinder", (length - 0.07, side * 0.025, 1.0), (0.05, 0.02, 0.05), mats["chrome"]
         )
-    # plan direction (dx, dz) is Blender (dx, -dz)
-    parts.object(
-        f"{line_name(line)}__{o['id']}_leaf",
-        location=to_blender(hx, hz, 0.0),
-        rotation_z=math.atan2(-dz, dx),
-    )
+    joinery_object(handles, line, o, items["handle"], "handle", **placement)
 
 
 # ---- furniture -------------------------------------------------------------------
 
 
 def build_furniture(furniture: dict, mats: dict) -> None:
+    """One object per item in each placement, so a faucet is clicked apart
+    from the sink cabinet it stands on."""
     import math
 
     counts: dict[str, int] = {}
     for place in furniture["placements"]:
         piece = furniture["pieces"][place["piece"]]
-        parts = Parts()
-        for part in piece:
+        n = counts.get(place["piece"], 0)
+        counts[place["piece"]] = n + 1
+        by_item: dict[str, Parts] = {}
+        for part in piece["parts"]:
+            item = part.get("item", piece["item"])
+            parts = by_item.setdefault(item, Parts())
             u, v = part["at"]
             w, d, h = part["size"]
             # local plan (u, v) -> Blender (u, -v)
@@ -475,14 +515,14 @@ def build_furniture(furniture: dict, mats: dict) -> None:
                 mats[part["material"]],
                 part.get("bevel", 0.0),
             )
-        n = counts.get(place["piece"], 0)
-        counts[place["piece"]] = n + 1
         x, z = place["at"]
-        parts.object(
-            f"furniture__{place['room']}__{place['piece']}_{n}",
-            location=to_blender(x, z, 0.0),
-            rotation_z=-math.radians(place["rotate"]),
-        )
+        for item, parts in by_item.items():
+            parts.object(
+                f"furniture__{place['room']}__{place['piece']}_{n}__{item}",
+                location=to_blender(x, z, 0.0),
+                rotation_z=-math.radians(place["rotate"]),
+                extras={"item": item, "room": place["room"]},
+            )
 
 
 JOINERY = {
@@ -547,6 +587,7 @@ def main() -> None:
         export_yup=True,
         export_apply=True,
         export_image_format="AUTO",
+        export_extras=True,
     )
     print(f"wrote {options.out}")
 

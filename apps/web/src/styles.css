@@ -579,3 +579,20 @@ select:focus-visible {
   stroke-width: 0.025;
   pointer-events: none;
 }
+
+.item-advice {
+  margin-top: 10px;
+}
+
+.item-advice h2 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.item-advice p {
+  margin: 0;
+  line-height: 1.45;
+}

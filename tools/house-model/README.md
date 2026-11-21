@@ -29,8 +29,11 @@ rerun this after changing the layout or the script.
   `furniture.json` (pieces made of boxes, cylinders and spheres, placed and
   turned on the plan).
 
-The web app treats the model as a picture and drives clicks from invisible
-planes placed from the same layout. It reads the wall line from each `wall__`
+Every furniture and joinery object carries glTF extras: `item` (an id in
+`data/items.yaml`) and `room` or `opening`. A click on it in the app opens that
+item: what to check before buying and the retailers' own search. Parts of a
+piece can name their own item (the faucet on a sink cabinet, the handles on a
+door), so each is clicked on its own. Floors keep their invisible hit-planes. It reads the wall line from each `wall__`
 name to lower the walls between the camera and the room in view.
 
 `model.test.ts` checks that every opening fits its wall and every piece of

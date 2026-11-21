@@ -10,7 +10,14 @@ test("the plan lets a person pick a room and then a surface", () => {
   const onSurface = vi.fn();
   const { rerender } = render(
     <I18nProvider language="uk">
-      <PlanView room={null} surface={null} onRoom={onRoom} onSurface={onSurface} />
+      <PlanView
+        room={null}
+        surface={null}
+        selected={null}
+        onRoom={onRoom}
+        onSurface={onSurface}
+        onItem={vi.fn()}
+      />
     </I18nProvider>,
   );
   fireEvent.click(
@@ -20,7 +27,14 @@ test("the plan lets a person pick a room and then a surface", () => {
 
   rerender(
     <I18nProvider language="uk">
-      <PlanView room="bathroom" surface={null} onRoom={onRoom} onSurface={onSurface} />
+      <PlanView
+        room="bathroom"
+        surface={null}
+        selected={null}
+        onRoom={onRoom}
+        onSurface={onSurface}
+        onItem={vi.fn()}
+      />
     </I18nProvider>,
   );
   fireEvent.click(screen.getByText("Душова", { selector: "title" }).parentElement as Element);

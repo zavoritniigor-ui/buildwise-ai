@@ -136,6 +136,29 @@ export interface Buildup {
   layers: Layer[];
 }
 
+export type ItemCategory =
+  | "furniture"
+  | "cabinetry"
+  | "appliance"
+  | "plumbing"
+  | "lighting"
+  | "door"
+  | "window"
+  | "hardware"
+  | "textile"
+  | "decor";
+
+/** Something in the house a person can click and go and buy (data/items.yaml). */
+export interface Item {
+  id: string;
+  name: string;
+  category: ItemCategory;
+  /** What to check before buying. */
+  summary: string;
+  /** The query opened in the retailers' own search. */
+  search: string;
+}
+
 export interface Knowledge {
   documents: Record<string, { title: string; url: string; version: string }>;
   conditions: Record<string, Condition>;
@@ -149,6 +172,7 @@ export interface Knowledge {
   buildups: Buildup[];
   /** room id -> surface -> buildup id */
   surfaceBuildups: Record<string, Record<string, string>>;
+  items: Item[];
   /** English text to its translation, per language. */
   translations: Record<string, Record<string, string>>;
 }
@@ -170,4 +194,9 @@ export function buildupForSurface(
 ): Buildup | undefined {
   const id = knowledge.surfaceBuildups[room]?.[surface];
   return id ? knowledge.buildups.find((b) => b.id === id) : undefined;
+}
+
+/** An item of the house by id, or undefined when the knowledge base lacks it. */
+export function findItem(id: string, knowledge: Knowledge = KNOWLEDGE): Item | undefined {
+  return knowledge.items.find((item) => item.id === id);
 }
