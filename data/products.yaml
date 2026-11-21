@@ -14,11 +14,15 @@
 # - RedGard SpeedCoat: one coat over cement backer board, 20.4 m² per 3.78 L
 #   -> 0.19 L/m²
 # - HYDRO BAN: 4.6 m² per 3.8 L -> 0.83 L/m²
+# - Tile mortars, 1/4 x 1/4 in (6 x 6 mm) square-notch trowel, the lower end
+#   of each range: VersaBond 7.9 m² and VersaBond HP 8.4 m² per 22.68 kg bag
+#   -> 2.88 and 2.70 kg/m²; 253 Gold 7.4 m² per 22.7 kg bag -> 3.07 kg/m²
 
 slots:
   interior-paint: { name: Interior paint }
   bathroom-paint: { name: Bathroom paint }
   liquid-waterproofing: { name: Liquid waterproofing membrane }
+  tile-mortar: { name: Tile mortar }
 
 products:
   - id: bm-regal-select
@@ -149,4 +153,46 @@ products:
         source: { document: hydro-ban-ds, page: 2 },
         package: { size: 3.8, kind: pail },
         search: Laticrete Hydro Ban,
+      }
+  - id: custom-versabond
+    slot: tile-mortar
+    brand: Custom Building Products
+    name: VersaBond Professional Thin-Set Mortar
+    quantity:
+      {
+        per: area,
+        amount: 2.88,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: versabond-family, page: 3 },
+        package: { size: 22.68, kind: bag },
+        search: VersaBond thinset mortar,
+      }
+  - id: custom-versabond-hp
+    slot: tile-mortar
+    brand: Custom Building Products
+    name: VersaBond HP Large and Heavy Tile Mortar
+    quantity:
+      {
+        per: area,
+        amount: 2.7,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: versabond-family, page: 3 },
+        package: { size: 22.68, kind: bag },
+        search: VersaBond HP mortar,
+      }
+  - id: laticrete-253-gold
+    slot: tile-mortar
+    brand: LATICRETE
+    name: 253 Gold
+    quantity:
+      {
+        per: area,
+        amount: 3.07,
+        unit: kg,
+        basis: manufacturer,
+        source: { document: laticrete-253-gold-ds, page: 1 },
+        package: { size: 22.7, kind: bag },
+        search: Laticrete 253 Gold,
       }

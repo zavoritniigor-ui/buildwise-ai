@@ -344,7 +344,11 @@ def snapshot(data_dir: Path) -> Json:
             if layer.slot not in products.slots:
                 raise ValueError(f"buildup {buildup.id!r} uses unknown slot {layer.slot!r}")
             default = next(p for p in products.products if p.slot == layer.slot)
-            if layer.quantity is None or layer.quantity.search != default.quantity.search:
+            if (
+                layer.quantity is None
+                or layer.quantity.search != default.quantity.search
+                or layer.material != f"{default.brand} {default.name}"
+            ):
                 raise ValueError(
                     f"buildup {buildup.id!r}: the {layer.slot!r} layer must describe the slot's "
                     f"first product, {default.id!r}"

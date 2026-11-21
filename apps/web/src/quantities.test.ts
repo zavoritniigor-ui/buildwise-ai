@@ -40,7 +40,8 @@ test("the BW-001 bathroom floor shopping list", () => {
     "Schluter KERDI-BAND": { total: 12.1 },
     "unmodified thinset mortar": { total: 39.4, packages: 2 },
     "porcelain floor tile": { total: 7.07 },
-    "sanded grout": { total: 3.3 },
+    // 0.36 kg/m² x 6.42 m² (Polyblend Plus, 12 x 12 in tile, 1/8 in joints)
+    "Polyblend Plus sanded grout": { total: 2.4, packages: 1 },
   });
 });
 

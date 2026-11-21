@@ -96,3 +96,14 @@ test("a liquid membrane can be any of three products", () => {
   expect(membrane?.need.total).toBe(21.4);
   expect(membrane?.need.packages).toBe(6);
 });
+
+test("tile mortar can be any of three products, each by its own bag coverage", () => {
+  const wall = { walls: "tiled-wall-cement-board" } as const;
+  const versabond = surfaceMaterials("bathroom", bath, wall);
+  // 2.88 kg/m² x 23.42 m² = 67.5 kg, three 22.68 kg bags
+  expect(line(versabond, "VersaBond thinset mortar")?.need.packages).toBe(3);
+  const gold = surfaceMaterials("bathroom", bath, wall, { "tile-mortar": "laticrete-253-gold" });
+  // 3.07 kg/m² x 23.42 m² = 71.9 kg, four 22.7 kg bags
+  expect(line(gold, "Laticrete 253 Gold")?.need.total).toBe(71.9);
+  expect(line(gold, "Laticrete 253 Gold")?.need.packages).toBe(4);
+});

@@ -190,12 +190,12 @@ test("a surface offers technologies, and the room list follows the choice", asyn
   fireEvent.click(
     within(technology).getByRole("radio", { name: "Moisture-resistant painted wall" }),
   );
-  expect(screen.getAllByText("Benjamin Moore Aura Bath & Spa").length).toBeGreaterThan(0);
+  expect(screen.getAllByText("Benjamin Moore Aura Bath & Spa Matte").length).toBeGreaterThan(0);
 
   fireEvent.click(screen.getByRole("button", { name: "Bathroom" }));
   fireEvent.click(screen.getByRole("button", { name: "Room shopping list" }));
   const materials = screen.getByRole("list", {
-    name: "Find Benjamin Moore Aura Bath & Spa in stores",
+    name: "Find Benjamin Moore Aura Bath & Spa Matte in stores",
   });
   expect(materials).toBeDefined();
   // walls 26.58 m² and ceiling 7.5 m² of paint at 0.23 L/m²: 3 cans of 3.79 L

@@ -1,5 +1,5 @@
-# LATICRETE HYDRO BAN liquid waterproofing membrane, from the manufacturer's
-# own North American data sheet (DS-663). Cited by page of the PDF.
+# LATICRETE HYDRO BAN waterproofing and 253 Gold mortar, from the
+# manufacturer's own North American data sheets. Cited by page of the PDF.
 #
 # Status: documents only; data/products.yaml cites these pages.
 
@@ -16,6 +16,15 @@ documents:
     version: DS-663-1026
     pages: 6
     sha256: cdefc2d199014adb1eb54917ebba434beb9bd4a3571829d6551ffe91bebd0df2
+    retrieved_on: 2026-11-21
+
+  - id: laticrete-253-gold-ds
+    type: tds
+    title: 253 Gold Data Sheet (DS-296)
+    url: https://cdnmdm.laticrete.com/ProductAssets/Product%20Documents/ds-296-la-en.pdf
+    version: DS-296-0120
+    pages: 4
+    sha256: 1c0ed465790b1bd3747c92cc30aa47779451c74879ec2e7cf2d9ad62cfb6a452
     retrieved_on: 2026-11-21
 
 categories: []
