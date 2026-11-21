@@ -107,3 +107,23 @@ test("tile mortar can be any of three products, each by its own bag coverage", (
   expect(line(gold, "Laticrete 253 Gold")?.need.total).toBe(71.9);
   expect(line(gold, "Laticrete 253 Gold")?.need.packages).toBe(4);
 });
+
+test("grout and MAPEI products follow their own data sheets", () => {
+  const wall = { walls: "tiled-wall-cement-board" } as const;
+  // 30.92 m² of 12 x 12 in tile, 1/8 in joints: 0.36 or 0.23 kg/m², rounded up
+  const polyblend = surfaceMaterials("bathroom", bath, wall);
+  expect(line(polyblend, "Polyblend Plus sanded grout")?.need.total).toBe(11.2);
+  const unsanded = surfaceMaterials("bathroom", bath, wall, { "tile-grout": "mapei-keracolor-u" });
+  expect(line(unsanded, "Mapei Keracolor U unsanded grout")?.need.total).toBe(7.2);
+  expect(line(unsanded, "Polyblend Plus sanded grout")).toBeUndefined();
+  const ultraflex = surfaceMaterials("bathroom", bath, wall, {
+    "tile-mortar": "mapei-ultraflex-2",
+  });
+  // 3.26 kg/m² x 23.42 m² = 76.3 kg, four 22.7 kg bags
+  expect(line(ultraflex, "Mapei Ultraflex 2")?.need.packages).toBe(4);
+  const aqua = surfaceMaterials("bathroom", bath, wall, {
+    "liquid-waterproofing": "mapei-aquadefense",
+  });
+  // 0.68 L/m² + 10 % on 23.42 m² = 17.5 L, two 13.2 L pails
+  expect(line(aqua, "Mapei Mapelastic AquaDefense")?.need.packages).toBe(2);
+});

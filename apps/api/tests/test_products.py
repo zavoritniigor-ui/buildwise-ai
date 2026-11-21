@@ -37,6 +37,17 @@ def test_paint_and_membrane_rates_follow_their_data_sheets() -> None:
     assert by_id["sico-evolution-867"].quantity.amount == Decimal("0.17")
     assert by_id["laticrete-hydro-ban"].quantity.amount == Decimal("0.83")
     assert by_id["custom-redgard-speedcoat"].quantity.amount == Decimal("0.19")
+    assert by_id["mapei-aquadefense"].quantity.amount == Decimal("0.68")
+
+
+def test_mortar_and_grout_rates_follow_mapei_data_sheets() -> None:
+    by_id = {p.id: p for p in load_products(DATA_DIR).products}
+    assert by_id["mapei-ultraflex-2"].quantity.amount == Decimal("3.26")
+    assert by_id["mapei-ultraflex-lft"].quantity.amount == Decimal("2.87")
+    assert by_id["mapei-keracolor-s"].quantity.amount == Decimal("0.32")
+    assert by_id["mapei-keracolor-u"].quantity.amount == Decimal("0.23")
+    grouts = [p.id for p in load_products(DATA_DIR).products if p.slot == "tile-grout"]
+    assert grouts[0] == "custom-polyblend-plus"
 
 
 def test_a_product_needs_a_cited_rate() -> None:
