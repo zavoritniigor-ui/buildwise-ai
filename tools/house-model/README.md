@@ -19,10 +19,19 @@ rerun this after changing the layout or the script.
 
 ## What it makes
 
-Each clickable surface is a separately named mesh: `floor__<room>`,
-`shower__bathroom`, `walls__house`. The web app treats the model as a picture
-and drives clicks from invisible planes placed from the same layout, so the
-model can gain textures and furniture later without touching the interaction.
+- `floor__<room>`, `shower__bathroom`: the floors, with CC0 textures.
+- `wall__<h|v>_<mm>__<n>`: full-height walls, one per wall line (shared walls
+  built once), with real holes for the doors, windows and passages listed in
+  `layout.json` under `openings`.
+- `wall__…__<id>_frame` and `wall__…__<id>_leaf`: window frames with glass,
+  door frames and door leaves standing open into the room they swing into.
+- `furniture__<room>__<piece>_<n>`: furniture and sanitaryware from
+  `furniture.json` (pieces made of boxes, cylinders and spheres, placed and
+  turned on the plan).
 
-Planned next: CC0 textures (Poly Haven, ambientCG) and CC0 furniture, baked
-lighting for a realistic look.
+The web app treats the model as a picture and drives clicks from invisible
+planes placed from the same layout. It reads the wall line from each `wall__`
+name to lower the walls between the camera and the room in view.
+
+`model.test.ts` checks that every opening fits its wall and every piece of
+furniture stands inside its room, so a bad edit fails before it is rendered.

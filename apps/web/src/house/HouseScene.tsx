@@ -1,5 +1,5 @@
 import { CameraControls, Html, useGLTF } from "@react-three/drei";
-import { Canvas, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, type ThreeEvent, useFrame, useThree } from "@react-three/fiber";
 import {
   type RefObject,
   createContext,
@@ -9,7 +9,18 @@ import {
   useRef,
   useState,
 } from "react";
-import type { Mesh } from "three";
+import {
+  DoubleSide,
+  type Material,
+  type Mesh,
+  type Object3D,
+  PMREMGenerator,
+  Plane,
+  type Scene,
+  Vector3,
+  type WebGLRenderer,
+} from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { useI18n } from "../i18n";
 import houseUrl from "./house.glb?url";
 import {
@@ -45,21 +56,116 @@ function cursor(over: boolean) {
  */
 const LabelLayer = createContext<RefObject<HTMLDivElement | null> | null>(null);
 
-/** The Blender model, shown as a picture only; clicks are handled by the planes. */
-function Model() {
+/** Height walls are cut down to when they stand between the camera and the room. */
+const CUT_HEIGHT = 0.3;
+const FULL_HEIGHT = 2.7;
+
+interface WallPiece {
+  orient: "h" | "v";
+  coord: number;
+  plane: Plane;
+}
+
+/** The wall line a Blender object belongs to, read from its name (wall__h_4500__…). */
+function wallLine(node: Object3D | null): Pick<WallPiece, "orient" | "coord"> | null {
+  for (let n = node; n; n = n.parent) {
+    const match = /^wall__([hv])_(\d+)/.exec(n.name);
+    if (match) return { orient: match[1] as "h" | "v", coord: Number(match[2]) / 1000 };
+  }
+  return null;
+}
+
+/**
+ * Lowers the walls between the camera and the focus point and raises the rest,
+ * easing towards the target so the cut follows the camera smoothly.
+ */
+function moveCuts(
+  walls: WallPiece[],
+  eye: Vector3,
+  focus: [number, number],
+  overview: boolean,
+  delta: number,
+) {
+  const step = Math.min(1, delta * 6);
+  for (const wall of walls) {
+    const focusAt = wall.orient === "h" ? focus[1] : focus[0];
+    const eyeAt = wall.orient === "h" ? eye.z : eye.x;
+    const offset = wall.coord - focusAt;
+    const toward = eyeAt - focusAt;
+    const between =
+      Math.abs(offset) > 0.3 && offset * toward > 0 && Math.abs(toward) > Math.abs(offset);
+    // Over the whole house only the far outside walls stay up, so every room shows.
+    const far = offset * toward < 0 && Math.abs(offset) > 0.3;
+    const keep = overview ? far && isOutside(wall) : !between;
+    const target = keep ? FULL_HEIGHT : CUT_HEIGHT;
+    wall.plane.constant += (target - wall.plane.constant) * step;
+  }
+}
+
+function isOutside({ orient, coord }: WallPiece): boolean {
+  const [low, high] =
+    orient === "h"
+      ? [FOOTPRINT.z, FOOTPRINT.z + FOOTPRINT.depth]
+      : [FOOTPRINT.x, FOOTPRINT.x + FOOTPRINT.width];
+  return Math.abs(coord - low) < 1e-3 || Math.abs(coord - high) < 1e-3;
+}
+
+/** Soft image-based light made on the spot, so metal, glass and mirrors read. */
+function light(gl: WebGLRenderer, scene: Scene): () => void {
+  gl.localClippingEnabled = true;
+  const pmrem = new PMREMGenerator(gl);
+  const room = new RoomEnvironment();
+  const texture = pmrem.fromScene(room, 0.04).texture;
+  scene.environment = texture;
+  scene.environmentIntensity = 0.45;
+  return () => {
+    scene.environment = null;
+    texture.dispose();
+    room.dispose();
+    pmrem.dispose();
+  };
+}
+
+/**
+ * The Blender model, shown as a picture only; clicks are handled by the planes.
+ * Walls on the camera's side of the room in view are cut down, as in a
+ * dollhouse, and rise again as the camera moves round.
+ */
+function Model({ focus, overview }: { focus: [number, number]; overview: boolean }) {
   const { scene } = useGLTF(houseUrl);
-  const model = useMemo(() => {
+  const { model, walls } = useMemo(() => {
     const clone = scene.clone(true);
+    const pieces: WallPiece[] = [];
     clone.traverse((node) => {
       const mesh = node as Mesh;
-      if (mesh.isMesh) {
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-      }
+      if (!mesh.isMesh) return;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      const line = wallLine(mesh);
+      if (!line) return;
+      const plane = new Plane(new Vector3(0, -1, 0), FULL_HEIGHT);
+      const own = (m: Material) => {
+        const copy = m.clone();
+        copy.clippingPlanes = [plane];
+        copy.clipShadows = true;
+        copy.side = DoubleSide;
+        return copy;
+      };
+      mesh.material = Array.isArray(mesh.material) ? mesh.material.map(own) : own(mesh.material);
+      pieces.push({ ...line, plane });
     });
-    return clone;
+    return { model: clone, walls: pieces };
   }, [scene]);
+
+  useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, overview, delta));
+
   return <primitive object={model} />;
+}
+
+function Environment() {
+  const { gl, scene } = useThree();
+  useEffect(() => light(gl, scene), [gl, scene]);
+  return null;
 }
 
 /**
@@ -203,7 +309,8 @@ export default function HouseScene({ room, surface, onRoom, onSurface }: HouseSc
     <div className="scene-stack">
       <LabelLayer.Provider value={labels}>
         <Canvas shadows camera={{ position: [cx + 6, 11, cz + 10], fov: 40 }} dpr={[1, 2]}>
-          <hemisphereLight args={["#ffffff", "#d9d2c5", 1.1]} />
+          <Environment />
+          <hemisphereLight args={["#ffffff", "#d9d2c5", 0.7]} />
           <directionalLight
             position={[cx - 6, 14, cz - 4]}
             intensity={1.7}
@@ -216,7 +323,10 @@ export default function HouseScene({ room, surface, onRoom, onSurface }: HouseSc
           />
           <Camera room={room} />
           <group>
-            <Model />
+            <Model
+              focus={room ? centre(findRoom(room).rect) : centre(FOOTPRINT)}
+              overview={!room}
+            />
             {room ? (
               <RoomView room={findRoom(room)} surface={surface} onSurface={onSurface} />
             ) : (

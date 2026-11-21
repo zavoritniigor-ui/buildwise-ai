@@ -27,6 +27,34 @@ export interface Room {
   shower?: Rect;
 }
 
+export type Side = "north" | "south" | "west" | "east";
+
+/** A door, window or open passage in a wall, from layout.json. */
+export interface Opening {
+  id: string;
+  kind: "door" | "window" | "opening";
+  /** The room whose side holds the opening; centre is measured along that side. */
+  room: RoomId;
+  side: Side;
+  centre: number;
+  width: number;
+  height: number;
+  /** Height of the window's bottom above the floor; 0 for doors. */
+  sill: number;
+  /** For doors: the room the leaf opens into, and which end carries the hinges. */
+  swing?: RoomId;
+  hinge?: "start" | "end";
+  style?: string;
+}
+
+/** A wall line: "h" runs east-west at z = coord, "v" north-south at x = coord. */
+export interface Line {
+  orient: "h" | "v";
+  coord: number;
+  from: number;
+  to: number;
+}
+
 export const WALL_HEIGHT = layout.wallHeight;
 export const WALL_THICKNESS = layout.wallThickness;
 
@@ -37,6 +65,57 @@ export const ROOMS: readonly Room[] = layout.rooms.map((r) => ({
   surfaces: r.surfaces as readonly SurfaceId[],
   shower: r.shower,
 }));
+
+type RawOpening = Omit<Opening, "sill"> & { sill?: number };
+
+export const OPENINGS: readonly Opening[] = (layout.openings as RawOpening[]).map((o) => ({
+  ...o,
+  sill: o.sill ?? 0,
+}));
+
+/** One side of a room as a wall line. */
+export function sideLine(rect: Rect, side: Side): Line {
+  const { x, z, width, depth } = rect;
+  switch (side) {
+    case "north":
+      return { orient: "h", coord: z, from: x, to: x + width };
+    case "south":
+      return { orient: "h", coord: z + depth, from: x, to: x + width };
+    case "west":
+      return { orient: "v", coord: x, from: z, to: z + depth };
+    case "east":
+      return { orient: "v", coord: x + width, from: z, to: z + depth };
+  }
+}
+
+const SIDES: readonly Side[] = ["north", "south", "west", "east"];
+const close = (a: number, b: number) => Math.abs(a - b) < 1e-6;
+
+/** Where an opening sits: its wall line, cut down to the opening's width. */
+export function openingLine(opening: Opening): Line {
+  const line = sideLine(findRoomIn(opening.room), opening.side);
+  return {
+    ...line,
+    from: opening.centre - opening.width / 2,
+    to: opening.centre + opening.width / 2,
+  };
+}
+
+/** The openings in a room's walls, including those it shares with a neighbour. */
+export function roomOpenings(room: Room): Opening[] {
+  return OPENINGS.filter((o) => {
+    const at = openingLine(o);
+    return SIDES.some((side) => {
+      const line = sideLine(room.rect, side);
+      return (
+        line.orient === at.orient &&
+        close(line.coord, at.coord) &&
+        line.from <= at.from + 1e-6 &&
+        at.to <= line.to + 1e-6
+      );
+    });
+  });
+}
 
 export const area = (rect: Rect) => Math.round(rect.width * rect.depth * 100) / 100;
 
@@ -52,49 +131,33 @@ export const FOOTPRINT: Rect = {
   depth: Math.max(...ROOMS.map((r) => r.rect.z + r.rect.depth)),
 };
 
+function findRoomIn(id: RoomId): Rect {
+  const r = layout.rooms.find((room) => room.id === id);
+  if (!r) throw new Error(`Unknown room ${id}`);
+  return { x: r.x, z: r.z, width: r.width, depth: r.depth };
+}
+
 export function findRoom(id: RoomId): Room {
   const room = ROOMS.find((r) => r.id === id);
   if (!room) throw new Error(`Unknown room ${id}`);
   return room;
 }
 
-/** Floor area a surface covers, in square metres. The shower is part of the floor. */
+/**
+ * Area a surface covers, in square metres. The shower is cut out of the floor;
+ * walls are the full room height less the doors, windows and passages in them.
+ */
 export function surfaceArea(room: Room, surface: SurfaceId): number {
   if (surface === "shower") return room.shower ? area(room.shower) : 0;
   if (surface === "floor")
     return Math.round((area(room.rect) - (room.shower ? area(room.shower) : 0)) * 100) / 100;
   const perimeter = 2 * (room.rect.width + room.rect.depth);
-  return Math.round(perimeter * WALL_HEIGHT * 100) / 100;
+  const holes = roomOpenings(room).reduce((sum, o) => sum + o.width * o.height, 0);
+  return Math.round((perimeter * WALL_HEIGHT - holes) * 100) / 100;
 }
 
 /** Length of the floor/wall joint a surface runs along, in metres. */
 export function surfacePerimeter(room: Room, surface: SurfaceId): number {
   const r = surface === "shower" && room.shower ? room.shower : room.rect;
   return Math.round(2 * (r.width + r.depth) * 100) / 100;
-}
-
-/**
- * Wall segments as [x1, z1, x2, z2]. Each shared edge appears once, so the
- * walls between rooms are not drawn twice.
- */
-export function wallSegments(rooms: readonly Room[] = ROOMS): [number, number, number, number][] {
-  const seen = new Set<string>();
-  const segments: [number, number, number, number][] = [];
-  for (const { rect } of rooms) {
-    const { x, z, width, depth } = rect;
-    const edges: [number, number, number, number][] = [
-      [x, z, x + width, z],
-      [x + width, z, x + width, z + depth],
-      [x, z + depth, x + width, z + depth],
-      [x, z, x, z + depth],
-    ];
-    for (const edge of edges) {
-      const key = edge.map((n) => n.toFixed(2)).join(",");
-      if (!seen.has(key)) {
-        seen.add(key);
-        segments.push(edge);
-      }
-    }
-  }
-  return segments;
 }

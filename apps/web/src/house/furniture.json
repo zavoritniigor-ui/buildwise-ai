@@ -1,0 +1,832 @@
+{
+  "_comment": "Furniture and fixtures of the example house, built by tools/house-model/build_house.py. Visual only: clicks never hit it. Each piece is made of parts in local metres: at = [u, v] centre on the floor plan, y = bottom height, size = [width u, depth v, height]. A piece's front faces +v; a placement turns it by rotate degrees (0 front south, 90 west, 180 north, 270 east) and puts its origin at plan [x, z].",
+  "materials": {
+    "fabric_sofa": { "color": "#7d8b84", "roughness": 0.95 },
+    "fabric_light": { "color": "#ece8e0", "roughness": 0.95 },
+    "duvet": { "color": "#a9b8c6", "roughness": 0.95 },
+    "rug": { "color": "#c9b79c", "roughness": 1.0 },
+    "mat_dark": { "color": "#55575a", "roughness": 1.0 },
+    "oak": { "color": "#b9905f", "roughness": 0.6 },
+    "walnut": { "color": "#6b4a33", "roughness": 0.55 },
+    "lacquer": { "color": "#f1f0ec", "roughness": 0.35 },
+    "quartz": { "color": "#dcd9d2", "roughness": 0.25 },
+    "ceramic": { "color": "#fbfbf9", "roughness": 0.12 },
+    "ceramic_shade": { "color": "#e3e6e6", "roughness": 0.15 },
+    "chrome": { "color": "#d0d3d6", "roughness": 0.15, "metallic": 1.0 },
+    "steel": { "color": "#b9bdc1", "roughness": 0.35, "metallic": 0.9 },
+    "black": { "color": "#24262a", "roughness": 0.4 },
+    "mirror": { "color": "#eef2f4", "roughness": 0.02, "metallic": 1.0 },
+    "glass": { "color": "#dcecf0", "roughness": 0.05, "alpha": 0.22 },
+    "terracotta": { "color": "#c0704c", "roughness": 0.8 },
+    "leaf": { "color": "#557d4c", "roughness": 0.85 }
+  },
+  "pieces": {
+    "sofa": [
+      {
+        "shape": "box",
+        "at": [0, 0.05],
+        "y": 0.08,
+        "size": [2.2, 0.8, 0.3],
+        "material": "fabric_sofa",
+        "bevel": 0.03
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.33],
+        "y": 0.38,
+        "size": [2.2, 0.24, 0.47],
+        "material": "fabric_sofa",
+        "bevel": 0.06
+      },
+      {
+        "shape": "box",
+        "at": [-1.0, 0.05],
+        "y": 0.38,
+        "size": [0.2, 0.8, 0.24],
+        "material": "fabric_sofa",
+        "bevel": 0.05
+      },
+      {
+        "shape": "box",
+        "at": [1.0, 0.05],
+        "y": 0.38,
+        "size": [0.2, 0.8, 0.24],
+        "material": "fabric_sofa",
+        "bevel": 0.05
+      },
+      {
+        "shape": "box",
+        "at": [-0.45, 0.08],
+        "y": 0.38,
+        "size": [0.88, 0.62, 0.14],
+        "material": "fabric_sofa",
+        "bevel": 0.05
+      },
+      {
+        "shape": "box",
+        "at": [0.45, 0.08],
+        "y": 0.38,
+        "size": [0.88, 0.62, 0.14],
+        "material": "fabric_sofa",
+        "bevel": 0.05
+      },
+      {
+        "shape": "cylinder",
+        "at": [-1.0, -0.35],
+        "y": 0,
+        "size": [0.04, 0.04, 0.08],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [1.0, -0.35],
+        "y": 0,
+        "size": [0.04, 0.04, 0.08],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [-1.0, 0.4],
+        "y": 0,
+        "size": [0.04, 0.04, 0.08],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [1.0, 0.4],
+        "y": 0,
+        "size": [0.04, 0.04, 0.08],
+        "material": "black"
+      }
+    ],
+    "coffee_table": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.38,
+        "size": [1.1, 0.6, 0.04],
+        "material": "walnut",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [-0.5, -0.25],
+        "y": 0,
+        "size": [0.04, 0.04, 0.38],
+        "material": "walnut"
+      },
+      {
+        "shape": "box",
+        "at": [0.5, -0.25],
+        "y": 0,
+        "size": [0.04, 0.04, 0.38],
+        "material": "walnut"
+      },
+      {
+        "shape": "box",
+        "at": [-0.5, 0.25],
+        "y": 0,
+        "size": [0.04, 0.04, 0.38],
+        "material": "walnut"
+      },
+      {
+        "shape": "box",
+        "at": [0.5, 0.25],
+        "y": 0,
+        "size": [0.04, 0.04, 0.38],
+        "material": "walnut"
+      }
+    ],
+    "living_rug": [
+      { "shape": "box", "at": [0, 0], "y": 0, "size": [2.6, 1.8, 0.012], "material": "rug" }
+    ],
+    "tv_unit": [
+      { "shape": "box", "at": [0, 0], "y": 0, "size": [1.5, 0.34, 0.12], "material": "black" },
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.12,
+        "size": [1.6, 0.4, 0.38],
+        "material": "walnut",
+        "bevel": 0.01
+      },
+      { "shape": "box", "at": [0, -0.05], "y": 0.5, "size": [0.3, 0.2, 0.02], "material": "black" },
+      {
+        "shape": "box",
+        "at": [0, -0.05],
+        "y": 0.52,
+        "size": [0.06, 0.03, 0.08],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.05],
+        "y": 0.58,
+        "size": [1.3, 0.04, 0.75],
+        "material": "black",
+        "bevel": 0.005
+      }
+    ],
+    "plant": [
+      {
+        "shape": "cylinder",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.34, 0.34, 0.38],
+        "material": "terracotta"
+      },
+      { "shape": "sphere", "at": [0, 0], "y": 0.36, "size": [0.6, 0.6, 0.75], "material": "leaf" }
+    ],
+    "floor_lamp": [
+      {
+        "shape": "cylinder",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.28, 0.28, 0.03],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, 0],
+        "y": 0.03,
+        "size": [0.03, 0.03, 1.32],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, 0],
+        "y": 1.3,
+        "size": [0.42, 0.42, 0.32],
+        "material": "fabric_light"
+      }
+    ],
+    "fridge": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.8, 0.75, 1.8],
+        "material": "steel",
+        "bevel": 0.02
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.376],
+        "y": 1.15,
+        "size": [0.78, 0.004, 0.008],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [0.33, 0.39],
+        "y": 1.25,
+        "size": [0.02, 0.03, 0.45],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.33, 0.39],
+        "y": 0.6,
+        "size": [0.02, 0.03, 0.45],
+        "material": "chrome"
+      }
+    ],
+    "counter_north": [
+      { "shape": "box", "at": [0, -0.02], "y": 0, "size": [2.54, 0.55, 0.1], "material": "black" },
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.1,
+        "size": [2.54, 0.6, 0.77],
+        "material": "lacquer",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.01],
+        "y": 0.87,
+        "size": [2.54, 0.63, 0.04],
+        "material": "quartz",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [-0.42, 0.03],
+        "y": 0.91,
+        "size": [0.76, 0.46, 0.004],
+        "material": "steel"
+      },
+      {
+        "shape": "box",
+        "at": [-0.42, 0.03],
+        "y": 0.912,
+        "size": [0.68, 0.38, 0.004],
+        "material": "black"
+      },
+      {
+        "shape": "cylinder",
+        "at": [-0.42, -0.24],
+        "y": 0.91,
+        "size": [0.05, 0.05, 0.3],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [-0.42, -0.14],
+        "y": 1.17,
+        "size": [0.03, 0.22, 0.03],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [-0.9, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.0, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.75, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.775, -0.14],
+        "y": 1.45,
+        "size": [0.99, 0.35, 0.75],
+        "material": "lacquer",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [0.775, 0.04],
+        "y": 1.5,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      }
+    ],
+    "counter_east": [
+      { "shape": "box", "at": [0, -0.02], "y": 0, "size": [1.91, 0.55, 0.1], "material": "black" },
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.1,
+        "size": [1.91, 0.6, 0.77],
+        "material": "lacquer",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.01],
+        "y": 0.87,
+        "size": [1.91, 0.63, 0.04],
+        "material": "quartz",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.02],
+        "y": 0.91,
+        "size": [0.58, 0.51, 0.008],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [-0.6, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.6, 0.305],
+        "y": 0.75,
+        "size": [0.25, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.065],
+        "y": 1.5,
+        "size": [0.6, 0.5, 0.12],
+        "material": "steel",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.2],
+        "y": 1.62,
+        "size": [0.26, 0.22, 0.9],
+        "material": "steel"
+      },
+      {
+        "shape": "box",
+        "at": [-0.6275, -0.14],
+        "y": 1.45,
+        "size": [0.655, 0.35, 0.75],
+        "material": "lacquer",
+        "bevel": 0.004
+      },
+      {
+        "shape": "box",
+        "at": [0.6275, -0.14],
+        "y": 1.45,
+        "size": [0.655, 0.35, 0.75],
+        "material": "lacquer",
+        "bevel": 0.004
+      }
+    ],
+    "dining_table": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.72,
+        "size": [1.4, 0.85, 0.04],
+        "material": "oak",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [-0.64, -0.36],
+        "y": 0,
+        "size": [0.05, 0.05, 0.72],
+        "material": "oak"
+      },
+      {
+        "shape": "box",
+        "at": [0.64, -0.36],
+        "y": 0,
+        "size": [0.05, 0.05, 0.72],
+        "material": "oak"
+      },
+      {
+        "shape": "box",
+        "at": [-0.64, 0.36],
+        "y": 0,
+        "size": [0.05, 0.05, 0.72],
+        "material": "oak"
+      },
+      { "shape": "box", "at": [0.64, 0.36], "y": 0, "size": [0.05, 0.05, 0.72], "material": "oak" }
+    ],
+    "chair": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.43,
+        "size": [0.44, 0.44, 0.04],
+        "material": "oak",
+        "bevel": 0.008
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.2],
+        "y": 0.47,
+        "size": [0.44, 0.04, 0.42],
+        "material": "oak",
+        "bevel": 0.008
+      },
+      {
+        "shape": "box",
+        "at": [-0.19, -0.19],
+        "y": 0,
+        "size": [0.035, 0.035, 0.43],
+        "material": "oak"
+      },
+      {
+        "shape": "box",
+        "at": [0.19, -0.19],
+        "y": 0,
+        "size": [0.035, 0.035, 0.43],
+        "material": "oak"
+      },
+      {
+        "shape": "box",
+        "at": [-0.19, 0.19],
+        "y": 0,
+        "size": [0.035, 0.035, 0.43],
+        "material": "oak"
+      },
+      {
+        "shape": "box",
+        "at": [0.19, 0.19],
+        "y": 0,
+        "size": [0.035, 0.035, 0.43],
+        "material": "oak"
+      }
+    ],
+    "bed": [
+      {
+        "shape": "box",
+        "at": [0, 0.02],
+        "y": 0.1,
+        "size": [1.46, 2.04, 0.25],
+        "material": "walnut",
+        "bevel": 0.02
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.04],
+        "y": 0.35,
+        "size": [1.4, 1.98, 0.22],
+        "material": "fabric_light",
+        "bevel": 0.06
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.32],
+        "y": 0.5,
+        "size": [1.44, 1.4, 0.1],
+        "material": "duvet",
+        "bevel": 0.05
+      },
+      {
+        "shape": "box",
+        "at": [-0.35, -0.72],
+        "y": 0.57,
+        "size": [0.58, 0.4, 0.14],
+        "material": "fabric_light",
+        "bevel": 0.06
+      },
+      {
+        "shape": "box",
+        "at": [0.35, -0.72],
+        "y": 0.57,
+        "size": [0.58, 0.4, 0.14],
+        "material": "fabric_light",
+        "bevel": 0.06
+      },
+      {
+        "shape": "box",
+        "at": [0, -1.0],
+        "y": 0.1,
+        "size": [1.5, 0.08, 1.0],
+        "material": "walnut",
+        "bevel": 0.02
+      },
+      {
+        "shape": "box",
+        "at": [-0.68, -0.95],
+        "y": 0,
+        "size": [0.06, 0.06, 0.1],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [0.68, -0.95],
+        "y": 0,
+        "size": [0.06, 0.06, 0.1],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [-0.68, 0.98],
+        "y": 0,
+        "size": [0.06, 0.06, 0.1],
+        "material": "black"
+      },
+      { "shape": "box", "at": [0.68, 0.98], "y": 0, "size": [0.06, 0.06, 0.1], "material": "black" }
+    ],
+    "nightstand": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.4, 0.38, 0.5],
+        "material": "walnut",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.195],
+        "y": 0.38,
+        "size": [0.12, 0.02, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, -0.04],
+        "y": 0.5,
+        "size": [0.13, 0.13, 0.24],
+        "material": "ceramic"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, -0.04],
+        "y": 0.72,
+        "size": [0.28, 0.28, 0.22],
+        "material": "fabric_light"
+      }
+    ],
+    "wardrobe": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0,
+        "size": [1.1, 0.6, 2.1],
+        "material": "lacquer",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.3],
+        "y": 0.05,
+        "size": [0.006, 0.004, 2.0],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [-0.06, 0.31],
+        "y": 0.9,
+        "size": [0.015, 0.02, 0.3],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.06, 0.31],
+        "y": 0.9,
+        "size": [0.015, 0.02, 0.3],
+        "material": "chrome"
+      }
+    ],
+    "shoe_bench": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.98, 0.33, 0.4],
+        "material": "lacquer",
+        "bevel": 0.005
+      },
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.4,
+        "size": [1.0, 0.35, 0.05],
+        "material": "oak",
+        "bevel": 0.005
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.165],
+        "y": 1.0,
+        "size": [0.6, 0.02, 0.9],
+        "material": "mirror"
+      },
+      {
+        "shape": "box",
+        "at": [0.42, -0.16],
+        "y": 1.75,
+        "size": [0.04, 0.04, 0.04],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [-0.42, -0.16],
+        "y": 1.75,
+        "size": [0.04, 0.04, 0.04],
+        "material": "chrome"
+      }
+    ],
+    "door_mat": [
+      { "shape": "box", "at": [0, 0], "y": 0, "size": [0.9, 0.5, 0.012], "material": "mat_dark" }
+    ],
+    "vanity": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0.2,
+        "size": [1.0, 0.53, 0.62],
+        "material": "walnut",
+        "bevel": 0.008
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.266],
+        "y": 0.5,
+        "size": [0.96, 0.004, 0.006],
+        "material": "black"
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.01],
+        "y": 0.82,
+        "size": [1.02, 0.55, 0.05],
+        "material": "ceramic",
+        "bevel": 0.01
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.03],
+        "y": 0.871,
+        "size": [0.5, 0.36, 0.004],
+        "material": "ceramic_shade"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, -0.2],
+        "y": 0.87,
+        "size": [0.04, 0.04, 0.2],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.14],
+        "y": 1.04,
+        "size": [0.03, 0.12, 0.025],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.255],
+        "y": 1.1,
+        "size": [0.9, 0.02, 0.75],
+        "material": "mirror"
+      }
+    ],
+    "toilet": [
+      {
+        "shape": "cylinder",
+        "at": [0, 0.05],
+        "y": 0,
+        "size": [0.36, 0.48, 0.38],
+        "material": "ceramic"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, 0.06],
+        "y": 0.38,
+        "size": [0.38, 0.48, 0.03],
+        "material": "ceramic"
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.27],
+        "y": 0.38,
+        "size": [0.4, 0.18, 0.4],
+        "material": "ceramic",
+        "bevel": 0.03
+      },
+      {
+        "shape": "box",
+        "at": [0, -0.27],
+        "y": 0.78,
+        "size": [0.42, 0.2, 0.03],
+        "material": "ceramic",
+        "bevel": 0.01
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, -0.27],
+        "y": 0.81,
+        "size": [0.05, 0.05, 0.01],
+        "material": "chrome"
+      }
+    ],
+    "shower_glass": [
+      { "shape": "box", "at": [0, 0], "y": 0.03, "size": [0.84, 0.01, 1.97], "material": "glass" },
+      { "shape": "box", "at": [0, 0], "y": 0.03, "size": [0.84, 0.03, 0.03], "material": "chrome" },
+      {
+        "shape": "box",
+        "at": [0.0, 0],
+        "y": 1.97,
+        "size": [0.84, 0.02, 0.02],
+        "material": "chrome"
+      }
+    ],
+    "shower_fixtures": [
+      { "shape": "box", "at": [0, 0], "y": 1.0, "size": [0.14, 0.015, 0.14], "material": "chrome" },
+      {
+        "shape": "cylinder",
+        "at": [0, 0.03],
+        "y": 1.05,
+        "size": [0.05, 0.05, 0.04],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0, 0.19],
+        "y": 2.05,
+        "size": [0.02, 0.38, 0.02],
+        "material": "chrome"
+      },
+      {
+        "shape": "cylinder",
+        "at": [0, 0.36],
+        "y": 2.03,
+        "size": [0.25, 0.25, 0.012],
+        "material": "chrome"
+      },
+      {
+        "shape": "box",
+        "at": [0.31, 0.55],
+        "y": 0.03,
+        "size": [0.06, 1.0, 0.004],
+        "material": "steel"
+      }
+    ],
+    "towel_bar": [
+      { "shape": "box", "at": [0, 0], "y": 1.1, "size": [0.6, 0.025, 0.025], "material": "chrome" },
+      {
+        "shape": "box",
+        "at": [0, 0.01],
+        "y": 0.6,
+        "size": [0.5, 0.03, 0.5],
+        "material": "fabric_light",
+        "bevel": 0.01
+      }
+    ],
+    "bath_mat": [
+      {
+        "shape": "box",
+        "at": [0, 0],
+        "y": 0,
+        "size": [0.7, 0.45, 0.012],
+        "material": "fabric_light"
+      }
+    ]
+  },
+  "placements": [
+    { "room": "living", "piece": "living_rug", "at": [2.0, 2.9], "rotate": 0 },
+    { "room": "living", "piece": "sofa", "at": [2.0, 3.98], "rotate": 180 },
+    { "room": "living", "piece": "coffee_table", "at": [2.0, 2.85], "rotate": 0 },
+    { "room": "living", "piece": "tv_unit", "at": [2.0, 0.27], "rotate": 0 },
+    { "room": "living", "piece": "plant", "at": [0.42, 4.05], "rotate": 0 },
+    { "room": "living", "piece": "floor_lamp", "at": [3.5, 4.1], "rotate": 0 },
+    { "room": "kitchen", "piece": "fridge", "at": [5.96, 0.45], "rotate": 0 },
+    { "room": "kitchen", "piece": "counter_north", "at": [7.67, 0.375], "rotate": 0 },
+    { "room": "kitchen", "piece": "counter_east", "at": [8.625, 1.645], "rotate": 90 },
+    { "room": "kitchen", "piece": "dining_table", "at": [7.1, 3.35], "rotate": 0 },
+    { "room": "kitchen", "piece": "chair", "at": [6.75, 2.62], "rotate": 0 },
+    { "room": "kitchen", "piece": "chair", "at": [7.45, 2.62], "rotate": 0 },
+    { "room": "kitchen", "piece": "chair", "at": [6.75, 4.08], "rotate": 180 },
+    { "room": "kitchen", "piece": "chair", "at": [7.45, 4.08], "rotate": 180 },
+    { "room": "bedroom", "piece": "bed", "at": [1.1, 5.75], "rotate": 270 },
+    { "room": "bedroom", "piece": "nightstand", "at": [0.25, 4.78], "rotate": 270 },
+    { "room": "bedroom", "piece": "nightstand", "at": [0.25, 6.71], "rotate": 270 },
+    { "room": "bedroom", "piece": "wardrobe", "at": [3.64, 6.39], "rotate": 90 },
+    { "room": "hallway", "piece": "shoe_bench", "at": [5.76, 5.4], "rotate": 90 },
+    { "room": "hallway", "piece": "door_mat", "at": [5.0, 6.6], "rotate": 0 },
+    { "room": "bathroom", "piece": "vanity", "at": [6.75, 4.835], "rotate": 0 },
+    { "room": "bathroom", "piece": "toilet", "at": [8.57, 6.4], "rotate": 90 },
+    { "room": "bathroom", "piece": "shower_glass", "at": [8.52, 5.69], "rotate": 0 },
+    { "room": "bathroom", "piece": "shower_fixtures", "at": [8.55, 4.57], "rotate": 0 },
+    { "room": "bathroom", "piece": "towel_bar", "at": [7.95, 6.925], "rotate": 180 },
+    { "room": "bathroom", "piece": "bath_mat", "at": [7.7, 5.2], "rotate": 90 }
+  ]
+}
