@@ -19,7 +19,9 @@ Each surface a person can click is a separately named mesh:
                                      holes for the doors and windows
     wall__<h|v>_<mm>__<id>_frame     window frames and glass, door frames
     wall__<h|v>_<mm>__<id>_leaf      door leaves, standing open
-    furniture__<room>__<piece>_<n>   furniture and fixtures (furniture.json)
+    fixture__<room>__<piece>_<n>__<item>
+                                     what the builder installs (fixtures.json)
+                                     and the baseboards
 
 The web app treats the model as a picture only and places invisible hit-planes
 from the same layout.json, so this script never has to know about clicks. It
@@ -205,7 +207,7 @@ def flat_material(name: str, spec: dict) -> bpy.types.Material:
 
 class Parts:
     """Collects boxes, cylinders and spheres into one mesh, one material slot
-    per material, so each piece of furniture or joinery is a single object."""
+    per material, so each fixture or piece of joinery is a single object."""
 
     def __init__(self) -> None:
         self.bm = bmesh.new()
@@ -488,17 +490,17 @@ def build_leaf(
     joinery_object(handles, line, o, items["handle"], "handle", **placement)
 
 
-# ---- furniture -------------------------------------------------------------------
+# ---- fixtures --------------------------------------------------------------------
 
 
-def build_furniture(furniture: dict, mats: dict) -> None:
+def build_fixtures(fixtures: dict, mats: dict) -> None:
     """One object per item in each placement, so a faucet is clicked apart
     from the sink cabinet it stands on."""
     import math
 
     counts: dict[str, int] = {}
-    for place in furniture["placements"]:
-        piece = furniture["pieces"][place["piece"]]
+    for place in fixtures["placements"]:
+        piece = fixtures["pieces"][place["piece"]]
         n = counts.get(place["piece"], 0)
         counts[place["piece"]] = n + 1
         by_item: dict[str, Parts] = {}
@@ -518,11 +520,75 @@ def build_furniture(furniture: dict, mats: dict) -> None:
         x, z = place["at"]
         for item, parts in by_item.items():
             parts.object(
-                f"furniture__{place['room']}__{place['piece']}_{n}__{item}",
+                f"fixture__{place['room']}__{place['piece']}_{n}__{item}",
                 location=to_blender(x, z, 0.0),
                 rotation_z=-math.radians(place["rotate"]),
                 extras={"item": item, "room": place["room"]},
             )
+
+
+BASEBOARD_HEIGHT = 0.09
+BASEBOARD_THICKNESS = 0.012
+
+
+def baseboard_runs(room: dict, layout: dict) -> list[tuple[str, float, float, float]]:
+    """Baseboard runs along a room's inner wall faces as (side, face, from, to),
+    skipping door and passage openings and the walls of a shower. Mirrors
+    baseboardRuns() in apps/web/src/house/model.ts."""
+    t = layout["wallThickness"]
+    rooms = {r["id"]: r for r in layout["rooms"]}
+    x, z, w, d = room["x"], room["z"], room["width"], room["depth"]
+    sides = {
+        "north": ("h", z, z + t / 2, x, x + w),
+        "south": ("h", z + d, z + d - t / 2, x, x + w),
+        "west": ("v", x, x + t / 2, z, z + d),
+        "east": ("v", x + w, x + w - t / 2, z, z + d),
+    }
+    shower = room.get("shower")
+    runs = []
+    for side, (orient, coord, face, lo, hi) in sides.items():
+        gaps = []
+        for o in layout.get("openings", []):
+            if o["kind"] == "window":
+                continue
+            o_orient, o_coord = side_line(rooms[o["room"]], o["side"])
+            if o_orient == orient and abs(o_coord - coord) < 1e-6:
+                gaps.append((o["centre"] - o["width"] / 2, o["centre"] + o["width"] / 2))
+        if shower:
+            sx, sz, sw, sd = shower["x"], shower["z"], shower["width"], shower["depth"]
+            touches = {
+                "north": abs(sz - z) < 1e-6,
+                "south": abs(sz + sd - (z + d)) < 1e-6,
+                "west": abs(sx - x) < 1e-6,
+                "east": abs(sx + sw - (x + w)) < 1e-6,
+            }[side]
+            if touches:
+                gaps.append((sx, sx + sw) if orient == "h" else (sz, sz + sd))
+        cursor = lo + t / 2
+        end = hi - t / 2
+        for g0, g1 in sorted(gaps):
+            if g0 > cursor:
+                runs.append((side, face, cursor, min(g0, end)))
+            cursor = max(cursor, g1)
+        if end > cursor:
+            runs.append((side, face, cursor, end))
+    return runs
+
+
+def build_baseboards(layout: dict, mats: dict) -> None:
+    for room in layout["rooms"]:
+        parts = Parts()
+        for side, face, a0, a1 in baseboard_runs(room, layout):
+            inward = BASEBOARD_THICKNESS if side in ("north", "west") else -BASEBOARD_THICKNESS
+            n0, n1 = sorted((face, face + inward))
+            if side in ("north", "south"):
+                plan_box(parts, a0, a1, n0, n1, 0, BASEBOARD_HEIGHT, mats["frame_white"])
+            else:
+                plan_box(parts, n0, n1, a0, a1, 0, BASEBOARD_HEIGHT, mats["frame_white"])
+        parts.object(
+            f"fixture__{room['id']}__baseboard_0__baseboard",
+            extras={"item": "baseboard", "room": room["id"]},
+        )
 
 
 JOINERY = {
@@ -532,12 +598,12 @@ JOINERY = {
 }
 
 
-def build(layout: dict, furniture: dict) -> None:
+def build(layout: dict, fixtures: dict) -> None:
     rooms = layout["rooms"]
     materials = {role: textured_material(role) for role in TEXTURES["sets"]}
     flat = {
         name: flat_material(f"mat_{name}", spec)
-        for name, spec in {**furniture["materials"], **JOINERY}.items()
+        for name, spec in {**fixtures["materials"], **JOINERY}.items()
     }
 
     for room in rooms:
@@ -560,24 +626,25 @@ def build(layout: dict, furniture: dict) -> None:
             )
 
     build_walls(layout, materials[TEXTURES["walls"]], flat)
-    build_furniture(furniture, flat)
+    build_fixtures(fixtures, flat)
+    build_baseboards(layout, flat)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--layout", required=True, type=Path)
     parser.add_argument(
-        "--furniture", type=Path, help="defaults to furniture.json next to the layout"
+        "--fixtures", type=Path, help="defaults to fixtures.json next to the layout"
     )
     parser.add_argument("--out", required=True, type=Path)
     options = parser.parse_args(args_after_dashes())
 
     layout = json.loads(options.layout.read_text(encoding="utf-8"))
-    furniture_path = options.furniture or options.layout.with_name("furniture.json")
-    furniture = json.loads(furniture_path.read_text(encoding="utf-8"))
+    fixtures_path = options.fixtures or options.layout.with_name("fixtures.json")
+    fixtures = json.loads(fixtures_path.read_text(encoding="utf-8"))
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    build(layout, furniture)
+    build(layout, fixtures)
 
     options.out.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.export_scene.gltf(

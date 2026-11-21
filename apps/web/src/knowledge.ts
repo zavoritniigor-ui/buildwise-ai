@@ -137,22 +137,24 @@ export interface Buildup {
 }
 
 export type ItemCategory =
-  | "furniture"
   | "cabinetry"
-  | "appliance"
   | "plumbing"
+  | "electrical"
   | "lighting"
+  | "heating"
+  | "ventilation"
   | "door"
   | "window"
   | "hardware"
-  | "textile"
-  | "decor";
+  | "trim";
 
 /** Something in the house a person can click and go and buy (data/items.yaml). */
 export interface Item {
   id: string;
   name: string;
   category: ItemCategory;
+  /** each: counted in pieces; length: bought by the metre. */
+  measure: "each" | "length";
   /** What to check before buying. */
   summary: string;
   /** The query opened in the retailers' own search. */

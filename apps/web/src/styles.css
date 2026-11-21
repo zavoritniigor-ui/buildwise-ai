@@ -596,3 +596,13 @@ select:focus-visible {
   margin: 0;
   line-height: 1.45;
 }
+
+.surface-picker .list-button {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.sheet > .purchase-lines {
+  margin-top: 12px;
+}

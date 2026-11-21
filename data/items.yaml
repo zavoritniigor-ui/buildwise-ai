@@ -3,69 +3,31 @@
 # with one of these ids (tools/house-model/build_house.py), and the app opens
 # the retailers' own search with `search` (no prices or stock are stored here).
 #
-# category: furniture | cabinetry | appliance | plumbing | lighting | door |
-#           window | hardware | textile | decor
+# What the builder hands over: no loose furniture. The app is for building and
+# renovating, so only the house's structure, finishes and systems are items.
+#
+# category: cabinetry | plumbing | electrical | lighting | heating |
+#           ventilation | door | window | hardware | trim
+# measure:  each (counted, the default) | length (metres, e.g. baseboard)
 # summary:  what to check before buying, in one sentence
 
 items:
-  - id: sofa
-    name: "Sofa"
-    category: furniture
-    summary: "Measure the doorways and hallway it has to pass through, not only the wall it will stand against."
-    search: "sofa"
-  - id: coffee_table
-    name: "Coffee table"
-    category: furniture
-    summary: "Pick a size that leaves a comfortable walkway around it."
-    search: "coffee table"
-  - id: area_rug
-    name: "Area rug"
-    category: textile
-    summary: "Put a non-slip rug pad under it on hard floors."
-    search: "area rug"
-  - id: tv_stand
-    name: "TV stand"
-    category: furniture
-    summary: "Check that it carries the TV's weight and is wider than the TV's base."
-    search: "tv stand"
-  - id: television
-    name: "Television"
-    category: appliance
-    summary: "Measure the distance from the sofa before choosing the screen size."
-    search: "television"
-  - id: planter
-    name: "Planter"
-    category: decor
-    summary: "Choose one with a drainage hole and a saucer to protect the floor."
-    search: "planter"
-  - id: artificial_plant
-    name: "Artificial plant"
-    category: decor
-    summary: "Check its height against the space it has to fill."
-    search: "artificial plant"
-  - id: floor_lamp
-    name: "Floor lamp"
-    category: lighting
-    summary: "Check the bulb base, and that the cord reaches an outlet without crossing a walkway."
-    search: "floor lamp"
-  - id: refrigerator
-    name: "Refrigerator"
-    category: appliance
-    summary: "Measure the opening's width, height and depth, and leave room for the door to open fully."
-    search: "refrigerator"
   - id: base_cabinet
     name: "Kitchen base cabinet"
     category: cabinetry
+    measure: length
     summary: "Base cabinets come in standard widths: plan the run around the sink and the appliances first."
     search: "kitchen base cabinet"
   - id: wall_cabinet
     name: "Kitchen wall cabinet"
     category: cabinetry
+    measure: length
     summary: "Screw it to the studs, never only into the drywall."
     search: "kitchen wall cabinet"
   - id: countertop
     name: "Countertop"
     category: cabinetry
+    measure: length
     summary: "Order it once the base cabinets are installed and level, with the cut-outs for the sink and the cooktop."
     search: "kitchen countertop"
   - id: kitchen_sink
@@ -78,14 +40,9 @@ items:
     category: plumbing
     summary: "Match the number of holes in the sink or the counter."
     search: "kitchen faucet"
-  - id: cooktop
-    name: "Cooktop"
-    category: appliance
-    summary: "Check the power or gas supply it needs and its cut-out size before cutting the counter."
-    search: "cooktop"
   - id: range_hood
     name: "Range hood"
-    category: appliance
+    category: ventilation
     summary: "A hood ducted to the outside works best; make it at least as wide as the cooktop."
     search: "range hood"
   - id: cabinet_pull
@@ -93,71 +50,6 @@ items:
     category: hardware
     summary: "When replacing pulls, match the hole spacing, centre to centre."
     search: "cabinet pull"
-  - id: dining_table
-    name: "Dining table"
-    category: furniture
-    summary: "Leave room behind each chair to pull it out and sit down."
-    search: "dining table"
-  - id: dining_chair
-    name: "Dining chair"
-    category: furniture
-    summary: "Check the seat height against the table height."
-    search: "dining chair"
-  - id: bed_frame
-    name: "Bed frame"
-    category: furniture
-    summary: "Buy it for the mattress size, and check whether it needs a box spring or has slats."
-    search: "bed frame"
-  - id: mattress
-    name: "Mattress"
-    category: textile
-    summary: "Check the size matches the bed frame."
-    search: "mattress"
-  - id: duvet
-    name: "Duvet"
-    category: textile
-    summary: "Choose the size for the mattress and the warmth for the room."
-    search: "duvet"
-  - id: pillow
-    name: "Pillow"
-    category: textile
-    summary: "Choose the firmness for how you sleep."
-    search: "pillow"
-  - id: nightstand
-    name: "Nightstand"
-    category: furniture
-    summary: "A top about level with the mattress is the easiest to reach."
-    search: "nightstand"
-  - id: table_lamp
-    name: "Table lamp"
-    category: lighting
-    summary: "Check the bulb base and where the switch is."
-    search: "table lamp"
-  - id: wardrobe
-    name: "Wardrobe"
-    category: furniture
-    summary: "Anchor tall furniture to the wall so it cannot tip over."
-    search: "wardrobe"
-  - id: storage_bench
-    name: "Entryway storage bench"
-    category: furniture
-    summary: "Measure the depth so it leaves the door free to open."
-    search: "storage bench"
-  - id: wall_mirror
-    name: "Wall mirror"
-    category: decor
-    summary: "Hang a heavy mirror on studs or on anchors rated for its weight."
-    search: "wall mirror"
-  - id: coat_hook
-    name: "Coat hook"
-    category: hardware
-    summary: "Screw it into a stud or use anchors rated for the load."
-    search: "coat hook"
-  - id: door_mat
-    name: "Door mat"
-    category: textile
-    summary: "Choose one thin enough for the door to open over it."
-    search: "door mat"
   - id: bathroom_vanity
     name: "Bathroom vanity"
     category: cabinetry
@@ -175,7 +67,7 @@ items:
     search: "bathroom faucet"
   - id: bathroom_mirror
     name: "Bathroom mirror"
-    category: decor
+    category: hardware
     summary: "Pick one no wider than the vanity and fix it to studs or rated anchors."
     search: "bathroom mirror"
   - id: toilet
@@ -208,16 +100,6 @@ items:
     category: hardware
     summary: "Fix it into studs or with anchors rated for pulling loads."
     search: "towel bar"
-  - id: bath_towel
-    name: "Bath towel"
-    category: textile
-    summary: "Choose the size and the weight of the cotton."
-    search: "bath towel"
-  - id: bath_mat
-    name: "Bath mat"
-    category: textile
-    summary: "Choose one with a non-slip backing."
-    search: "bath mat"
   - id: interior_door
     name: "Prehung interior door"
     category: door
@@ -253,3 +135,54 @@ items:
     category: door
     summary: "Measure both sides of the opening; casing is sold in lengths to cut at 45°."
     search: "door casing moulding"
+  - id: duplex_receptacle
+    name: "Duplex receptacle"
+    category: electrical
+    summary: "Match the circuit's amperage (15 A or 20 A) and choose tamper-resistant receptacles."
+    search: "tamper resistant receptacle"
+  - id: gfci_receptacle
+    name: "GFCI receptacle"
+    category: electrical
+    summary: "Near a sink, a ground-fault receptacle protects against shocks, and also protects the receptacles wired after it."
+    search: "gfci receptacle"
+  - id: light_switch
+    name: "Light switch"
+    category: electrical
+    summary: "Use a 3-way switch where a light is controlled from two places; a dimmer needs dimmable bulbs."
+    search: "light switch"
+  - id: thermostat
+    name: "Line-voltage thermostat"
+    category: heating
+    summary: "An electric baseboard needs a line-voltage thermostat rated for the heater's wattage."
+    search: "line voltage thermostat"
+  - id: baseboard_heater
+    name: "Electric baseboard heater"
+    category: heating
+    summary: "Size it to the room's heat loss, not only its area, and keep it clear of curtains."
+    search: "electric baseboard heater"
+  - id: electrical_panel
+    name: "Electrical panel"
+    category: electrical
+    summary: "Only a licensed electrician may install or change it; plan spare spaces for future circuits."
+    search: "electrical panel"
+  - id: ceiling_light
+    name: "Ceiling light fixture"
+    category: lighting
+    summary: "Check the fixture's weight against the electrical box, and choose the colour temperature of the light."
+    search: "ceiling light fixture"
+  - id: smoke_co_alarm
+    name: "Smoke and CO alarm"
+    category: electrical
+    summary: "Hard-wired, interconnected alarms sound together; a combined unit also detects carbon monoxide."
+    search: "smoke carbon monoxide alarm"
+  - id: bathroom_exhaust_fan
+    name: "Bathroom exhaust fan"
+    category: ventilation
+    summary: "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic."
+    search: "bathroom exhaust fan"
+  - id: baseboard
+    name: "Baseboard"
+    category: trim
+    measure: length
+    summary: "Buy a little more than the measured length to allow for the corner cuts."
+    search: "baseboard moulding"
