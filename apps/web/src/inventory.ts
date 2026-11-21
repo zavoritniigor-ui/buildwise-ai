@@ -16,6 +16,7 @@ import {
   surfacePerimeter,
 } from "./house/model";
 import { type Item, type ItemCategory, KNOWLEDGE, buildupForSurface, findItem } from "./knowledge";
+import { plumbingAmounts } from "./plumbing";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 
 export interface InventoryLine {
@@ -75,6 +76,8 @@ export function inventory(rooms: readonly RoomId[]): InventoryLine[] {
   for (const opening of OPENINGS) {
     if (openings.has(opening)) for (const id of openingItems(opening)) add(id, 1);
   }
+
+  for (const [id, n] of plumbingAmounts(rooms)) add(id, n);
 
   for (const room of rooms) {
     const length = baseboardRuns(findRoom(room)).reduce((sum, r) => sum + (r.to - r.from), 0);

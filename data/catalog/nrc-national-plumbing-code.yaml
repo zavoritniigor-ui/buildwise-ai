@@ -1,0 +1,23 @@
+# National Plumbing Code of Canada 2020, published by the National Research
+# Council. Quebec's Construction Code, Chapter III Plumbing, adopts it with
+# Quebec amendments. Cited by page of the PDF.
+#
+# Status: documents only; apps/web/src/house/plumbing.json and
+# apps/web/src/plumbing.ts follow the cited tables.
+
+manufacturer:
+  name: National Research Council Canada
+  brand: NRC
+  website: https://nrc.canada.ca
+
+documents:
+  - id: npc-2020
+    type: building_code
+    title: National Plumbing Code of Canada 2020
+    url: https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf
+    version: 2020, 1st printing
+    pages: 241
+    sha256: 64180d9de6dd1e9ec69f9752e9010c7129274b9b3f7e1096f945468575ede085
+    retrieved_on: 2026-11-21
+
+categories: []

@@ -6,7 +6,7 @@ const amounts = (rooms: Parameters<typeof inventory>[0]) =>
   Object.fromEntries(inventory(rooms).map((l) => [l.item.id, l.amount]));
 
 test("the bathroom list counts each fixture, device and opening", () => {
-  expect(amounts(["bathroom"])).toEqual({
+  expect(amounts(["bathroom"])).toMatchObject({
     interior_door: 1,
     door_lever: 1,
     window: 1,
@@ -47,4 +47,11 @@ test("a door between two rooms is bought once for the whole house", () => {
   expect(house.entry_door).toBe(1);
   expect(house.window).toBe(6);
   expect(house.smoke_co_alarm).toBe(2);
+});
+
+test("the bathroom list includes the plumbing rough-in", () => {
+  const bathroom = amounts(["bathroom"]);
+  expect(bathroom.abs_pipe_3).toBe(4.22);
+  expect(bathroom.pex_pipe_1_2).toBe(6.93);
+  expect(bathroom.p_trap).toBe(1);
 });

@@ -19,6 +19,7 @@ export function App() {
   const [surface, setSurface] = useState<SurfaceId | null>(null);
   const [selection, setSelection] = useState<Selection | null>(null);
   const [listing, setListing] = useState(false);
+  const [xray, setXray] = useState(false);
   /** the technology picked per "room.surface" */
   const [choices, setChoices] = useState<Record<string, string>>({});
 
@@ -51,6 +52,7 @@ export function App() {
               room={room}
               surface={surface}
               selected={selection?.object ?? null}
+              xray={xray}
               onRoom={selectRoom}
               onSurface={selectSurface}
               onItem={selectItem}
@@ -127,6 +129,16 @@ export function App() {
                 {t.surfaces[s]}
               </button>
             ))}
+          {has3D && (
+            <button
+              type="button"
+              className="list-button"
+              aria-pressed={xray}
+              onClick={() => setXray((on) => !on)}
+            >
+              {t.showPipes}
+            </button>
+          )}
           <button
             type="button"
             className="list-button"

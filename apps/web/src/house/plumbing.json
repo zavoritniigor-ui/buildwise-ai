@@ -1,0 +1,249 @@
+{
+  "_comment": "Plumbing rough-in of the example house: water supply (PEX) and drain-waste-vent (ABS) runs as polylines of [x, y, z] points in metres (plan x east, z south, y up from the finished floor). Built in 3D by tools/house-model/build_house.py and counted by apps/web/src/plumbing.ts: pipe length per size, an elbow at every bend, a tee where a run ends or starts on another run, and supports at the spacing the National Plumbing Code sets for horizontal piping. Fittings at the fixtures are listed explicitly. Sizes follow NPC 2020 Table 2.4.9.3: lavatory 1-1/4 in minimum (1-1/2 in used), shower 2 in (9.5 to 20 L/min), water closet 3 in.",
+  "systems": {
+    "cold": {
+      "color": "#2f6fb5"
+    },
+    "hot": {
+      "color": "#c0392b"
+    },
+    "drain": {
+      "color": "#2b2b2b"
+    },
+    "vent": {
+      "color": "#4a4a4a"
+    }
+  },
+  "pipes": {
+    "pex_pipe_3_4": {
+      "radius": 0.011,
+      "elbow": "pex_elbow_3_4",
+      "tee": "pex_tee",
+      "support": "pex_pipe_clip"
+    },
+    "pex_pipe_1_2": {
+      "radius": 0.008,
+      "elbow": "pex_elbow_1_2",
+      "tee": "pex_tee",
+      "support": "pex_pipe_clip"
+    },
+    "abs_pipe_3": {
+      "radius": 0.045,
+      "elbow": "abs_elbow_3",
+      "tee": "abs_sanitary_tee",
+      "support": "abs_pipe_hanger"
+    },
+    "abs_pipe_2": {
+      "radius": 0.03,
+      "elbow": "abs_elbow_2",
+      "tee": "abs_sanitary_tee",
+      "support": "abs_pipe_hanger"
+    },
+    "abs_pipe_1_1_2": {
+      "radius": 0.024,
+      "elbow": "abs_elbow_1_1_2",
+      "tee": "abs_sanitary_tee",
+      "support": "abs_pipe_hanger"
+    }
+  },
+  "supportSpacing": {
+    "pex_pipe_clip": 0.8,
+    "abs_pipe_hanger": 1.2
+  },
+  "runs": [
+    {
+      "id": "stack",
+      "room": "bathroom",
+      "system": "drain",
+      "pipe": "abs_pipe_3",
+      "points": [
+        [9.0, -0.3, 6.0],
+        [9.0, 2.9, 6.0]
+      ]
+    },
+    {
+      "id": "toilet_drain",
+      "room": "bathroom",
+      "system": "drain",
+      "pipe": "abs_pipe_3",
+      "points": [
+        [8.635, 0, 6.4],
+        [8.635, -0.25, 6.4],
+        [8.635, -0.25, 6.0],
+        [9.0, -0.25, 6.0]
+      ]
+    },
+    {
+      "id": "shower_drain",
+      "room": "bathroom",
+      "system": "drain",
+      "pipe": "abs_pipe_2",
+      "points": [
+        [8.86, 0, 5.12],
+        [8.86, -0.18, 5.12],
+        [8.86, -0.18, 6.0],
+        [9.0, -0.18, 6.0]
+      ]
+    },
+    {
+      "id": "vanity_drain",
+      "room": "bathroom",
+      "system": "drain",
+      "pipe": "abs_pipe_1_1_2",
+      "points": [
+        [6.75, 0.45, 4.6],
+        [6.75, 0.45, 4.5],
+        [6.75, -0.12, 4.5],
+        [6.75, -0.12, 5.9],
+        [9.0, -0.12, 5.9],
+        [9.0, -0.12, 6.0]
+      ]
+    },
+    {
+      "id": "vanity_vent",
+      "room": "bathroom",
+      "system": "vent",
+      "pipe": "abs_pipe_1_1_2",
+      "points": [
+        [6.75, 0.45, 4.5],
+        [6.75, 2.75, 4.5],
+        [9.0, 2.75, 4.5],
+        [9.0, 2.75, 6.0]
+      ]
+    },
+    {
+      "id": "cold_main",
+      "room": "bathroom",
+      "system": "cold",
+      "pipe": "pex_pipe_3_4",
+      "points": [
+        [6.3, -0.4, 4.47],
+        [6.3, -0.15, 4.47],
+        [8.85, -0.15, 4.47]
+      ]
+    },
+    {
+      "id": "hot_main",
+      "room": "bathroom",
+      "system": "hot",
+      "pipe": "pex_pipe_3_4",
+      "points": [
+        [6.4, -0.4, 4.53],
+        [6.4, -0.15, 4.53],
+        [8.6, -0.15, 4.53]
+      ]
+    },
+    {
+      "id": "vanity_hot",
+      "room": "bathroom",
+      "system": "hot",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [6.6, -0.15, 4.53],
+        [6.6, 0.55, 4.53]
+      ]
+    },
+    {
+      "id": "vanity_cold",
+      "room": "bathroom",
+      "system": "cold",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [6.9, -0.15, 4.47],
+        [6.9, 0.55, 4.47]
+      ]
+    },
+    {
+      "id": "shower_hot",
+      "room": "bathroom",
+      "system": "hot",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [8.5, -0.15, 4.53],
+        [8.5, 1.0, 4.53]
+      ]
+    },
+    {
+      "id": "shower_cold",
+      "room": "bathroom",
+      "system": "cold",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [8.6, -0.15, 4.47],
+        [8.6, 1.0, 4.47]
+      ]
+    },
+    {
+      "id": "shower_riser",
+      "room": "bathroom",
+      "system": "hot",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [8.55, 1.1, 4.5],
+        [8.55, 2.05, 4.5]
+      ]
+    },
+    {
+      "id": "toilet_cold",
+      "room": "bathroom",
+      "system": "cold",
+      "pipe": "pex_pipe_1_2",
+      "points": [
+        [8.75, -0.15, 4.47],
+        [8.75, -0.15, 6.15],
+        [9.0, -0.15, 6.15],
+        [9.0, 0.2, 6.15]
+      ]
+    }
+  ],
+  "fittings": [
+    {
+      "room": "bathroom",
+      "item": "pex_stub_elbow",
+      "count": 4,
+      "note": "vanity hot and cold, toilet, shower head"
+    },
+    {
+      "room": "bathroom",
+      "item": "shutoff_valve",
+      "count": 3,
+      "note": "vanity hot and cold, toilet"
+    },
+    {
+      "room": "bathroom",
+      "item": "faucet_supply_line",
+      "count": 3,
+      "note": "vanity hot and cold, toilet"
+    },
+    {
+      "room": "bathroom",
+      "item": "p_trap",
+      "count": 1,
+      "note": "vanity, 1-1/4 in"
+    },
+    {
+      "room": "bathroom",
+      "item": "closet_flange",
+      "count": 1,
+      "note": "toilet, 3 in"
+    },
+    {
+      "room": "bathroom",
+      "item": "toilet_wax_ring",
+      "count": 1,
+      "note": "toilet seal with closet bolts"
+    },
+    {
+      "room": "bathroom",
+      "item": "abs_cement",
+      "count": 1,
+      "note": "one can for the bathroom's ABS joints"
+    },
+    {
+      "room": "bathroom",
+      "item": "roof_vent_flashing",
+      "count": 1,
+      "note": "where the stack leaves the roof"
+    }
+  ]
+}

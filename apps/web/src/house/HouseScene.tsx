@@ -47,6 +47,8 @@ export interface HouseSceneProps {
   surface: SurfaceId | null;
   /** The model object of the selected item, highlighted in the scene. */
   selected: string | null;
+  /** Lower every wall and see through the floors, to show the pipes. */
+  xray?: boolean;
   onRoom: (room: RoomId) => void;
   onSurface: (surface: SurfaceId) => void;
   onItem: (selection: Selection) => void;
@@ -96,6 +98,7 @@ function moveCuts(
   eye: Vector3,
   focus: [number, number],
   overview: boolean,
+  xray: boolean,
   delta: number,
 ) {
   const step = Math.min(1, delta * 6);
@@ -108,7 +111,9 @@ function moveCuts(
       Math.abs(offset) > 0.3 && offset * toward > 0 && Math.abs(toward) > Math.abs(offset);
     // Over the whole house only the far outside walls stay up, so every room shows.
     const far = offset * toward < 0 && Math.abs(offset) > 0.3;
-    const keep = overview ? far && isOutside(wall) : !between;
+    // showing the pipes lowers every wall; over the whole house only the far
+    // outside walls stay up, so every room shows
+    const keep = xray ? false : overview ? far && isOutside(wall) : !between;
     const target = keep ? FULL_HEIGHT : CUT_HEIGHT;
     wall.plane.constant += (target - wall.plane.constant) * step;
   }
@@ -172,6 +177,16 @@ function localSize(node: Object3D): [number, number, number] {
   return [wide ?? 0, deep ?? 0, size.y].map((m) => Math.round(m * 100)) as [number, number, number];
 }
 
+/** Makes the floors translucent so pipes below them show. */
+function seeThrough(floors: Material[], on: boolean) {
+  for (const material of floors) {
+    material.transparent = on;
+    material.opacity = on ? 0.3 : 1;
+    material.depthWrite = !on;
+    material.needsUpdate = true;
+  }
+}
+
 /** Tints the hovered and the selected object towards the accent colour; an
  * emissive glow would not show on white porcelain or paint. */
 function paint(items: ItemNode[], hovered: string | null, selected: string | null) {
@@ -210,6 +225,7 @@ function Model({
   room,
   focus,
   selected,
+  xray,
   onRoom,
   onSurface,
   onItem,
@@ -217,15 +233,18 @@ function Model({
   room: RoomId | null;
   focus: [number, number];
   selected: string | null;
+  /** lower every wall and see through the floors, to show the pipes */
+  xray: boolean;
   onRoom: (room: RoomId) => void;
   onSurface: (surface: SurfaceId) => void;
   onItem: (selection: Selection) => void;
 }) {
   const { scene } = useGLTF(houseUrl);
   const [hovered, setHovered] = useState<string | null>(null);
-  const { model, walls, items } = useMemo(() => {
+  const { model, walls, items, floors } = useMemo(() => {
     const clone = scene.clone(true);
     const pieces: WallPiece[] = [];
+    const floorMaterials: Material[] = [];
     const tagged = (n: Object3D | null): boolean =>
       !!n && (typeof n.userData.item === "string" || tagged(n.parent));
     clone.traverse((node) => {
@@ -233,6 +252,15 @@ function Model({
       if (!mesh.isMesh) return;
       mesh.castShadow = true;
       mesh.receiveShadow = true;
+      if (/^(floor|shower)__/.test(mesh.name)) {
+        const own = (m: Material) => {
+          const copy = m.clone();
+          floorMaterials.push(copy);
+          return copy;
+        };
+        mesh.material = Array.isArray(mesh.material) ? mesh.material.map(own) : own(mesh.material);
+        return;
+      }
       const line = wallLine(mesh);
       if (!line && !tagged(mesh)) return;
       const plane = line ? new Plane(new Vector3(0, -1, 0), FULL_HEIGHT) : null;
@@ -262,12 +290,13 @@ function Model({
       });
       found.push({ node, item: node.userData.item, rooms: itemRooms(node.userData), materials });
     });
-    return { model: clone, walls: pieces, items: found };
+    return { model: clone, walls: pieces, items: found, floors: floorMaterials };
   }, [scene]);
   const byNode = useMemo(() => new Map(items.map((i) => [i.node, i])), [items]);
 
-  useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, !room, delta));
+  useFrame(({ camera }, delta) => moveCuts(walls, camera.position, focus, !room, xray, delta));
   useEffect(() => paint(items, hovered, selected), [items, hovered, selected]);
+  useEffect(() => seeThrough(floors, xray), [floors, xray]);
   useEffect(() => () => cursor(false), []);
 
   const roomWall = (line: ReturnType<typeof wallLine>, point: Vector3): boolean => {
@@ -469,6 +498,7 @@ export default function HouseScene({
   room,
   surface,
   selected,
+  xray = false,
   onRoom,
   onSurface,
   onItem,
@@ -497,6 +527,7 @@ export default function HouseScene({
               room={room}
               focus={room ? centre(findRoom(room).rect) : centre(FOOTPRINT)}
               selected={selected}
+              xray={xray}
               onRoom={onRoom}
               onSurface={onSurface}
               onItem={onItem}
