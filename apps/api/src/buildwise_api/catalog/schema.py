@@ -205,7 +205,7 @@ BuildupRole = Literal[
 
 class Package(_Strict):
     size: Decimal = Field(gt=0)
-    kind: Literal["bag", "roll", "box", "pail", "can", "sheet"]
+    kind: Literal["bag", "roll", "box", "pail", "can", "sheet", "coil", "length"]
 
 
 class Quantity(_Strict):
@@ -302,6 +302,8 @@ class Item(_Strict):
     """each: counted in pieces; length: bought by the metre, such as baseboard."""
     summary: str
     search: str = Field(min_length=2)
+    slot: str | None = None
+    """A product slot (products.yaml item_products): the person may pick the brand."""
 
 
 class ItemFile(_Strict):
@@ -340,21 +342,48 @@ class Product(_Strict):
         return self
 
 
+class ItemPackage(_Strict):
+    """How one item is sold by this product: its package and the store search."""
+
+    package: Package
+    search: str = Field(min_length=2)
+
+
+class ItemProduct(_Strict):
+    """A brand that can supply items of the house, such as pipe or cable."""
+
+    id: str = Field(pattern=r"^[a-z][a-z0-9-]*$")
+    slot: str
+    brand: str
+    name: str
+    source: SourceRef
+    """The data-sheet page that gives the packages."""
+    items: dict[str, ItemPackage] = Field(min_length=1)
+    swaps: dict[str, str] = Field(default_factory=dict)
+    """Items this product needs in place of others, e.g. its own fitting rings."""
+
+
 class ProductFile(_Strict):
     slots: dict[str, Slot]
     products: list[Product] = Field(min_length=1)
+    item_products: list[ItemProduct] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:
-        ids = [p.id for p in self.products]
+        every: list[Product | ItemProduct] = [*self.products, *self.item_products]
+        ids = [p.id for p in every]
         if len(ids) != len(set(ids)):
             raise ValueError("duplicate product ids")
-        for product in self.products:
+        for product in every:
             if product.slot not in self.slots:
                 raise ValueError(f"product {product.id!r} uses unknown slot {product.slot!r}")
         for slot in self.slots:
-            if not any(p.slot == slot for p in self.products):
+            if not any(p.slot == slot for p in every):
                 raise ValueError(f"slot {slot!r} has no product")
+        layer_slots = {p.slot for p in self.products}
+        for item_product in self.item_products:
+            if item_product.slot in layer_slots:
+                raise ValueError(f"slot {item_product.slot!r} mixes layer and item products")
         return self
 
 

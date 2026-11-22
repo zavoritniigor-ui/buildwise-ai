@@ -26,10 +26,44 @@ def _product(pid: str, slot: str = "paint", basis: str = "manufacturer") -> dict
 
 def test_every_slot_offers_several_products_with_cited_rates() -> None:
     products = load_products(DATA_DIR)
+    item_slots = {p.slot for p in products.item_products}
     for slot in products.slots:
+        if slot in item_slots:
+            continue
         offered = [p for p in products.products if p.slot == slot]
         assert len(offered) >= 2, slot
         assert all(p.quantity.source is not None for p in offered)
+
+
+def test_pipe_and_cable_brands_sell_in_their_data_sheet_packages() -> None:
+    products = {p.id: p for p in load_products(DATA_DIR).item_products}
+    for slot in ("nmd90-cable", "pex-pipe", "abs-pipe"):
+        assert len([p for p in products.values() if p.slot == slot]) >= 2, slot
+    assert products["nexans-nmd90-canadex"].items["nmd90_cable"].package.size == Decimal(75)
+    assert products["sharkbite-pex-b"].items["pex_pipe_1_2"].package.size == Decimal("30.48")
+    assert products["ipex-abs-cell-core"].items["abs_pipe_3"].package.size == Decimal("3.66")
+    # PEX-a listed to ASTM F1960 takes expansion rings, not crimp rings
+    assert products["uponor-aquapex-white"].swaps == {"pex_crimp_ring": "pex_expansion_ring"}
+    assert products["sharkbite-pex-b"].swaps == {}
+
+
+def test_an_item_slot_cannot_mix_with_layer_products() -> None:
+    item_product = {
+        "id": "pipe-x",
+        "slot": "paint",
+        "brand": "B",
+        "name": "N",
+        "source": {"document": "d", "page": 1},
+        "items": {"abs_pipe_3": {"package": {"size": 3.66, "kind": "length"}, "search": "pipe"}},
+    }
+    with pytest.raises(ValidationError, match="mixes"):
+        ProductFile.model_validate(
+            {
+                "slots": {"paint": {"name": "Paint"}},
+                "products": [_product("p1")],
+                "item_products": [item_product],
+            }
+        )
 
 
 def test_paint_and_membrane_rates_follow_their_data_sheets() -> None:

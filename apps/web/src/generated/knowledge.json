@@ -50,6 +50,11 @@
       "url": "https://www.custombuildingproducts.com/wp-content/uploads/Polyblend-Plus-TDS-8-14-26.pdf",
       "version": "8-14-26"
     },
+    "ipex-plumbing-catalogue-ca": {
+      "title": "IPEX Plumbing and Mechanical Product Catalogue (Canada)",
+      "url": "https://ipexna.com/wp-content/uploads/2026/09/catalogue-caen-ipex-mechanical-systems.pdf",
+      "version": "2026-09-03"
+    },
     "hydro-ban-ds": {
       "title": "HYDRO BAN Data Sheet (DS-663)",
       "url": "https://cdnmdm.laticrete.com/Datasheet/NA/40/Datasheet_NA_en_40.pdf",
@@ -115,6 +120,11 @@
       "url": "https://cdnmedia.mapei.com/docs/librariesprovider65/products-documents/1_3002199_mapeguard-wp-200_en-ca_17416d6edb854ea085f03f5e403d3a22.pdf",
       "version": "2026-02-05"
     },
+    "nexans-nmd90-canadex-sheet": {
+      "title": "NMD90 CANADEX Product Sheet (sizes, colours and spool sizes)",
+      "url": "https://www.nexans.ca/.rest/eservice/dam/v1/file/259277/Nexans%20NMD90%20Canadex.pdf",
+      "version": "2024-08-06"
+    },
     "npc-2020": {
       "title": "National Plumbing Code of Canada 2020",
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
@@ -169,6 +179,31 @@
       "title": "Schluter-Shower System Installation Handbook",
       "url": "https://assets.schluter.com/asset/570120892212/document_i2tt9fh4sp2n562jmirhppbv4o/shower-system-installation-handbook.pdf",
       "version": "04/2026"
+    },
+    "sharkbite-pex-b-spec": {
+      "title": "SharkBite PEX-b Tubing Spec Sheet (Red, White, Blue)",
+      "url": "https://rwcamer.bynder.com/m/1d4d62e72c7416ef/original/SharkBite-PEX-b-Spec-Sheet.pdf",
+      "version": "Rev 4.0, 2026-07-15"
+    },
+    "southwire-nmd90-14-2-246ft": {
+      "title": "14-2 CU NMD-90 White Jacket W/G CSA 246 ft (Southwire #47174875, SPEC 22050)",
+      "url": "https://www.southwire.com/ca/en-ca/wire-cable/building-wire/nmd90-copper-simpull-sup-sup-romex-sup-sup-brand/p/47174875",
+      "version": "SPEC 22050, revision 1.000.013, 2025-08-10"
+    },
+    "uponor-aquapex-white-coils": {
+      "title": "Uponor Submittal, Uponor AquaPEX white coils",
+      "url": "https://www.uponor.com/en-ca/getsubmittalpdf/22723/standard/Uponor%C2%A0Submittal%C2%A0%7C%20Uponor%20AquaPEX%20white%20coils",
+      "version": "2026-11-21"
+    },
+    "uponor-propex-rings-red": {
+      "title": "Uponor Submittal, ProPEX rings, red",
+      "url": "https://www.uponor.com/en-ca/getsubmittalpdf/488320/standard/Uponor%C2%A0Submittal%C2%A0%7C%20ProPEX%20rings,%20red",
+      "version": "2026-11-21"
+    },
+    "wavin-abs-dwv-foam-core-ca": {
+      "title": "ABS DWV Foam Core Pipe Specification Sheet (Canada)",
+      "url": "https://blog.wavin.com/hubfs/WA_ABSDWV%20FC%20Spec%20Sheet%20-%20CDA.pdf",
+      "version": "2024-02"
     }
   },
   "conditions": {
@@ -6454,7 +6489,8 @@
       "category": "plumbing",
       "measure": "length",
       "summary": "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally.",
-      "search": "PEX pipe 3/4"
+      "search": "PEX pipe 3/4",
+      "slot": "pex-pipe"
     },
     {
       "id": "pex_pipe_1_2",
@@ -6462,7 +6498,8 @@
       "category": "plumbing",
       "measure": "length",
       "summary": "Buy the same PEX type (A, B or C) as the fittings and tools you will use.",
-      "search": "PEX pipe 1/2"
+      "search": "PEX pipe 1/2",
+      "slot": "pex-pipe"
     },
     {
       "id": "pex_elbow_3_4",
@@ -6497,6 +6534,14 @@
       "search": "PEX crimp ring"
     },
     {
+      "id": "pex_expansion_ring",
+      "name": "ProPEX expansion ring",
+      "category": "plumbing",
+      "measure": "each",
+      "summary": "PEX-a pipe such as Uponor AquaPEX is joined by expanding the pipe end with a ring over it; one ring per pipe end, in the pipe's size.",
+      "search": "Uponor ProPEX ring"
+    },
+    {
       "id": "pex_pipe_clip",
       "name": "PEX pipe clip",
       "category": "plumbing",
@@ -6518,7 +6563,8 @@
       "category": "plumbing",
       "measure": "length",
       "summary": "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.",
-      "search": "ABS pipe 3"
+      "search": "ABS pipe 3",
+      "slot": "abs-pipe"
     },
     {
       "id": "abs_pipe_2",
@@ -6526,7 +6572,8 @@
       "category": "plumbing",
       "measure": "length",
       "summary": "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe.",
-      "search": "ABS pipe 2"
+      "search": "ABS pipe 2",
+      "slot": "abs-pipe"
     },
     {
       "id": "abs_pipe_1_1_2",
@@ -6534,7 +6581,8 @@
       "category": "plumbing",
       "measure": "length",
       "summary": "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory.",
-      "search": "ABS pipe 1 1/2"
+      "search": "ABS pipe 1 1/2",
+      "slot": "abs-pipe"
     },
     {
       "id": "abs_elbow_3",
@@ -6654,7 +6702,8 @@
       "category": "electrical",
       "measure": "length",
       "summary": "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.",
-      "search": "NMD90 14/2"
+      "search": "NMD90 14/2",
+      "slot": "nmd90-cable"
     }
   ],
   "slots": {
@@ -6672,6 +6721,15 @@
     },
     "tile-grout": {
       "name": "Tile grout"
+    },
+    "nmd90-cable": {
+      "name": "NMD90 cable"
+    },
+    "pex-pipe": {
+      "name": "PEX pipe"
+    },
+    "abs-pipe": {
+      "name": "ABS drain pipe"
     }
   },
   "products": [
@@ -7094,6 +7152,206 @@
       }
     }
   ],
+  "itemProducts": [
+    {
+      "id": "nexans-nmd90-canadex",
+      "slot": "nmd90-cable",
+      "brand": "Nexans",
+      "name": "NMD90 CANADEX 14/2",
+      "source": {
+        "document": "nexans-nmd90-canadex-sheet",
+        "page": 1
+      },
+      "items": {
+        "nmd90_cable": {
+          "package": {
+            "size": 75,
+            "kind": "coil"
+          },
+          "search": "Nexans NMD90 CANADEX 14/2 75m"
+        }
+      },
+      "swaps": {}
+    },
+    {
+      "id": "southwire-romex-nmd90",
+      "slot": "nmd90-cable",
+      "brand": "Southwire",
+      "name": "Romex SIMpull NMD90 14/2",
+      "source": {
+        "document": "southwire-nmd90-14-2-246ft",
+        "page": 1
+      },
+      "items": {
+        "nmd90_cable": {
+          "package": {
+            "size": 75,
+            "kind": "coil"
+          },
+          "search": "Southwire Romex SIMpull NMD90 14/2 75m"
+        }
+      },
+      "swaps": {}
+    },
+    {
+      "id": "sharkbite-pex-b",
+      "slot": "pex-pipe",
+      "brand": "SharkBite",
+      "name": "PEX-b",
+      "source": {
+        "document": "sharkbite-pex-b-spec",
+        "page": 2
+      },
+      "items": {
+        "pex_pipe_1_2": {
+          "package": {
+            "size": 30.48,
+            "kind": "coil"
+          },
+          "search": "SharkBite PEX-B 1/2 100 ft"
+        },
+        "pex_pipe_3_4": {
+          "package": {
+            "size": 30.48,
+            "kind": "coil"
+          },
+          "search": "SharkBite PEX-B 3/4 100 ft"
+        }
+      },
+      "swaps": {}
+    },
+    {
+      "id": "uponor-aquapex-white",
+      "slot": "pex-pipe",
+      "brand": "Uponor",
+      "name": "AquaPEX White (PEX-a)",
+      "source": {
+        "document": "uponor-aquapex-white-coils",
+        "page": 1
+      },
+      "items": {
+        "pex_pipe_1_2": {
+          "package": {
+            "size": 30.48,
+            "kind": "coil"
+          },
+          "search": "Uponor AquaPEX 1/2 100 ft"
+        },
+        "pex_pipe_3_4": {
+          "package": {
+            "size": 30.48,
+            "kind": "coil"
+          },
+          "search": "Uponor AquaPEX 3/4 100 ft"
+        }
+      },
+      "swaps": {
+        "pex_crimp_ring": "pex_expansion_ring"
+      }
+    },
+    {
+      "id": "ipex-abs-cell-core",
+      "slot": "abs-pipe",
+      "brand": "IPEX",
+      "name": "Drain-Way ABS Cell Core",
+      "source": {
+        "document": "ipex-plumbing-catalogue-ca",
+        "page": 28
+      },
+      "items": {
+        "abs_pipe_3": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS Cell Core 3 in 12 ft"
+        },
+        "abs_pipe_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS Cell Core 2 in 12 ft"
+        },
+        "abs_pipe_1_1_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS Cell Core 1-1/2 in 12 ft"
+        }
+      },
+      "swaps": {}
+    },
+    {
+      "id": "ipex-abs-solid-wall",
+      "slot": "abs-pipe",
+      "brand": "IPEX",
+      "name": "Drain-Way ABS Solid Wall",
+      "source": {
+        "document": "ipex-plumbing-catalogue-ca",
+        "page": 28
+      },
+      "items": {
+        "abs_pipe_3": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS DWV solid wall 3 in 12 ft"
+        },
+        "abs_pipe_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS DWV solid wall 2 in 12 ft"
+        },
+        "abs_pipe_1_1_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "IPEX ABS DWV solid wall 1-1/2 in 12 ft"
+        }
+      },
+      "swaps": {}
+    },
+    {
+      "id": "wavin-abs-foam-core",
+      "slot": "abs-pipe",
+      "brand": "Wavin",
+      "name": "BOW ABS DWV Foam Core",
+      "source": {
+        "document": "wavin-abs-dwv-foam-core-ca",
+        "page": 1
+      },
+      "items": {
+        "abs_pipe_3": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "BOW ABS foam core pipe 3 in"
+        },
+        "abs_pipe_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "BOW ABS foam core pipe 2 in"
+        },
+        "abs_pipe_1_1_2": {
+          "package": {
+            "size": 3.66,
+            "kind": "length"
+          },
+          "search": "BOW ABS foam core pipe 1-1/2 in"
+        }
+      },
+      "swaps": {}
+    }
+  ],
   "translations": {
     "uk": {
       "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker.": "Мідний NMD90 14/2 підходить для ліній освітлення й розеток на 15 А; для більших навантажень потрібен 12/2 на автоматі 20 А.",
@@ -7123,6 +7381,7 @@
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальний стояк спирається на хомут біля основи і далі щонайменше через кожні 7,5 м.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Унітаз відводиться трубою щонайменше 3 дюйми; горизонтальну трубу кріпіть щонайменше через 1,2 м.",
       "ABS cement": "Клей для ABS",
+      "ABS drain pipe": "Каналізаційна труба ABS",
       "ABS elbow, 1-1/2 in": "Коліно ABS, 1½ дюйма",
       "ABS elbow, 2 in": "Коліно ABS, 2 дюйми",
       "ABS elbow, 3 in": "Коліно ABS, 3 дюйми",
@@ -7337,6 +7596,7 @@
       "Mortar under the membrane": "Розчин під мембраною",
       "Mortars allowed over the membrane": "Дозволені розчини над мембраною",
       "Mortars allowed under the membrane": "Дозволені розчини під мембраною",
+      "NMD90 cable": "Кабель NMD90",
       "NMD90 cable 14/2": "Кабель NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Натуральний камінь на одному шарі: система питає про другий шар",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Натуральний камінь на DITRA по двошаровій дерев'яній основі (D-W-S)",
@@ -7362,10 +7622,12 @@
       "PEX drop-ear elbow": "Настінне коліно PEX",
       "PEX elbow, 1/2 in": "Коліно PEX, 1/2 дюйма",
       "PEX elbow, 3/4 in": "Коліно PEX, 3/4 дюйма",
+      "PEX pipe": "Труба PEX",
       "PEX pipe clip": "Кліпса для труби PEX",
       "PEX pipe, 1/2 in": "Труба PEX, 1/2 дюйма",
       "PEX pipe, 3/4 in": "Труба PEX, 3/4 дюйма",
       "PEX tee": "Трійник PEX",
+      "PEX-a pipe such as Uponor AquaPEX is joined by expanding the pipe end with a ring over it; one ring per pipe end, in the pipe's size.": "Труби PEX-a, як-от Uponor AquaPEX, з’єднують, розширюючи кінець труби разом із надягнутим кільцем; одне кільце на кожен кінець труби, у розмір труби.",
       "Painted ceiling": "Фарбована стеля",
       "Painted wall": "Пофарбована стіна",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Поєднайте із засувним замком і перевірте отвір у дверях та відступ від краю.",
@@ -7384,6 +7646,7 @@
       "Prefabricated shower ramp": "Готовий пандус для душової",
       "Prefabricated sloped shower tray": "Готовий піддон з ухилом",
       "Prehung interior door": "Міжкімнатні двері з коробкою",
+      "ProPEX expansion ring": "Розширювальне кільце ProPEX",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Кульові вентилі на чверть оберту дають змогу перекрити окремий прилад, не вимикаючи воду в домі.",
       "Rain shower head": "Тропічна душова лійка",
       "Raising the tray around a drain or adaptor": "Підняття піддона навколо трапа чи перехідника",
@@ -7571,6 +7834,7 @@
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Вертикальный стояк опирается на хомут у основания и далее не реже чем через каждые 7,5 м.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Унитаз отводится трубой не менее 3 дюймов; горизонтальную трубу крепите не реже чем через 1,2 м.",
       "ABS cement": "Клей для ABS",
+      "ABS drain pipe": "Канализационная труба ABS",
       "ABS elbow, 1-1/2 in": "Колено ABS, 1½ дюйма",
       "ABS elbow, 2 in": "Колено ABS, 2 дюйма",
       "ABS elbow, 3 in": "Колено ABS, 3 дюйма",
@@ -7785,6 +8049,7 @@
       "Mortar under the membrane": "Клей под мембраной",
       "Mortars allowed over the membrane": "Допустимые клеи над мембраной",
       "Mortars allowed under the membrane": "Допустимые клеи под мембраной",
+      "NMD90 cable": "Кабель NMD90",
       "NMD90 cable 14/2": "Кабель NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Натуральный камень на одном слое: система спрашивает о втором слое",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Натуральный камень на DITRA по двухслойному деревянному основанию (D-W-S)",
@@ -7810,10 +8075,12 @@
       "PEX drop-ear elbow": "Настенное колено PEX",
       "PEX elbow, 1/2 in": "Колено PEX, 1/2 дюйма",
       "PEX elbow, 3/4 in": "Колено PEX, 3/4 дюйма",
+      "PEX pipe": "Труба PEX",
       "PEX pipe clip": "Клипса для трубы PEX",
       "PEX pipe, 1/2 in": "Труба PEX, 1/2 дюйма",
       "PEX pipe, 3/4 in": "Труба PEX, 3/4 дюйма",
       "PEX tee": "Тройник PEX",
+      "PEX-a pipe such as Uponor AquaPEX is joined by expanding the pipe end with a ring over it; one ring per pipe end, in the pipe's size.": "Трубы PEX-a, например Uponor AquaPEX, соединяют, расширяя конец трубы вместе с надетым кольцом; одно кольцо на каждый конец трубы, в размер трубы.",
       "Painted ceiling": "Окрашенный потолок",
       "Painted wall": "Окрашенная стена",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Совместите с засовным замком и проверьте отверстие в двери и отступ от края.",
@@ -7832,6 +8099,7 @@
       "Prefabricated shower ramp": "Готовый пандус для душевой",
       "Prefabricated sloped shower tray": "Готовый поддон с уклоном",
       "Prehung interior door": "Межкомнатная дверь с коробкой",
+      "ProPEX expansion ring": "Расширительное кольцо ProPEX",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Шаровые вентили на четверть оборота позволяют перекрыть отдельный прибор, не отключая воду в доме.",
       "Rain shower head": "Тропический душ",
       "Raising the tray around a drain or adaptor": "Подъём поддона вокруг трапа или переходника",
@@ -8019,6 +8287,7 @@
       "A vertical stack rests on a clamp at its base, and again at least every 7.5 m.": "Une colonne verticale repose sur un collier à sa base, puis au moins aux 7,5 m.",
       "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m.": "Une toilette se draine par un tuyau d'au moins 3 po; supportez les parcours horizontaux aux 1,2 m.",
       "ABS cement": "Colle ABS",
+      "ABS drain pipe": "Tuyau d’évacuation ABS",
       "ABS elbow, 1-1/2 in": "Coude ABS, 1-1/2 po",
       "ABS elbow, 2 in": "Coude ABS, 2 po",
       "ABS elbow, 3 in": "Coude ABS, 3 po",
@@ -8233,6 +8502,7 @@
       "Mortar under the membrane": "Mortier sous la membrane",
       "Mortars allowed over the membrane": "Mortiers admis sur la membrane",
       "Mortars allowed under the membrane": "Mortiers admis sous la membrane",
+      "NMD90 cable": "Câble NMD90",
       "NMD90 cable 14/2": "Câble NMD90 14/2",
       "Natural stone on a single layer asks about the second layer": "Pierre naturelle sur une seule couche : le système demande la deuxième couche",
       "Natural stone over DITRA on a double-layer wood floor (D-W-S)": "Pierre naturelle sur DITRA sur plancher de bois à double couche (D-W-S)",
@@ -8258,10 +8528,12 @@
       "PEX drop-ear elbow": "Coude PEX à oreilles",
       "PEX elbow, 1/2 in": "Coude PEX, 1/2 po",
       "PEX elbow, 3/4 in": "Coude PEX, 3/4 po",
+      "PEX pipe": "Tuyau PEX",
       "PEX pipe clip": "Attache pour tuyau PEX",
       "PEX pipe, 1/2 in": "Tuyau PEX, 1/2 po",
       "PEX pipe, 3/4 in": "Tuyau PEX, 3/4 po",
       "PEX tee": "Té PEX",
+      "PEX-a pipe such as Uponor AquaPEX is joined by expanding the pipe end with a ring over it; one ring per pipe end, in the pipe's size.": "Le tuyau PEX-a, comme Uponor AquaPEX, se raccorde en dilatant l’extrémité du tuyau avec une bague par-dessus ; une bague par extrémité de tuyau, à la taille du tuyau.",
       "Painted ceiling": "Plafond peint",
       "Painted wall": "Mur peint",
       "Pair it with a deadbolt and check the door's bore hole and backset.": "Associez-la à un pêne dormant et vérifiez le trou de la porte et l'écartement.",
@@ -8280,6 +8552,7 @@
       "Prefabricated shower ramp": "Rampe de douche préfabriquée",
       "Prefabricated sloped shower tray": "Receveur de douche préfabriqué en pente",
       "Prehung interior door": "Porte intérieure prémontée",
+      "ProPEX expansion ring": "Bague d’expansion ProPEX",
       "Quarter-turn valves let you close each fixture without shutting off the house.": "Un robinet quart de tour permet de fermer chaque appareil sans couper l'eau de la maison.",
       "Rain shower head": "Pomme de douche pluie",
       "Raising the tray around a drain or adaptor": "Rehausse du receveur autour d'un drain ou d'un adaptateur",

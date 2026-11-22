@@ -4,6 +4,8 @@ import { inventory, surfacePurchases } from "../inventory";
 import { RUNS, checkPlumbing } from "../plumbing";
 import { StoreLinks } from "../StoreLinks";
 import { KNOWLEDGE, type ProductPicks, citationUrl } from "../knowledge";
+import { ItemLine } from "./ItemLine";
+import { ProductPicker } from "./ProductPicker";
 
 /** Everything a room, or the whole house, needs, counted from the model, with
  * the retailers' own search for each line. */
@@ -13,6 +15,7 @@ export function InventorySheet({
   kicker,
   choices,
   picks,
+  onPick,
   onClose,
 }: {
   rooms: readonly RoomId[];
@@ -21,12 +24,14 @@ export function InventorySheet({
   /** chosen build-up per "room.surface"; the default where none is chosen */
   choices: Readonly<Record<string, string>>;
   picks: ProductPicks;
+  onPick: (slot: string, product: string) => void;
   onClose: () => void;
 }) {
   const { t, d, language } = useI18n();
   const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
   const materials = surfacePurchases(rooms, choices, picks);
   const breaches = checkPlumbing();
+  const counted = inventory(rooms, picks);
   return (
     <aside className="sheet" aria-labelledby="sheet-title">
       <header>
@@ -73,20 +78,11 @@ export function InventorySheet({
         </>
       )}
       <h2 className="list-section">{t.fixturesTitle}</h2>
+      <ProductPicker items={counted.map((l) => l.item.id)} picks={picks} onPick={onPick} />
       <ul className="purchase-lines">
-        {inventory(rooms).map(({ item, amount }) => {
-          const name = d(item.name);
-          return (
-            <li key={item.id} className="purchase-line">
-              <span className="purchase-name">{name}</span>
-              <span className="purchase-amount">
-                {item.measure === "length" ? t.metres(fmt(amount)) : t.pieces(fmt(amount))}
-                <span className="muted"> · {t.categories[item.category]}</span>
-              </span>
-              <StoreLinks query={item.search} label={t.findIn(name)} />
-            </li>
-          );
-        })}
+        {counted.map(({ item, amount }) => (
+          <ItemLine key={item.id} item={item} amount={amount} picks={picks} category />
+        ))}
       </ul>
       {RUNS.some((r) => rooms.includes(r.room as RoomId)) && (
         <>

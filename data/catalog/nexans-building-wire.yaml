@@ -1,0 +1,21 @@
+# Nexans Canada NMD90 CANADEX building wire, from the manufacturer's own data
+# sheet on nexans.ca. Cited by page of the PDF.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Nexans Canada Inc.
+  brand: Nexans
+  website: https://www.nexans.ca
+
+documents:
+  - id: nexans-nmd90-canadex-sheet
+    type: tds
+    title: NMD90 CANADEX Product Sheet (sizes, colours and spool sizes)
+    url: https://www.nexans.ca/.rest/eservice/dam/v1/file/259277/Nexans%20NMD90%20Canadex.pdf
+    version: "2024-08-06"
+    pages: 2
+    sha256: ed90f05e4e8507baffa9331329cdc1397313dbf5eadb7fb76bccc261b91ae1a7
+    retrieved_on: 2026-11-21
+
+categories: []

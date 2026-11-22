@@ -172,6 +172,7 @@ export function App() {
           kicker={room ? t.rooms[room] : t.house}
           choices={choices}
           picks={picks}
+          onPick={pick}
           onClose={() => setListing(false)}
         />
       )}
