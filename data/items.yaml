@@ -192,12 +192,14 @@ items:
     measure: length
     summary: "Red for hot and blue for cold water make the runs easy to trace; support it every 0.8 m when it runs horizontally."
     search: "PEX pipe 3/4"
+    slot: pex-pipe
   - id: pex_pipe_1_2
     name: "PEX pipe, 1/2 in"
     category: plumbing
     measure: length
     summary: "Buy the same PEX type (A, B or C) as the fittings and tools you will use."
     search: "PEX pipe 1/2"
+    slot: pex-pipe
   - id: pex_elbow_3_4
     name: "PEX elbow, 3/4 in"
     category: plumbing
@@ -218,6 +220,11 @@ items:
     category: plumbing
     summary: "One ring per pipe end in each fitting; buy rings in both sizes, 1/2 in and 3/4 in."
     search: "PEX crimp ring"
+  - id: pex_expansion_ring
+    name: "ProPEX expansion ring"
+    category: plumbing
+    summary: "PEX-a pipe such as Uponor AquaPEX is joined by expanding the pipe end with a ring over it; one ring per pipe end, in the pipe's size."
+    search: "Uponor ProPEX ring"
   - id: pex_pipe_clip
     name: "PEX pipe clip"
     category: plumbing
@@ -234,18 +241,21 @@ items:
     measure: length
     summary: "A water closet drains through 3 in pipe at least; support horizontal runs every 1.2 m."
     search: "ABS pipe 3"
+    slot: abs-pipe
   - id: abs_pipe_2
     name: "ABS pipe, 2 in"
     category: plumbing
     measure: length
     summary: "A shower discharging 9.5 to 20 L/min needs at least a 2 in outlet pipe."
     search: "ABS pipe 2"
+    slot: abs-pipe
   - id: abs_pipe_1_1_2
     name: "ABS pipe, 1-1/2 in"
     category: plumbing
     measure: length
     summary: "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory."
     search: "ABS pipe 1 1/2"
+    slot: abs-pipe
   - id: abs_elbow_3
     name: "ABS elbow, 3 in"
     category: plumbing
@@ -322,3 +332,4 @@ items:
     measure: length
     summary: "14/2 copper NMD90 suits 15 A lighting and receptacle circuits; heavier loads need 12/2 on a 20 A breaker."
     search: "NMD90 14/2"
+    slot: nmd90-cable

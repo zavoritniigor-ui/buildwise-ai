@@ -106,6 +106,11 @@ export type BuildupRole =
   | "grout"
   | "finish";
 
+export interface Package {
+  size: number;
+  kind: "bag" | "roll" | "box" | "pail" | "can" | "sheet" | "coil" | "length";
+}
+
 export interface Quantity {
   /** area: per m² of the surface; perimeter: per metre of floor/wall joint; each: a fixed count */
   per: "area" | "perimeter" | "each";
@@ -116,7 +121,7 @@ export interface Quantity {
   /** manufacturer: cited rate; geometry: the surface itself; estimate: common practice */
   basis: "manufacturer" | "geometry" | "estimate";
   source?: SourceRef;
-  package?: { size: number; kind: "bag" | "roll" | "box" | "pail" | "can" | "sheet" };
+  package?: Package;
   /** the query opened in the retailers' own search */
   search: string;
 }
@@ -170,6 +175,22 @@ export interface Item {
   summary: string;
   /** The query opened in the retailers' own search. */
   search: string;
+  /** a product slot: the person may pick the brand that supplies it */
+  slot?: string;
+}
+
+/** A brand that supplies items of the house, such as pipe or cable. */
+export interface ItemProduct {
+  id: string;
+  slot: string;
+  brand: string;
+  name: string;
+  /** the data-sheet page that gives the packages */
+  source: SourceRef;
+  /** per item id: how this product sells it */
+  items: Record<string, { package: Package; search: string }>;
+  /** items this product needs in place of others, such as its own fitting rings */
+  swaps: Record<string, string>;
 }
 
 export interface Knowledge {
@@ -188,11 +209,12 @@ export interface Knowledge {
   items: Item[];
   slots: Record<string, { name: string }>;
   products: Product[];
+  itemProducts: ItemProduct[];
   /** English text to its translation, per language. */
   translations: Record<string, Record<string, string>>;
 }
 
-export const KNOWLEDGE = snapshot as Knowledge;
+export const KNOWLEDGE = snapshot as unknown as Knowledge;
 
 /** A link to the cited page of a manufacturer document. */
 export function citationUrl(source: SourceRef, knowledge: Knowledge = KNOWLEDGE): string {
@@ -261,4 +283,60 @@ export function applyProducts(
 /** The slots the layers of these build-ups offer, in order. */
 export function slotsOf(buildups: readonly Buildup[]): string[] {
   return [...new Set(buildups.flatMap((b) => b.layers.flatMap((l) => (l.slot ? [l.slot] : []))))];
+}
+
+/** The brands that can supply an item slot; the first is the default. */
+export function itemProductsForSlot(slot: string, knowledge: Knowledge = KNOWLEDGE): ItemProduct[] {
+  return knowledge.itemProducts.filter((p) => p.slot === slot);
+}
+
+/** The brand chosen for an item slot, else the slot's default. */
+export function chosenItemProduct(
+  slot: string,
+  picks: ProductPicks = {},
+  knowledge: Knowledge = KNOWLEDGE,
+): ItemProduct | undefined {
+  const offered = itemProductsForSlot(slot, knowledge);
+  return offered.find((p) => p.id === picks[slot]) ?? offered[0];
+}
+
+/** How an item is bought with the chosen brand: the product, its package and
+ * how many packages cover the amount. Undefined for items without a slot. */
+export function itemPurchase(
+  id: string,
+  amount: number,
+  picks: ProductPicks = {},
+  knowledge: Knowledge = KNOWLEDGE,
+): { product: ItemProduct; package: Package; search: string; packages: number } | undefined {
+  const slot = findItem(id, knowledge)?.slot;
+  const product = slot ? chosenItemProduct(slot, picks, knowledge) : undefined;
+  const sold = product?.items[id];
+  if (!product || !sold) return undefined;
+  const packages = Math.max(1, Math.ceil(amount / sold.package.size - 1e-9));
+  return { product, package: sold.package, search: sold.search, packages };
+}
+
+/** The items again, with those the chosen brands replace swapped for theirs
+ * (Uponor PEX-a takes ProPEX expansion rings in place of crimp rings). */
+export function swapItems(
+  amounts: Iterable<readonly [string, number]>,
+  picks: ProductPicks = {},
+  knowledge: Knowledge = KNOWLEDGE,
+): Map<string, number> {
+  const swaps = new Map<string, string>();
+  for (const slot of new Set(knowledge.itemProducts.map((p) => p.slot))) {
+    const product = chosenItemProduct(slot, picks, knowledge);
+    for (const [from, to] of Object.entries(product?.swaps ?? {})) swaps.set(from, to);
+  }
+  const out = new Map<string, number>();
+  for (const [id, n] of amounts) {
+    const to = swaps.get(id) ?? id;
+    out.set(to, (out.get(to) ?? 0) + n);
+  }
+  return out;
+}
+
+/** The item slots these items offer, in order. */
+export function itemSlotsOf(ids: Iterable<string>, knowledge: Knowledge = KNOWLEDGE): string[] {
+  return [...new Set([...ids].flatMap((id) => findItem(id, knowledge)?.slot ?? []))];
 }

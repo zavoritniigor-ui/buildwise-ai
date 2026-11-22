@@ -1,0 +1,23 @@
+# IPEX Drain-Way ABS DWV pipe, from the manufacturer's own Canadian (CA-EN)
+# Plumbing and Mechanical Product Catalogue on ipexna.com. Cited by page of the
+# PDF. Solid-wall pipe is certified to CSA B181.1 and Cell Core pipe to ASTM
+# F628; the Quebec plumbing code (2.2.5.10) allows both inside a building.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: IPEX Inc.
+  brand: IPEX
+  website: https://ipexna.com
+
+documents:
+  - id: ipex-plumbing-catalogue-ca
+    type: tds
+    title: IPEX Plumbing and Mechanical Product Catalogue (Canada)
+    url: https://ipexna.com/wp-content/uploads/2026/09/catalogue-caen-ipex-mechanical-systems.pdf
+    version: "2026-09-03"
+    pages: 138
+    sha256: b0bf0e1b55bb7ff607161584a48d06f9d294b1a5c5959ff07a60ed882d28ce64
+    retrieved_on: 2026-11-21
+
+categories: []

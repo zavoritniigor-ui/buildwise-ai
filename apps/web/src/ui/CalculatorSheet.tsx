@@ -14,6 +14,7 @@ import {
 } from "../calculator";
 import { useI18n } from "../i18n";
 import { type ProductPicks, findItem } from "../knowledge";
+import { ItemLine } from "./ItemLine";
 import { ProductPicker } from "./ProductPicker";
 import type { PurchaseLine } from "../quantities";
 import { StoreLinks } from "../StoreLinks";
@@ -42,6 +43,8 @@ export function CalculatorSheet({
   const [chosen, setChosen] = useState<Partial<Record<CalcSurface, string>>>({});
   const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
   const a = areas(size);
+  const wiring = electrical(type, size);
+  const piping = plumbing(type, size, picks);
 
   const field = (key: keyof RoomSize, label: string, step: number) => (
     <label className="calc-field">
@@ -121,22 +124,27 @@ export function CalculatorSheet({
         );
       })}
 
-      <ProductPicker buildups={chosenBuildups(type, chosen)} picks={picks} onPick={onPick} />
+      <ProductPicker
+        buildups={chosenBuildups(type, chosen)}
+        items={[...wiring, ...piping].map((e) => e.item)}
+        picks={picks}
+        onPick={onPick}
+      />
 
       <h2 className="list-section">{t.surfaceMaterials}</h2>
       <Materials lines={surfaceMaterials(type, size, chosen, picks)} />
 
       <h2 className="list-section">{t.trimTitle}</h2>
-      <Estimates rows={[{ item: "baseboard", amount: a.baseboard }]} />
+      <Estimates rows={[{ item: "baseboard", amount: a.baseboard }]} picks={picks} />
 
       <h2 className="list-section">{t.electricalTitle}</h2>
-      <Estimates rows={electrical(type, size)} />
+      <Estimates rows={wiring} picks={picks} />
       <p className="muted small">{t.electricalNote}</p>
 
       {type === "bathroom" && (
         <>
           <h2 className="list-section">{t.plumbingCalcTitle}</h2>
-          <Estimates rows={plumbing(type, size)} />
+          <Estimates rows={piping} picks={picks} />
           <p className="muted small">{t.plumbingCalcNote}</p>
         </>
       )}
@@ -181,24 +189,12 @@ function Materials({ lines }: { lines: PurchaseLine[] }) {
   );
 }
 
-function Estimates({ rows }: { rows: Estimate[] }) {
-  const { t, d, language } = useI18n();
-  const fmt = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 2 });
+function Estimates({ rows, picks }: { rows: Estimate[]; picks: ProductPicks }) {
   return (
     <ul className="purchase-lines">
       {rows.map(({ item: id, amount }) => {
         const item = findItem(id);
-        if (!item) return null;
-        const name = d(item.name);
-        return (
-          <li key={id} className="purchase-line">
-            <span className="purchase-name">{name}</span>
-            <span className="purchase-amount">
-              {item.measure === "length" ? t.metres(fmt(amount)) : t.pieces(fmt(amount))}
-            </span>
-            <StoreLinks query={item.search} label={t.findIn(name)} />
-          </li>
-        );
+        return item ? <ItemLine key={id} item={item} amount={amount} picks={picks} /> : null;
       })}
     </ul>
   );

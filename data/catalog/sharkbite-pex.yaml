@@ -1,0 +1,22 @@
+# SharkBite PEX-b tubing (RWC), from the manufacturer's own spec sheet. Cited by
+# page of the PDF. PEX-b tubing to ASTM F876/F877 and CSA B137.5 is joined
+# with crimp rings.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Reliance Worldwide Corporation (Canada) Inc.
+  brand: SharkBite
+  website: https://www.sharkbite.com
+
+documents:
+  - id: sharkbite-pex-b-spec
+    type: tds
+    title: SharkBite PEX-b Tubing Spec Sheet (Red, White, Blue)
+    url: https://rwcamer.bynder.com/m/1d4d62e72c7416ef/original/SharkBite-PEX-b-Spec-Sheet.pdf
+    version: "Rev 4.0, 2026-07-15"
+    pages: 2
+    sha256: 87f4d243ac6f4be4e3c1b5a1c15681f3150932278206405b539a4913ae0607eb
+    retrieved_on: 2026-11-21
+
+categories: []

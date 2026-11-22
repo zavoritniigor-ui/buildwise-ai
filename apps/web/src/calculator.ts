@@ -7,7 +7,7 @@
  * and windows 1.2 x 1.2 m. The electrical and plumbing parts are estimates and
  * are flagged as such in the app.
  */
-import { type Buildup, KNOWLEDGE, type ProductPicks, applyProducts } from "./knowledge";
+import { type Buildup, KNOWLEDGE, type ProductPicks, applyProducts, swapItems } from "./knowledge";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 import { plumbingAmounts } from "./plumbing";
 
@@ -133,17 +133,18 @@ export function electrical(type: RoomType, size: RoomSize): Estimate[] {
 /** Perimeter of the code-checked example bathroom (3 x 2.5 m), m. */
 const EXAMPLE_BATHROOM_PERIMETER = 11;
 const LENGTH_ITEMS = /_pipe_|^nmd90/;
-const SCALED_COUNTS = /hanger|clip|crimp_ring/;
+const SCALED_COUNTS = /hanger|clip|crimp_ring|expansion_ring/;
 
 /**
  * Bathroom plumbing estimate: the example bathroom's rough-in (which passes the
  * Quebec plumbing code), with pipe lengths and supports scaled by the ratio of
  * the room's perimeter to the example's; fixture fittings stay as they are.
+ * Rings follow the chosen PEX brand's joining system.
  */
-export function plumbing(type: RoomType, size: RoomSize): Estimate[] {
+export function plumbing(type: RoomType, size: RoomSize, picks: ProductPicks = {}): Estimate[] {
   if (type !== "bathroom") return [];
   const ratio = areas(size).perimeter / EXAMPLE_BATHROOM_PERIMETER;
-  return [...plumbingAmounts(["bathroom"])].map(([item, amount]) => ({
+  return [...swapItems(plumbingAmounts(["bathroom"]), picks)].map(([item, amount]) => ({
     item,
     amount: LENGTH_ITEMS.test(item)
       ? round2(amount * ratio)

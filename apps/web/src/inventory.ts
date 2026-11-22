@@ -23,6 +23,7 @@ import {
   applyProducts,
   buildupForSurface,
   findItem,
+  swapItems,
 } from "./knowledge";
 import { plumbingAmounts } from "./plumbing";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
@@ -53,7 +54,7 @@ const CATEGORY_ORDER: readonly ItemCategory[] = [
   "hardware",
 ];
 
-export function inventory(rooms: readonly RoomId[]): InventoryLine[] {
+export function inventory(rooms: readonly RoomId[], picks: ProductPicks = {}): InventoryLine[] {
   const amounts = new Map<string, number>();
   const add = (id: string, n: number) => amounts.set(id, (amounts.get(id) ?? 0) + n);
   const measure = (id: string) => findItem(id)?.measure ?? "each";
@@ -92,7 +93,7 @@ export function inventory(rooms: readonly RoomId[]): InventoryLine[] {
     if (length > 0) add("baseboard", length);
   }
 
-  return [...amounts]
+  return [...swapItems(amounts, picks)]
     .map(([id, amount]) => {
       const item = KNOWLEDGE.items.find((i) => i.id === id);
       if (!item) throw new Error(`Unknown item ${id}`);

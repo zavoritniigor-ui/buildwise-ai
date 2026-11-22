@@ -1,0 +1,22 @@
+# Wavin (BOW) ABS DWV Foam Core pipe, from the manufacturer's own Canadian
+# specification sheet. Cited by page of the PDF. Foam core pipe is made to
+# ASTM F628, which the Quebec plumbing code (2.2.5.10) allows inside a building.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Bow Plumbing Group Inc. (Wavin)
+  brand: Wavin
+  website: https://www.wavin.com/en-us
+
+documents:
+  - id: wavin-abs-dwv-foam-core-ca
+    type: tds
+    title: ABS DWV Foam Core Pipe Specification Sheet (Canada)
+    url: https://blog.wavin.com/hubfs/WA_ABSDWV%20FC%20Spec%20Sheet%20-%20CDA.pdf
+    version: "2024-02"
+    pages: 1
+    sha256: 276453487c2f40f99e0cd654179117769319037875f3435209658b5565de0dd3
+    retrieved_on: 2026-11-21
+
+categories: []

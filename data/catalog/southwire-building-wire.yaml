@@ -1,0 +1,22 @@
+# Southwire Canada Romex SIMpull NMD90 building wire, from the manufacturer's
+# own Canadian product page on southwire.com (SPEC 22050). The page names the
+# packaging of the stock number; it is cited as page 1.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Southwire Canada Company
+  brand: Southwire
+  website: https://www.southwire.com/ca/en-ca
+
+documents:
+  - id: southwire-nmd90-14-2-246ft
+    type: tds
+    title: "14-2 CU NMD-90 White Jacket W/G CSA 246 ft (Southwire #47174875, SPEC 22050)"
+    url: https://www.southwire.com/ca/en-ca/wire-cable/building-wire/nmd90-copper-simpull-sup-sup-romex-sup-sup-brand/p/47174875
+    version: "SPEC 22050, revision 1.000.013, 2025-08-10"
+    pages: 1
+    sha256: 72f669f6a83afce96fda4587fce8a5f939634a07952a0e004830d207a2a890f4
+    retrieved_on: 2026-11-21
+
+categories: []

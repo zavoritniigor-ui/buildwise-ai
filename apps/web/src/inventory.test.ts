@@ -1,5 +1,6 @@
 import { expect, test } from "vitest";
 import { inventory } from "./inventory";
+import { itemPurchase } from "./knowledge";
 import { ROOMS } from "./house/model";
 
 const amounts = (rooms: Parameters<typeof inventory>[0]) =>
@@ -54,4 +55,39 @@ test("the bathroom list includes the plumbing rough-in", () => {
   expect(bathroom.abs_pipe_3).toBe(4.22);
   expect(bathroom.pex_pipe_1_2).toBe(6.93);
   expect(bathroom.p_trap).toBe(1);
+});
+
+test("pipe and cable come in the chosen brand's coils and lengths", () => {
+  const lines = Object.fromEntries(inventory(["bathroom"]).map((l) => [l.item.id, l]));
+  const sold = (id: string, picks = {}) => {
+    const line = lines[id];
+    return line ? itemPurchase(id, line.amount, picks) : undefined;
+  };
+  // ABS 1-1/2 in: 10.53 m in 12 ft (3.66 m) lengths
+  expect(sold("abs_pipe_1_1_2")).toMatchObject({
+    packages: 3,
+    package: { size: 3.66, kind: "length" },
+    product: { id: "ipex-abs-cell-core" },
+  });
+  expect(sold("abs_pipe_3")?.packages).toBe(2);
+  // PEX in 100 ft (30.48 m) coils
+  expect(sold("pex_pipe_1_2")).toMatchObject({ packages: 1, product: { id: "sharkbite-pex-b" } });
+  expect(sold("pex_pipe_3_4", { "pex-pipe": "uponor-aquapex-white" })?.search).toBe(
+    "Uponor AquaPEX 3/4 100 ft",
+  );
+  expect(sold("baseboard")).toBeUndefined();
+});
+
+test("Uponor PEX-a swaps the crimp rings for ProPEX expansion rings", () => {
+  const crimp = Object.fromEntries(inventory(["bathroom"]).map((l) => [l.item.id, l.amount]));
+  expect(crimp.pex_crimp_ring).toBe(27);
+  expect(crimp.pex_expansion_ring).toBeUndefined();
+  const pexA = Object.fromEntries(
+    inventory(["bathroom"], { "pex-pipe": "uponor-aquapex-white" }).map((l) => [
+      l.item.id,
+      l.amount,
+    ]),
+  );
+  expect(pexA.pex_crimp_ring).toBeUndefined();
+  expect(pexA.pex_expansion_ring).toBe(27);
 });

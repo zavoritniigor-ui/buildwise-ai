@@ -354,6 +354,30 @@ def snapshot(data_dir: Path) -> Json:
                     f"first product, {default.id!r}"
                 )
 
+    known_items = {item.id for item in items.items}
+    for item_product in products.item_products:
+        if item_product.source.document not in documents:
+            raise ValueError(
+                f"product {item_product.id!r} cites unknown document "
+                f"{item_product.source.document!r}"
+            )
+        for item_id in [*item_product.items, *item_product.swaps, *item_product.swaps.values()]:
+            if item_id not in known_items:
+                raise ValueError(f"product {item_product.id!r} names unknown item {item_id!r}")
+    for item in items.items:
+        if item.slot is None:
+            continue
+        brands = [p for p in products.item_products if p.slot == item.slot]
+        if not brands:
+            raise ValueError(f"item {item.id!r} uses unknown item slot {item.slot!r}")
+        for brand in brands:
+            if item.id not in brand.items:
+                raise ValueError(f"product {brand.id!r} does not sell item {item.id!r}")
+    for item_product in products.item_products:
+        for item_id in item_product.items:
+            if next(i for i in items.items if i.id == item_id).slot != item_product.slot:
+                raise ValueError(f"item {item_id!r} must name slot {item_product.slot!r}")
+
     return {
         "documents": documents,
         "conditions": dict(sorted(conditions.items())),
@@ -406,7 +430,7 @@ def snapshot(data_dir: Path) -> Json:
             room: {surface: list(offered) for surface, offered in sorted(surfaces.items())}
             for room, surfaces in sorted(buildups.surfaces.items())
         },
-        "items": [item.model_dump() for item in items.items],
+        "items": [item.model_dump(exclude_none=True) for item in items.items],
         "slots": {slot: {"name": s.name} for slot, s in products.slots.items()},
         "products": [
             {
@@ -417,6 +441,27 @@ def snapshot(data_dir: Path) -> Json:
                 "quantity": _quantity(p.quantity),
             }
             for p in products.products
+        ],
+        "itemProducts": [
+            {
+                "id": p.id,
+                "slot": p.slot,
+                "brand": p.brand,
+                "name": p.name,
+                "source": _source(p.source),
+                "items": {
+                    item: {
+                        "package": {
+                            "size": _number(sold.package.size),
+                            "kind": sold.package.kind,
+                        },
+                        "search": sold.search,
+                    }
+                    for item, sold in p.items.items()
+                },
+                "swaps": dict(p.swaps),
+            }
+            for p in products.item_products
         ],
     }
 

@@ -1,0 +1,32 @@
+# Uponor AquaPEX (PEX-a) pipe and ProPEX rings, from the manufacturer's own
+# Canadian (en-CA) submittals on uponor.com. Cited by page of the PDF. AquaPEX
+# is listed to ASTM F1960, so it is joined with ProPEX expansion rings, not
+# crimp rings.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Uponor Ltd.
+  brand: Uponor
+  website: https://www.uponor.com/en-ca
+
+documents:
+  - id: uponor-aquapex-white-coils
+    type: tds
+    title: Uponor Submittal, Uponor AquaPEX white coils
+    url: https://www.uponor.com/en-ca/getsubmittalpdf/22723/standard/Uponor%C2%A0Submittal%C2%A0%7C%20Uponor%20AquaPEX%20white%20coils
+    version: "2026-11-21"
+    pages: 2
+    sha256: fd1d92dc77ac1b9a9f059ab80c91e438f1e9574718d47212d7f9d8bbe4ff3a67
+    retrieved_on: 2026-11-21
+
+  - id: uponor-propex-rings-red
+    type: tds
+    title: Uponor Submittal, ProPEX rings, red
+    url: https://www.uponor.com/en-ca/getsubmittalpdf/488320/standard/Uponor%C2%A0Submittal%C2%A0%7C%20ProPEX%20rings,%20red
+    version: "2026-11-21"
+    pages: 1
+    sha256: e6e10d45bff54abd4079e46535d2ecc96e9774c7fe3d0d9d7859886928462d1d
+    retrieved_on: 2026-11-21
+
+categories: []

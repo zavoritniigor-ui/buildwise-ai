@@ -125,6 +125,10 @@ test("every object in the 3D model is an item of the knowledge base", () => {
   // every item is used somewhere in the house: built in 3D or counted
   const used = new Set<string | undefined>(tagged.map((n) => n.extras?.item));
   for (const line of inventory(ROOMS.map((r) => r.id))) used.add(line.item.id);
+  // items a chosen brand needs in place of others (PEX-a expansion rings)
+  for (const product of KNOWLEDGE.itemProducts) {
+    for (const id of Object.values(product.swaps)) used.add(id);
+  }
   const sample = { length: 3, width: 2.5, height: 2.4, doors: 1, windows: 1 };
   for (const e of electrical("bathroom", sample)) used.add(e.item);
   expect([...known].filter((id) => !used.has(id))).toEqual([]);

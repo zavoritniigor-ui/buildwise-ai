@@ -24,6 +24,17 @@
 #   25 lb bag: Polyblend Plus 32.3 m² per 11.34 kg -> 0.36 kg/m²; MAPEI
 #   Keracolor S 35.6 m², Ultracolor Plus FA 36.0 m² and Keracolor U (unsanded,
 #   joints up to 1/8 in) 49.2 m² per 11.3 kg -> 0.32, 0.31 and 0.23 kg/m²
+#
+# Item products supply things the house counts, such as pipe and cable, in the
+# packages their data sheets list; the house measures how much is needed:
+# - NMD90 14/2: Nexans CANADEX spools of 75 m; Southwire Romex SIMpull coils of
+#   246 ft (75 m)
+# - PEX, 1/2 and 3/4 in: SharkBite PEX-b and Uponor AquaPEX coils of 100 ft
+#   (30.48 m). AquaPEX is listed to ASTM F1960 only, so its joints take ProPEX
+#   expansion rings in place of crimp rings
+# - ABS DWV: IPEX Drain-Way Cell Core and solid wall, and Wavin (BOW) Foam Core,
+#   in 12 ft (3.66 m) lengths in Canada. The Quebec plumbing code 2.2.5.10
+#   (p. 97) allows ASTM F628 cellular core and CSA B181.1 pipe inside a building
 
 slots:
   interior-paint: { name: Interior paint }
@@ -31,6 +42,9 @@ slots:
   liquid-waterproofing: { name: Liquid waterproofing membrane }
   tile-mortar: { name: Tile mortar }
   tile-grout: { name: Tile grout }
+  nmd90-cable: { name: NMD90 cable }
+  pex-pipe: { name: PEX pipe }
+  abs-pipe: { name: ABS drain pipe }
 
 products:
   - id: bm-regal-select
@@ -303,3 +317,69 @@ products:
         package: { size: 11.3, kind: bag },
         search: Mapei Keracolor U unsanded grout,
       }
+
+item_products:
+  - id: nexans-nmd90-canadex
+    slot: nmd90-cable
+    brand: Nexans
+    name: NMD90 CANADEX 14/2
+    source: { document: nexans-nmd90-canadex-sheet, page: 1 }
+    items:
+      nmd90_cable: { package: { size: 75, kind: coil }, search: Nexans NMD90 CANADEX 14/2 75m }
+  - id: southwire-romex-nmd90
+    slot: nmd90-cable
+    brand: Southwire
+    name: Romex SIMpull NMD90 14/2
+    source: { document: southwire-nmd90-14-2-246ft, page: 1 }
+    items:
+      nmd90_cable:
+        { package: { size: 75, kind: coil }, search: Southwire Romex SIMpull NMD90 14/2 75m }
+  - id: sharkbite-pex-b
+    slot: pex-pipe
+    brand: SharkBite
+    name: PEX-b
+    source: { document: sharkbite-pex-b-spec, page: 2 }
+    items:
+      pex_pipe_1_2: { package: { size: 30.48, kind: coil }, search: SharkBite PEX-B 1/2 100 ft }
+      pex_pipe_3_4: { package: { size: 30.48, kind: coil }, search: SharkBite PEX-B 3/4 100 ft }
+  - id: uponor-aquapex-white
+    slot: pex-pipe
+    brand: Uponor
+    name: AquaPEX White (PEX-a)
+    source: { document: uponor-aquapex-white-coils, page: 1 }
+    items:
+      pex_pipe_1_2: { package: { size: 30.48, kind: coil }, search: Uponor AquaPEX 1/2 100 ft }
+      pex_pipe_3_4: { package: { size: 30.48, kind: coil }, search: Uponor AquaPEX 3/4 100 ft }
+    swaps: { pex_crimp_ring: pex_expansion_ring }
+  - id: ipex-abs-cell-core
+    slot: abs-pipe
+    brand: IPEX
+    name: Drain-Way ABS Cell Core
+    source: { document: ipex-plumbing-catalogue-ca, page: 28 }
+    items:
+      abs_pipe_3: { package: { size: 3.66, kind: length }, search: IPEX ABS Cell Core 3 in 12 ft }
+      abs_pipe_2: { package: { size: 3.66, kind: length }, search: IPEX ABS Cell Core 2 in 12 ft }
+      abs_pipe_1_1_2:
+        { package: { size: 3.66, kind: length }, search: IPEX ABS Cell Core 1-1/2 in 12 ft }
+  - id: ipex-abs-solid-wall
+    slot: abs-pipe
+    brand: IPEX
+    name: Drain-Way ABS Solid Wall
+    source: { document: ipex-plumbing-catalogue-ca, page: 28 }
+    items:
+      abs_pipe_3:
+        { package: { size: 3.66, kind: length }, search: IPEX ABS DWV solid wall 3 in 12 ft }
+      abs_pipe_2:
+        { package: { size: 3.66, kind: length }, search: IPEX ABS DWV solid wall 2 in 12 ft }
+      abs_pipe_1_1_2:
+        { package: { size: 3.66, kind: length }, search: IPEX ABS DWV solid wall 1-1/2 in 12 ft }
+  - id: wavin-abs-foam-core
+    slot: abs-pipe
+    brand: Wavin
+    name: BOW ABS DWV Foam Core
+    source: { document: wavin-abs-dwv-foam-core-ca, page: 1 }
+    items:
+      abs_pipe_3: { package: { size: 3.66, kind: length }, search: BOW ABS foam core pipe 3 in }
+      abs_pipe_2: { package: { size: 3.66, kind: length }, search: BOW ABS foam core pipe 2 in }
+      abs_pipe_1_1_2:
+        { package: { size: 3.66, kind: length }, search: BOW ABS foam core pipe 1-1/2 in }
