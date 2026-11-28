@@ -93,6 +93,13 @@ const en = {
     "Pipe sizes, slopes, trap arms, venting and support spacing are checked against the",
   codeOk: "The plumbing complies with the Quebec plumbing code.",
   codeBreaches: (n: number) => `The plumbing breaks the code in ${n} place(s).`,
+  ventilationTitle: "Exhaust ventilation",
+  ventCodeOk: "The exhaust fan and its duct meet the Quebec building code.",
+  ventCodeBreaches: (rules: string) => `The fan breaks the Quebec building code: ${rules}.`,
+  lightCodeOk:
+    "Every room has a switched light and the entrance an outdoor light, as the Quebec building code requires.",
+  lightCodeBreaches: (rules: string) => `The lighting breaks the Quebec building code: ${rules}.`,
+  buildingCodeNote: "Checked against the Quebec Construction Code, Chapter I Building:",
   productsTitle: "Products",
   calculator: "Room calculator",
   roomType: "Room type",
@@ -206,6 +213,13 @@ const uk: Messages = {
     "Діаметри труб, ухили, сифонні відводи, вентиляцію й крок кріплень перевірено за документом",
   codeOk: "Сантехніка відповідає квебекському сантехнічному кодексу.",
   codeBreaches: (n) => `Сантехніка порушує кодекс у ${n} місцях.`,
+  ventilationTitle: "Витяжна вентиляція",
+  ventCodeOk: "Витяжка та її повітровід відповідають будівельному кодексу Квебеку.",
+  ventCodeBreaches: (rules) => `Вентилятор порушує будівельний кодекс Квебеку: ${rules}.`,
+  lightCodeOk:
+    "Кожна кімната має світильник із вимикачем, а вхід — зовнішнє світло, як вимагає будівельний кодекс Квебеку.",
+  lightCodeBreaches: (rules) => `Освітлення порушує будівельний кодекс Квебеку: ${rules}.`,
+  buildingCodeNote: "Перевірено за Будівельним кодексом Квебеку, розділ I «Будівля»:",
   productsTitle: "Продукти",
   calculator: "Калькулятор кімнати",
   roomType: "Тип кімнати",
@@ -321,6 +335,13 @@ const ru: Messages = {
     "Диаметры труб, уклоны, сифонные отводы, вентиляция и шаг креплений проверены по документу",
   codeOk: "Сантехника соответствует квебекскому сантехническому кодексу.",
   codeBreaches: (n) => `Сантехника нарушает кодекс в ${n} местах.`,
+  ventilationTitle: "Вытяжная вентиляция",
+  ventCodeOk: "Вытяжка и её воздуховод соответствуют строительному кодексу Квебека.",
+  ventCodeBreaches: (rules) => `Вентилятор нарушает строительный кодекс Квебека: ${rules}.`,
+  lightCodeOk:
+    "В каждой комнате есть светильник с выключателем, а у входа — наружный свет, как требует строительный кодекс Квебека.",
+  lightCodeBreaches: (rules) => `Освещение нарушает строительный кодекс Квебека: ${rules}.`,
+  buildingCodeNote: "Проверено по Строительному кодексу Квебека, глава I «Здание»:",
   productsTitle: "Продукты",
   calculator: "Калькулятор комнаты",
   roomType: "Тип комнаты",
@@ -436,6 +457,16 @@ const fr: Messages = {
     "Diamètres, pentes, bras de siphon, ventilation et espacement des supports vérifiés selon le",
   codeOk: "La plomberie est conforme au code de plomberie du Québec.",
   codeBreaches: (n) => `La plomberie enfreint le code à ${n} endroit(s).`,
+  ventilationTitle: "Ventilation d’extraction",
+  ventCodeOk:
+    "Le ventilateur d’extraction et son conduit respectent le Code de construction du Québec.",
+  ventCodeBreaches: (rules) =>
+    `Le ventilateur ne respecte pas le Code de construction du Québec : ${rules}.`,
+  lightCodeOk:
+    "Chaque pièce a un luminaire commandé par interrupteur et l’entrée un éclairage extérieur, comme l’exige le Code de construction du Québec.",
+  lightCodeBreaches: (rules) =>
+    `L’éclairage ne respecte pas le Code de construction du Québec : ${rules}.`,
+  buildingCodeNote: "Vérifié selon le Code de construction du Québec, chapitre I, Bâtiment :",
   productsTitle: "Produits",
   calculator: "Calculateur de pièce",
   roomType: "Type de pièce",

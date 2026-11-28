@@ -345,8 +345,26 @@ class Product(_Strict):
 class ItemPackage(_Strict):
     """How one item is sold by this product: its package and the store search."""
 
-    package: Package
+    package: Package | None = None
+    """None when the item is bought by the piece, such as a fan."""
     search: str = Field(min_length=2)
+
+
+class FanRating(_Strict):
+    """One HVI-certified rating point of a fan."""
+
+    setting: int | None = None
+    """The speed setting (cfm) on fans with a selector."""
+    in_wg: Decimal = Field(gt=0)
+    """External static pressure, inches of water."""
+    cfm: Decimal = Field(gt=0)
+    sones: Decimal | None = Field(default=None, gt=0)
+
+
+class Fan(_Strict):
+    duct: int = Field(gt=0)
+    """Round duct diameter at the fan's collar, mm."""
+    ratings: list[FanRating] = Field(min_length=1)
 
 
 class ItemProduct(_Strict):
@@ -361,6 +379,8 @@ class ItemProduct(_Strict):
     items: dict[str, ItemPackage] = Field(min_length=1)
     swaps: dict[str, str] = Field(default_factory=dict)
     """Items this product needs in place of others, e.g. its own fitting rings."""
+    fan: Fan | None = None
+    """Ratings of an exhaust fan, checked against the building code."""
 
 
 class ProductFile(_Strict):

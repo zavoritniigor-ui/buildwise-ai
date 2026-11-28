@@ -200,6 +200,25 @@ def _layer(layer: schema.Layer) -> Json:
     return out
 
 
+def _item_package(sold: schema.ItemPackage) -> Json:
+    out: dict[str, Json] = {"search": sold.search}
+    if sold.package is not None:
+        out["package"] = {"size": _number(sold.package.size), "kind": sold.package.kind}
+    return out
+
+
+def _fan(fan: schema.Fan) -> Json:
+    ratings: list[Json] = []
+    for r in fan.ratings:
+        rating: dict[str, Json] = {"inWg": _number(r.in_wg), "cfm": _number(r.cfm)}
+        if r.setting is not None:
+            rating["setting"] = r.setting
+        if r.sones is not None:
+            rating["sones"] = _number(r.sones)
+        ratings.append(rating)
+    return {"duct": fan.duct, "ratings": ratings}
+
+
 def _quantity(quantity: schema.Quantity) -> Json:
     out: dict[str, Json] = {
         "per": quantity.per,
@@ -449,17 +468,9 @@ def snapshot(data_dir: Path) -> Json:
                 "brand": p.brand,
                 "name": p.name,
                 "source": _source(p.source),
-                "items": {
-                    item: {
-                        "package": {
-                            "size": _number(sold.package.size),
-                            "kind": sold.package.kind,
-                        },
-                        "search": sold.search,
-                    }
-                    for item, sold in p.items.items()
-                },
+                "items": {item: _item_package(sold) for item, sold in p.items.items()},
                 "swaps": dict(p.swaps),
+                **({"fan": _fan(p.fan)} if p.fan is not None else {}),
             }
             for p in products.item_products
         ],

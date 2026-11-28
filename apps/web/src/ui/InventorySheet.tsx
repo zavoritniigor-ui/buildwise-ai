@@ -5,6 +5,8 @@ import { RUNS, checkPlumbing } from "../plumbing";
 import { StoreLinks } from "../StoreLinks";
 import { KNOWLEDGE, type ProductPicks, citationUrl } from "../knowledge";
 import { ItemLine } from "./ItemLine";
+import { CodeStatus } from "./CodeStatus";
+import { BUILDING_CODE, FANS, checkLighting, checkVentilation } from "../ventilation";
 import { ProductPicker } from "./ProductPicker";
 
 /** Everything a room, or the whole house, needs, counted from the model, with
@@ -108,6 +110,22 @@ export function InventorySheet({
           </p>
         </>
       )}
+      {FANS.some((f) => rooms.includes(f.room as RoomId)) && (
+        <CodeStatus
+          breaches={checkVentilation(picks).filter((b) => rooms.includes(b.room as RoomId))}
+          document={BUILDING_CODE}
+          pages={[1072, 1074, 1075, 1077, 1078]}
+          ok={t.ventCodeOk}
+          broken={t.ventCodeBreaches}
+        />
+      )}
+      <CodeStatus
+        breaches={checkLighting().filter((b) => rooms.includes(b.room as RoomId))}
+        document={BUILDING_CODE}
+        pages={[1089]}
+        ok={t.lightCodeOk}
+        broken={t.lightCodeBreaches}
+      />
       <p className="muted small">{t.inventoryNote}</p>
     </aside>
   );

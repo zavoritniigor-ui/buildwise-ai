@@ -25,6 +25,11 @@ Each surface a person can click is a separately named mesh:
     fixture__<room>__plumbing_<run>__<pipe>
                                      supply and drain-waste-vent pipes
                                      (plumbing.json)
+    fixture__<room>__ventilation_<fan>__<duct>
+                                     exhaust ducts, shown with the pipes
+    fixture__<room>__wall_cap_<fan>__<cap>
+                                     the duct's outlet on the outside wall
+                                     (ventilation.json)
 
 The web app treats the model as a picture only and places invisible hit-planes
 from the same layout.json, so this script never has to know about clicks. It
@@ -636,6 +641,55 @@ def build_plumbing(plumbing: dict) -> None:
         )
 
 
+def build_ventilation(ventilation: dict) -> None:
+    """Exhaust ducts as silver tubes, one object per fan, and a wall cap on the
+    outside face of the wall where each duct ends; tagged with their items."""
+    import math
+
+    duct_mat = flat_material("mat_duct", {"color": "#c9ccd0", "roughness": 0.35, "metallic": 0.6})
+    cap_mat = flat_material("mat_wall_cap", {"color": "#f1f1ee", "roughness": 0.5})
+    for fan in ventilation["fans"]:
+        radius = 0.055
+        parts = Parts()
+        points = [to_blender(x, z, y) for x, y, z in fan["duct"]["points"]]
+        for a, b in zip(points, points[1:], strict=False):
+            delta = [b[i] - a[i] for i in range(3)]
+            length = math.sqrt(sum(c * c for c in delta))
+            if length < 1e-6:
+                continue
+            centre = tuple((a[i] + b[i]) / 2 for i in range(3))
+            axis = max(range(3), key=lambda i: abs(delta[i]))
+            rotation = {
+                0: Matrix.Rotation(math.pi / 2, 4, "Y"),
+                1: Matrix.Rotation(math.pi / 2, 4, "X"),
+                2: None,
+            }[axis]
+            parts.add(
+                "cylinder", centre, (2 * radius, 2 * radius, length), duct_mat, rotation=rotation
+            )
+        for point in points[1:-1]:
+            parts.add("sphere", point, (2.2 * radius, 2.2 * radius, 2.2 * radius), duct_mat)
+        parts.object(
+            f"fixture__{fan['room']}__ventilation_{fan['id']}__{fan['duct']['item']}",
+            extras={"item": fan["duct"]["item"], "room": fan["room"]},
+        )
+        # the cap: a hood on the outside face, facing the direction the duct runs
+        a, b = points[-2], points[-1]
+        delta = [b[i] - a[i] for i in range(3)]
+        axis = max(range(2), key=lambda i: abs(delta[i]))
+        sign = 1 if delta[axis] > 0 else -1
+        centre = list(b)
+        centre[axis] += sign * 0.04
+        size = [0.2, 0.2, 0.2]
+        size[axis] = 0.08
+        cap = Parts()
+        cap.add("box", tuple(centre), tuple(size), cap_mat)
+        cap.object(
+            f"fixture__{fan['room']}__wall_cap_{fan['id']}__{fan['outlet']['item']}",
+            extras={"item": fan["outlet"]["item"], "room": fan["room"]},
+        )
+
+
 JOINERY = {
     "frame_white": {"color": "#f4f4f1", "roughness": 0.45},
     "door_white": {"color": "#efece6", "roughness": 0.4},
@@ -643,7 +697,7 @@ JOINERY = {
 }
 
 
-def build(layout: dict, fixtures: dict, plumbing: dict) -> None:
+def build(layout: dict, fixtures: dict, plumbing: dict, ventilation: dict) -> None:
     rooms = layout["rooms"]
     materials = {role: textured_material(role) for role in TEXTURES["sets"]}
     flat = {
@@ -674,6 +728,7 @@ def build(layout: dict, fixtures: dict, plumbing: dict) -> None:
     build_fixtures(fixtures, flat)
     build_baseboards(layout, flat)
     build_plumbing(plumbing)
+    build_ventilation(ventilation)
 
 
 def main() -> None:
@@ -689,9 +744,12 @@ def main() -> None:
     fixtures_path = options.fixtures or options.layout.with_name("fixtures.json")
     fixtures = json.loads(fixtures_path.read_text(encoding="utf-8"))
     plumbing = json.loads(options.layout.with_name("plumbing.json").read_text(encoding="utf-8"))
+    ventilation = json.loads(
+        options.layout.with_name("ventilation.json").read_text(encoding="utf-8")
+    )
 
     bpy.ops.wm.read_factory_settings(use_empty=True)
-    build(layout, fixtures, plumbing)
+    build(layout, fixtures, plumbing, ventilation)
 
     options.out.parent.mkdir(parents=True, exist_ok=True)
     bpy.ops.export_scene.gltf(

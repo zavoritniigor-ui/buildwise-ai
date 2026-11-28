@@ -1,0 +1,25 @@
+# Quebec Construction Code, Chapter I Building: the National Building Code of
+# Canada 2020 incorporating Quebec amendments, published by the National
+# Research Council with the Régie du bâtiment du Québec. In force in Quebec
+# since 2025-04-17. Cited by page of the PDF (both volumes in one file).
+#
+# The bathroom ventilation (apps/web/src/house/ventilation.json) and the
+# lighting outlets (fixtures.json) are checked against it by
+# apps/web/src/ventilation.ts; a test fails on any breach.
+
+manufacturer:
+  name: Régie du bâtiment du Québec and National Research Council Canada
+  brand: RBQ
+  website: https://www.rbq.gouv.qc.ca
+
+documents:
+  - id: qc-building-2020
+    type: building_code
+    title: Quebec Construction Code, Chapter I Building, and National Building Code of Canada 2020 (amended)
+    url: https://nrc-publications.canada.ca/eng/view/ft/?id=fbb47c66-fcda-4d5b-a045-882dfa80ab0e&dp=3&dsl=en
+    version: Second printing, amended, includes the regulatory amendment of 2026-09-10
+    pages: 1565
+    sha256: cb63c28b526157ce3aa14382abc2a0ab8b6bc1d31ff6099e3e05f02781b992ec
+    retrieved_on: 2026-11-27
+
+categories: []

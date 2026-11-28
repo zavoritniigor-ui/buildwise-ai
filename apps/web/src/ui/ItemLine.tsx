@@ -30,11 +30,15 @@ export function ItemLine({
           <>
             {" · "}
             {sold.product.brand} {sold.product.name}
-            {" · "}
-            {t.packages(
-              sold.packages,
-              t.packageKind[sold.package.kind],
-              `${fmt(sold.package.size)} ${unit}`,
+            {sold.package && sold.packages !== undefined && (
+              <>
+                {" · "}
+                {t.packages(
+                  sold.packages,
+                  t.packageKind[sold.package.kind],
+                  `${fmt(sold.package.size)} ${unit}`,
+                )}
+              </>
             )}{" "}
             <a
               className="citation"

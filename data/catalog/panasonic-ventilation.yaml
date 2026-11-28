@@ -1,0 +1,22 @@
+# Panasonic WhisperCeiling DC bathroom fan (cUL listed), from the
+# manufacturer's own submittal sheet. Cited by page of the PDF. Ratings are
+# HVI-certified at 0.1, 0.25 and 0.375 in. w.g. for each speed setting.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Panasonic Life Solutions Company of America
+  brand: Panasonic
+  website: https://iaq.na.panasonic.com
+
+documents:
+  - id: panasonic-fv0511vq1-submittal
+    type: tds
+    title: Specification Submittal Data, WhisperCeiling DC FV-0511VQ1
+    url: https://ftp.panasonic.com/ventilationfan/fv0511vq1/FV-0511VQ1_submittal.pdf
+    version: "IAQ19159ST R3, 2025-10-20"
+    pages: 1
+    sha256: 520af1b020c518e23685a0fda61b14b780d21621a276ee8b48e0de9a4cb872fe
+    retrieved_on: 2026-11-27
+
+categories: []

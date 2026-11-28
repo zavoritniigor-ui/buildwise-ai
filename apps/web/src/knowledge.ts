@@ -187,10 +187,16 @@ export interface ItemProduct {
   name: string;
   /** the data-sheet page that gives the packages */
   source: SourceRef;
-  /** per item id: how this product sells it */
-  items: Record<string, { package: Package; search: string }>;
+  /** per item id: how this product sells it (no package: bought by the piece) */
+  items: Record<string, { package?: Package; search: string }>;
   /** items this product needs in place of others, such as its own fitting rings */
   swaps: Record<string, string>;
+  /** an exhaust fan's HVI ratings and duct size, checked against the building code */
+  fan?: {
+    /** round duct diameter at the collar, mm */
+    duct: number;
+    ratings: { setting?: number; inWg: number; cfm: number; sones?: number }[];
+  };
 }
 
 export interface Knowledge {
@@ -307,11 +313,12 @@ export function itemPurchase(
   amount: number,
   picks: ProductPicks = {},
   knowledge: Knowledge = KNOWLEDGE,
-): { product: ItemProduct; package: Package; search: string; packages: number } | undefined {
+): { product: ItemProduct; package?: Package; search: string; packages?: number } | undefined {
   const slot = findItem(id, knowledge)?.slot;
   const product = slot ? chosenItemProduct(slot, picks, knowledge) : undefined;
   const sold = product?.items[id];
   if (!product || !sold) return undefined;
+  if (!sold.package) return { product, search: sold.search };
   const packages = Math.max(1, Math.ceil(amount / sold.package.size - 1e-9));
   return { product, package: sold.package, search: sold.search, packages };
 }

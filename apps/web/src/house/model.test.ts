@@ -97,6 +97,17 @@ test("every fixture stands inside its room", () => {
       const z = pz + u * sin + v * cos;
       const [hw, hd] = turn ? [d / 2, w / 2] : [w / 2, d / 2];
       const where = `${place.room}/${place.piece}`;
+      if ((place as { exterior?: boolean }).exterior) {
+        // on the outer face of the room's wall: outside the room, within 0.4 m of it
+        const outX = x - hw >= rect.x + rect.width || x + hw <= rect.x;
+        const outZ = z - hd >= rect.z + rect.depth - 1e-6 || z + hd <= rect.z + 1e-6;
+        expect(outX || outZ, where).toBe(true);
+        expect(x, where).toBeGreaterThan(rect.x - 0.4);
+        expect(x, where).toBeLessThan(rect.x + rect.width + 0.4);
+        expect(z, where).toBeGreaterThan(rect.z - 0.4);
+        expect(z, where).toBeLessThan(rect.z + rect.depth + 0.4);
+        continue;
+      }
       expect(x - hw, where).toBeGreaterThanOrEqual(rect.x + inset);
       expect(x + hw, where).toBeLessThanOrEqual(rect.x + rect.width - inset);
       expect(z - hd, where).toBeGreaterThanOrEqual(rect.z + inset);

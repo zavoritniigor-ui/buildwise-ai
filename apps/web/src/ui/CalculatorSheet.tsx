@@ -11,10 +11,13 @@ import {
   options,
   plumbing,
   surfaceMaterials,
+  ventilationRows,
 } from "../calculator";
 import { useI18n } from "../i18n";
 import { type ProductPicks, findItem } from "../knowledge";
 import { ItemLine } from "./ItemLine";
+import { CodeStatus } from "./CodeStatus";
+import { BUILDING_CODE, checkVentilation } from "../ventilation";
 import { ProductPicker } from "./ProductPicker";
 import type { PurchaseLine } from "../quantities";
 import { StoreLinks } from "../StoreLinks";
@@ -45,6 +48,7 @@ export function CalculatorSheet({
   const a = areas(size);
   const wiring = electrical(type, size);
   const piping = plumbing(type, size, picks);
+  const venting = ventilationRows(type, picks);
 
   const field = (key: keyof RoomSize, label: string, step: number) => (
     <label className="calc-field">
@@ -126,7 +130,7 @@ export function CalculatorSheet({
 
       <ProductPicker
         buildups={chosenBuildups(type, chosen)}
-        items={[...wiring, ...piping].map((e) => e.item)}
+        items={[...wiring, ...venting, ...piping].map((e) => e.item)}
         picks={picks}
         onPick={onPick}
       />
@@ -143,6 +147,15 @@ export function CalculatorSheet({
 
       {type === "bathroom" && (
         <>
+          <h2 className="list-section">{t.ventilationTitle}</h2>
+          <Estimates rows={venting} picks={picks} />
+          <CodeStatus
+            breaches={checkVentilation(picks)}
+            document={BUILDING_CODE}
+            pages={[1072, 1074, 1075, 1077, 1078]}
+            ok={t.ventCodeOk}
+            broken={t.ventCodeBreaches}
+          />
           <h2 className="list-section">{t.plumbingCalcTitle}</h2>
           <Estimates rows={piping} picks={picks} />
           <p className="muted small">{t.plumbingCalcNote}</p>

@@ -1,0 +1,31 @@
+# Broan-NuTone (Venmar Ventilation ULC, Drummondville, Quebec) bathroom fans,
+# from the manufacturer's own specification sheets on broan-nutone.com/en-ca.
+# Cited by page of the PDF. Ratings are HVI-certified.
+#
+# Status: documents only; data/products.yaml cites these pages.
+
+manufacturer:
+  name: Venmar Ventilation ULC (Broan-NuTone)
+  brand: Broan
+  website: https://www.broan-nutone.com/en-ca
+
+documents:
+  - id: broan-qtxeg080-spec
+    type: tds
+    title: Specification Sheet, QTXEG Series Fan, Models QTXEG080 and QTXEG080X
+    url: https://www.broan-nutone.com/getmedia/009155b8-1fd2-460c-a21d-2fc1d026057f/Spec_Sheet_QTXEG080_En_Fr.pdf
+    version: "2025-01-17"
+    pages: 4
+    sha256: b900a0ae284e770df9a210f99f6269523e7aa16339ec2d7aa16ee3985787587f
+    retrieved_on: 2026-11-27
+
+  - id: broan-688-spec
+    type: tds
+    title: Specification Sheet, Models 688 and 689
+    url: https://www.broan-nutone.com/getmedia/3996e702-bce8-44fb-9790-ce19ef22c215/Spec-Sheet-688-689.pdf
+    version: "2022-11-20"
+    pages: 2
+    sha256: bbaa677418f29695d5215554dc481f013b6f0cbc149e0e1d855e47e51171f437
+    retrieved_on: 2026-11-27
+
+categories: []
