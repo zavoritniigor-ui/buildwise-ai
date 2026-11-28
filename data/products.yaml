@@ -35,6 +35,10 @@
 # - ABS DWV: IPEX Drain-Way Cell Core and solid wall, and Wavin (BOW) Foam Core,
 #   in 12 ft (3.66 m) lengths in Canada. The Quebec plumbing code 2.2.5.10
 #   (p. 97) allows ASTM F628 cellular core and CSA B181.1 pipe inside a building
+# - Bathroom fans carry their HVI ratings (airflow and sones at each static
+#   pressure and speed setting) and their duct size; a fan with another duct
+#   size swaps the duct and wall cap for that size. apps/web/src/ventilation.ts
+#   checks them against the Quebec building code (document qc-building-2020)
 
 slots:
   interior-paint: { name: Interior paint }
@@ -45,6 +49,7 @@ slots:
   nmd90-cable: { name: NMD90 cable }
   pex-pipe: { name: PEX pipe }
   abs-pipe: { name: ABS drain pipe }
+  bathroom-fan: { name: Bathroom exhaust fan }
 
 products:
   - id: bm-regal-select
@@ -383,3 +388,47 @@ item_products:
       abs_pipe_2: { package: { size: 3.66, kind: length }, search: BOW ABS foam core pipe 2 in }
       abs_pipe_1_1_2:
         { package: { size: 3.66, kind: length }, search: BOW ABS foam core pipe 1-1/2 in }
+  - id: panasonic-fv0511vq1
+    slot: bathroom-fan
+    brand: Panasonic
+    name: WhisperCeiling DC FV-0511VQ1
+    source: { document: panasonic-fv0511vq1-submittal, page: 1 }
+    items:
+      bathroom_exhaust_fan: { search: Panasonic FV-0511VQ1 }
+    fan:
+      duct: 100
+      ratings:
+        - { setting: 50, in_wg: 0.1, cfm: 50, sones: 0.3 }
+        - { setting: 50, in_wg: 0.25, cfm: 53, sones: 0.4 }
+        - { setting: 50, in_wg: 0.375, cfm: 53 }
+        - { setting: 80, in_wg: 0.1, cfm: 80, sones: 0.3 }
+        - { setting: 80, in_wg: 0.25, cfm: 83, sones: 0.6 }
+        - { setting: 80, in_wg: 0.375, cfm: 82 }
+        - { setting: 110, in_wg: 0.1, cfm: 110, sones: 0.3 }
+        - { setting: 110, in_wg: 0.25, cfm: 111, sones: 0.9 }
+        - { setting: 110, in_wg: 0.375, cfm: 91 }
+  - id: broan-qtxeg080
+    slot: bathroom-fan
+    brand: Broan
+    name: QTXEG080 (QTXE Series, 80 CFM)
+    source: { document: broan-qtxeg080-spec, page: 2 }
+    items:
+      bathroom_exhaust_fan: { search: Broan QTXEG080 }
+    fan:
+      duct: 150
+      ratings:
+        - { in_wg: 0.1, cfm: 80, sones: 0.4 }
+        - { in_wg: 0.25, cfm: 80 }
+    swaps: { insulated_flex_duct_4: insulated_flex_duct_6, exhaust_wall_cap_4: exhaust_wall_cap_6 }
+  - id: broan-688
+    slot: bathroom-fan
+    brand: Broan
+    name: "688 (50 CFM)"
+    source: { document: broan-688-spec, page: 1 }
+    items:
+      bathroom_exhaust_fan: { search: Broan 688 }
+    fan:
+      duct: 75
+      ratings:
+        - { in_wg: 0.1, cfm: 50, sones: 4.0 }
+    swaps: { insulated_flex_duct_4: insulated_flex_duct_3, exhaust_wall_cap_4: exhaust_wall_cap_3 }

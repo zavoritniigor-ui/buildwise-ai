@@ -10,6 +10,16 @@
       "url": "https://media.benjaminmoore.com/WebServices/prod/assets/stage/datasheets/TDS_0549/K549_TDS_CE.pdf",
       "version": "©2014, 2018"
     },
+    "broan-qtxeg080-spec": {
+      "title": "Specification Sheet, QTXEG Series Fan, Models QTXEG080 and QTXEG080X",
+      "url": "https://www.broan-nutone.com/getmedia/009155b8-1fd2-460c-a21d-2fc1d026057f/Spec_Sheet_QTXEG080_En_Fr.pdf",
+      "version": "2025-01-17"
+    },
+    "broan-688-spec": {
+      "title": "Specification Sheet, Models 688 and 689",
+      "url": "https://www.broan-nutone.com/getmedia/3996e702-bce8-44fb-9790-ce19ef22c215/Spec-Sheet-688-689.pdf",
+      "version": "2022-11-20"
+    },
     "cgc-handbook-ch04": {
       "title": "CGC Gypsum Construction Handbook, Chapter 4 Cement Board Construction",
       "url": "https://www.usg.com/content/dam/USG_Marketing_Communications/canada/product_promotional_materials/finished_assets/cgc-construction-handbook-ch04-cement-board-construction-can-en.pdf",
@@ -130,6 +140,11 @@
       "url": "https://publications.gc.ca/collections/collection_2022/cnrc-nrc/NR24-29-2020-eng.pdf",
       "version": "2020, 1st printing"
     },
+    "panasonic-fv0511vq1-submittal": {
+      "title": "Specification Submittal Data, WhisperCeiling DC FV-0511VQ1",
+      "url": "https://ftp.panasonic.com/ventilationfan/fv0511vq1/FV-0511VQ1_submittal.pdf",
+      "version": "IAQ19159ST R3, 2025-10-20"
+    },
     "sico-expert-843-tds": {
       "title": "Sico Expert 843-XX1N Interior Self-Sealer Latex Professional Paint, Eggshell Pro, Technical Data Sheet",
       "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_843XX1N_CAEN.pdf",
@@ -149,6 +164,11 @@
       "title": "Sico Evolution 867-5XX Interior Latex Paint, Semi-Gloss, Technical Data Sheet",
       "url": "https://buyat.ppg.com/rep_pafpainttools_files/Sico/SC_8675XX_CAEN.pdf",
       "version": "CAEN"
+    },
+    "qc-building-2020": {
+      "title": "Quebec Construction Code, Chapter I Building, and National Building Code of Canada 2020 (amended)",
+      "url": "https://nrc-publications.canada.ca/eng/view/ft/?id=fbb47c66-fcda-4d5b-a045-882dfa80ab0e&dp=3&dsl=en",
+      "version": "Second printing, amended, includes the regulatory amendment of 2026-09-10"
     },
     "qc-plumbing-2020": {
       "title": "Quebec Construction Code, Chapter III Plumbing, and National Plumbing Code of Canada 2020 (amended)",
@@ -6472,8 +6492,81 @@
       "name": "Bathroom exhaust fan",
       "category": "ventilation",
       "measure": "each",
-      "summary": "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic.",
-      "search": "bathroom exhaust fan"
+      "summary": "In Quebec it must move at least 25 L/s (53 cfm) through its duct, be switched by hand in the room and be no louder than 3.5 sones (HVI); duct it to the outside, never into the attic.",
+      "search": "bathroom exhaust fan",
+      "slot": "bathroom-fan"
+    },
+    {
+      "id": "insulated_flex_duct_3",
+      "name": "Insulated flexible duct, 3 in",
+      "category": "ventilation",
+      "measure": "length",
+      "summary": "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.",
+      "search": "insulated flexible duct 3 in"
+    },
+    {
+      "id": "exhaust_wall_cap_3",
+      "name": "Exhaust wall cap, 3 in",
+      "category": "ventilation",
+      "measure": "each",
+      "summary": "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.",
+      "search": "exhaust wall cap 3 in damper"
+    },
+    {
+      "id": "insulated_flex_duct_4",
+      "name": "Insulated flexible duct, 4 in",
+      "category": "ventilation",
+      "measure": "length",
+      "summary": "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.",
+      "search": "insulated flexible duct 4 in"
+    },
+    {
+      "id": "exhaust_wall_cap_4",
+      "name": "Exhaust wall cap, 4 in",
+      "category": "ventilation",
+      "measure": "each",
+      "summary": "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.",
+      "search": "exhaust wall cap 4 in damper"
+    },
+    {
+      "id": "insulated_flex_duct_6",
+      "name": "Insulated flexible duct, 6 in",
+      "category": "ventilation",
+      "measure": "length",
+      "summary": "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.",
+      "search": "insulated flexible duct 6 in"
+    },
+    {
+      "id": "exhaust_wall_cap_6",
+      "name": "Exhaust wall cap, 6 in",
+      "category": "ventilation",
+      "measure": "each",
+      "summary": "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.",
+      "search": "exhaust wall cap 6 in damper"
+    },
+    {
+      "id": "foil_duct_tape",
+      "name": "Foil duct tape",
+      "category": "ventilation",
+      "measure": "each",
+      "summary": "Duct joints must be sealed with mastic, metal foil duct tape or the manufacturer's sealant; cloth duct tape does not qualify.",
+      "search": "foil duct tape"
+    },
+    {
+      "id": "duct_clamp",
+      "name": "Duct clamp",
+      "category": "ventilation",
+      "measure": "each",
+      "summary": "One at each end holds the flexible duct tight on the fan collar and on the wall cap.",
+      "search": "duct clamp"
+    },
+    {
+      "id": "exterior_light",
+      "name": "Exterior entrance light",
+      "category": "lighting",
+      "measure": "each",
+      "summary": "Every entrance needs an outdoor light controlled by a wall switch inside; choose a fixture rated for wet locations.",
+      "search": "exterior wall light"
     },
     {
       "id": "baseboard",
@@ -6730,6 +6823,9 @@
     },
     "abs-pipe": {
       "name": "ABS drain pipe"
+    },
+    "bathroom-fan": {
+      "name": "Bathroom exhaust fan"
     }
   },
   "products": [
@@ -7164,11 +7260,11 @@
       },
       "items": {
         "nmd90_cable": {
+          "search": "Nexans NMD90 CANADEX 14/2 75m",
           "package": {
             "size": 75,
             "kind": "coil"
-          },
-          "search": "Nexans NMD90 CANADEX 14/2 75m"
+          }
         }
       },
       "swaps": {}
@@ -7184,11 +7280,11 @@
       },
       "items": {
         "nmd90_cable": {
+          "search": "Southwire Romex SIMpull NMD90 14/2 75m",
           "package": {
             "size": 75,
             "kind": "coil"
-          },
-          "search": "Southwire Romex SIMpull NMD90 14/2 75m"
+          }
         }
       },
       "swaps": {}
@@ -7204,18 +7300,18 @@
       },
       "items": {
         "pex_pipe_1_2": {
+          "search": "SharkBite PEX-B 1/2 100 ft",
           "package": {
             "size": 30.48,
             "kind": "coil"
-          },
-          "search": "SharkBite PEX-B 1/2 100 ft"
+          }
         },
         "pex_pipe_3_4": {
+          "search": "SharkBite PEX-B 3/4 100 ft",
           "package": {
             "size": 30.48,
             "kind": "coil"
-          },
-          "search": "SharkBite PEX-B 3/4 100 ft"
+          }
         }
       },
       "swaps": {}
@@ -7231,18 +7327,18 @@
       },
       "items": {
         "pex_pipe_1_2": {
+          "search": "Uponor AquaPEX 1/2 100 ft",
           "package": {
             "size": 30.48,
             "kind": "coil"
-          },
-          "search": "Uponor AquaPEX 1/2 100 ft"
+          }
         },
         "pex_pipe_3_4": {
+          "search": "Uponor AquaPEX 3/4 100 ft",
           "package": {
             "size": 30.48,
             "kind": "coil"
-          },
-          "search": "Uponor AquaPEX 3/4 100 ft"
+          }
         }
       },
       "swaps": {
@@ -7260,25 +7356,25 @@
       },
       "items": {
         "abs_pipe_3": {
+          "search": "IPEX ABS Cell Core 3 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS Cell Core 3 in 12 ft"
+          }
         },
         "abs_pipe_2": {
+          "search": "IPEX ABS Cell Core 2 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS Cell Core 2 in 12 ft"
+          }
         },
         "abs_pipe_1_1_2": {
+          "search": "IPEX ABS Cell Core 1-1/2 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS Cell Core 1-1/2 in 12 ft"
+          }
         }
       },
       "swaps": {}
@@ -7294,25 +7390,25 @@
       },
       "items": {
         "abs_pipe_3": {
+          "search": "IPEX ABS DWV solid wall 3 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS DWV solid wall 3 in 12 ft"
+          }
         },
         "abs_pipe_2": {
+          "search": "IPEX ABS DWV solid wall 2 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS DWV solid wall 2 in 12 ft"
+          }
         },
         "abs_pipe_1_1_2": {
+          "search": "IPEX ABS DWV solid wall 1-1/2 in 12 ft",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "IPEX ABS DWV solid wall 1-1/2 in 12 ft"
+          }
         }
       },
       "swaps": {}
@@ -7328,28 +7424,162 @@
       },
       "items": {
         "abs_pipe_3": {
+          "search": "BOW ABS foam core pipe 3 in",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "BOW ABS foam core pipe 3 in"
+          }
         },
         "abs_pipe_2": {
+          "search": "BOW ABS foam core pipe 2 in",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "BOW ABS foam core pipe 2 in"
+          }
         },
         "abs_pipe_1_1_2": {
+          "search": "BOW ABS foam core pipe 1-1/2 in",
           "package": {
             "size": 3.66,
             "kind": "length"
-          },
-          "search": "BOW ABS foam core pipe 1-1/2 in"
+          }
         }
       },
       "swaps": {}
+    },
+    {
+      "id": "panasonic-fv0511vq1",
+      "slot": "bathroom-fan",
+      "brand": "Panasonic",
+      "name": "WhisperCeiling DC FV-0511VQ1",
+      "source": {
+        "document": "panasonic-fv0511vq1-submittal",
+        "page": 1
+      },
+      "items": {
+        "bathroom_exhaust_fan": {
+          "search": "Panasonic FV-0511VQ1"
+        }
+      },
+      "swaps": {},
+      "fan": {
+        "duct": 100,
+        "ratings": [
+          {
+            "inWg": 0.1,
+            "cfm": 50,
+            "setting": 50,
+            "sones": 0.3
+          },
+          {
+            "inWg": 0.25,
+            "cfm": 53,
+            "setting": 50,
+            "sones": 0.4
+          },
+          {
+            "inWg": 0.375,
+            "cfm": 53,
+            "setting": 50
+          },
+          {
+            "inWg": 0.1,
+            "cfm": 80,
+            "setting": 80,
+            "sones": 0.3
+          },
+          {
+            "inWg": 0.25,
+            "cfm": 83,
+            "setting": 80,
+            "sones": 0.6
+          },
+          {
+            "inWg": 0.375,
+            "cfm": 82,
+            "setting": 80
+          },
+          {
+            "inWg": 0.1,
+            "cfm": 110,
+            "setting": 110,
+            "sones": 0.3
+          },
+          {
+            "inWg": 0.25,
+            "cfm": 111,
+            "setting": 110,
+            "sones": 0.9
+          },
+          {
+            "inWg": 0.375,
+            "cfm": 91,
+            "setting": 110
+          }
+        ]
+      }
+    },
+    {
+      "id": "broan-qtxeg080",
+      "slot": "bathroom-fan",
+      "brand": "Broan",
+      "name": "QTXEG080 (QTXE Series, 80 CFM)",
+      "source": {
+        "document": "broan-qtxeg080-spec",
+        "page": 2
+      },
+      "items": {
+        "bathroom_exhaust_fan": {
+          "search": "Broan QTXEG080"
+        }
+      },
+      "swaps": {
+        "insulated_flex_duct_4": "insulated_flex_duct_6",
+        "exhaust_wall_cap_4": "exhaust_wall_cap_6"
+      },
+      "fan": {
+        "duct": 150,
+        "ratings": [
+          {
+            "inWg": 0.1,
+            "cfm": 80,
+            "sones": 0.4
+          },
+          {
+            "inWg": 0.25,
+            "cfm": 80
+          }
+        ]
+      }
+    },
+    {
+      "id": "broan-688",
+      "slot": "bathroom-fan",
+      "brand": "Broan",
+      "name": "688 (50 CFM)",
+      "source": {
+        "document": "broan-688-spec",
+        "page": 1
+      },
+      "items": {
+        "bathroom_exhaust_fan": {
+          "search": "Broan 688"
+        }
+      },
+      "swaps": {
+        "insulated_flex_duct_4": "insulated_flex_duct_3",
+        "exhaust_wall_cap_4": "exhaust_wall_cap_3"
+      },
+      "fan": {
+        "duct": 75,
+        "ratings": [
+          {
+            "inWg": 0.1,
+            "cfm": 50,
+            "sones": 4
+          }
+        ]
+      }
     }
   ],
   "translations": {
@@ -7459,7 +7689,6 @@
       "Check the smallest cabinet it fits and whether it mounts under or on top of the counter.": "Перевірте мінімальну ширину шафи під неї і чи монтується вона під стільницю чи зверху.",
       "Check the water and drain positions in the wall against the open back of the cabinet.": "Звірте розташування води й каналізації у стіні з відкритою задньою частиною тумби.",
       "Choose an insulated steel or fibreglass door with weatherstripping; measure the rough opening and choose the hand.": "Оберіть утеплені сталеві чи склопластикові двері з ущільнювачем; виміряйте проріз і оберіть бік відчинення.",
-      "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic.": "Підберіть продуктивність під розмір ванної та виведіть повітропровід назовні, а не на горище.",
       "Clips must hold the pipe without pinching or cutting it.": "Кліпса має тримати трубу, не перетискаючи й не ріжучи її.",
       "Coated glass mat water-resistant gypsum backerboard": "Вологостійка гіпсова плита з покритим склополотном",
       "Compatible drain systems": "Сумісні трапи",
@@ -7486,6 +7715,8 @@
       "Drain system": "Тип трапа",
       "Drywall screws, Type W": "Шурупи для гіпсокартону, тип W",
       "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупи для гіпсокартону, тип W, крок 300 мм на стелі",
+      "Duct clamp": "Хомут для повітроводу",
+      "Duct joints must be sealed with mastic, metal foil duct tape or the manufacturer's sealant; cloth duct tape does not qualify.": "Стики повітроводу треба герметизувати мастикою, металевою фольгованою стрічкою або герметиком виробника; тканинна армована стрічка не підходить.",
       "Duplex receptacle": "Подвійна розетка",
       "Electric baseboard heater": "Електричний конвектор",
       "Electrical box": "Монтажна коробка",
@@ -7493,11 +7724,16 @@
       "Engineered I-joist": "Двотаврова клеєна балка",
       "Engineered wood flooring": "Інженерна дерев'яна підлога",
       "Entry door handleset": "Ручка для вхідних дверей",
+      "Every entrance needs an outdoor light controlled by a wall switch inside; choose a fixture rated for wet locations.": "Кожен вхід потребує зовнішнього світильника з вимикачем усередині будинку; беріть світильник для вологих місць.",
       "Every fixture needs a trap; a lavatory takes a 1-1/4 in trap.": "Кожному приладу потрібен сифон; для умивальника — 1¼ дюйма.",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Крім кутового KST965NA/BF, у якого трап зміщений від центру.",
+      "Exhaust wall cap, 3 in": "Стінний ковпак для витяжки, 3 дюйми",
+      "Exhaust wall cap, 4 in": "Стінний ковпак для витяжки, 4 дюйми",
+      "Exhaust wall cap, 6 in": "Стінний ковпак для витяжки, 6 дюймів",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Пінополістирол 60 кг/м³, виміряно при деформації 10 %. Берегти від вуглеводнів, естерів, амінів, альдегідів і тривалого ультрафіолету.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Рекомендовано фанеру Exposure 1 з виправленою лицьовою стороною або OSB.",
       "Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18.": "Фанера Exposure 1 з виправленою лицьовою стороною або OSB, зазори 3 мм (1/8 дюйма); монтаж за с. 18.",
+      "Exterior entrance light": "Зовнішній світильник біля входу",
       "Exterior entry door": "Вхідні двері",
       "Exterior wall": "Зовнішня стіна",
       "Fiber-cement backerboard": "Фіброцементна плита",
@@ -7509,6 +7745,7 @@
       "Floor joists": "Лаги перекриття",
       "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Лаги підлоги з кроком до 49 см (19,2 дюйма) під одним шаром фанери 19 мм (3/4 дюйма)",
       "Floor waterproofing": "Гідроізоляція підлоги",
+      "Foil duct tape": "Фольгована стрічка для повітроводів",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стін ванної поза душовою: вологостійкий і стійкий до плісняви гіпсокартон, зі стрічкою на швах, шпаклюванням і фарбою для ванних.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для підлог, де вертикальне підключення незручне, наприклад дерев'яна підлога, у якій не можна перенести отвір.",
       "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory.": "Для відводу умивальника й вентиляції; кодекс дозволяє для умивальника щонайменше 1¼ дюйма.",
@@ -7527,6 +7764,10 @@
       "Horizontal connection to a waste pipe beside the drain": "Горизонтальне підключення до труби збоку від трапа",
       "How the panel is mounted": "Як кріпиться плита",
       "How the waste pipe reaches the drain": "Як каналізаційна труба підходить до трапа",
+      "In Quebec it must move at least 25 L/s (53 cfm) through its duct, be switched by hand in the room and be no louder than 3.5 sones (HVI); duct it to the outside, never into the attic.": "У Квебеку вентилятор має проганяти щонайменше 25 л/с (53 cfm) через свій повітровід, вмикатися вручну в цій кімнаті й бути не гучнішим за 3,5 сона (HVI); виводьте повітровід назовні, ніколи не на горище.",
+      "Insulated flexible duct, 3 in": "Утеплений гнучкий повітровід, 3 дюйми",
+      "Insulated flexible duct, 4 in": "Утеплений гнучкий повітровід, 4 дюйми",
+      "Insulated flexible duct, 6 in": "Утеплений гнучкий повітровід, 6 дюймів",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "З вбудованою гідроізоляцією KERDI; для пандусів до душових без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутрішня суха чи мокра підлога. DITRA не замінює деформаційних швів; де потрібна водонепроникна підлога, стики та примикання підлоги до стін закривають KERDI-BAND.",
       "Interior paint": "Інтер'єрна фарба",
@@ -7607,6 +7848,7 @@
       "Not for primary exterior waterproofing, continuous-use steam rooms, moisture-sensitive stone, or hydrostatic pressure.": "Не для основної зовнішньої гідроізоляції, парильних кімнат постійного використання, чутливого до вологи каменю чи гідростатичного тиску.",
       "Not intended for exterior applications. Floors are not listed as a use.": "Не призначено для зовнішніх робіт. Підлоги серед застосувань не названо.",
       "Off-center": "Зміщено від центру",
+      "One at each end holds the flexible duct tight on the fan collar and on the wall cap.": "По одному на кожен кінець: щільно тримає гнучкий повітровід на патрубку вентилятора й на стінному ковпаку.",
       "One ring per pipe end in each fitting; buy rings in both sizes, 1/2 in and 3/4 in.": "Одне кільце на кожен кінець труби у фітингу; купуйте кільця обох розмірів, 1/2 і 3/4 дюйма.",
       "Only a licensed electrician may install or change it; plan spare spaces for future circuits.": "Встановлювати чи змінювати його може лише ліцензований електрик; передбачте вільні місця для майбутніх ліній.",
       "Only dimensional lumber is supported; it must not be ripped down.": "Підходять лише лаги з цільного пиломатеріалу; розпилювати їх уздовж не можна.",
@@ -7737,6 +7979,7 @@
       "The membrane must be DITRA-XL.": "Мембрана має бути DITRA-XL.",
       "The membrane must be acclimated within its working temperature range.": "Мембрана має бути витримана в межах робочих температур.",
       "The membrane must be bonded with a mortar the manufacturer names.": "Мембрану клеять лише на названий виробником розчин.",
+      "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.": "Вихід повинен мати зворотний клапан, бути щонайменше на 100 мм над землею і за 1,8 м від повітрозабірників і вентильованих софітів.",
       "The panel may only be used where the manufacturer allows it.": "Плиту можна застосовувати лише там, де дозволяє виробник.",
       "The panel must be thick enough for how it is mounted. Allowed mountings are derived from each panel's thickness.": "Плита має бути достатньо товстою для способу монтажу. Дозволені способи визначено з товщини кожної плити.",
       "The shower base must be a KERDI-SHOWER tray or a mortar bed.": "Основа душової — піддон KERDI-SHOWER або стяжка.",
@@ -7750,6 +7993,7 @@
       "Thin-set mortar": "Клейовий розчин",
       "This detail is for ceramic or porcelain tile.": "Цей варіант — для керамічної плитки чи керамограніту.",
       "This detail is for natural stone.": "Цей варіант — для натурального каменю.",
+      "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.": "На неопалюваному горищі повітровід має бути утеплений щонайменше до RSI 0,74 (R-4,2); робіть його коротким і натягнутим та закріплюйте, щоб не провисав.",
       "Tile grout": "Затирка для плитки",
       "Tile material": "Матеріал плитки",
       "Tile mortar": "Клейовий розчин для плитки",
@@ -7912,7 +8156,6 @@
       "Check the smallest cabinet it fits and whether it mounts under or on top of the counter.": "Проверьте минимальную ширину шкафа под неё и монтируется ли она под столешницу или сверху.",
       "Check the water and drain positions in the wall against the open back of the cabinet.": "Сверьте расположение воды и канализации в стене с открытой задней частью тумбы.",
       "Choose an insulated steel or fibreglass door with weatherstripping; measure the rough opening and choose the hand.": "Выберите утеплённую стальную или стеклопластиковую дверь с уплотнителем; измерьте проём и выберите сторону открывания.",
-      "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic.": "Подберите производительность под размер ванной и выведите воздуховод наружу, а не на чердак.",
       "Clips must hold the pipe without pinching or cutting it.": "Клипса должна держать трубу, не пережимая и не режа её.",
       "Coated glass mat water-resistant gypsum backerboard": "Влагостойкая гипсовая плита с покрытым стеклохолстом",
       "Compatible drain systems": "Совместимые трапы",
@@ -7939,6 +8182,8 @@
       "Drain system": "Тип трапа",
       "Drywall screws, Type W": "Шурупы для гипсокартона, тип W",
       "Drywall screws, Type W, 300 mm apart on ceilings": "Шурупы для гипсокартона, тип W, шаг 300 мм на потолке",
+      "Duct clamp": "Хомут для воздуховода",
+      "Duct joints must be sealed with mastic, metal foil duct tape or the manufacturer's sealant; cloth duct tape does not qualify.": "Стыки воздуховода нужно герметизировать мастикой, металлической фольгированной лентой или герметиком производителя; тканевая армированная лента не подходит.",
       "Duplex receptacle": "Двойная розетка",
       "Electric baseboard heater": "Электрический конвектор",
       "Electrical box": "Монтажная коробка",
@@ -7946,11 +8191,16 @@
       "Engineered I-joist": "Двутавровая клеёная балка",
       "Engineered wood flooring": "Инженерная деревянная доска",
       "Entry door handleset": "Ручка для входной двери",
+      "Every entrance needs an outdoor light controlled by a wall switch inside; choose a fixture rated for wet locations.": "У каждого входа нужен наружный светильник с выключателем внутри дома; берите светильник для влажных мест.",
       "Every fixture needs a trap; a lavatory takes a 1-1/4 in trap.": "Каждому прибору нужен сифон; для раковины — 1¼ дюйма.",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Кроме углового KST965NA/BF, у которого трап смещён от центра.",
+      "Exhaust wall cap, 3 in": "Стенной колпак для вытяжки, 3 дюйма",
+      "Exhaust wall cap, 4 in": "Стенной колпак для вытяжки, 4 дюйма",
+      "Exhaust wall cap, 6 in": "Стенной колпак для вытяжки, 6 дюймов",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Пенополистирол 60 кг/м³, измерено при деформации 10 %. Беречь от углеводородов, эфиров, аминов, альдегидов и длительного ультрафиолета.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Рекомендуется фанера Exposure 1 с исправленной лицевой стороной или OSB.",
       "Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18.": "Фанера Exposure 1 с исправленной лицевой стороной или OSB, зазоры 3 мм (1/8 дюйма); монтаж по с. 18.",
+      "Exterior entrance light": "Наружный светильник у входа",
       "Exterior entry door": "Входная дверь",
       "Exterior wall": "Наружная стена",
       "Fiber-cement backerboard": "Фиброцементная плита",
@@ -7962,6 +8212,7 @@
       "Floor joists": "Лаги перекрытия",
       "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Лаги пола с шагом до 49 см (19,2 дюйма) под одним слоем фанеры 19 мм (3/4 дюйма)",
       "Floor waterproofing": "Гидроизоляция пола",
+      "Foil duct tape": "Фольгированная лента для воздуховодов",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Для стен ванной вне душевой: влагостойкий и устойчивый к плесени гипсокартон, с лентой на швах, шпаклёвкой и краской для ванных.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Для полов, где вертикальное подключение неудобно, например деревянный пол, в котором нельзя перенести отверстие.",
       "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory.": "Для отвода раковины и вентиляции; кодекс допускает для раковины не менее 1¼ дюйма.",
@@ -7980,6 +8231,10 @@
       "Horizontal connection to a waste pipe beside the drain": "Горизонтальное подключение к трубе сбоку от трапа",
       "How the panel is mounted": "Как крепится плита",
       "How the waste pipe reaches the drain": "Как канализационная труба подходит к трапу",
+      "In Quebec it must move at least 25 L/s (53 cfm) through its duct, be switched by hand in the room and be no louder than 3.5 sones (HVI); duct it to the outside, never into the attic.": "В Квебеке вентилятор должен прогонять не менее 25 л/с (53 cfm) через свой воздуховод, включаться вручную в этой комнате и быть не громче 3,5 сона (HVI); выводите воздуховод наружу, никогда не на чердак.",
+      "Insulated flexible duct, 3 in": "Утеплённый гибкий воздуховод, 3 дюйма",
+      "Insulated flexible duct, 4 in": "Утеплённый гибкий воздуховод, 4 дюйма",
+      "Insulated flexible duct, 6 in": "Утеплённый гибкий воздуховод, 6 дюймов",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Со встроенной гидроизоляцией KERDI; для пандусов к душевым без порога.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Внутренний сухой или мокрый пол. DITRA не заменяет деформационных швов; где нужен водонепроницаемый пол, стыки и примыкания пола к стенам закрывают KERDI-BAND.",
       "Interior paint": "Интерьерная краска",
@@ -8060,6 +8315,7 @@
       "Not for primary exterior waterproofing, continuous-use steam rooms, moisture-sensitive stone, or hydrostatic pressure.": "Не для основной наружной гидроизоляции, парилок постоянного использования, чувствительного к влаге камня или гидростатического давления.",
       "Not intended for exterior applications. Floors are not listed as a use.": "Не предназначено для наружных работ. Полы среди применений не указаны.",
       "Off-center": "Смещено от центра",
+      "One at each end holds the flexible duct tight on the fan collar and on the wall cap.": "По одному на каждый конец: плотно держит гибкий воздуховод на патрубке вентилятора и на стенном колпаке.",
       "One ring per pipe end in each fitting; buy rings in both sizes, 1/2 in and 3/4 in.": "Одно кольцо на каждый конец трубы в фитинге; покупайте кольца обоих размеров, 1/2 и 3/4 дюйма.",
       "Only a licensed electrician may install or change it; plan spare spaces for future circuits.": "Устанавливать или менять его может только лицензированный электрик; предусмотрите свободные места для будущих линий.",
       "Only dimensional lumber is supported; it must not be ripped down.": "Подходят только лаги из цельного пиломатериала; распиливать их вдоль нельзя.",
@@ -8190,6 +8446,7 @@
       "The membrane must be DITRA-XL.": "Мембрана должна быть DITRA-XL.",
       "The membrane must be acclimated within its working temperature range.": "Мембрана должна быть выдержана в пределах рабочих температур.",
       "The membrane must be bonded with a mortar the manufacturer names.": "Мембрану клеят только на указанный производителем клей.",
+      "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.": "Выход должен иметь обратный клапан, быть не ниже 100 мм над землёй и в 1,8 м от воздухозаборников и вентилируемых софитов.",
       "The panel may only be used where the manufacturer allows it.": "Плиту можно применять только там, где разрешает производитель.",
       "The panel must be thick enough for how it is mounted. Allowed mountings are derived from each panel's thickness.": "Плита должна быть достаточно толстой для способа монтажа. Допустимые способы определены по толщине каждой плиты.",
       "The shower base must be a KERDI-SHOWER tray or a mortar bed.": "Основание душевой — поддон KERDI-SHOWER или стяжка.",
@@ -8203,6 +8460,7 @@
       "Thin-set mortar": "Плиточный клей",
       "This detail is for ceramic or porcelain tile.": "Этот вариант — для керамической плитки или керамогранита.",
       "This detail is for natural stone.": "Этот вариант — для натурального камня.",
+      "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.": "На неотапливаемом чердаке воздуховод должен быть утеплён не менее чем до RSI 0,74 (R-4,2); делайте его коротким и натянутым и крепите, чтобы не провисал.",
       "Tile grout": "Затирка для плитки",
       "Tile material": "Материал плитки",
       "Tile mortar": "Клеевой раствор для плитки",
@@ -8365,7 +8623,6 @@
       "Check the smallest cabinet it fits and whether it mounts under or on top of the counter.": "Vérifiez la plus petite armoire qui le reçoit et s'il s'installe sous le comptoir ou par-dessus.",
       "Check the water and drain positions in the wall against the open back of the cabinet.": "Comparez l'emplacement de l'eau et du drain dans le mur avec le dos ouvert du meuble.",
       "Choose an insulated steel or fibreglass door with weatherstripping; measure the rough opening and choose the hand.": "Choisissez une porte isolée en acier ou en fibre de verre avec coupe-froid; mesurez l'ouverture brute et choisissez le sens.",
-      "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic.": "Choisissez le débit selon la taille de la salle de bain et évacuez-le à l'extérieur, jamais dans l'entretoit.",
       "Clips must hold the pipe without pinching or cutting it.": "L'attache doit tenir le tuyau sans le pincer ni le couper.",
       "Coated glass mat water-resistant gypsum backerboard": "Panneau de gypse hydrofuge à mat de verre enduit",
       "Compatible drain systems": "Drains compatibles",
@@ -8392,6 +8649,8 @@
       "Drain system": "Type de drain",
       "Drywall screws, Type W": "Vis à gypse, type W",
       "Drywall screws, Type W, 300 mm apart on ceilings": "Vis à gypse, type W, aux 300 mm au plafond",
+      "Duct clamp": "Collier de serrage pour conduit",
+      "Duct joints must be sealed with mastic, metal foil duct tape or the manufacturer's sealant; cloth duct tape does not qualify.": "Les joints des conduits doivent être scellés avec du mastic, du ruban métallique ou le scellant du fabricant; le ruban en toile ne convient pas.",
       "Duplex receptacle": "Prise de courant double",
       "Electric baseboard heater": "Plinthe électrique",
       "Electrical box": "Boîte électrique",
@@ -8399,11 +8658,16 @@
       "Engineered I-joist": "Poutrelle en I",
       "Engineered wood flooring": "Plancher en bois d'ingénierie",
       "Entry door handleset": "Poignée de porte d'entrée",
+      "Every entrance needs an outdoor light controlled by a wall switch inside; choose a fixture rated for wet locations.": "Chaque entrée doit avoir un luminaire extérieur commandé par un interrupteur à l’intérieur; choisissez un luminaire pour emplacements mouillés.",
       "Every fixture needs a trap; a lavatory takes a 1-1/4 in trap.": "Chaque appareil exige un siphon; un lavabo prend un siphon de 1-1/4 po.",
       "Except the neo-angle KST965NA/BF, whose drain is off-center.": "Sauf le receveur en angle KST965NA/BF, dont le drain est excentré.",
+      "Exhaust wall cap, 3 in": "Sortie murale d’évacuation, 3 po",
+      "Exhaust wall cap, 4 in": "Sortie murale d’évacuation, 4 po",
+      "Exhaust wall cap, 6 in": "Sortie murale d’évacuation, 6 po",
       "Expanded polystyrene, 60 kg/m3, measured at 10 % deformation. Keep away from hydrocarbons, esters, amines, aldehydes and long UV exposure.": "Polystyrène expansé, 60 kg/m³, mesuré à 10 % de déformation. Tenir à l'écart des hydrocarbures, esters, amines, aldéhydes et d'une longue exposition aux UV.",
       "Exposure 1, plugged-face plywood or OSB is recommended.": "Contreplaqué Exposure 1 à face réparée ou OSB recommandé.",
       "Exposure 1, plugged-face plywood or OSB, 1/8 in (3 mm) gaps; installed per page 18.": "Contreplaqué Exposure 1 à face réparée ou OSB, joints de 3 mm (1/8 po); pose selon la page 18.",
+      "Exterior entrance light": "Luminaire extérieur d’entrée",
       "Exterior entry door": "Porte d'entrée",
       "Exterior wall": "Mur extérieur",
       "Fiber-cement backerboard": "Panneau de fibrociment",
@@ -8415,6 +8679,7 @@
       "Floor joists": "Solives de plancher",
       "Floor joists, up to 19.2 in (49 cm) apart under a single 3/4 in plywood layer": "Solives de plancher espacées d'au plus 49 cm (19,2 po) sous un seul contreplaqué de 19 mm (3/4 po)",
       "Floor waterproofing": "Imperméabilisation du plancher",
+      "Foil duct tape": "Ruban d’aluminium pour conduits",
       "For bathroom walls outside the shower, moisture- and mould-resistant gypsum board, taped, finished and painted with bathroom paint.": "Pour les murs de salle de bain hors de la douche : panneaux de gypse résistants à l'humidité et à la moisissure, tirés à joints et peints avec une peinture pour salle de bain.",
       "For floors where a vertical connection is impractical, e.g. a wood floor where the hole cannot be moved.": "Pour les planchers où un raccord vertical est peu pratique, p. ex. un plancher de bois où l'on ne peut pas déplacer l'ouverture.",
       "For the lavatory drain and the vent; the code allows 1-1/4 in at least for a lavatory.": "Pour le drain du lavabo et l'évent; le code permet au moins 1-1/4 po pour un lavabo.",
@@ -8433,6 +8698,10 @@
       "Horizontal connection to a waste pipe beside the drain": "Raccord horizontal à un tuyau situé à côté du drain",
       "How the panel is mounted": "Mode de pose du panneau",
       "How the waste pipe reaches the drain": "Arrivée du tuyau d'évacuation au drain",
+      "In Quebec it must move at least 25 L/s (53 cfm) through its duct, be switched by hand in the room and be no louder than 3.5 sones (HVI); duct it to the outside, never into the attic.": "Au Québec, il doit évacuer au moins 25 L/s (53 pi³/min) dans son conduit, être commandé manuellement dans la pièce et ne pas dépasser 3,5 sones (HVI); raccordez-le à l’extérieur, jamais dans l’entretoit.",
+      "Insulated flexible duct, 3 in": "Conduit flexible isolé, 3 po",
+      "Insulated flexible duct, 4 in": "Conduit flexible isolé, 4 po",
+      "Insulated flexible duct, 6 in": "Conduit flexible isolé, 6 po",
       "Integrated KERDI waterproofing; used to build access ramps for curbless showers.": "Imperméabilisation KERDI intégrée; sert à construire des rampes d'accès aux douches sans seuil.",
       "Interior dry or wet floor. DITRA does not replace movement joints; where a waterproof floor is needed, seams and floor/wall joints get KERDI-BAND.": "Plancher intérieur sec ou humide. DITRA ne remplace pas les joints de mouvement; si le plancher doit être étanche, les joints et les jonctions plancher/mur reçoivent KERDI-BAND.",
       "Interior paint": "Peinture d'intérieur",
@@ -8513,6 +8782,7 @@
       "Not for primary exterior waterproofing, continuous-use steam rooms, moisture-sensitive stone, or hydrostatic pressure.": "Ne convient pas à l'imperméabilisation extérieure principale, aux hammams à usage continu, à la pierre sensible à l'humidité ni à la pression hydrostatique.",
       "Not intended for exterior applications. Floors are not listed as a use.": "Non destiné à l'extérieur. Les planchers ne figurent pas parmi les usages.",
       "Off-center": "Excentré",
+      "One at each end holds the flexible duct tight on the fan collar and on the wall cap.": "Un à chaque bout maintient le conduit flexible serré sur le collet du ventilateur et sur la sortie murale.",
       "One ring per pipe end in each fitting; buy rings in both sizes, 1/2 in and 3/4 in.": "Une bague par bout de tuyau dans chaque raccord; prenez-en des deux tailles, 1/2 po et 3/4 po.",
       "Only a licensed electrician may install or change it; plan spare spaces for future circuits.": "Seul un maître électricien peut l'installer ou le modifier; prévoyez des espaces libres pour de futurs circuits.",
       "Only dimensional lumber is supported; it must not be ripped down.": "Seul le bois de sciage convient; il ne doit pas être refendu.",
@@ -8643,6 +8913,7 @@
       "The membrane must be DITRA-XL.": "La membrane doit être DITRA-XL.",
       "The membrane must be acclimated within its working temperature range.": "La membrane doit être acclimatée dans sa plage de températures de pose.",
       "The membrane must be bonded with a mortar the manufacturer names.": "La membrane doit être collée avec un mortier nommé par le fabricant.",
+      "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits.": "La sortie doit avoir un clapet antiretour, être à au moins 100 mm du sol et à 1,8 m des prises d’air et des soffites ventilés.",
       "The panel may only be used where the manufacturer allows it.": "Le panneau ne peut être utilisé qu'aux endroits admis par le fabricant.",
       "The panel must be thick enough for how it is mounted. Allowed mountings are derived from each panel's thickness.": "Le panneau doit être assez épais pour son mode de pose. Les modes admis sont déduits de l'épaisseur de chaque panneau.",
       "The shower base must be a KERDI-SHOWER tray or a mortar bed.": "La base de douche doit être un receveur KERDI-SHOWER ou un lit de mortier.",
@@ -8656,6 +8927,7 @@
       "Thin-set mortar": "Mortier-colle",
       "This detail is for ceramic or porcelain tile.": "Ce détail vise les carreaux de céramique ou de porcelaine.",
       "This detail is for natural stone.": "Ce détail vise la pierre naturelle.",
+      "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag.": "Dans un entretoit non chauffé, le conduit doit être isolé à au moins RSI 0,74 (R-4,2); gardez-le court et tendu, et supportez-le pour qu’il ne s’affaisse pas.",
       "Tile grout": "Coulis pour carreaux",
       "Tile material": "Matériau du carreau",
       "Tile mortar": "Mortier-colle pour carreaux",

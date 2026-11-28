@@ -22,7 +22,8 @@ test("the bathroom list counts each fixture, device and opening", () => {
     rain_shower_head: 1,
     linear_drain: 1,
     gfci_receptacle: 1,
-    light_switch: 1,
+    // one for the light and one for the fan (9.32.3.7.(6))
+    light_switch: 2,
     ceiling_light: 1,
     baseboard_heater: 1,
     thermostat: 1,

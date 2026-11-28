@@ -10,6 +10,7 @@
 import { type Buildup, KNOWLEDGE, type ProductPicks, applyProducts, swapItems } from "./knowledge";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 import { plumbingAmounts } from "./plumbing";
+import { ventilationAmounts } from "./ventilation";
 
 export type RoomType = "dry" | "kitchen" | "bathroom";
 export type CalcSurface = "floor" | "walls" | "ceiling";
@@ -107,16 +108,17 @@ export interface Estimate {
 /**
  * Electrical rough-in estimate: a receptacle for every 3.6 m of wall (so that
  * no point along the floor line is more than 1.8 m from one), a switch per
- * door, a ceiling light per 15 m² of floor, a box per device, and NMD90 cable
+ * door and one in the room for its exhaust fan (Quebec building code
+ * 9.32.3.7.(6)), a ceiling light per 15 m² of floor, a box per device, and NMD90 cable
  * for a loop round the room, a drop to every device and a 5 m home run.
  */
 export function electrical(type: RoomType, size: RoomSize): Estimate[] {
   const a = areas(size);
   const receptacles = Math.max(1, Math.ceil(a.perimeter / 3.6));
-  const switches = Math.max(1, size.doors);
+  const fans = type === "bathroom" ? 1 : 0;
+  const switches = Math.max(1, size.doors) + fans;
   const lights = Math.max(1, Math.ceil(a.floor / 15));
   const gfci = type === "bathroom" ? 1 : type === "kitchen" ? 2 : 0;
-  const fans = type === "bathroom" ? 1 : 0;
   const devices = receptacles + gfci + switches + lights + fans;
   const cable = a.perimeter + devices * size.height + 5;
   return [
@@ -164,4 +166,17 @@ export function chosenBuildups(
     const pick = offered.find((b) => b.id === chosen[surface]) ?? offered[0];
     return pick ? [pick] : [];
   });
+}
+
+/**
+ * Bathroom exhaust duct, wall cap, clamps and foil tape, as for the example
+ * bathroom's duct to its outside wall; the duct and cap follow the picked
+ * fan's duct size.
+ */
+export function ventilationRows(type: RoomType, picks: ProductPicks = {}): Estimate[] {
+  if (type !== "bathroom") return [];
+  return [...swapItems(ventilationAmounts(["bathroom"]), picks)].map(([item, amount]) => ({
+    item,
+    amount,
+  }));
 }

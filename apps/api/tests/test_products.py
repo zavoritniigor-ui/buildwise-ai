@@ -39,12 +39,32 @@ def test_pipe_and_cable_brands_sell_in_their_data_sheet_packages() -> None:
     products = {p.id: p for p in load_products(DATA_DIR).item_products}
     for slot in ("nmd90-cable", "pex-pipe", "abs-pipe"):
         assert len([p for p in products.values() if p.slot == slot]) >= 2, slot
-    assert products["nexans-nmd90-canadex"].items["nmd90_cable"].package.size == Decimal(75)
-    assert products["sharkbite-pex-b"].items["pex_pipe_1_2"].package.size == Decimal("30.48")
-    assert products["ipex-abs-cell-core"].items["abs_pipe_3"].package.size == Decimal("3.66")
+
+    def size(product: str, item: str) -> Decimal | None:
+        package = products[product].items[item].package
+        return package.size if package else None
+
+    assert size("nexans-nmd90-canadex", "nmd90_cable") == Decimal(75)
+    assert size("sharkbite-pex-b", "pex_pipe_1_2") == Decimal("30.48")
+    assert size("ipex-abs-cell-core", "abs_pipe_3") == Decimal("3.66")
     # PEX-a listed to ASTM F1960 takes expansion rings, not crimp rings
     assert products["uponor-aquapex-white"].swaps == {"pex_crimp_ring": "pex_expansion_ring"}
     assert products["sharkbite-pex-b"].swaps == {}
+
+
+def test_bathroom_fans_carry_their_hvi_ratings_and_duct_size() -> None:
+    products = {p.id: p for p in load_products(DATA_DIR).item_products}
+    panasonic = products["panasonic-fv0511vq1"].fan
+    assert panasonic is not None and panasonic.duct == 100
+    # 50 cfm setting: 53 cfm at 0.25 in. w.g., 0.4 sone (submittal p1)
+    assert any(
+        r.setting == 50 and r.in_wg == Decimal("0.25") and r.cfm == 53 for r in panasonic.ratings
+    )
+    qtx = products["broan-qtxeg080"]
+    assert qtx.fan is not None and qtx.fan.duct == 150
+    assert qtx.swaps["insulated_flex_duct_4"] == "insulated_flex_duct_6"
+    cheap = products["broan-688"].fan
+    assert cheap is not None and cheap.ratings[0].sones == Decimal("4.0")
 
 
 def test_an_item_slot_cannot_mix_with_layer_products() -> None:

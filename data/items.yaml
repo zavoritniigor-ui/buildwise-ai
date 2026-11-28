@@ -178,8 +178,57 @@ items:
   - id: bathroom_exhaust_fan
     name: "Bathroom exhaust fan"
     category: ventilation
-    summary: "Choose the airflow for the bathroom's size and duct it to the outside, never into the attic."
+    summary: "In Quebec it must move at least 25 L/s (53 cfm) through its duct, be switched by hand in the room and be no louder than 3.5 sones (HVI); duct it to the outside, never into the attic."
     search: "bathroom exhaust fan"
+    slot: bathroom-fan
+  - id: insulated_flex_duct_3
+    name: "Insulated flexible duct, 3 in"
+    category: ventilation
+    measure: length
+    summary: "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag."
+    search: "insulated flexible duct 3 in"
+  - id: exhaust_wall_cap_3
+    name: "Exhaust wall cap, 3 in"
+    category: ventilation
+    summary: "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits."
+    search: "exhaust wall cap 3 in damper"
+  - id: insulated_flex_duct_4
+    name: "Insulated flexible duct, 4 in"
+    category: ventilation
+    measure: length
+    summary: "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag."
+    search: "insulated flexible duct 4 in"
+  - id: exhaust_wall_cap_4
+    name: "Exhaust wall cap, 4 in"
+    category: ventilation
+    summary: "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits."
+    search: "exhaust wall cap 4 in damper"
+  - id: insulated_flex_duct_6
+    name: "Insulated flexible duct, 6 in"
+    category: ventilation
+    measure: length
+    summary: "Through an unheated attic the duct must be insulated to RSI 0.74 (R-4.2) at least; keep it short and stretched, and support it so it cannot sag."
+    search: "insulated flexible duct 6 in"
+  - id: exhaust_wall_cap_6
+    name: "Exhaust wall cap, 6 in"
+    category: ventilation
+    summary: "The outlet needs a backdraft damper and must sit at least 100 mm above the ground and 1.8 m from air intakes and vented soffits."
+    search: "exhaust wall cap 6 in damper"
+  - id: foil_duct_tape
+    name: "Foil duct tape"
+    category: ventilation
+    summary: "Duct joints must be sealed with mastic, metal foil duct tape or the manufacturer's sealant; cloth duct tape does not qualify."
+    search: "foil duct tape"
+  - id: duct_clamp
+    name: "Duct clamp"
+    category: ventilation
+    summary: "One at each end holds the flexible duct tight on the fan collar and on the wall cap."
+    search: "duct clamp"
+  - id: exterior_light
+    name: "Exterior entrance light"
+    category: lighting
+    summary: "Every entrance needs an outdoor light controlled by a wall switch inside; choose a fixture rated for wet locations."
+    search: "exterior wall light"
   - id: baseboard
     name: "Baseboard"
     category: trim

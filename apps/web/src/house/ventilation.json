@@ -1,0 +1,31 @@
+{
+  "_comment": "Mechanical exhaust of the example house: each fan's duct as a polyline of [x, y, z] points in metres (plan x east, z south, y up from the finished floor), from the fan collar to the outside face of the wall, and its outlet. Built in 3D by tools/house-model/build_house.py and counted and checked by apps/web/src/ventilation.ts against the Quebec Construction Code, Chapter I Building (NBC 2020 with Quebec amendments): the fan's airflow and sound rating, the duct's length for its size and the fan's static pressure (Table 9.32.3.11.-A), insulation through unheated space, discharge to the outdoors and the outlet's damper and height. The bathroom duct crosses the unheated attic above the ceiling to a wall cap in the east gable wall, so no soffit is near the outlet; the house has no outdoor air intake.",
+  "fans": [
+    {
+      "id": "bathroom_fan",
+      "room": "bathroom",
+      "fixture": "exhaust_fan",
+      "duct": {
+        "item": "insulated_flex_duct_4",
+        "flexible": true,
+        "rsi": 0.74,
+        "unheated": true,
+        "points": [
+          [7.75, 2.62, 5.15],
+          [7.75, 2.75, 5.15],
+          [9.06, 2.75, 5.15]
+        ]
+      },
+      "outlet": {
+        "item": "exhaust_wall_cap_4",
+        "damper": true,
+        "intakeDistance": null,
+        "soffit": false
+      }
+    }
+  ],
+  "sealing": {
+    "tape": "foil_duct_tape",
+    "clamp": "duct_clamp"
+  }
+}

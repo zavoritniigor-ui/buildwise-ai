@@ -1,5 +1,5 @@
 {
-  "_comment": "What the builder installs in the example house, beyond walls and floors: kitchen cabinets and sink, bathroom fixtures, electrical devices, heating and ventilation. No loose furniture: the app is for building and renovating. Built by tools/house-model/build_house.py; every object is clickable and opens the item (data/items.yaml) it is sold as. A piece names its item, and a part may name its own. Parts are in local metres: at = [u, v] centre on the plan, y = bottom height, size = [width u, depth v, height]. For counting, a part with unit: true is one unit of its item (else one per placement), and an item measured by length sums the widths of its parts with length: true. A piece's front faces +v; a placement turns it by rotate degrees (0 front south, 90 west, 180 north, 270 east) and puts its origin at plan [x, z]; wall devices have their origin on the wall face.",
+  "_comment": "What the builder installs in the example house, beyond walls and floors: kitchen cabinets and sink, bathroom fixtures, electrical devices, heating and ventilation. No loose furniture: the app is for building and renovating. Built by tools/house-model/build_house.py; every object is clickable and opens the item (data/items.yaml) it is sold as. A piece names its item, and a part may name its own. Parts are in local metres: at = [u, v] centre on the plan, y = bottom height, size = [width u, depth v, height]. For counting, a part with unit: true is one unit of its item (else one per placement), and an item measured by length sums the widths of its parts with length: true. A piece's front faces +v; a placement turns it by rotate degrees (0 front south, 90 west, 180 north, 270 east) and puts its origin at plan [x, z]; wall devices have their origin on the wall face. A switch placement may name the piece it controls (controls); otherwise it controls the room's lights. A placement marked exterior sits on the outer face of its room's exterior wall.",
   "materials": {
     "walnut": {
       "color": "#6b4a33",
@@ -565,6 +565,32 @@
           "bevel": 0.005
         }
       ]
+    },
+    "exterior_light": {
+      "item": "exterior_light",
+      "parts": [
+        {
+          "shape": "box",
+          "at": [0, 0.012],
+          "y": 1.82,
+          "size": [0.12, 0.024, 0.22],
+          "material": "black"
+        },
+        {
+          "shape": "box",
+          "at": [0, 0.09],
+          "y": 1.78,
+          "size": [0.13, 0.13, 0.2],
+          "material": "glass"
+        },
+        {
+          "shape": "box",
+          "at": [0, 0.09],
+          "y": 1.98,
+          "size": [0.15, 0.15, 0.03],
+          "material": "black"
+        }
+      ]
     }
   },
   "placements": [
@@ -804,6 +830,13 @@
     },
     {
       "room": "hallway",
+      "piece": "switch",
+      "at": [5.75, 6.94],
+      "rotate": 180,
+      "controls": "exterior_light"
+    },
+    {
+      "room": "hallway",
       "piece": "receptacle",
       "at": [4.06, 6.4],
       "rotate": 270
@@ -821,6 +854,13 @@
       "rotate": 0
     },
     {
+      "room": "hallway",
+      "piece": "exterior_light",
+      "at": [5.7, 7.06],
+      "rotate": 0,
+      "exterior": true
+    },
+    {
       "room": "bathroom",
       "piece": "gfci_receptacle",
       "at": [7.45, 4.56],
@@ -831,6 +871,13 @@
       "piece": "switch",
       "at": [6.06, 5.85],
       "rotate": 270
+    },
+    {
+      "room": "bathroom",
+      "piece": "switch",
+      "at": [6.06, 5.75],
+      "rotate": 270,
+      "controls": "exhaust_fan"
     },
     {
       "room": "bathroom",

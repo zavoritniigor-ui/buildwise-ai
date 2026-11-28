@@ -26,6 +26,7 @@ import {
   swapItems,
 } from "./knowledge";
 import { plumbingAmounts } from "./plumbing";
+import { ventilationAmounts } from "./ventilation";
 import { type PurchaseLine, mergePurchases, purchaseList } from "./quantities";
 
 export interface InventoryLine {
@@ -87,6 +88,7 @@ export function inventory(rooms: readonly RoomId[], picks: ProductPicks = {}): I
   }
 
   for (const [id, n] of plumbingAmounts(rooms)) add(id, n);
+  for (const [id, n] of ventilationAmounts(rooms)) add(id, n);
 
   for (const room of rooms) {
     const length = baseboardRuns(findRoom(room)).reduce((sum, r) => sum + (r.to - r.from), 0);

@@ -296,7 +296,7 @@ function Model({
         return copy;
       };
       mesh.material = Array.isArray(mesh.material) ? mesh.material.map(own) : own(mesh.material);
-      if (mesh.parent && /__plumbing_/.test(`${mesh.name} ${mesh.parent.name}`))
+      if (mesh.parent && /__(plumbing|ventilation)_/.test(`${mesh.name} ${mesh.parent.name}`))
         pipeMaterials.push(...([mesh.material].flat() as MeshStandardMaterial[]));
       if (line && plane) {
         mesh.userData.cut = plane;
@@ -305,7 +305,7 @@ function Model({
     });
     const found: ItemNode[] = [];
     clone.traverse((node) => {
-      if (/__plumbing_/.test(node.name) && typeof node.userData.item === "string")
+      if (/__(plumbing|ventilation)_/.test(node.name) && typeof node.userData.item === "string")
         pipeNodes.push(node);
       if (typeof node.userData.item !== "string") return;
       const materials: MeshStandardMaterial[] = [];

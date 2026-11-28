@@ -170,7 +170,7 @@ test("the room shopping list counts what the bathroom needs, with store links", 
   expect(screen.getByText("7.78 m")).toBeDefined();
   const fan = screen.getByRole("list", { name: "Find Bathroom exhaust fan in stores" });
   expect(within(fan).getByRole("link", { name: "RONA" }).getAttribute("href")).toBe(
-    "https://www.rona.ca/en/search?q=bathroom%20exhaust%20fan",
+    "https://www.rona.ca/en/search?q=Panasonic%20FV-0511VQ1",
   );
 });
 
